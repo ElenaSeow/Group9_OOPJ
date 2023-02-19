@@ -26,21 +26,195 @@ public class Main_Page extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        LOCATION = new javax.swing.JPanel();
+        Home = new javax.swing.JLabel();
+        Facilities = new javax.swing.JLabel();
+        Location = new javax.swing.JLabel();
+        AboutUs = new javax.swing.JLabel();
+        Login = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        LOCATION.setBackground(new java.awt.Color(67, 63, 113));
+
+        Home.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        Home.setForeground(new java.awt.Color(255, 255, 255));
+        Home.setText("PARKHILL RESIDENCE");
+        Home.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HomeMouseClicked(evt);
+            }
+        });
+
+        Facilities.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        Facilities.setForeground(new java.awt.Color(255, 255, 255));
+        Facilities.setText("FACILITIES");
+        Facilities.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FacilitiesMouseClicked(evt);
+            }
+        });
+
+        Location.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        Location.setForeground(new java.awt.Color(255, 255, 255));
+        Location.setText("LOCATION");
+        Location.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LocationMouseClicked(evt);
+            }
+        });
+
+        AboutUs.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        AboutUs.setForeground(new java.awt.Color(255, 255, 255));
+        AboutUs.setText("ABOUT US");
+        AboutUs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AboutUsMouseClicked(evt);
+            }
+        });
+
+        Login.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        Login.setForeground(new java.awt.Color(255, 255, 255));
+        Login.setText("LOGIN");
+        Login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout LOCATIONLayout = new javax.swing.GroupLayout(LOCATION);
+        LOCATION.setLayout(LOCATIONLayout);
+        LOCATIONLayout.setHorizontalGroup(
+            LOCATIONLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LOCATIONLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(Home)
+                .addGap(79, 79, 79)
+                .addComponent(Facilities)
+                .addGap(18, 18, 18)
+                .addComponent(Location)
+                .addGap(18, 18, 18)
+                .addComponent(AboutUs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Login)
+                .addGap(18, 18, 18))
+        );
+        LOCATIONLayout.setVerticalGroup(
+            LOCATIONLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LOCATIONLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(LOCATIONLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home)
+                    .addComponent(Facilities)
+                    .addComponent(Location)
+                    .addComponent(AboutUs)
+                    .addComponent(Login))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(244, 255, 253));
+
+        jPanel4.setBackground(new java.awt.Color(67, 63, 113));
+
+        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("@ 2023 Parkhill Residence");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(299, 299, 299))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel3)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jLabel4.setText("jLabel4");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
+            .addComponent(LOCATION, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 419, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(LOCATION, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void HomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMouseClicked
+        MainPage MP = new MainPage();
+        MP.show(); //display Main Page
+
+        dispose(); //close current frame after open new frame
+    }//GEN-LAST:event_HomeMouseClicked
+
+    private void FacilitiesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FacilitiesMouseClicked
+        MainPage_Facilities MP_F = new MainPage_Facilities();
+        MP_F.show(); //display Facilities Page
+
+        dispose(); //close current frame after open new frame
+    }//GEN-LAST:event_FacilitiesMouseClicked
+
+    private void LocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LocationMouseClicked
+        MainPage_Location MP_L = new MainPage_Location();
+        MP_L.show(); //display Support Page
+
+        dispose(); //close current frame after open new frame
+    }//GEN-LAST:event_LocationMouseClicked
+
+    private void AboutUsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutUsMouseClicked
+        MainPage_AboutUs MP_AU = new MainPage_AboutUs();
+        MP_AU.show(); //display About Us Page
+
+        dispose(); //close current frame after open new frame
+    }//GEN-LAST:event_AboutUsMouseClicked
+
+    private void LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginMouseClicked
+        LoginPage LP = new LoginPage();
+        LP.show(); //display Login Page
+
+        dispose(); //close current frame after open new frame
+    }//GEN-LAST:event_LoginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -78,5 +252,15 @@ public class Main_Page extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AboutUs;
+    private javax.swing.JLabel Facilities;
+    private javax.swing.JLabel Home;
+    private javax.swing.JPanel LOCATION;
+    private javax.swing.JLabel Location;
+    private javax.swing.JLabel Login;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }

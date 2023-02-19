@@ -182,35 +182,35 @@ public class Main_Page extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void HomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMouseClicked
-        MainPage MP = new MainPage();
+        Main_Page MP = new Main_Page();
         MP.show(); //display Main Page
 
         dispose(); //close current frame after open new frame
     }//GEN-LAST:event_HomeMouseClicked
 
     private void FacilitiesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FacilitiesMouseClicked
-        MainPage_Facilities MP_F = new MainPage_Facilities();
+        Main_Page_Facilities MP_F = new Main_Page_Facilities();
         MP_F.show(); //display Facilities Page
 
         dispose(); //close current frame after open new frame
     }//GEN-LAST:event_FacilitiesMouseClicked
 
     private void LocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LocationMouseClicked
-        MainPage_Location MP_L = new MainPage_Location();
+        Main_Page_Location MP_L = new Main_Page_Location();
         MP_L.show(); //display Support Page
 
         dispose(); //close current frame after open new frame
     }//GEN-LAST:event_LocationMouseClicked
 
     private void AboutUsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutUsMouseClicked
-        MainPage_AboutUs MP_AU = new MainPage_AboutUs();
+        Main_Page_About_Us MP_AU = new Main_Page_About_Us();
         MP_AU.show(); //display About Us Page
 
         dispose(); //close current frame after open new frame
     }//GEN-LAST:event_AboutUsMouseClicked
 
     private void LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginMouseClicked
-        LoginPage LP = new LoginPage();
+        Login_Page LP = new Login_Page();
         LP.show(); //display Login Page
 
         dispose(); //close current frame after open new frame

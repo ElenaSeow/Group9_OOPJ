@@ -34,8 +34,7 @@ public class Login_Page extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         Back = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        LoginBtn = new javax.swing.JLabel();
-        selection = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -85,33 +84,26 @@ public class Login_Page extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(114, 126, 224));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        LoginBtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        LoginBtn.setForeground(new java.awt.Color(255, 255, 255));
-        LoginBtn.setText("Login");
-        LoginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LoginBtnMouseClicked(evt);
-            }
-        });
+        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Login");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(LoginBtn)
-                .addGap(30, 30, 30))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel3)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(LoginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
                 .addContainerGap())
         );
-
-        selection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin Executive", "Building Executive", "Building Manager", "Account Executive", "Resident", "Vendor", "Security Guard" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -128,8 +120,7 @@ public class Login_Page extends javax.swing.JFrame {
                             .addComponent(PasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(EmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(selection, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(82, 82, 82))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -156,9 +147,7 @@ public class Login_Page extends javax.swing.JFrame {
                 .addComponent(PasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(selection, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
@@ -214,266 +203,11 @@ public class Login_Page extends javax.swing.JFrame {
     }//GEN-LAST:event_PasswordTFFocusGained
 
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
-        MainPage MP = new MainPage();
+        Main_Page MP = new Main_Page();
         MP.show(); //display Main Page
 
         dispose(); //close current frame after open new frame
     }//GEN-LAST:event_BackMouseClicked
-
-    private void LoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginBtnMouseClicked
-        // Request email and password from user
-        String id = EmailTF.getText();
-        String email = EmailTF.getText();
-        String password = PasswordTF.getText();
-        String ae = selection.getSelectedItem().toString();
-        ///////////////////////// ADMIN EXECUTIVE /////////////////////////
-        if (ae.equals("Admin Executive")){
-
-            try (BufferedReader brr = new BufferedReader(new FileReader("AdminExecutive.txt"))) {
-                String line;
-                while ((line = brr.readLine()) != null) {
-                    String[] list = line.split(":");
-                    String ID = list[0];
-                    String name = list [1];
-                    String eml = list[2];
-                    String pwd = list[3];
-                    String roles = list[4];
-                    String number = list [5];
-
-                    if (id.equals(ID) && password.equals(pwd) && roles.equals("AdminExecutive")) {
-                        JOptionPane.showMessageDialog(null,"Login Successful!");
-                        JOptionPane.showMessageDialog(null,"You are entering Admin Executive Page....");
-
-                        LoginDetails logindetails = new LoginDetails(id);
-                        Admin_Executive_MainPage AEMP = new Admin_Executive_MainPage(logindetails);
-                        AEMP.setVisible(true);
-                        break;
-                    }
-                }
-
-                if (line == null) {
-                    JOptionPane.showMessageDialog(null, "Invalid Credentials or Role, Try Again!");
-                }
-
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        ///////////////////////// ACCOUNT EXECUTIVE /////////////////////////
-        else if (ae.equals("Account Executive")) {
-
-            try (BufferedReader brr = new BufferedReader(new FileReader("AccountExecutive.txt"))) {
-                String line;
-                while ((line = brr.readLine()) != null) {
-                    String[] list = line.split(":");
-                    String ID = list[0];
-                    String name = list [1];
-                    String eml = list[2];
-                    String pwd = list[3];
-                    String roles = list[4];
-                    String number = list [5];
-
-                    if (id.equals(ID) && password.equals(pwd) && roles.equals("AccountExecutive")) {
-                        JOptionPane.showMessageDialog(null, "Login Successful!");
-                        JOptionPane.showMessageDialog(null, "You are entering Account Executive Page....");
-
-                        LoginDetails logindetails = new LoginDetails (id);
-                        Account_Executive_Mainpg accmp = new Account_Executive_Mainpg(logindetails);
-                        accmp.setVisible(true);
-                        break;
-                    }
-                }
-
-                if (line == null) {
-                    JOptionPane.showMessageDialog(null, "Invalid Credentials or Role, Try Again!");
-                }
-
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        ///////////////////////// BUILDING EXECUTIVE /////////////////////////
-        else if (ae.equals("Building Executive")) {
-
-            try (BufferedReader brr = new BufferedReader(new FileReader("BuildingExecutive.txt"))) {
-                String line;
-                while ((line = brr.readLine()) != null) {
-                    String[] list = line.split(":");
-                    String ID = list[0];
-                    String name = list [1];
-                    String eml = list[2];
-                    String pwd = list[3];
-                    String roles = list[4];
-                    String number = list [5];
-
-                    if (id.equals(ID) && password.equals(pwd) && roles.equals("BuildingExecutive")) {
-                        JOptionPane.showMessageDialog(null, "Login Successfull!");
-                        JOptionPane.showMessageDialog(null, "You are entering Building Executive Page....");
-
-                        LoginDetails logindetails = new LoginDetails(id);
-                        Building_Executive_MainPage BEMP = new Building_Executive_MainPage(logindetails);
-                        BEMP.setVisible(true);
-                        break;
-                    }
-                }
-
-                if (line == null) {
-                    JOptionPane.showMessageDialog(null, "Invalid Credentials or Role, Try Again!");
-                }
-
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        ///////////////////////// BUILDING MANAGER /////////////////////////
-        else if (ae.equals("Building Manager")) {
-
-            try (BufferedReader brr = new BufferedReader(new FileReader("BuildingManager.txt"))) {
-                String line;
-                while ((line = brr.readLine()) != null) {
-                    String[] list = line.split(":");
-                    String ID = list[0];
-                    String name = list [1];
-                    String eml = list[2];
-                    String pwd = list[3];
-                    String roles = list[4];
-                    String number = list [5];
-
-                    if (id.equals(ID) && password.equals(pwd) && roles.equals("BuildingManager")) {
-                        JOptionPane.showMessageDialog(null, "Login Successfull!");
-                        JOptionPane.showMessageDialog(null, "You are entering Building Manager Page....");
-
-                        LoginDetails logindetails = new LoginDetails(id);
-                        Building_Manager_Sample BMS = new Building_Manager_Sample(logindetails);
-                        BMS.setVisible(true);
-                        break;
-                    }
-                }
-
-                if (line == null) {
-                    JOptionPane.showMessageDialog(null, "Invalid Credentials or Role, Try Again!");
-                }
-
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        ///////////////////////// RESIDENT /////////////////////////
-        else if (ae.equals("Resident")) {
-
-            try (BufferedReader brr = new BufferedReader(new FileReader("BackupResident.txt"))) {
-                String line;
-                while ((line = brr.readLine()) != null) {
-                    String[] list = line.split(":");
-                    String ID = list[0];
-                    String name = list [1];
-                    String eml = list[2];
-                    String pwd = list[3];
-                    String roles = list[4];
-                    String number = list [5];
-
-                    if (id.equals(ID) && password.equals(pwd) && roles.equals("Resident")) {
-                        JOptionPane.showMessageDialog(null, "Login Successfull!");
-                        JOptionPane.showMessageDialog(null, "You are entering Resident Page....");
-
-                        LoginDetails logindetails = new LoginDetails (id);
-                        Resident_Main_Page rmp = new Resident_Main_Page(logindetails);
-                        rmp.setVisible(true);
-                        dispose();
-                        break;
-                    }
-                }
-
-                if (line == null) {
-                    JOptionPane.showMessageDialog(null, "Invalid Credentials or Role, Try Again!");
-                }
-
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        ///////////////////////// SECURITY /////////////////////////
-        else if (ae.equals("Security Guard")) {
-
-            try (BufferedReader brr = new BufferedReader(new FileReader("Security.txt"))) {
-                String line;
-                while ((line = brr.readLine()) != null) {
-                    String[] list = line.split(":");
-                    String ID = list[0];
-                    String name = list [1];
-                    String eml = list[2];
-                    String pwd = list[3];
-                    String roles = list[4];
-                    String number = list [5];
-
-                    if (id.equals(ID) && password.equals(pwd) && roles.equals("Security")) {
-                        JOptionPane.showMessageDialog(null, "Login Successfull!");
-                        JOptionPane.showMessageDialog(null, "You are entering Security Page....");
-
-                        LoginDetails logindetails = new LoginDetails(id);
-                        Security_Page SP = new Security_Page(logindetails);
-                        SP.setVisible(true);
-                        break;
-                    }
-                }
-
-                if (line == null) {
-                    JOptionPane.showMessageDialog(null, "Invalid Credentials or Role, Try Again!");
-                }
-
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        ///////////////////////// VENDOR /////////////////////////
-        else if (ae.equals("Vendor")) {
-
-            try (BufferedReader brr = new BufferedReader(new FileReader("Vendor.txt"))) {
-                String line;
-                while ((line = brr.readLine()) != null) {
-                    String[] list = line.split(":");
-                    String ID = list[0];
-                    String name = list [1];
-                    String eml = list[2];
-                    String pwd = list[3];
-                    String roles = list[4];
-                    String number = list [5];
-
-                    if (id.equals(ID) && password.equals(pwd) && roles.equals("Vendor")) {
-                        JOptionPane.showMessageDialog(null, "Login Successfull!");
-                        JOptionPane.showMessageDialog(null, "You are entering Vendor Page....");
-
-                        LoginDetails logindetails = new LoginDetails(id);
-                        Vendor_Page VP = new Vendor_Page(logindetails);
-                        VP.setVisible(true);
-                        break;
-                    }
-                }
-
-                if (line == null) {
-                    JOptionPane.showMessageDialog(null, "Invalid Credentials or Role, Try Again!");
-                }
-
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_LoginBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -513,15 +247,14 @@ public class Login_Page extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Back;
     public javax.swing.JTextField EmailTF;
-    private javax.swing.JLabel LoginBtn;
     public javax.swing.JPasswordField PasswordTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    public javax.swing.JComboBox<String> selection;
     // End of variables declaration//GEN-END:variables
 }

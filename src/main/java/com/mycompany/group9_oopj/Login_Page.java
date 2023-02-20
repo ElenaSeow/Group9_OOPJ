@@ -4,9 +4,17 @@
  */
 package com.mycompany.group9_oopj;
 
+import AccountExecutive.Account_Executive_Main;
+import AdminExecutive.Admin_Executive_Main;
+import BuildingExecutive.Building_Executive_Main;
+import BuildingManager.Building_Manager_Main;
+import Resident.Resident_Main;
+import Security.Security_Main;
+import Vendor.Vendor_Main;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -251,8 +259,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null,"Login Successful!");
                         JOptionPane.showMessageDialog(null,"You are entering Admin Executive Page....");
 
-                        LoginDetails logindetails = new LoginDetails(id);
-                        Admin_Executive_MainPage AEMP = new Admin_Executive_MainPage(logindetails);
+                        Admin_Executive_Main AEMP = new Admin_Executive_Main();
                         AEMP.setVisible(true);
                         break;
                     }
@@ -263,9 +270,9 @@ public class Login_Page extends javax.swing.JFrame {
                 }
 
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         ///////////////////////// ACCOUNT EXECUTIVE /////////////////////////
@@ -286,8 +293,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Login Successful!");
                         JOptionPane.showMessageDialog(null, "You are entering Account Executive Page....");
 
-                        LoginDetails logindetails = new LoginDetails (id);
-                        Account_Executive_Mainpg accmp = new Account_Executive_Mainpg(logindetails);
+                        Account_Executive_Main accmp = new Account_Executive_Main();
                         accmp.setVisible(true);
                         break;
                     }
@@ -298,9 +304,9 @@ public class Login_Page extends javax.swing.JFrame {
                 }
 
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         ///////////////////////// BUILDING EXECUTIVE /////////////////////////
@@ -321,8 +327,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Login Successfull!");
                         JOptionPane.showMessageDialog(null, "You are entering Building Executive Page....");
 
-                        LoginDetails logindetails = new LoginDetails(id);
-                        Building_Executive_MainPage BEMP = new Building_Executive_MainPage(logindetails);
+                        Building_Executive_Main BEMP = new Building_Executive_Main();
                         BEMP.setVisible(true);
                         break;
                     }
@@ -333,9 +338,9 @@ public class Login_Page extends javax.swing.JFrame {
                 }
 
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         ///////////////////////// BUILDING MANAGER /////////////////////////
@@ -356,8 +361,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Login Successfull!");
                         JOptionPane.showMessageDialog(null, "You are entering Building Manager Page....");
 
-                        LoginDetails logindetails = new LoginDetails(id);
-                        Building_Manager_Sample BMS = new Building_Manager_Sample(logindetails);
+                        Building_Manager_Main BMS = new Building_Manager_Main();
                         BMS.setVisible(true);
                         break;
                     }
@@ -368,9 +372,9 @@ public class Login_Page extends javax.swing.JFrame {
                 }
 
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         ///////////////////////// RESIDENT /////////////////////////
@@ -391,8 +395,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Login Successfull!");
                         JOptionPane.showMessageDialog(null, "You are entering Resident Page....");
 
-                        LoginDetails logindetails = new LoginDetails (id);
-                        Resident_Main_Page rmp = new Resident_Main_Page(logindetails);
+                        Resident_Main rmp = new Resident_Main();
                         rmp.setVisible(true);
                         dispose();
                         break;
@@ -404,9 +407,9 @@ public class Login_Page extends javax.swing.JFrame {
                 }
 
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -428,8 +431,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Login Successfull!");
                         JOptionPane.showMessageDialog(null, "You are entering Security Page....");
 
-                        LoginDetails logindetails = new LoginDetails(id);
-                        Security_Page SP = new Security_Page(logindetails);
+                        Security_Main SP = new Security_Main();
                         SP.setVisible(true);
                         break;
                     }
@@ -440,9 +442,9 @@ public class Login_Page extends javax.swing.JFrame {
                 }
 
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         ///////////////////////// VENDOR /////////////////////////
@@ -463,8 +465,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Login Successfull!");
                         JOptionPane.showMessageDialog(null, "You are entering Vendor Page....");
 
-                        LoginDetails logindetails = new LoginDetails(id);
-                        Vendor_Page VP = new Vendor_Page(logindetails);
+                        Vendor_Main VP = new Vendor_Main();
                         VP.setVisible(true);
                         break;
                     }
@@ -475,9 +476,9 @@ public class Login_Page extends javax.swing.JFrame {
                 }
 
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login_Page.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_LoginBtnMouseClicked

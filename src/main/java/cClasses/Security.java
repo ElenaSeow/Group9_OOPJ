@@ -8,9 +8,9 @@ package cClasses;
  *
  * @author HP
  */
-public class Resident extends User{
+public class Security extends User {
     
-    public Resident(String id, String name, String email, String password, String role, String contactNo) {
+    public Security(String id, String name, String email, String password, String role, String contactNo) {
         super(id, name, email, password, role, contactNo);
         
     }
@@ -19,25 +19,3 @@ public class Resident extends User{
         super.setName(name);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

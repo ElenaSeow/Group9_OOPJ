@@ -1,0 +1,4 @@
+ElenaS:RE001:C30:PID001:Resident:RM9000:12/01/2023:Pending:
+Ryan:RE002:C32:PID002:Resident:RM9000:12/01/2023:Outstanding:
+Megan:TEST:TEST:TEST:TEST:Resident:TEST:Outstanding:
+Camille:RE003:C30:PID001:Resident:RM9000:12/01/2023:Pending:

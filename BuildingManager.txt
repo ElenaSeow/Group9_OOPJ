@@ -1,0 +1,2 @@
+BM001:Alex:alex@gmail.com:alex123:BuildingManager:012-111-4444
+BM002:Raaj:raaj@gmail.com:raaj123: BuildingManager:012-222-4444

@@ -1,0 +1,3 @@
+RE001:ElenaSeow:elena@gmail.com:elena123:Resident:012-777-0000
+RE002:Ryan:ryan@gmail.com:ryan123:Resident:012-111-9999
+RE003:Lol:lol@gmail.com:lol123:Resident:013-245-3567

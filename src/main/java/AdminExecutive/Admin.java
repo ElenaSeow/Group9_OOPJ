@@ -68,10 +68,11 @@ public class Admin {
   public String getContactNo(){
       return contactNo;
   }
-   public static void AdminImport() throws IOException{
+   public static ArrayList<Admin> AdminImport() throws IOException{
        BufferedReader br = null;
+    ArrayList<Admin> admins = new ArrayList<Admin>();
         try {
-            ArrayList<Admin> admins = new ArrayList<Admin>();
+
             String file = "AdminExecutive.txt";
             ArrayList<String> data = new ArrayList<>();
             br = new BufferedReader(new FileReader(file));
@@ -92,6 +93,7 @@ public class Admin {
         }  catch (IOException ex) {
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
+        return admins;
         }
    
    public static void AddDataToTable(ArrayList<Admin> admins,DefaultTableModel model){

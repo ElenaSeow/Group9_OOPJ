@@ -8,6 +8,6 @@ package cClasses;
  *
  * @author HP
  */
-public class All_Users {
+public class VisitorPass {
     
 }

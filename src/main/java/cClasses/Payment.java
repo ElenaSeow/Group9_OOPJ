@@ -8,6 +8,6 @@ package cClasses;
  *
  * @author HP
  */
-public class Main {
+public class Payment {
     
 }

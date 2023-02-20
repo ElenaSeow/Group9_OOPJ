@@ -1,0 +1,6 @@
+RE001:ElenaSeow:elena@gmail.com:elena123:Resident:012-777-0000:2023-01-27:03:03:55 pm
+RE002:Ryan:ryan@gmail.com:ryan123:Resident:012-111-9999:2023-01-27:03:04:47 pm
+RE003:Lolking:lol@gmail.com:lol123:Resident:013-245-3567:2023-01-27:03:05:05 pm
+RE001:ElenaSJY:elena@gmail.com:elena123:Resident:012-777-0000:2023-01-27:06:54:45 pm
+RE001:ElenaSeow:elena@gmail.com:elena123:Resident:012-777-0000:2023-02-04:03:45:06 pm
+RE001:Elena S:elena@gmail.com:elena123:Resident:012-777-0000:2023-02-08:11:24:19 am

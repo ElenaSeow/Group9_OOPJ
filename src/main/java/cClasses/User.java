@@ -8,7 +8,8 @@ package cClasses;
  *
  * @author HP
  */
-abstract public class User {
+
+ abstract public class User {
     private String id;
     private String name;
     private String email;
@@ -16,16 +17,16 @@ abstract public class User {
     private String role;
     private String contactNo;
     
-    public User(String id, String name, String email, String password, String role, String contactNo){
+ 
+    
+    
+    public User(String id){
         this.id=id;
         this.name=name;
         this.email=email;
         this.password=password;
         this.role=role;
         this.contactNo=contactNo;
-    }
-    public User (String userid){
-        this.id = userid;
     }
     
     public void setName(String name){
@@ -38,7 +39,7 @@ abstract public class User {
         this.id = id;  
     }
     public String getId(){
-        return id;
+        return this.id;
     }
     public void setEmail(String email){
         this.email=email;

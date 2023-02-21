@@ -9,9 +9,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -59,7 +61,8 @@ public class Admin extends User{
         return admins;
         }
    
-   public static void tabulateData(ArrayList<Admin> admins,DefaultTableModel model){
+   public static void tabulateData(ArrayList<Admin> admins,JTable table){
+       DefaultTableModel model = (DefaultTableModel) table.getModel();
        for(Admin a:admins){
             String[] allDataRow = {a.getId(),a.getName(),a.getEmail(),a.getPassword(),a.getRole(),a.getContactNo()};
             model.addRow(allDataRow);
@@ -67,19 +70,25 @@ public class Admin extends User{
         }
     } 
    public void adminUpdate(ArrayList<Admin> admins,String id){
-       for(Admin a:admins){
-           String Id = a.getId();
-           if(id.equals(Id)){
-               a.setEmail(this.getEmail());
-               a.setPassword(this.getPassword());
-               a.setContactNo(this.getContactNo());
-           }
+       PrintWriter pr = null;
+       try {
+           for(Admin a:admins){
+               String Id = a.getId();
+               if(id.equals(Id)){
+                   a.setEmail(this.getEmail());
+                   a.setPassword(this.getPassword());
+                   a.setContactNo(this.getContactNo());
+               }
+           }   pr = new PrintWriter("AdminExecutive.txt");
+           for(Admin a:admins){ 
+               pr.println(a);
+                       }
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+       } finally {
+           pr.close();
        }
    }
 
-    @Override
-    void addFile() {
-        
-    }
    
 }

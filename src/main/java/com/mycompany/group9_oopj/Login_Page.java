@@ -5,12 +5,13 @@
 package com.mycompany.group9_oopj;
 
 import AccountExecutive.Account_Executive_Main;
-import AdminExecutive.Admin_Executive_Main;
+import AdminExecutive.AdminMain;
 import BuildingExecutive.Building_Executive_Main;
 import BuildingManager.Building_Manager_Main;
 import Resident.Resident_Main;
 import Security.Security_Main;
 import Vendor.Vendor_Main;
+import cClasses.Session;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -259,8 +260,9 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null,"Login Successful!");
                         JOptionPane.showMessageDialog(null,"You are entering Admin Executive Page....");
 
-                        Admin_Executive_Main AEMP = new Admin_Executive_Main();
-                        AEMP.setVisible(true);
+                        Session session = new Session(id);
+                        AdminExecutive.AdminMain AM = new AdminMain(session);
+                        AM.setVisible(true);
                         break;
                     }
                 }
@@ -292,7 +294,8 @@ public class Login_Page extends javax.swing.JFrame {
                     if (id.equals(ID) && password.equals(pwd) && roles.equals("AccountExecutive")) {
                         JOptionPane.showMessageDialog(null, "Login Successful!");
                         JOptionPane.showMessageDialog(null, "You are entering Account Executive Page....");
-
+                        
+                        Session session = new Session(id);
                         Account_Executive_Main accmp = new Account_Executive_Main();
                         accmp.setVisible(true);
                         break;
@@ -327,6 +330,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Login Successfull!");
                         JOptionPane.showMessageDialog(null, "You are entering Building Executive Page....");
 
+                        Session session = new Session(id);
                         Building_Executive_Main BEMP = new Building_Executive_Main();
                         BEMP.setVisible(true);
                         break;
@@ -361,6 +365,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Login Successfull!");
                         JOptionPane.showMessageDialog(null, "You are entering Building Manager Page....");
 
+                        Session session = new Session(id);
                         Building_Manager_Main BMS = new Building_Manager_Main();
                         BMS.setVisible(true);
                         break;
@@ -395,6 +400,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Login Successfull!");
                         JOptionPane.showMessageDialog(null, "You are entering Resident Page....");
 
+                        Session session = new Session(id);
                         Resident_Main rmp = new Resident_Main();
                         rmp.setVisible(true);
                         dispose();
@@ -431,6 +437,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Login Successfull!");
                         JOptionPane.showMessageDialog(null, "You are entering Security Page....");
 
+                        Session session = new Session(id);
                         Security_Main SP = new Security_Main();
                         SP.setVisible(true);
                         break;
@@ -465,6 +472,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Login Successfull!");
                         JOptionPane.showMessageDialog(null, "You are entering Vendor Page....");
 
+                        Session session = new Session(id);
                         Vendor_Main VP = new Vendor_Main();
                         VP.setVisible(true);
                         break;

@@ -19,10 +19,7 @@ public class Resident extends User{
         super.setName(name);
     }
 
-    @Override
-    void addFile() {
-        
-    }
+
 }
 
 

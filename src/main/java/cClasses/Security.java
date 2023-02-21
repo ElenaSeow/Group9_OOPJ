@@ -19,8 +19,5 @@ public class Security extends User {
         super.setName(name);
     }
 
-    @Override
-    void addFile() {
-        
-    }
+
 }

@@ -59,11 +59,27 @@ public class Admin extends User{
         return admins;
         }
    
-   public static void AddDataToTable(ArrayList<Admin> admins,DefaultTableModel model){
+   public static void tabulateData(ArrayList<Admin> admins,DefaultTableModel model){
        for(Admin a:admins){
             String[] allDataRow = {a.getId(),a.getName(),a.getEmail(),a.getPassword(),a.getRole(),a.getContactNo()};
             model.addRow(allDataRow);
             
+        }
+    } 
+   public void adminUpdate(ArrayList<Admin> admins,String id){
+       for(Admin a:admins){
+           String Id = a.getId();
+           if(id.equals(Id)){
+               a.setEmail(this.getEmail());
+               a.setPassword(this.getPassword());
+               a.setContactNo(this.getContactNo());
+           }
+       }
    }
-   } 
+
+    @Override
+    void addFile() {
+        
+    }
+   
 }

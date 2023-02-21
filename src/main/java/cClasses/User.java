@@ -8,6 +8,9 @@ package cClasses;
  *
  * @author HP
  */
+
+
+
  abstract public class User {
     private String id;
     private String name;
@@ -16,7 +19,10 @@ package cClasses;
     private String role;
     private String contactNo;
     
-    public User(String id, String name, String email, String password, String role, String contactNo){
+ 
+    
+    
+    public User(String id){
         this.id=id;
         this.name=name;
         this.email=email;
@@ -35,7 +41,7 @@ package cClasses;
         this.id = id;  
     }
     public String getId(){
-        return id;
+        return this.id;
     }
     public void setEmail(String email){
         this.email=email;
@@ -60,4 +66,7 @@ package cClasses;
    }
 
    abstract void addFile();
- }
+   
+   
+   }
+

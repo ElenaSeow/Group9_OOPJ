@@ -11,6 +11,7 @@ import BuildingManager.Building_Manager_Main;
 import Resident.Resident_Main;
 import Security.Security_Main;
 import Vendor.Vendor_Main;
+import cClasses.User;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -395,7 +396,10 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Login Successfull!");
                         JOptionPane.showMessageDialog(null, "You are entering Resident Page....");
 
-                        Resident_Main rmp = new Resident_Main();
+
+                        User user = new User(id);
+
+                        Resident_Main rmp = new Resident_Main(User);
                         rmp.setVisible(true);
                         dispose();
                         break;

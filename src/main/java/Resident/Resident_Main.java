@@ -4,20 +4,45 @@
  */
 package Resident;
 
+import cClasses.Resident;
+import cClasses.Session;
 import cClasses.User;
+import java.util.ArrayList;
 
 /**
  *
  * @author HP
  */
 public class Resident_Main extends javax.swing.JFrame {
-    
+    Session Session;
    
     /**
      * Creates new form Resident_Main
      */
-    public Resident_Main() {
+    public Resident_Main(Session session) {
         initComponents();
+        this.Session = session;
+        String id = session.getId();
+        ArrayList<Resident> residents;
+        residents= Resident.ResidentImport();
+        for(Resident r:residents){
+            String residentId= r.getId();
+            String username = r.getName();
+            String email = r.getEmail();
+            String password = r.getPassword();
+            String role = r.getRole();
+            String contactNo=r.getContactNo();
+            if(id.equals(residentId)){
+                NameTF1.setText(username);
+                UserID1.setText(residentId);
+                EmailTF1.setText(email);
+                PasswordTF1.setText(password);
+                Role1.setText(role);
+                TelNoTF1.setText(contactNo);
+                
+            }
+        }
+        
     }
 
     /**
@@ -944,11 +969,11 @@ public class Resident_Main extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Resident_Main().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Resident_Main().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

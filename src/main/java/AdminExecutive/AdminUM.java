@@ -3,26 +3,34 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package AdminExecutive;
+
 import cClasses.Admin;
 import cClasses.Session;
-import cClasses.User;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author HP
  */
-public class AdminMain extends javax.swing.JFrame {
+public class AdminUM extends javax.swing.JFrame {
     Session Session;
     /**
      * Creates new form Admin_Executive_Sample
      */
-    public AdminMain(Session session) {
+    public AdminUM(Session session) {
         initComponents();
+//        AddDataToTable();
         this.Session = session;
-        String id = Session.getId();
+        String id = session.getId();
         ArrayList<Admin> admins;
         admins= Admin.AdminImport();
         for(Admin a:admins){
@@ -33,7 +41,19 @@ public class AdminMain extends javax.swing.JFrame {
             }
         }
     }
-
+//    public void AddDataToTable(){
+//        DefaultTableModel AllTable = (DefaultTableModel)AllUnitsTable.getModel();
+//        AllTable.setRowCount(0);
+//        ArrayList<String> alldata;
+//        alldata = Functions.Read("Units.txt");
+//        for(String str:alldata){
+//            String[] list = str.split(":");
+//            String[] allDataRow = {list[0],list[1],list[2],list[3],list[4],list[5],list[6]};
+//            AllTable.addRow(allDataRow);
+//        }
+//    }
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,6 +84,14 @@ public class AdminMain extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         BuidlingExecutive = new javax.swing.JLabel();
         Username = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel11 = new javax.swing.JPanel();
+        SearchBar1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        AllUnitsTable = new javax.swing.JTable();
+        AllCreate = new javax.swing.JButton();
+        AllUpdate = new javax.swing.JButton();
+        AllDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,11 +104,6 @@ public class AdminMain extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(67, 63, 113));
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel2MouseClicked(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -201,11 +224,6 @@ public class AdminMain extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(67, 63, 113));
-        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel9MouseClicked(evt);
-            }
-        });
 
         jLabel7.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -294,7 +312,7 @@ public class AdminMain extends javax.swing.JFrame {
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -318,7 +336,7 @@ public class AdminMain extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(BuidlingExecutive)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Username)
                 .addGap(23, 23, 23))
         );
@@ -332,56 +350,185 @@ public class AdminMain extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        SearchBar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchBar1ActionPerformed(evt);
+            }
+        });
+        SearchBar1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SearchBar1KeyReleased(evt);
+            }
+        });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        AllUnitsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        pack();
+            },
+            new String [] {
+                "ID", "Unit No.", "Block", "No. of Rooms", "No. of Bathrooms", "Size", "Status"
+            }
+        )
+        {
+            public boolean isCellEditable(int row,int column){
+                return false;
+            }
+        }
+    );
+    jScrollPane1.setViewportView(AllUnitsTable);
+
+    AllCreate.setText("Create");
+    AllCreate.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            AllCreateActionPerformed(evt);
+        }
+    });
+
+    AllUpdate.setText("Update");
+    AllUpdate.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            AllUpdateActionPerformed(evt);
+        }
+    });
+
+    AllDelete.setText("Delete");
+    AllDelete.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            AllDeleteActionPerformed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+    jPanel11.setLayout(jPanel11Layout);
+    jPanel11Layout.setHorizontalGroup(
+        jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel11Layout.createSequentialGroup()
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE))
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                            .addGap(107, 107, 107)
+                            .addComponent(AllCreate)
+                            .addGap(117, 117, 117)
+                            .addComponent(AllUpdate)
+                            .addGap(116, 116, 116)
+                            .addComponent(AllDelete))
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                            .addGap(159, 159, 159)
+                            .addComponent(SearchBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addContainerGap())
+    );
+    jPanel11Layout.setVerticalGroup(
+        jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel11Layout.createSequentialGroup()
+            .addGap(9, 9, 9)
+            .addComponent(SearchBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(AllCreate)
+                .addComponent(AllUpdate)
+                .addComponent(AllDelete))
+            .addContainerGap(22, Short.MAX_VALUE))
+    );
+
+    jTabbedPane1.addTab("All Units", jPanel11);
+
+    javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+    jPanel4.setLayout(jPanel4Layout);
+    jPanel4Layout.setHorizontalGroup(
+        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jTabbedPane1)
+    );
+    jPanel4Layout.setVerticalGroup(
+        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel4Layout.createSequentialGroup()
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jTabbedPane1))
+    );
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, 0)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+
+    pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+    private void SearchBar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBar1ActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jPanel2MouseClicked
+    }//GEN-LAST:event_SearchBar1ActionPerformed
+
+    private void AllUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllUpdateActionPerformed
+        // TODO add your handling code here:
+//        if(AllUnitsTable.getSelectionModel().isSelectionEmpty()==false){
+//            int column = 0;
+//            int row = AllUnitsTable.getSelectedRow();
+//            String Id = AllUnitsTable.getModel().getValueAt(row, column).toString();
+//            UnitsUpdate uu = new UnitsUpdate(logindetails);
+//            uu.spamdata(Id);
+//            uu.setVisible(true);
+//            dispose();
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Please select a row.");
+//        }
+    }//GEN-LAST:event_AllUpdateActionPerformed
+
+    private void AllDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllDeleteActionPerformed
+        // TODO add your handling code here:
+//        int column = 0;
+//        int row = AllUnitsTable.getSelectedRow();
+//        String Id = AllUnitsTable.getModel().getValueAt(row, column).toString();
+//        Functions.Delete("Units.txt", Id);
+//        AdminUM aeum = new AdminUM(logindetails);
+//        aeum.setVisible(true);
+//        dispose();
+    }//GEN-LAST:event_AllDeleteActionPerformed
+
+    private void AllCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllCreateActionPerformed
+        // TODO add your handling code here:
+//        UnitsCreate uc = new UnitsCreate(logindetails);
+//        uc.setVisible(true);
+//        dispose();
+
+    }//GEN-LAST:event_AllCreateActionPerformed
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
-
+//        Admin_Executive_Resident aer = new Admin_Executive_Resident(logindetails);
+//        aer.setVisible(true);
+//        dispose();
     }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void SearchBar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBar1KeyReleased
+        // TODO add your handling code here:
+//        String searchString = SearchBar1.getText();
+//        Functions.Search(searchString, AllUnitsTable);
+    }//GEN-LAST:event_SearchBar1KeyReleased
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         // TODO add your handling code here:
-
+//        Admin_Executive_Complaint aec = new Admin_Executive_Complaint(logindetails);
+//        aec.setVisible(true);
+//        dispose();
     }//GEN-LAST:event_jPanel6MouseClicked
-
-    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jPanel9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -419,7 +566,12 @@ public class AdminMain extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AllCreate;
+    private javax.swing.JButton AllDelete;
+    private javax.swing.JTable AllUnitsTable;
+    private javax.swing.JButton AllUpdate;
     private javax.swing.JLabel BuidlingExecutive;
+    private javax.swing.JTextField SearchBar1;
     private javax.swing.JLabel Username;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -431,6 +583,7 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -439,6 +592,8 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

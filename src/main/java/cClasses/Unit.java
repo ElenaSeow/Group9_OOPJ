@@ -8,12 +8,6 @@ package cClasses;
  *
  * @author User
  */
-public class Session extends User{
-    public Session(String id){
-        super(id);
-    }
-    public String getId(){
-        return super.getId();
-    }
+public class Unit {
     
 }

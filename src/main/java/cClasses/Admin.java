@@ -33,7 +33,7 @@ public class Admin extends User{
    }
    
   
-   public static ArrayList<Admin> AdminImport() throws IOException{
+   public static ArrayList<Admin> AdminImport(){
        BufferedReader br = null;
     ArrayList<Admin> admins = new ArrayList<Admin>();
         try {

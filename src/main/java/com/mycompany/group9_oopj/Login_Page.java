@@ -401,7 +401,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "You are entering Resident Page....");
 
                         Session session = new Session(id);
-                        Resident_Main rmp = new Resident_Main();
+                        Resident_Main rmp = new Resident_Main(session);
                         rmp.setVisible(true);
                         dispose();
                         break;

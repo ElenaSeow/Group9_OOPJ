@@ -9,7 +9,9 @@ package Resident;
  * @author HP
  */
 public class Resident_Main extends javax.swing.JFrame {
-
+    
+    
+    
     /**
      * Creates new form Resident_Main
      */

@@ -31,9 +31,9 @@ public class User {
    public String getName(){
        return name;
    }
-//   public void setId(String id){
-//       this.id = id;  
-//   }
+   public void setId(String id){
+       this.id = id;  
+   }
    public String getId(){
        return id;
    }

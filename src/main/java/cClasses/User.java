@@ -8,7 +8,7 @@ package cClasses;
  *
  * @author HP
  */
-public class User {
+ abstract public class User {
     private String id;
     private String name;
     private String email;
@@ -58,4 +58,6 @@ public class User {
   public String getContactNo(){
       return contactNo;
   }
+  
+  abstract void addFile();
 }

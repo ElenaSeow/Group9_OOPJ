@@ -18,4 +18,9 @@ public class Vendor extends User {
     public void setName(String name) {
         super.setName(name);
     }
+
+    @Override
+    void addFile() {
+        
+    }
 }

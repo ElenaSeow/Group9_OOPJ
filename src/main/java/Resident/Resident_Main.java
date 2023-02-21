@@ -4,14 +4,15 @@
  */
 package Resident;
 
+import cClasses.User;
+
 /**
  *
  * @author HP
  */
 public class Resident_Main extends javax.swing.JFrame {
     
-    
-    
+   
     /**
      * Creates new form Resident_Main
      */
@@ -65,6 +66,7 @@ public class Resident_Main extends javax.swing.JFrame {
         jPanel18 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         InvoiceTable2 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jPanel19 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         Fee3 = new javax.swing.JLabel();
@@ -128,7 +130,7 @@ public class Resident_Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(584, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,31 +170,16 @@ public class Resident_Main extends javax.swing.JFrame {
         jLabel25.setText("Name: ");
 
         NameTF1.setText("Name Details");
-        NameTF1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NameTF1ActionPerformed(evt);
-            }
-        });
 
         jLabel26.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel26.setText("Email:");
 
         EmailTF1.setText("Email Details");
-        EmailTF1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmailTF1ActionPerformed(evt);
-            }
-        });
 
         jLabel27.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel27.setText("Password: ");
 
         PasswordTF1.setText("Password Details");
-        PasswordTF1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordTF1ActionPerformed(evt);
-            }
-        });
 
         jLabel28.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel28.setText("Role: ");
@@ -388,31 +375,44 @@ public class Resident_Main extends javax.swing.JFrame {
 
         InvoiceTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Invoice ID", "Unit ID", "Fee", "Outstanding Fee"
+                "Invoice ID", "Unit ID", "Fee", "Outstanding Fee", "Date"
             }
         ));
+        InvoiceTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                InvoiceTable2MousePressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(InvoiceTable2);
+
+        jButton1.setText("Get Info");
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 1, Short.MAX_VALUE))
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("Invoice History", jPanel18);
@@ -873,18 +873,6 @@ public class Resident_Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NameTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTF1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NameTF1ActionPerformed
-
-    private void EmailTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailTF1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EmailTF1ActionPerformed
-
-    private void PasswordTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordTF1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordTF1ActionPerformed
-
     private void Update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Update1ActionPerformed
@@ -920,6 +908,13 @@ public class Resident_Main extends javax.swing.JFrame {
     private void Delete4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Delete4ActionPerformed
+
+    private void InvoiceTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceTable2MousePressed
+        // TODO add your handling code here:
+        if(InvoiceTable2.getSelectedRow() != -1) {
+            
+        }
+    }//GEN-LAST:event_InvoiceTable2MousePressed
 
     /**
      * @param args the command line arguments
@@ -995,6 +990,7 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JButton Update4;
     private javax.swing.JLabel UserID1;
     private javax.swing.JTable VisitorTable4;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;

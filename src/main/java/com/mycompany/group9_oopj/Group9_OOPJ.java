@@ -11,6 +11,8 @@ package com.mycompany.group9_oopj;
 public class Group9_OOPJ {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+//        System.out.println("Hello World!");
+        Login_Page lp = new Login_Page();
+        lp.setVisible(true);
     }
 }

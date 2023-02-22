@@ -5,7 +5,21 @@
 package Resident;
 
 import cClasses.Session;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Timer;
 
 /**
  *
@@ -39,6 +53,8 @@ public class Resident_Main extends javax.swing.JFrame {
                 
             }
         }
+        
+        dt(); //Input Date and Time
     }
 
     /**
@@ -133,6 +149,8 @@ public class Resident_Main extends javax.swing.JFrame {
         Send6 = new javax.swing.JButton();
         jScrollPane14 = new javax.swing.JScrollPane();
         ComplaintTable6 = new javax.swing.JTable();
+        Time = new javax.swing.JLabel();
+        Date = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -857,6 +875,16 @@ public class Resident_Main extends javax.swing.JFrame {
 
         jTabbedPane4.addTab("Complaints", jPanel28);
 
+        Time.setBackground(new java.awt.Color(0, 0, 0));
+        Time.setFont(new java.awt.Font("Bell MT", 0, 14)); // NOI18N
+        Time.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Time.setText("Time");
+
+        Date.setBackground(new java.awt.Color(255, 255, 255));
+        Date.setFont(new java.awt.Font("Bell MT", 0, 14)); // NOI18N
+        Date.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Date.setText("Date");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -868,12 +896,22 @@ public class Resident_Main extends javax.swing.JFrame {
                     .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Time, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Time)
+                    .addComponent(Date))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -898,8 +936,85 @@ public class Resident_Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // For Date and Time
+    Timer t;
+    SimpleDateFormat st;
+    
+    public void dt(){
+    
+        // Date
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
+        String dd = sdf.format(d);
+        Date.setText(dd);
+        
+        // Time
+        t = new Timer (0, new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            
+                Date dt = new Date();
+                st = new SimpleDateFormat("hh:mm:ss a");
+                
+                String tt = st.format(dt);
+                Time.setText(tt);
+            }
+        }); 
+           t.start(); 
+        
+    }
+    
+    
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
         // TODO add your handling code here:
+        String name = NameTFProfile.getText();
+        String email = EmailTFProfile.getText();
+        String password = PasswordTFProfile.getText();
+        String telno = TelNoTFProfile.getText();
+        
+        ArrayList<String> tempResArray = new ArrayList<>();
+        
+        try(BufferedReader BR = new BufferedReader (new FileReader("BackupResident.txt"))) {
+            
+            String line; // BR (BackupResident)
+            Scanner reader = new Scanner(BR);
+            while ((line = BR.readLine()) != null) {
+                
+                String[] list = line.split(":");
+                String ResidentId = list[0];
+                String ResidentName = list [1];
+                String ResidentEmail = list[2];
+                String ResidentPassword = list[3];
+                String ResidentRoles = list[4];
+                String ResidentNumber = list [5];
+                
+                if (id.equals(residentId)) {
+                    tempResArray.add(list[0] + ":" + name + ":" + email + ":" + password + ":" + list[4] + ":" + telno);
+                    BufferedWriter bw = new BufferedWriter (new FileWriter("BackupResident.txt"));
+                    
+                    BufferedWriter bww = new BufferedWriter (new FileWriter("ResPUD.txt", true));
+                    bww.append(System.lineSeparator() + list[0] + ":" + name + ":" + email + ":" + password + ":" + list[4] + ":" + telno + ":" + Date.getText() + ":" + Time.getText());
+                    bww.close();    
+                } 
+                else 
+                {
+                    tempResArray.add(line);
+                }
+                
+            }
+            BR.close();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Resident_Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Resident_Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            
+         
+        
     }//GEN-LAST:event_UpdateBtnActionPerformed
 
     private void AmountTFPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountTFPaymentActionPerformed
@@ -978,6 +1093,7 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JTextField AmountTFPayment;
     private javax.swing.JButton Book4;
     private javax.swing.JTable ComplaintTable6;
+    private javax.swing.JLabel Date;
     private javax.swing.JComboBox<String> DateCB5;
     private javax.swing.JComboBox<String> DateCB6;
     private javax.swing.JTextField DateTF4;
@@ -1008,6 +1124,7 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JButton Send6;
     private javax.swing.JTextField TelNoTFProfile;
     private javax.swing.JTextArea TextArea6;
+    private javax.swing.JLabel Time;
     private javax.swing.JButton Update5;
     private javax.swing.JButton Update6;
     private javax.swing.JButton UpdateBtn;

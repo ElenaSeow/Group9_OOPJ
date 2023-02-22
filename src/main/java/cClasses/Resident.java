@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,7 +83,32 @@ public class Resident extends User{
             
         }
     } 
-
+    public ArrayList<Resident> Update(ArrayList<Resident> residents,String id){
+        try {
+            PrintWriter pr = null;
+            for(Resident r:residents){
+                String Id = r.getId();
+                if(id.equals(Id)){
+                    r.setEmail(this.getEmail());
+                    r.setRole(this.getRole());
+                    r.setPassword(this.getPassword());
+                    r.setContactNo(this.getContactNo());
+                }
+            }   pr = new PrintWriter("BackupResident.txt");
+            for(Resident r:residents){
+                String Id = r.getId();
+                String Name = r.getName();
+                String Email = r.getEmail();
+                String Password = r.getPassword();
+                String Role = r.getRole();
+                String ContactNo = r.getContactNo();
+                String UnitId=r.getUnitId();
+                pr.println(Id+":"+Name+":"+Email+":"+Password+":"+Role+":"+ContactNo+":"+UnitId);
+            }   } catch (FileNotFoundException ex) {
+            Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return residents;
+    }
 }
 
 

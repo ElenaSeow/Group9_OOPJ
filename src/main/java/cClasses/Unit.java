@@ -236,4 +236,23 @@ public class Unit {
        return newUnits;
 
    }
+        public static void Write(ArrayList<Unit> units){
+            PrintWriter pr = null;
+        try {
+            pr = new PrintWriter("Units.txt");
+            for (Unit i: units){
+                String unitid=i.getUnitId();
+                String unitno=i.getUnitNo();
+                String block=i.getBlock();
+                String bedrooms=String.valueOf(i.getBedroom());
+                String bathrooms=String.valueOf(i.getBathroom());
+                String sqrft=String.valueOf(i.getSqrft());
+                String status=i.getStatus();
+                pr.println(unitid+":"+unitno+":"+block+":"+bedrooms+":"+bathrooms+":"+sqrft+":"+status);
+            }
+            pr.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Unit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
 }

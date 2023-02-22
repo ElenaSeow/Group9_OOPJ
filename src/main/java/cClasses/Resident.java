@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,16 +23,17 @@ public class Resident extends User{
     
     public Resident(String id, String name, String email, String password, String role, String contactNo, String unitId) {
         super(id, name, email, password, role, contactNo);
+        this.unitId=unitId;
         
     }
     
     public void setName(String name) {
         super.setName(name);
     }
-    public void setId(String unitId){
+    public void setUnitId(String unitId){
         this.unitId=unitId;
     }
-    public String getId(){
+    public String getUnitId(){
         return unitId;
     }
     
@@ -40,7 +43,7 @@ public class Resident extends User{
         ArrayList<Resident> residents = new ArrayList<>();
         try {
 
-            String file = "Resident.txt";
+            String file = "BackupResident.txt";
             ArrayList<String> data = new ArrayList<>();
             br = new BufferedReader(new FileReader(file));
             String line;
@@ -62,6 +65,23 @@ public class Resident extends User{
             }
         return residents;
         }
+    
+    public static void tabulateData(ArrayList<Resident> residents,JTable table){
+       DefaultTableModel model = (DefaultTableModel) table.getModel();
+       for(Resident r:residents){
+            String unitId = r.getUnitId();
+            ArrayList<Unit> units = Unit.Import();
+            String UnitNo = null;
+            for(Unit u:units){
+                if(unitId.equals(u.getUnitId())){
+                    UnitNo = u.getUnitNo();
+                }
+            }
+            String[] allDataRow = {r.getId(),r.getName(),r.getEmail(),r.getContactNo(),UnitNo};
+            model.addRow(allDataRow);
+            
+        }
+    } 
 
 }
 

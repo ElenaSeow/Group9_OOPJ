@@ -261,7 +261,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null,"You are entering Admin Executive Page....");
 
                         Session session = new Session(id);
-                        AdminExecutive.AdminMain AM = new AdminMain(session);
+                        AdminMain AM = new AdminMain(session);
                         AM.setVisible(true);
                         break;
                     }

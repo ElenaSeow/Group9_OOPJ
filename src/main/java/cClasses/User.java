@@ -4,6 +4,8 @@
  */
 package cClasses;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author HP
@@ -59,11 +61,15 @@ package cClasses;
     public String getRole(){
         return role;
     }
+    public void setRole(String role){
+        this.role=role;
+    }
    public void setContactNo(String contactNo){
        this.contactNo=contactNo;
    }
    public String getContactNo(){
        return contactNo;
    }
+   
  }
 

@@ -263,6 +263,7 @@ public class Login_Page extends javax.swing.JFrame {
                         Session session = new Session(id);
                         AdminMain AM = new AdminMain(session);
                         AM.setVisible(true);
+                        dispose();
                         break;
                     }
                 }
@@ -298,6 +299,7 @@ public class Login_Page extends javax.swing.JFrame {
                         Session session = new Session(id);
                         Account_Executive_Main accmp = new Account_Executive_Main();
                         accmp.setVisible(true);
+                        dispose();
                         break;
                     }
                 }
@@ -333,6 +335,7 @@ public class Login_Page extends javax.swing.JFrame {
                         Session session = new Session(id);
                         Building_Executive_Main BEMP = new Building_Executive_Main();
                         BEMP.setVisible(true);
+                        dispose();
                         break;
                     }
                 }
@@ -368,6 +371,7 @@ public class Login_Page extends javax.swing.JFrame {
                         Session session = new Session(id);
                         Building_Manager_Main BMS = new Building_Manager_Main();
                         BMS.setVisible(true);
+                        dispose();
                         break;
                     }
                 }
@@ -440,6 +444,7 @@ public class Login_Page extends javax.swing.JFrame {
                         Session session = new Session(id);
                         Security_Main SP = new Security_Main();
                         SP.setVisible(true);
+                        dispose();
                         break;
                     }
                 }
@@ -475,6 +480,7 @@ public class Login_Page extends javax.swing.JFrame {
                         Session session = new Session(id);
                         Vendor_Main VP = new Vendor_Main();
                         VP.setVisible(true);
+                        dispose();
                         break;
                     }
                 }

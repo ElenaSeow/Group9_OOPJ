@@ -20,13 +20,16 @@ package cClasses;
  
     
     
-    public User(String id){
+    public User(String id, String name, String email, String password, String role, String contactNo){
         this.id=id;
         this.name=name;
         this.email=email;
         this.password=password;
         this.role=role;
         this.contactNo=contactNo;
+    }
+    public User(String id){
+        this.id=id;
     }
     
     public void setName(String name){

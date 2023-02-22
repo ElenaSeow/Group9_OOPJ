@@ -17,8 +17,9 @@ import java.util.logging.Logger;
  * @author HP
  */
 public class Resident extends User{
+    private String unitId;
     
-    public Resident(String id, String name, String email, String password, String role, String contactNo) {
+    public Resident(String id, String name, String email, String password, String role, String contactNo, String unitId) {
         super(id, name, email, password, role, contactNo);
         
     }
@@ -26,9 +27,15 @@ public class Resident extends User{
     public void setName(String name) {
         super.setName(name);
     }
+    public void setId(String unitId){
+        this.unitId=unitId;
+    }
+    public String getId(){
+        return unitId;
+    }
     
     
-    public static ArrayList<Resident> ResidentImport(){
+    public static ArrayList<Resident> Import(){
         BufferedReader br = null;
         ArrayList<Resident> residents = new ArrayList<>();
         try {
@@ -43,15 +50,15 @@ public class Resident extends User{
             }
             for(String str:data){
                 String[] list = str.split(":");
-                residents.add(new Resident(list[0],list[1],list[2],list[3],list[4],list[5]));
+                residents.add(new Resident(list[0],list[1],list[2],list[3],list[4],list[5],list[6]));
                 
                 br.close();
                 
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);
         }  catch (IOException ex) {
-                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);
             }
         return residents;
         }

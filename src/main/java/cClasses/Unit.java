@@ -81,4 +81,10 @@ public class Unit {
         public void setBathroom(int bathroom){
             this.bathroom=bathroom;
         }
+        public void setStatus(String status){
+            this.status=status;
+        }
+        public void setResidentId(String residentId){
+            this.residentId=residentId;
+        }
 }

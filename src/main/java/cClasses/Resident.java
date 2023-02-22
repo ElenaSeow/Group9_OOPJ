@@ -27,6 +27,7 @@ public class Resident extends User{
         super.setName(name);
     }
     
+    
     public static ArrayList<Resident> ResidentImport(){
         BufferedReader br = null;
         ArrayList<Resident> residents = new ArrayList<>();

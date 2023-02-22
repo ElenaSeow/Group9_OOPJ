@@ -5,7 +5,9 @@
 package AdminExecutive;
 
 import cClasses.Admin;
+import cClasses.Functions;
 import cClasses.Session;
+import cClasses.Unit;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.ParseException;
@@ -23,12 +25,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdminUM extends javax.swing.JFrame {
     Session Session;
+    ArrayList<Unit> units = Unit.Import();
     /**
      * Creates new form Admin_Executive_Sample
+     * @param session
      */
     public AdminUM(Session session) {
         initComponents();
 //        AddDataToTable();
+        Unit.tabulateData(units, AllUnitsTable);
         this.Session = session;
         String id = session.getId();
         ArrayList<Admin> admins;
@@ -493,13 +498,14 @@ public class AdminUM extends javax.swing.JFrame {
 
     private void AllDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllDeleteActionPerformed
         // TODO add your handling code here:
-//        int column = 0;
-//        int row = AllUnitsTable.getSelectedRow();
-//        String Id = AllUnitsTable.getModel().getValueAt(row, column).toString();
+        int column = 0;
+        int row = AllUnitsTable.getSelectedRow();
+        String Id = AllUnitsTable.getModel().getValueAt(row, column).toString();
+        units = Unit.Delete(units, Id);
 //        Functions.Delete("Units.txt", Id);
-//        AdminUM aeum = new AdminUM(logindetails);
-//        aeum.setVisible(true);
-//        dispose();
+        AdminUM aum = new AdminUM(Session);
+        aum.setVisible(true);
+        dispose();
     }//GEN-LAST:event_AllDeleteActionPerformed
 
     private void AllCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllCreateActionPerformed
@@ -519,8 +525,8 @@ public class AdminUM extends javax.swing.JFrame {
 
     private void SearchBar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBar1KeyReleased
         // TODO add your handling code here:
-//        String searchString = SearchBar1.getText();
-//        Functions.Search(searchString, AllUnitsTable);
+        String searchString = SearchBar1.getText();
+        Functions.Search(searchString, AllUnitsTable);
     }//GEN-LAST:event_SearchBar1KeyReleased
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked

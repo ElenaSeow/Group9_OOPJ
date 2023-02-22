@@ -185,7 +185,6 @@ public class Unit {
                    u.setBedroom(this.getBedroom());
                    u.setBathroom(this.getBathroom());
                    u.setStatus(this.getStatus());
-//                   u.setResidentId(this.getResidentId());
                }
            }   pr = new PrintWriter("Units.txt");
            for(Unit u: units){ 

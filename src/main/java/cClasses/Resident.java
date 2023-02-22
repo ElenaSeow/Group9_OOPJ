@@ -83,30 +83,40 @@ public class Resident extends User{
             
         }
     } 
-    public ArrayList<Resident> Update(ArrayList<Resident> residents,String id){
-        try {
-            PrintWriter pr = null;
-            for(Resident r:residents){
-                String Id = r.getId();
-                if(id.equals(Id)){
-                    r.setEmail(this.getEmail());
-                    r.setRole(this.getRole());
-                    r.setPassword(this.getPassword());
-                    r.setContactNo(this.getContactNo());
-                }
-            }   pr = new PrintWriter("BackupResident.txt");
-            for(Resident r:residents){
-                String Id = r.getId();
-                String Name = r.getName();
-                String Email = r.getEmail();
-                String Password = r.getPassword();
-                String Role = r.getRole();
-                String ContactNo = r.getContactNo();
-                String UnitId=r.getUnitId();
-                pr.println(Id+":"+Name+":"+Email+":"+Password+":"+Role+":"+ContactNo+":"+UnitId);
-            }   } catch (FileNotFoundException ex) {
-            Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public ArrayList<Resident> Update(ArrayList<Resident> residents, String id){
+        PrintWriter pr = null;
+        ArrayList<String> data=new ArrayList<>();
+    try {
+        for(Resident r:residents){
+            String Id = r.getId();
+            if(id.equals(Id)){
+                r.setName(this.getName());
+                r.setEmail(this.getEmail());
+                r.setRole(this.getRole());
+                r.setPassword(this.getPassword());
+                r.setContactNo(this.getContactNo());
+                data.add(r.getId()+":"+r.getName()+":"+r.getEmail()+":"+r.getPassword()+":"+r.getRole()+":"+r.getContactNo()+":"+r.getUnitId());
+            }else{
+                data.add(r.getId()+":"+r.getName()+":"+r.getEmail()+":"+r.getPassword()+":"+r.getRole()+":"+r.getContactNo()+":"+r.getUnitId());
+            }
+        }   pr = new PrintWriter("BackupResident.txt");
+        for(String i:data){
+//            String Id = r.getId();
+//            String Name = r.getName();
+//            String Email = r.getEmail();
+//            String Password = r.getPassword();
+//            String Role = r.getRole();
+//            String ContactNo = r.getContactNo();
+//            String UnitId=r.getUnitId();
+//            pr.println(Id+":"+Name+":"+Email+":"+Password+":"+Role+":"+ContactNo+":"+UnitId);
+            pr.println(i);
+            System.out.println(i);
+        }   
+    } catch (FileNotFoundException ex) {
+        Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);
+    }finally{
+        pr.close();
+    }
         return residents;
     }
 }

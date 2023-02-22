@@ -30,7 +30,7 @@ public class AdminRM extends javax.swing.JFrame {
         initComponents();
         Resident.tabulateData(residents, AllResidentTable);
 //        AddDataToTable();
-this.Session = session;
+        this.Session = session;
         String id = session.getId();
         ArrayList<Admin> admins;
         admins= Admin.Import();
@@ -482,17 +482,17 @@ this.Session = session;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-//        if(AllResidentTable.getSelectionModel().isSelectionEmpty()==false){
-//            int column = 0;
-//            int row = AllResidentTable.getSelectedRow();
-//            String Id = AllResidentTable.getModel().getValueAt(row, column).toString();
-//            AdminRMUpdate ru = new AdminRMUUpdate(Session);
-//            ru.spamdata(Id);
-//            ru.setVisible(true);
-//            dispose();
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Please select a row.");
-//        }
+        if(AllResidentTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = AllResidentTable.getSelectedRow();
+            String Id = AllResidentTable.getModel().getValueAt(row, column).toString();
+            AdminRMUpdate ru = new AdminRMUpdate(Session);
+            ru.spamdata(Id);
+            ru.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class AdminRMUpdate extends javax.swing.JFrame {
      Session Session;
      String id;
-     ArrayList<Resident> residents;
+     ArrayList<Resident> residents = Resident.Import();
 
     /**
      * Creates new form CreateUnits
@@ -26,7 +26,7 @@ public class AdminRMUpdate extends javax.swing.JFrame {
         initComponents();
         this.Session = session;
         id=session.getId();
-        residents = Resident.Import();
+
 
     }
     
@@ -182,7 +182,7 @@ public class AdminRMUpdate extends javax.swing.JFrame {
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ResNum, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                             .addComponent(ResUnit, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
@@ -206,12 +206,12 @@ public class AdminRMUpdate extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(CancelBtn)
@@ -263,8 +263,8 @@ public class AdminRMUpdate extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -290,7 +290,7 @@ public class AdminRMUpdate extends javax.swing.JFrame {
         String Num = ResNum.getText();
         String Role = ResRole.getSelectedItem().toString();
         String Unit = ResUnit.getText();
-        String ID = ResID.getText();
+        String Id = ResID.getText();
         ArrayList<String> unitdata;
         String unitid="";
         unitdata=Functions.Read("Units.txt");
@@ -300,7 +300,7 @@ public class AdminRMUpdate extends javax.swing.JFrame {
                         unitid=j[1];
                     }
                 }
-        residents=new Resident(ID,Name,Email,Pass,Role,Num,unitid).Update(residents, ID);
+        residents = new Resident(Id,Name,Email,Pass,Role,Num,unitid).Update(residents, Id);
 //        Functions.Update("BackupResident.txt", ID,Name,Email,Pass,Role,Num,unitid);
         JOptionPane.showMessageDialog(null, "Successfully Updated");
         AdminRM arm = new AdminRM(Session);

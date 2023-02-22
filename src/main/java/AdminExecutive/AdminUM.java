@@ -518,9 +518,9 @@ public class AdminUM extends javax.swing.JFrame {
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
-//        Admin_Executive_Resident aer = new Admin_Executive_Resident(logindetails);
-//        aer.setVisible(true);
-//        dispose();
+        AdminRM arm = new AdminRM(Session);
+        arm.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void SearchBar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBar1KeyReleased

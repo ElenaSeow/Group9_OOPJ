@@ -32,7 +32,7 @@ public class AdminUM extends javax.swing.JFrame {
         this.Session = session;
         String id = session.getId();
         ArrayList<Admin> admins;
-        admins= Admin.AdminImport();
+        admins= Admin.Import();
         for(Admin a:admins){
             String adminId= a.getId();
             String username = a.getName();

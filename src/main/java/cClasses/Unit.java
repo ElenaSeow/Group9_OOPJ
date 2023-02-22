@@ -9,5 +9,5 @@ package cClasses;
  * @author User
  */
 public class Unit {
-    
+    private String unitId;
 }

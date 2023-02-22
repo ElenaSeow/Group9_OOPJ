@@ -33,7 +33,7 @@ public class Admin extends User{
    }
    
   
-   public static ArrayList<Admin> AdminImport(){
+   public static ArrayList<Admin> Import(){
        BufferedReader br = null;
     ArrayList<Admin> admins = new ArrayList<Admin>();
         try {
@@ -69,7 +69,7 @@ public class Admin extends User{
             
         }
     } 
-   public void adminUpdate(ArrayList<Admin> admins,String id){
+   public ArrayList<Admin> Update(ArrayList<Admin> admins,String id){
        PrintWriter pr = null;
        try {
            for(Admin a:admins){
@@ -88,7 +88,29 @@ public class Admin extends User{
        } finally {
            pr.close();
        }
+       return admins;
    }
-
    
+   public ArrayList<Admin> Delete(ArrayList<Admin> admins, String id){
+       ArrayList<Admin> newAdmins=null;
+       try {
+           for(Admin a:admins){
+               String Id = a.getId();
+               if(id.equals(Id)){
+               }else{
+                   newAdmins.add(a);
+               }
+           }
+               PrintWriter pr = new PrintWriter("AdminExecutive.txt");
+               for (Admin i: newAdmins){
+                   pr.println(i);
+               }
+               pr.close();
+               
+        } catch (FileNotFoundException ex) {
+           Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);         
+       }
+       return newAdmins;
+
+   }
 }

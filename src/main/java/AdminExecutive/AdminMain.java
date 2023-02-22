@@ -375,7 +375,9 @@ public class AdminMain extends javax.swing.JFrame {
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
-
+        AdminRM arm = new AdminRM(Session);
+        arm.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked

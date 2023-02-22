@@ -119,6 +119,55 @@ public class Resident extends User{
     }
         return residents;
     }
+    
+     public static ArrayList<Resident>Delete(ArrayList<Resident> residents, String id){
+            ArrayList<Resident> newResidents= new ArrayList<>();
+        try {
+           for(Resident r:residents){
+               String Id = r.getId();
+               if(id.equals(Id)){
+               }else{
+                   newResidents.add(r);
+               }
+           }
+               PrintWriter pr = new PrintWriter("BackupResident.txt");
+                for (Resident i: residents){
+                    String ID = i.getId();
+                    String name=i.getName();
+                    String email=i.getEmail();
+                    String password =i.getPassword();
+                    String role = i.getRole();
+                    String contactNo=i.getContactNo();
+                    String unitId=i.getUnitId();
+                    pr.println(ID+":"+name+":"+email+":"+password+":"+role+":"+contactNo+":"+unitId);
+            }
+            pr.close();
+               
+        } catch (FileNotFoundException ex) {
+           Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);         
+       }
+       return newResidents;
+     }
+    
+    public static void Write(ArrayList<Resident> residents){
+            PrintWriter pr;
+        try {
+            pr = new PrintWriter("Units.txt");
+            for (Resident i: residents){
+                String id=i.getId();
+                String name=i.getName();
+                String email=i.getEmail();
+                String password =i.getPassword();
+                String role = i.getRole();
+                String contactNo=i.getContactNo();
+                String unitId=i.getUnitId();
+                pr.println(id+":"+name+":"+email+":"+password+":"+role+":"+contactNo+":"+unitId);
+            }
+            pr.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
 }
 
 

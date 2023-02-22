@@ -11,7 +11,7 @@ package cClasses;
 public class Vendor extends User {
     
     public Vendor(String id, String name, String email, String password, String role, String contactNo) {
-        super(id);
+        super(id, name, email, password, role, contactNo);
         
     }
     

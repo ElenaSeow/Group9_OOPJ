@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class Resident extends User{
     
     public Resident(String id, String name, String email, String password, String role, String contactNo) {
-        super(id);
+        super(id, name, email, password, role, contactNo);
         
     }
     

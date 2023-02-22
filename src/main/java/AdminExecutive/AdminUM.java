@@ -510,9 +510,9 @@ public class AdminUM extends javax.swing.JFrame {
 
     private void AllCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllCreateActionPerformed
         // TODO add your handling code here:
-//        UnitsCreate uc = new UnitsCreate(logindetails);
-//        uc.setVisible(true);
-//        dispose();
+        AdminUMCreate aumc = new AdminUMCreate(Session);
+        aumc.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_AllCreateActionPerformed
 

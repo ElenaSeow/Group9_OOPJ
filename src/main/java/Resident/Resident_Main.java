@@ -27,15 +27,16 @@ import javax.swing.Timer;
  */
 public class Resident_Main extends javax.swing.JFrame {
     Session Session;
+    String id;
+    ArrayList<cClasses.Resident> residents;
     /**
      * Creates new form Resident
      */
     public Resident_Main(Session session) {
         initComponents();
         this.Session = session;
-        String id = session.getId();
-        ArrayList<cClasses.Resident> residents;
-        residents= cClasses.Resident.ResidentImport();
+        id = session.getId();       
+        residents= cClasses.Resident.Import();
         for(cClasses.Resident r:residents){
             String residentId= r.getId();
             String name = r.getName();
@@ -86,6 +87,10 @@ public class Resident_Main extends javax.swing.JFrame {
         jLabel52 = new javax.swing.JLabel();
         TelNoTFProfile = new javax.swing.JTextField();
         UpdateBtn = new javax.swing.JButton();
+        jLabel70 = new javax.swing.JLabel();
+        UnitIDTF = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        UnitIDTF1 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         jTabbedPane6 = new javax.swing.JTabbedPane();
         jPanel22 = new javax.swing.JPanel();
@@ -239,31 +244,32 @@ public class Resident_Main extends javax.swing.JFrame {
             }
         });
 
+        jLabel70.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel70.setText("Unit Number");
+
+        UnitIDTF.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        UnitIDTF.setText("User Unit ID");
+
+        jLabel71.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel71.setText("Unit ID");
+
+        UnitIDTF1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        UnitIDTF1.setText("User Unit Number");
+
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
-                .addGap(299, 299, 299)
-                .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel20Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel43)
-                    .addComponent(jLabel49)
-                    .addComponent(jLabel48))
+                .addComponent(jLabel43)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NameTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UserIDProfile)
-                    .addComponent(EmailTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(jLabel52)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TelNoTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NameTFProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                    .addComponent(UserIDProfile)
+                    .addComponent(EmailTFProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel50)
@@ -271,36 +277,65 @@ public class Resident_Main extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(RoleProfile)
-                            .addComponent(PasswordTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(PasswordTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel52)
+                            .addComponent(jLabel70))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(UnitIDTF1)
+                            .addComponent(TelNoTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(48, 48, 48))
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel48)
+                            .addGroup(jPanel20Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel71)
+                                .addGap(30, 30, 30)
+                                .addComponent(UnitIDTF))
+                            .addComponent(jLabel49)))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGap(299, 299, 299)
+                        .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel50)
-                            .addComponent(PasswordTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(50, 50, 50)
                         .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel43)
-                            .addComponent(UserIDProfile))))
-                .addGap(35, 35, 35)
+                            .addComponent(UserIDProfile)
+                            .addComponent(jLabel50)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(PasswordTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel48)
                     .addComponent(NameTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel51)
                     .addComponent(RoleProfile))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel49)
                     .addComponent(EmailTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel52)
                     .addComponent(TelNoTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel70)
+                    .addComponent(UnitIDTF)
+                    .addComponent(jLabel71)
+                    .addComponent(UnitIDTF1))
+                .addGap(33, 33, 33)
                 .addComponent(UpdateBtn)
                 .addGap(17, 17, 17))
         );
@@ -447,7 +482,7 @@ public class Resident_Main extends javax.swing.JFrame {
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 26, Short.MAX_VALUE))
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(InvoiceButton)
@@ -686,7 +721,7 @@ public class Resident_Main extends javax.swing.JFrame {
                     .addComponent(DateTF4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Update5)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -807,7 +842,7 @@ public class Resident_Main extends javax.swing.JFrame {
                 .addComponent(Update6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Delete5)
@@ -866,7 +901,7 @@ public class Resident_Main extends javax.swing.JFrame {
                 .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Send6)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(jPanel28Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -912,10 +947,10 @@ public class Resident_Main extends javax.swing.JFrame {
                     .addComponent(Time)
                     .addComponent(Date))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -930,7 +965,8 @@ public class Resident_Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -973,6 +1009,7 @@ public class Resident_Main extends javax.swing.JFrame {
         String email = EmailTFProfile.getText();
         String password = PasswordTFProfile.getText();
         String telno = TelNoTFProfile.getText();
+        String unitID = UnitIDTF.getText();
         
         ArrayList<String> tempResArray = new ArrayList<>();
         
@@ -984,18 +1021,18 @@ public class Resident_Main extends javax.swing.JFrame {
                 
                 String[] list = line.split(":");
                 String ResidentId = list[0];
-                String ResidentName = list [1];
-                String ResidentEmail = list[2];
-                String ResidentPassword = list[3];
-                String ResidentRoles = list[4];
-                String ResidentNumber = list [5];
+//                String ResidentName = list [1];
+//                String ResidentEmail = list[2];
+//                String ResidentPassword = list[3];
+//                String ResidentRoles = list[4];
+//                String ResidentNumber = list [5];
                 
-                if (id.equals(residentId)) {
-                    tempResArray.add(list[0] + ":" + name + ":" + email + ":" + password + ":" + list[4] + ":" + telno);
+                if (id.equals(ResidentId)) {
+                    tempResArray.add(list[0] + ":" + name + ":" + email + ":" + password + ":" + list[4] + ":" + telno + ":" + unitID);
                     BufferedWriter bw = new BufferedWriter (new FileWriter("BackupResident.txt"));
                     
                     BufferedWriter bww = new BufferedWriter (new FileWriter("ResPUD.txt", true));
-                    bww.append(System.lineSeparator() + list[0] + ":" + name + ":" + email + ":" + password + ":" + list[4] + ":" + telno + ":" + Date.getText() + ":" + Time.getText());
+                    bww.append(System.lineSeparator() + list[0] + ":" + name + ":" + email + ":" + password + ":" + list[4] + ":" + telno +":" + unitID + ":" + Date.getText() + ":" + Time.getText());
                     bww.close();    
                 } 
                 else 
@@ -1125,6 +1162,8 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JTextField TelNoTFProfile;
     private javax.swing.JTextArea TextArea6;
     private javax.swing.JLabel Time;
+    private javax.swing.JLabel UnitIDTF;
+    private javax.swing.JLabel UnitIDTF1;
     private javax.swing.JButton Update5;
     private javax.swing.JButton Update6;
     private javax.swing.JButton UpdateBtn;
@@ -1154,6 +1193,8 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;

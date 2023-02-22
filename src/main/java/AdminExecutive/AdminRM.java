@@ -504,21 +504,25 @@ public class AdminRM extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-//        AdminRMCreate rc = new AdminRmCreate(Session);
-//        rc.setVisible(true);
-//        dispose();
+        AdminRMCreate rc = new AdminRMCreate(Session);
+        rc.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        int column = 0;
-        int row = AllResidentTable.getSelectedRow();
-        String Id = AllResidentTable.getModel().getValueAt(row, column).toString();
-//        Functions.Delete("Resident.txt", Id);
-        AdminRM arm = new AdminRM(Session);
-        arm.setVisible(true);
-        dispose();
-        
+        if(AllResidentTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = AllResidentTable.getSelectedRow();
+            String Id = AllResidentTable.getModel().getValueAt(row, column).toString();
+    //        Functions.Delete("Resident.txt", Id);
+            residents=Resident.Delete(residents, Id);
+            AdminRM arm = new AdminRM(Session);
+            arm.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked

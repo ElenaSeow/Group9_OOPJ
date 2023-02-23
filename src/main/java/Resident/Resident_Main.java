@@ -45,12 +45,16 @@ public class Resident_Main extends javax.swing.JFrame {
             String role = r.getRole();
             String contactNo=r.getContactNo();
             if(id.equals(residentId)){
-                NameTFProfile.setText(name);
-                UserIDProfile.setText(residentId);
-                EmailTFProfile.setText(email);
-                PasswordTFProfile.setText(password);
-                RoleProfile.setText(role);
-                TelNoTFProfile.setText(contactNo);
+                //set text for unitid??
+                NameL.setText(name);
+                UserIDL.setText(residentId);
+                EmailL.setText(email);
+                PasswordL.setText(password);
+                RoleL.setText(role);
+                TelNoL.setText(contactNo);
+                //set text for unitid??
+                UserIDL2.setText(residentId);
+                RoleL2.setText(role);
                 
             }
         }
@@ -74,23 +78,38 @@ public class Resident_Main extends javax.swing.JFrame {
         LogOut = new javax.swing.JLabel();
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jPanel20 = new javax.swing.JPanel();
-        jLabel43 = new javax.swing.JLabel();
-        UserIDProfile = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
-        NameTFProfile = new javax.swing.JTextField();
-        jLabel49 = new javax.swing.JLabel();
-        EmailTFProfile = new javax.swing.JTextField();
-        jLabel50 = new javax.swing.JLabel();
-        PasswordTFProfile = new javax.swing.JTextField();
-        jLabel51 = new javax.swing.JLabel();
-        RoleProfile = new javax.swing.JLabel();
-        jLabel52 = new javax.swing.JLabel();
-        TelNoTFProfile = new javax.swing.JTextField();
-        UpdateBtn = new javax.swing.JButton();
-        jLabel70 = new javax.swing.JLabel();
-        UnitIDTF = new javax.swing.JLabel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel72 = new javax.swing.JLabel();
+        UnitIDL = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        UserIDL = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
+        jLabel74 = new javax.swing.JLabel();
+        jLabel75 = new javax.swing.JLabel();
+        jLabel76 = new javax.swing.JLabel();
+        jLabel77 = new javax.swing.JLabel();
+        RoleL = new javax.swing.JLabel();
+        NameL = new javax.swing.JLabel();
+        EmailL = new javax.swing.JLabel();
+        PasswordL = new javax.swing.JLabel();
+        TelNoL = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
         jLabel71 = new javax.swing.JLabel();
-        UnitIDTF1 = new javax.swing.JLabel();
+        UnitIDL2 = new javax.swing.JLabel();
+        UserIDL2 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        NameMOD = new javax.swing.JTextField();
+        EmailMOD = new javax.swing.JTextField();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        PasswordMOD = new javax.swing.JTextField();
+        jLabel51 = new javax.swing.JLabel();
+        RoleL2 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        TelNoMOD = new javax.swing.JTextField();
+        UpdateBtn = new javax.swing.JButton();
         jPanel21 = new javax.swing.JPanel();
         jTabbedPane6 = new javax.swing.JTabbedPane();
         jPanel22 = new javax.swing.JPanel();
@@ -204,37 +223,166 @@ public class Resident_Main extends javax.swing.JFrame {
             .addComponent(LogOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
         );
 
+        jLabel72.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel72.setText("Unit ID");
+
+        UnitIDL.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        UnitIDL.setText("User Unit ID");
+
+        jLabel44.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel44.setText("User ID: ");
+
+        UserIDL.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        UserIDL.setText("User ID Details");
+
+        jLabel73.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel73.setText("Name: ");
+
+        jLabel74.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel74.setText("Email:");
+
+        jLabel75.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel75.setText("Password: ");
+
+        jLabel76.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel76.setText("Role: ");
+
+        jLabel77.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel77.setText("Telephone Number: ");
+
+        RoleL.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        RoleL.setText("User Role Details");
+
+        NameL.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        NameL.setText("Name Details");
+
+        EmailL.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        EmailL.setText("Email Details");
+
+        PasswordL.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        PasswordL.setText("Password Details");
+
+        TelNoL.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        TelNoL.setText("Telno Details");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel74)
+                                .addGap(33, 33, 33)
+                                .addComponent(EmailL))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel73)
+                                .addGap(23, 23, 23)
+                                .addComponent(NameL)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                        .addComponent(jLabel77)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel76)
+                        .addGap(118, 118, 118)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RoleL)
+                    .addComponent(TelNoL)
+                    .addComponent(PasswordL))
+                .addGap(88, 88, 88))
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(27, 27, 27)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel44)
+                        .addComponent(jLabel72))
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(UnitIDL)
+                        .addComponent(UserIDL))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 159, Short.MAX_VALUE)
+                    .addComponent(jLabel75)
+                    .addGap(279, 279, 279)))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(PasswordL)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel76)
+                    .addComponent(RoleL))
+                .addGap(73, 134, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel73)
+                    .addComponent(NameL)
+                    .addComponent(jLabel77)
+                    .addComponent(TelNoL))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel74)
+                    .addComponent(EmailL))
+                .addGap(49, 49, 49))
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(UnitIDL)
+                        .addComponent(jLabel72)
+                        .addComponent(jLabel75))
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel44)
+                        .addComponent(UserIDL))
+                    .addContainerGap(130, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane2.addTab("View Profile", jPanel5);
+
+        jLabel71.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel71.setText("Unit ID");
+
+        UnitIDL2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        UnitIDL2.setText("User Unit ID");
+
+        UserIDL2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        UserIDL2.setText("User ID Details");
+
         jLabel43.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel43.setText("User ID: ");
-
-        UserIDProfile.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        UserIDProfile.setText("User ID Details");
 
         jLabel48.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel48.setText("Name: ");
 
-        NameTFProfile.setText("Name Details");
+        NameMOD.setText("Name Details");
+
+        EmailMOD.setText("Email Details");
 
         jLabel49.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel49.setText("Email:");
 
-        EmailTFProfile.setText("Email Details");
-
         jLabel50.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel50.setText("Password: ");
 
-        PasswordTFProfile.setText("Password Details");
+        PasswordMOD.setText("Password Details");
 
         jLabel51.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel51.setText("Role: ");
 
-        RoleProfile.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        RoleProfile.setText("User Role Details");
+        RoleL2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        RoleL2.setText("User Role Details");
 
         jLabel52.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel52.setText("Telephone Number: ");
 
-        TelNoTFProfile.setText("Tel.No Details");
+        TelNoMOD.setText("Tel.No Details");
 
         UpdateBtn.setText("UPDATE");
         UpdateBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -244,107 +392,100 @@ public class Resident_Main extends javax.swing.JFrame {
             }
         });
 
-        jLabel70.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel70.setText("Unit Number");
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel48)
+                        .addGap(27, 27, 27)
+                        .addComponent(NameMOD))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel49)
+                        .addGap(34, 34, 34)
+                        .addComponent(EmailMOD, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel43)
+                        .addGap(18, 18, 18)
+                        .addComponent(UserIDL2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel52)
+                    .addComponent(jLabel51)
+                    .addComponent(jLabel50))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RoleL2)
+                    .addComponent(TelNoMOD, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PasswordMOD, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(268, 268, 268)
+                .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(27, 27, 27)
+                    .addComponent(jLabel71)
+                    .addGap(30, 30, 30)
+                    .addComponent(UnitIDL2)
+                    .addContainerGap(534, Short.MAX_VALUE)))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel50)
+                    .addComponent(PasswordMOD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel43)
+                    .addComponent(UserIDL2)
+                    .addComponent(jLabel51)
+                    .addComponent(RoleL2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel48)
+                    .addComponent(NameMOD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel52)
+                    .addComponent(TelNoMOD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EmailMOD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel49))
+                .addGap(18, 18, 18)
+                .addComponent(UpdateBtn)
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(UnitIDL2)
+                        .addComponent(jLabel71))
+                    .addContainerGap(168, Short.MAX_VALUE)))
+        );
 
-        UnitIDTF.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        UnitIDTF.setText("User Unit ID");
-
-        jLabel71.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel71.setText("Unit ID");
-
-        UnitIDTF1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        UnitIDTF1.setText("User Unit Number");
+        jTabbedPane2.addTab("Update Profile", jPanel6);
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
-                .addGap(299, 299, 299)
-                .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel48)
-                            .addComponent(jLabel49))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(NameTFProfile)
-                            .addComponent(EmailTFProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel43)
-                            .addComponent(jLabel71))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(UnitIDTF)
-                            .addComponent(UserIDProfile))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 80, Short.MAX_VALUE)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel50)
-                            .addComponent(jLabel51))
-                        .addGap(65, 65, 65)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RoleProfile)
-                            .addComponent(PasswordTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel52)
-                            .addComponent(jLabel70))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(UnitIDTF1)
-                            .addComponent(TelNoTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(48, 48, 48))
+                .addGap(18, 18, 18)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UnitIDTF)
-                    .addComponent(jLabel71)
-                    .addComponent(jLabel50)
-                    .addComponent(PasswordTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel51)
-                            .addComponent(RoleProfile)))
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel43)
-                            .addComponent(UserIDProfile))))
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel52)
-                            .addComponent(TelNoTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel48)
-                            .addComponent(NameTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel70)
-                        .addComponent(UnitIDTF1))
-                    .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(EmailTFProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel49)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(UpdateBtn)
-                .addGap(17, 17, 17))
+                .addGap(14, 14, 14)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Profile", jPanel20);
@@ -728,7 +869,7 @@ public class Resident_Main extends javax.swing.JFrame {
                     .addComponent(DateTF4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Update5)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -849,7 +990,7 @@ public class Resident_Main extends javax.swing.JFrame {
                 .addComponent(Update6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Delete5)
@@ -1048,11 +1189,11 @@ public class Resident_Main extends javax.swing.JFrame {
 
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
         // TODO add your handling code here:
-        String name = NameTFProfile.getText();
-        String email = EmailTFProfile.getText();
-        String password = PasswordTFProfile.getText();
-        String telno = TelNoTFProfile.getText();
-        String unitID = UnitIDTF.getText();
+        String name = NameMOD.getText();
+        String email = EmailMOD.getText();
+        String password = PasswordMOD.getText();
+        String telno = TelNoMOD.getText();
+        String unitID = UnitIDL2.getText();
 
         ArrayList<String> tempResArray = new ArrayList<>();
 
@@ -1139,7 +1280,8 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> DateCB6;
     private javax.swing.JTextField DateTF4;
     private javax.swing.JButton Delete5;
-    private javax.swing.JTextField EmailTFProfile;
+    private javax.swing.JLabel EmailL;
+    private javax.swing.JTextField EmailMOD;
     private javax.swing.JComboBox<String> EndDateCB5;
     private javax.swing.JComboBox<String> FacilityCB4;
     private javax.swing.JTextField FacilityTF4;
@@ -1150,31 +1292,37 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JButton InvoiceButton;
     private javax.swing.JTable InvoiceTable3;
     private javax.swing.JLabel LogOut;
+    private javax.swing.JLabel NameL;
+    private javax.swing.JTextField NameMOD;
     private javax.swing.JTextField NameTF5;
-    private javax.swing.JTextField NameTFProfile;
     private javax.swing.JLabel OutstandingDetails;
     private javax.swing.JLabel OutstandingFee;
     private javax.swing.JLabel OutstandingStatus;
     private javax.swing.JTable OutstandingTable3;
-    private javax.swing.JTextField PasswordTFProfile;
+    private javax.swing.JLabel PasswordL;
+    private javax.swing.JTextField PasswordMOD;
     private javax.swing.JButton PayOutstandingButton;
     private javax.swing.JButton PayPaymentButton;
     private javax.swing.JTable PaymentTable3;
     private javax.swing.JTextField PhoneNoTF5;
-    private javax.swing.JLabel RoleProfile;
+    private javax.swing.JLabel RoleL;
+    private javax.swing.JLabel RoleL2;
     private javax.swing.JButton Send6;
-    private javax.swing.JTextField TelNoTFProfile;
+    private javax.swing.JLabel TelNoL;
+    private javax.swing.JTextField TelNoMOD;
     private javax.swing.JTextArea TextArea6;
     private javax.swing.JLabel Time;
-    private javax.swing.JLabel UnitIDTF;
-    private javax.swing.JLabel UnitIDTF1;
+    private javax.swing.JLabel UnitIDL;
+    private javax.swing.JLabel UnitIDL2;
     private javax.swing.JButton Update5;
     private javax.swing.JButton Update6;
     private javax.swing.JButton UpdateBtn;
-    private javax.swing.JLabel UserIDProfile;
+    private javax.swing.JLabel UserIDL;
+    private javax.swing.JLabel UserIDL2;
     private javax.swing.JTable VisitorTable5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel50;
@@ -1197,8 +1345,13 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
-    private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
@@ -1210,6 +1363,8 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
@@ -1217,6 +1372,7 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTabbedPane jTabbedPane6;
     // End of variables declaration//GEN-END:variables

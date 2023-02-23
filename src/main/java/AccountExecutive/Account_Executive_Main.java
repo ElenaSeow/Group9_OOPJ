@@ -373,7 +373,7 @@ public class Account_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_clearBtnActionPerformed
 
     private void addPaymentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPaymentBtnActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Hi elena");
     }//GEN-LAST:event_addPaymentBtnActionPerformed
 
     private void receiptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receiptBtnActionPerformed

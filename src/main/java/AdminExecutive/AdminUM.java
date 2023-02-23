@@ -498,14 +498,18 @@ public class AdminUM extends javax.swing.JFrame {
 
     private void AllDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllDeleteActionPerformed
         // TODO add your handling code here:
-        int column = 0;
-        int row = AllUnitsTable.getSelectedRow();
-        String Id = AllUnitsTable.getModel().getValueAt(row, column).toString();
-        units = Unit.Delete(units, Id);
-//        Functions.Delete("Units.txt", Id);
-        AdminUM aum = new AdminUM(Session);
-        aum.setVisible(true);
-        dispose();
+        if(AllUnitsTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = AllUnitsTable.getSelectedRow();
+            String Id = AllUnitsTable.getModel().getValueAt(row, column).toString();
+            units = Unit.Delete(units, Id);
+    //        Functions.Delete("Units.txt", Id);
+            AdminUM aum = new AdminUM(Session);
+            aum.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_AllDeleteActionPerformed
 
     private void AllCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllCreateActionPerformed

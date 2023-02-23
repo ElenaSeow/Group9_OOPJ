@@ -4,67 +4,61 @@
  */
 package AdminExecutive;
 
-import cClasses.Admin;
 import cClasses.Functions;
-import cClasses.Resident;
 import cClasses.Session;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author HP
  */
-public class AdminRM extends javax.swing.JFrame {
+public class AdminFM extends javax.swing.JFrame {
     Session Session;
-    ArrayList<Resident> residents=Resident.Import();
+
     /**
      * Creates new form Admin_Executive_Sample
      */
-    public AdminRM(Session session) {
+    public AdminFM(Session session) {
         initComponents();
-        Resident.tabulateData(residents, AllResidentTable);
-//        AddDataToTable();
-        this.Session = session;
+        this.Session= session;
+        AddRowToTable();
         String id = session.getId();
-        ArrayList<Admin> admins;
-        admins= Admin.Import();
-        for(Admin a:admins){
-            String adminId= a.getId();
-            String username = a.getName();
-            if(id.equals(adminId)){
-                Username.setText(username);
+        try (BufferedReader br = new BufferedReader (new FileReader ("AdminExecutive.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String [] data = line.split(":");
+                String userid = data[0];
+                String username = data[1];
+                String email = data[3];
+                
+                if (id.equals(userid)){
+                    Username.setText(username);
+                }
             }
+            
+        } catch (Exception e){
+    
         }
 
     }
-//    public void AddDataToTable(){
-//        DefaultTableModel AllTable = (DefaultTableModel)AllResidentTable.getModel();
-//        
-//        AllTable.setRowCount(0);
-//        ArrayList<String> alldata;
-//        alldata = Functions.Read("Resident.txt");
-//        ArrayList<String> unitdata;
-//        String unitnumber="";
-//        for(String str:alldata){
-//            String[] list = str.split(":");
-//            unitdata=Functions.Read("Units.txt"); 
-//         
-//            for(String i:unitdata){
-//                String[] j = i.split(":");
-//                if(j[7].equals(list[0])){
-//                    unitnumber=j[1];
-//                }
-//            }
-//            String[] allDataRow = {list[0],list[1],list[2],list[5],unitnumber};
-//            AllTable.addRow(allDataRow);
-//        }
-//    }
+    
+    public void AddRowToTable()
+    {
+        DefaultTableModel FacTable = (DefaultTableModel)FacilityTable.getModel();
+        FacTable.setRowCount(0);
+        ArrayList<String> facdata;
+        facdata = Functions.Read("Facilities.txt");
+        for(String str:facdata){
+            String[] list = str.split(":");
+            String[] facDataRow = {list[0],list[1],list[2],list[3]};
+            FacTable.addRow(facDataRow);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,14 +89,14 @@ public class AdminRM extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         BuidlingExecutive = new javax.swing.JLabel();
         Username = new javax.swing.JLabel();
-        AllResident = new javax.swing.JTabbedPane();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        AllResidentTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        FacilityTable = new javax.swing.JTable();
         SearchBar = new javax.swing.JTextField();
+        AddFacility = new javax.swing.JButton();
+        ModFacility = new javax.swing.JButton();
+        DeleteFacility = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,6 +137,11 @@ public class AdminRM extends javax.swing.JFrame {
         );
 
         jPanel5.setBackground(new java.awt.Color(67, 63, 113));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -361,176 +360,184 @@ public class AdminRM extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        AllResidentTable.setModel(new javax.swing.table.DefaultTableModel(
+        FacilityTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Name", "Email", "Contact No.", "Unit No."
+                "ID", "Facility", "Capacity", "Status"
             }
-        )
-        {
-            public boolean isCellEditable(int row,int column){
-                return false;
+        ));
+        jScrollPane1.setViewportView(FacilityTable);
+
+        SearchBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchBarActionPerformed(evt);
             }
-        }
-    );
-    jScrollPane1.setViewportView(AllResidentTable);
+        });
+        SearchBar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SearchBarKeyReleased(evt);
+            }
+        });
 
-    jButton1.setText("Create");
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton1ActionPerformed(evt);
-        }
-    });
+        AddFacility.setText("Add");
+        AddFacility.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddFacilityActionPerformed(evt);
+            }
+        });
 
-    jButton2.setText("Update");
-    jButton2.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton2ActionPerformed(evt);
-        }
-    });
+        ModFacility.setText("Modify");
+        ModFacility.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModFacilityActionPerformed(evt);
+            }
+        });
 
-    jButton3.setText("Delete");
-    jButton3.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton3ActionPerformed(evt);
-        }
-    });
+        DeleteFacility.setText("Delete");
+        DeleteFacility.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteFacilityActionPerformed(evt);
+            }
+        });
 
-    SearchBar.addKeyListener(new java.awt.event.KeyAdapter() {
-        public void keyReleased(java.awt.event.KeyEvent evt) {
-            SearchBarKeyReleased(evt);
-        }
-    });
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(AddFacility)
+                        .addGap(78, 78, 78)
+                        .addComponent(ModFacility)
+                        .addGap(90, 90, 90)
+                        .addComponent(DeleteFacility)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddFacility)
+                    .addComponent(ModFacility)
+                    .addComponent(DeleteFacility))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
 
-    javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-    jPanel11.setLayout(jPanel11Layout);
-    jPanel11Layout.setHorizontalGroup(
-        jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-        .addGroup(jPanel11Layout.createSequentialGroup()
-            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel11Layout.createSequentialGroup()
-                    .addGap(109, 109, 109)
-                    .addComponent(jButton1)
-                    .addGap(61, 61, 61)
-                    .addComponent(jButton2)
-                    .addGap(68, 68, 68)
-                    .addComponent(jButton3))
-                .addGroup(jPanel11Layout.createSequentialGroup()
-                    .addGap(157, 157, 157)
-                    .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(155, Short.MAX_VALUE))
-    );
-    jPanel11Layout.setVerticalGroup(
-        jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel11Layout.createSequentialGroup()
-            .addGap(19, 19, 19)
-            .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton1)
-                .addComponent(jButton2)
-                .addComponent(jButton3))
-            .addGap(0, 32, Short.MAX_VALUE))
-    );
+        jTabbedPane1.addTab("Facilities", jPanel11);
 
-    AllResident.addTab("All Resident", jPanel11);
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
+        );
 
-    javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-    jPanel4.setLayout(jPanel4Layout);
-    jPanel4Layout.setHorizontalGroup(
-        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(AllResident)
-    );
-    jPanel4Layout.setVerticalGroup(
-        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel4Layout.createSequentialGroup()
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(AllResident))
-    );
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-    getContentPane().setLayout(layout);
-    layout.setHorizontalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(layout.createSequentialGroup()
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 0, 0)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-    layout.setVerticalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-    );
-
-    pack();
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         // TODO add your handling code here:
-        AdminUM aum = new AdminUM(Session);
-        aum.setVisible(true);
+        AdminUM aeum = new AdminUM(Session);
+        aeum.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel2MouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
-        if(AllResidentTable.getSelectionModel().isSelectionEmpty()==false){
-            int column = 0;
-            int row = AllResidentTable.getSelectedRow();
-            String Id = AllResidentTable.getModel().getValueAt(row, column).toString();
-            AdminRMUpdate ru = new AdminRMUpdate(Session);
-            ru.spamdata(Id);
-            ru.setVisible(true);
-            dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Please select a row.");
-        }
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+        AdminRM aer = new AdminRM(Session);
+        aer.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
+        // TODO add your handling code here:
+//        AdminCM aec = new AdminCM (Session);
+//        aec.setVisible(true);
+//        dispose();
+    }//GEN-LAST:event_jPanel6MouseClicked
+
+    private void SearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchBarActionPerformed
+
+    private void AddFacilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFacilityActionPerformed
+        // TODO add your handling code here:
+//        AdminFMCreate afc = new AdminFMCreate(Session);
+//        afc .setVisible(true);
+//        dispose();
+    }//GEN-LAST:event_AddFacilityActionPerformed
 
     private void SearchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBarKeyReleased
         // TODO add your handling code here:
         String searchString = SearchBar.getText();
-        Functions.Search(searchString, AllResidentTable);
+        Functions.Search(searchString, FacilityTable);
     }//GEN-LAST:event_SearchBarKeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void DeleteFacilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteFacilityActionPerformed
         // TODO add your handling code here:
-        AdminRMCreate rc = new AdminRMCreate(Session);
-        rc.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+//        if(FacilityTable.getSelectionModel().isSelectionEmpty()==false){
+//            int column = 0;
+//            int row = FacilityTable.getSelectedRow();
+//            String Id = FacilityTable.getModel().getValueAt(row, column).toString();
+//            Functions.Delete("Facilities.txt", Id);
+//            AdminFM aefm = new AdminFM(Session);
+//            aefm.setVisible(true);
+//            dispose();
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Please select a row.");
+//        }
+    }//GEN-LAST:event_DeleteFacilityActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void ModFacilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModFacilityActionPerformed
         // TODO add your handling code here:
-        if(AllResidentTable.getSelectionModel().isSelectionEmpty()==false){
-            int column = 0;
-            int row = AllResidentTable.getSelectedRow();
-            String Id = AllResidentTable.getModel().getValueAt(row, column).toString();
-    //        Functions.Delete("Resident.txt", Id);
-            residents=Resident.Delete(residents, Id);
-            AdminRM arm = new AdminRM(Session);
-            arm.setVisible(true);
-            dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Please select a row.");
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-        // TODO add your handling code here:
-//        Admin_Executive_Complaint aec = new Admin_Executive_Complaint(logindetails);
-//        aec.setVisible(true);
-//        dispose();
-    }//GEN-LAST:event_jPanel6MouseClicked
+//        if(FacilityTable.getSelectionModel().isSelectionEmpty()==false){
+//            int column = 0;
+//            int row = FacilityTable.getSelectedRow();
+//            String Id = FacilityTable.getModel().getValueAt(row, column).toString();
+//            AdminFMUpdate mf = new AdminFMUpdate(Session);
+//            mf.setVisible(true);
+//            dispose();
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Please select a row.");
+//        }
+    }//GEN-LAST:event_ModFacilityActionPerformed
 
     /**
      * @param args the command line arguments
@@ -568,14 +575,13 @@ public class AdminRM extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane AllResident;
-    private javax.swing.JTable AllResidentTable;
+    private javax.swing.JButton AddFacility;
     private javax.swing.JLabel BuidlingExecutive;
+    private javax.swing.JButton DeleteFacility;
+    private javax.swing.JTable FacilityTable;
+    private javax.swing.JButton ModFacility;
     private javax.swing.JTextField SearchBar;
     private javax.swing.JLabel Username;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -597,5 +603,6 @@ public class AdminRM extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

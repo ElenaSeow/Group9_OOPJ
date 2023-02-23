@@ -29,11 +29,11 @@ public class AdminFM extends javax.swing.JFrame {
     public AdminFM(Session session) {
         initComponents();
         this.Session= session;
-        facilities=Facility.Import();
+        facilities=new Facility().Import();
         Facility.tabulateData(facilities, FacilityTable);
         id = session.getId();
         ArrayList<Admin> admins;
-        admins= Admin.Import();
+        admins= new Admin().Import();
         for(Admin a:admins){
             String adminId= a.getId();
             String username = a.getName();

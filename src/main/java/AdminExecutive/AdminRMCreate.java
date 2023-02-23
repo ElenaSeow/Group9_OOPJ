@@ -25,7 +25,7 @@ public class AdminRMCreate extends javax.swing.JFrame {
         initComponents();
         this.Session = session;
         id= session.getId();
-        residents = Resident.Import();
+        residents = new Resident().Import();
         
 
     }

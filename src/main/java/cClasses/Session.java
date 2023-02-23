@@ -4,6 +4,8 @@
  */
 package cClasses;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author User
@@ -16,5 +18,9 @@ public class Session extends User{
         return super.getId();
     }
 
+    @Override
+    public ArrayList<?> Import() {
+        return null;
+    }
     
 }

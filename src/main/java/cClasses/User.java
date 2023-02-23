@@ -30,6 +30,8 @@ import java.util.ArrayList;
         this.role=role;
         this.contactNo=contactNo;
     }
+    public User(){}
+    
     public User(String id){
         this.id=id;
     }
@@ -70,6 +72,7 @@ import java.util.ArrayList;
    public String getContactNo(){
        return contactNo;
    }
+   public abstract ArrayList<?> Import();
    
  }
 

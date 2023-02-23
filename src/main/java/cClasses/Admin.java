@@ -27,15 +27,16 @@ public class Admin extends User{
        super(id, name, email, password, role, contactNo);
 
    }
+   public Admin(){}
    
    public void setName(String name){
        super.setName(name);
    }
-   
   
-   public static ArrayList<Admin> Import(){
+   @Override
+   public ArrayList<Admin> Import(){
        BufferedReader br = null;
-    ArrayList<Admin> admins = new ArrayList<Admin>();
+    ArrayList<Admin> admins = new ArrayList<>();
         try {
 
             String file = "AdminExecutive.txt";

@@ -4,6 +4,8 @@
  */
 package cClasses;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author HP
@@ -17,6 +19,11 @@ public class Security extends User {
     
     public void setName(String name) {
         super.setName(name);
+    }
+
+    @Override
+    public ArrayList<?> Import() {
+        return null;
     }
 
 

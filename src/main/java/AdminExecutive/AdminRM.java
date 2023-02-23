@@ -22,7 +22,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class AdminRM extends javax.swing.JFrame {
     Session Session;
-    ArrayList<Resident> residents=Resident.Import();
+    ArrayList<Resident> residents=new Resident().Import();
     /**
      * Creates new form Admin_Executive_Sample
      */
@@ -33,7 +33,7 @@ public class AdminRM extends javax.swing.JFrame {
         this.Session = session;
         String id = session.getId();
         ArrayList<Admin> admins;
-        admins= Admin.Import();
+        admins= new Admin().Import();
         for(Admin a:admins){
             String adminId= a.getId();
             String username = a.getName();

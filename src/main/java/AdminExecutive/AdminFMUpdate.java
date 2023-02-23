@@ -24,7 +24,7 @@ public class AdminFMUpdate extends javax.swing.JFrame {
     public AdminFMUpdate(Session session) {
         initComponents();
         this.Session = session;
-        facilities=Facility.Import();
+        facilities=new Facility().Import();
     }
 
     public void spamdata(String id){

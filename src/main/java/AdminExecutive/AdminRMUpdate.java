@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class AdminRMUpdate extends javax.swing.JFrame {
      Session Session;
      String id;
-     ArrayList<Resident> residents = Resident.Import();
+     ArrayList<Resident> residents = new Resident().Import();
 
     /**
      * Creates new form CreateUnits

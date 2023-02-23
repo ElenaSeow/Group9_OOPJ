@@ -40,7 +40,7 @@ public class Resident_Main extends javax.swing.JFrame {
         initComponents();
         this.Session = session;
         id = Session.getId();       
-        residents=Resident.Import();
+        residents=new Resident().Import();
         ArrayList<String> unitdata;
         unitdata=Functions.Read("Units.txt");
         String unitnumber="";

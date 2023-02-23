@@ -27,6 +27,7 @@ public class Resident extends User{
         this.unitId=unitId;
         
     }
+    public Resident(){}
     
     public void setName(String name) {
         super.setName(name);
@@ -39,7 +40,8 @@ public class Resident extends User{
     }
     
     
-    public static ArrayList<Resident> Import(){
+    @Override
+    public ArrayList<Resident> Import(){
         BufferedReader br = null;
         ArrayList<Resident> residents = new ArrayList<>();
         try {

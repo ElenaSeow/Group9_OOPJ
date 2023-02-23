@@ -66,7 +66,7 @@ public class Facility {
         this.status=status;
     }
     
-    public static ArrayList<Facility> Import(){
+    public ArrayList<Facility> Import(){
             BufferedReader br = null;
             ArrayList<Facility> facilities = new ArrayList<>();
         try {

@@ -4,6 +4,7 @@
  */
 package AdminExecutive;
 
+import cClasses.Admin;
 import cClasses.Facility;
 import cClasses.Functions;
 import cClasses.Session;
@@ -24,7 +25,7 @@ public class AdminFMCreate extends javax.swing.JFrame {
     public AdminFMCreate(Session session) {
         initComponents();
         this.Session = session;
-        facilities=Facility.Import();
+        facilities = new Facility().Import();
         
     }
 
@@ -155,6 +156,7 @@ public class AdminFMCreate extends javax.swing.JFrame {
         AdminFM afm = new AdminFM(Session);
         afm.setVisible(true);
         dispose();
+        
     }//GEN-LAST:event_SaveBtnActionPerformed
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed

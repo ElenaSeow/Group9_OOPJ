@@ -9,7 +9,6 @@ import AdminExecutive.AdminMain;
 import BuildingExecutive.Building_Executive_Main;
 import BuildingManager.Building_Manager_Main;
 import Resident.Resident_Main;
-import Resident.Resident_Main1;
 import Security.Security_Main;
 import Vendor.Vendor_Main;
 import cClasses.Session;
@@ -406,7 +405,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "You are entering Resident Page....");
 
                         Session session = new Session(id);
-                        Resident_Main1 rmp = new Resident_Main1(session);
+                        Resident_Main rmp = new Resident_Main(session);
                         rmp.setVisible(true);
                         dispose();
                         break;

@@ -4,10 +4,20 @@
  */
 package AccountExecutive;
 
+import cClasses.invoices;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.rmi.server.UID;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,15 +25,20 @@ import javax.swing.table.DefaultTableModel;
  * @author HP
  */
 public class Account_Executive_Main extends javax.swing.JFrame {
-
+    
+    invoices.FileManipulation IV = new invoices.FileManipulation();
     /**
      * Creates new form Account_Executive_Main
      */
     public Account_Executive_Main() {
         initComponents();
-        System.out.println("hi roshan");
+        
+        dt(); //Input Date and Time
     }
-
+    
+    public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +51,6 @@ public class Account_Executive_Main extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        username = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         logoutBtn = new javax.swing.JLabel();
@@ -59,6 +73,8 @@ public class Account_Executive_Main extends javax.swing.JFrame {
         updateBtn = new javax.swing.JButton();
         receiptBtn = new javax.swing.JButton();
         getInfoBtn = new javax.swing.JButton();
+        Time = new javax.swing.JLabel();
+        Date = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,10 +85,6 @@ public class Account_Executive_Main extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Account Executive");
-
-        username.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        username.setForeground(new java.awt.Color(255, 255, 255));
-        username.setText("Username");
 
         jLabel1.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,11 +97,9 @@ public class Account_Executive_Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 379, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(username)
-                .addGap(20, 20, 20))
+                .addGap(16, 16, 16))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +107,6 @@ public class Account_Executive_Main extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(username)
                     .addComponent(jLabel1))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -208,6 +217,11 @@ public class Account_Executive_Main extends javax.swing.JFrame {
         });
 
         updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         receiptBtn.setText("Print Receipt");
         receiptBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -230,19 +244,25 @@ public class Account_Executive_Main extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(334, 334, 334)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(userID)
+                        .addGap(18, 18, 18)
+                        .addComponent(getInfoBtn)
+                        .addGap(72, 72, 72))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(updateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                                    .addComponent(addPaymentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                    .addComponent(addPaymentBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(receiptBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(clearBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(14, 14, 14))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
+                                    .addComponent(clearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -258,16 +278,8 @@ public class Account_Executive_Main extends javax.swing.JFrame {
                                         .addComponent(jLabel8)
                                         .addGap(18, 18, 18)
                                         .addComponent(paymentAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(334, 334, 334)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(userID)
-                        .addGap(18, 18, 18)
-                        .addComponent(getInfoBtn)
-                        .addGap(72, 72, 72)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(16, 16, 16))
         );
         jPanel2Layout.setVerticalGroup(
@@ -307,10 +319,20 @@ public class Account_Executive_Main extends javax.swing.JFrame {
                         .addGap(26, 26, 26))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(21, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Payment", jPanel2);
+
+        Time.setBackground(new java.awt.Color(0, 0, 0));
+        Time.setFont(new java.awt.Font("Bell MT", 0, 14)); // NOI18N
+        Time.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Time.setText("Time");
+
+        Date.setBackground(new java.awt.Color(255, 255, 255));
+        Date.setFont(new java.awt.Font("Bell MT", 0, 14)); // NOI18N
+        Date.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Date.setText("Date");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -319,16 +341,25 @@ public class Account_Executive_Main extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Time, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Time)
+                    .addComponent(Date))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -351,6 +382,36 @@ public class Account_Executive_Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // For Date and Time
+    Timer t;
+    SimpleDateFormat st;
+    
+    public void dt(){
+    
+        // Date
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
+        String dd = sdf.format(d);
+        Date.setText(dd);
+        
+        // Time
+        t = new Timer (0, new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            
+                Date dt = new Date();
+                st = new SimpleDateFormat("hh:mm:ss a");
+                
+                String tt = st.format(dt);
+                Time.setText(tt);
+            }
+        }); 
+           t.start(); 
+        
+    }
+    
     private void logoutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseClicked
         System.exit(0);
     }//GEN-LAST:event_logoutBtnMouseClicked
@@ -360,7 +421,11 @@ public class Account_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_userIDActionPerformed
 
     private void tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMousePressed
-        
+        if(table.getSelectedRow() != -1){
+            fees.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
+            unitID.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
+            outstandingFees.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
+        }
     }//GEN-LAST:event_tableMousePressed
 
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
@@ -373,11 +438,34 @@ public class Account_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_clearBtnActionPerformed
 
     private void addPaymentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPaymentBtnActionPerformed
-        System.out.println("Hi elena");
+        if(!paymentAmount.getText().equals("")){
+            String outstanding = Integer.toString(Integer.parseInt(outstandingFees.getText())-Integer.parseInt(paymentAmount.getText()));
+            String date = LocalDate.now().now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            IV.addFile(userID.getText(), unitID.getText(), fees.getText(), outstanding, date);
+            JOptionPane.showMessageDialog(null,"Successfully Made Payment!");
+            paymentAmount.setText("");
+        }
     }//GEN-LAST:event_addPaymentBtnActionPerformed
 
     private void receiptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receiptBtnActionPerformed
-        // TODO add your handling code here:
+        if(table.getSelectedRow() != -1){
+            String ID = table.getValueAt(table.getSelectedRow(), 0).toString();
+            String userID = table.getValueAt(table.getSelectedRow(), 1).toString();
+            String unitID = table.getValueAt(table.getSelectedRow(), 2).toString();
+            String fee = table.getValueAt(table.getSelectedRow(), 3).toString();
+            String out = table.getValueAt(table.getSelectedRow(), 4).toString();
+            String date = table.getValueAt(table.getSelectedRow(), 5).toString();
+            JOptionPane.showMessageDialog(null,"============== Receipt ==============\n"
+                                                            + "Invoice ID: " + ID + "\n"
+                                                            + "User ID: " + userID + "\n"
+                                                            + "Unit ID: " + unitID + "\n"
+                                                            + "Fee: " + fee + "\n"
+                                                            + "Outstanding: " + out + "\n"
+                                                            + "Date: " + date + "\n"
+                                                            + "====================================\n"
+                                                            + "============= Thank You! ============="
+            );
+        }
     }//GEN-LAST:event_receiptBtnActionPerformed
 
     private void getInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getInfoBtnActionPerformed
@@ -428,9 +516,42 @@ public class Account_Executive_Main extends javax.swing.JFrame {
         paymentAmount.setText("");
     }//GEN-LAST:event_paymentAmountMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        if(table.getSelectedRow() != -1){
+            String ID = table.getValueAt(table.getSelectedRow(), 0).toString();
+            String date = table.getValueAt(table.getSelectedRow(), 5).toString();
+            IV.editFile(ID, userID.getText(), unitID.getText(), fees.getText(), outstandingFees.getText(), date);
+            JOptionPane.showMessageDialog(null,"Successfully Updated Invoice!");
+        }
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {                                     
+
+        if(!userID.getText().equals("")){
+            table.setModel(new DefaultTableModel());
+            try {
+                BufferedReader br = new BufferedReader(new FileReader("Invoices.txt"));
+                String firstLine = br.readLine().trim();
+                String[] columnsName = firstLine.split(":");
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.setColumnIdentifiers(columnsName);
+                Object[] tableLines = br.lines().toArray();
+                for (int i = 0; i < tableLines.length; i++) {
+                    String line = tableLines[i].toString().trim();
+                    String[] dataRow = line.split(":");
+                    if(dataRow[1].equals(userID.getText())){
+                        model.addRow(dataRow);
+                        unitID.setText(dataRow[2]);
+                        fees.setText(dataRow[3]);
+                        outstandingFees.setText(dataRow[4]);
+                    }
+                }
+
+            } catch (IOException e) {
+                System.out.println("Incorrect File");
+            }
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -464,6 +585,8 @@ public class Account_Executive_Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Date;
+    private javax.swing.JLabel Time;
     private javax.swing.JButton addPaymentBtn;
     private javax.swing.JButton clearBtn;
     private javax.swing.JTextField fees;
@@ -489,6 +612,5 @@ public class Account_Executive_Main extends javax.swing.JFrame {
     private javax.swing.JTextField unitID;
     private javax.swing.JButton updateBtn;
     private javax.swing.JTextField userID;
-    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

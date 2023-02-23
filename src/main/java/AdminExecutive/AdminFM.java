@@ -4,6 +4,8 @@
  */
 package AdminExecutive;
 
+import cClasses.Admin;
+import cClasses.Facility;
 import cClasses.Functions;
 import cClasses.Session;
 import java.io.BufferedReader;
@@ -18,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdminFM extends javax.swing.JFrame {
     Session Session;
+    ArrayList<Facility> facilities;
+    String id;
 
     /**
      * Creates new form Admin_Executive_Sample
@@ -25,39 +29,33 @@ public class AdminFM extends javax.swing.JFrame {
     public AdminFM(Session session) {
         initComponents();
         this.Session= session;
-        AddRowToTable();
-        String id = session.getId();
-        try (BufferedReader br = new BufferedReader (new FileReader ("AdminExecutive.txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String [] data = line.split(":");
-                String userid = data[0];
-                String username = data[1];
-                String email = data[3];
-                
-                if (id.equals(userid)){
-                    Username.setText(username);
-                }
+        facilities=Facility.Import();
+        Facility.tabulateData(facilities, FacilityTable);
+        id = session.getId();
+        ArrayList<Admin> admins;
+        admins= Admin.Import();
+        for(Admin a:admins){
+            String adminId= a.getId();
+            String username = a.getName();
+            if(id.equals(adminId)){
+                Username.setText(username);
             }
-            
-        } catch (Exception e){
-    
         }
 
     }
     
-    public void AddRowToTable()
-    {
-        DefaultTableModel FacTable = (DefaultTableModel)FacilityTable.getModel();
-        FacTable.setRowCount(0);
-        ArrayList<String> facdata;
-        facdata = Functions.Read("Facilities.txt");
-        for(String str:facdata){
-            String[] list = str.split(":");
-            String[] facDataRow = {list[0],list[1],list[2],list[3]};
-            FacTable.addRow(facDataRow);
-        }
-    }
+//    public void AddRowToTable()
+//    {
+//        DefaultTableModel FacTable = (DefaultTableModel)FacilityTable.getModel();
+//        FacTable.setRowCount(0);
+//        ArrayList<String> facdata;
+//        facdata = Functions.Read("Facilities.txt");
+//        for(String str:facdata){
+//            String[] list = str.split(":");
+//            String[] facDataRow = {list[0],list[1],list[2],list[3]};
+//            FacTable.addRow(facDataRow);
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.

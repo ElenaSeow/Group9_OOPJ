@@ -229,6 +229,11 @@ public class AdminUM extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(67, 63, 113));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -539,6 +544,13 @@ public class AdminUM extends javax.swing.JFrame {
 //        aec.setVisible(true);
 //        dispose();
     }//GEN-LAST:event_jPanel6MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        // TODO add your handling code here:
+        AdminFM afm = new AdminFM(Session);
+        afm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jPanel9MouseClicked
 
     /**
      * @param args the command line arguments

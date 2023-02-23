@@ -168,6 +168,9 @@ public class Resident extends User{
             Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
+
+
+
 }
 
 

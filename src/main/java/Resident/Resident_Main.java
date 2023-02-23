@@ -13,12 +13,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -52,9 +54,15 @@ public class Resident_Main extends javax.swing.JFrame {
                 PasswordL.setText(password);
                 RoleL.setText(role);
                 TelNoL.setText(contactNo);
+                
+                
                 //set text for unitid??
                 UserIDL2.setText(residentId);
                 RoleL2.setText(role);
+                NameMOD.setText(name);
+                EmailMOD.setText(email);
+                PasswordMOD.setText(password);
+                TelNoMOD.setText(contactNo);
                 
             }
         }
@@ -1232,6 +1240,43 @@ public class Resident_Main extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Resident_Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+                try {
+            try (PrintWriter pr = new PrintWriter ("BackupResident.txt")){
+                for (String str: tempResArray) {
+                    pr.println(str);
+                }
+                
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Resident_Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        catch (Exception e) {
+        }
+        
+        try (BufferedReader brrr = new BufferedReader(new FileReader("BackupResident.txt"))) {
+            String line;
+            Scanner reader = new Scanner(brrr);
+            while ((line = brrr.readLine()) != null) {
+                String[] list = line.split(":");
+                String ResidentId = list[0];
+                String ResidentName = list [1];
+                String ResidentEmail = list[2];
+                String ResidentPassword = list[3];
+                String ResidentRoles = list[4];
+                String ResidentNumber = list [5];
+                
+            if (id.equals(ResidentId)) {    
+                NameL.setText(ResidentName);
+                EmailL.setText(ResidentEmail);
+                PasswordL.setText(ResidentPassword);
+                TelNoL.setText(ResidentNumber);
+                } }
+            }   
+    catch (Exception e) {  
+            }
+    JOptionPane.showMessageDialog(null,"Your Details Have Been Modified and Refreshed");    
+
 
     }//GEN-LAST:event_UpdateBtnActionPerformed
 

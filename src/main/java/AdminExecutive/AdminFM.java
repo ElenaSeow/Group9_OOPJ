@@ -525,16 +525,17 @@ public class AdminFM extends javax.swing.JFrame {
 
     private void ModFacilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModFacilityActionPerformed
         // TODO add your handling code here:
-//        if(FacilityTable.getSelectionModel().isSelectionEmpty()==false){
-//            int column = 0;
-//            int row = FacilityTable.getSelectedRow();
-//            String Id = FacilityTable.getModel().getValueAt(row, column).toString();
-//            AdminFMUpdate mf = new AdminFMUpdate(Session);
-//            mf.setVisible(true);
-//            dispose();
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Please select a row.");
-//        }
+        if(FacilityTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = FacilityTable.getSelectedRow();
+            String Id = FacilityTable.getModel().getValueAt(row, column).toString();
+            AdminFMUpdate mf = new AdminFMUpdate(Session);
+            mf.spamdata(Id);
+            mf.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_ModFacilityActionPerformed
 
     /**

@@ -98,11 +98,7 @@ public class Unit {
         }
         public String getStatus(){
             return status;
-        }
-//        public String getResidentId(){
-//            return residentId;
-//        }
-        
+        }        
         public void setUnitNo(String unitNo){
             this.unitNo=unitNo;
         }

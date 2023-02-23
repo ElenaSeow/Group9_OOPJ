@@ -4,6 +4,8 @@
  */
 package Resident;
 
+import cClasses.Functions;
+import cClasses.Resident;
 import cClasses.Session;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +32,7 @@ import javax.swing.Timer;
 public class Resident_Main extends javax.swing.JFrame {
     Session Session;
     String id;
-    ArrayList<cClasses.Resident> residents;
+    ArrayList<Resident> residents;
     /**
      * Creates new form Resident
      */
@@ -38,15 +40,27 @@ public class Resident_Main extends javax.swing.JFrame {
         initComponents();
         this.Session = session;
         id = Session.getId();       
-        residents= cClasses.Resident.Import();
-        for(cClasses.Resident r:residents){
+        residents=Resident.Import();
+        ArrayList<String> unitdata;
+        unitdata=Functions.Read("Units.txt");
+        String unitnumber="";
+        for(Resident r:residents){
             String residentId= r.getId();
             String name = r.getName();
             String email = r.getEmail();
             String password = r.getPassword();
             String role = r.getRole();
             String contactNo=r.getContactNo();
+            String unitId = r.getUnitId();
             if(id.equals(residentId)){
+                
+//
+            for(String i:unitdata){
+                String[] j = i.split(":");
+                if(j[0].equals(unitId)){
+                    unitnumber=j[1];
+                    }
+                }
                 //set text for unitid??
                 NameL.setText(name);
                 UserIDL.setText(residentId);
@@ -54,6 +68,7 @@ public class Resident_Main extends javax.swing.JFrame {
                 PasswordL.setText(password);
                 RoleL.setText(role);
                 TelNoL.setText(contactNo);
+                UnitIDL.setText(unitnumber);
                 
                 
                 //set text for unitid??
@@ -63,6 +78,7 @@ public class Resident_Main extends javax.swing.JFrame {
                 EmailMOD.setText(email);
                 PasswordMOD.setText(password);
                 TelNoMOD.setText(contactNo);
+                UnitIDL2.setText(unitnumber);
                 
             }
         }
@@ -232,7 +248,7 @@ public class Resident_Main extends javax.swing.JFrame {
         );
 
         jLabel72.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel72.setText("Unit ID");
+        jLabel72.setText("Unit No.");
 
         UnitIDL.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         UnitIDL.setText("User Unit ID");
@@ -281,18 +297,22 @@ public class Resident_Main extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel73)
+                                .addGap(30, 30, 30))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel74)
-                                .addGap(33, 33, 33)
-                                .addComponent(EmailL))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel73)
-                                .addGap(23, 23, 23)
-                                .addComponent(NameL)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
-                        .addComponent(jLabel77)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                .addComponent(EmailL)
+                                .addGap(318, 318, 318))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(NameL)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                                .addComponent(jLabel77)
+                                .addGap(18, 18, 18))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel76)
@@ -325,7 +345,7 @@ public class Resident_Main extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel76)
                     .addComponent(RoleL))
-                .addGap(73, 134, Short.MAX_VALUE))
+                .addGap(73, 132, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -349,13 +369,13 @@ public class Resident_Main extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel44)
                         .addComponent(UserIDL))
-                    .addContainerGap(130, Short.MAX_VALUE)))
+                    .addContainerGap(128, Short.MAX_VALUE)))
         );
 
         jTabbedPane2.addTab("View Profile", jPanel5);
 
         jLabel71.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel71.setText("Unit ID");
+        jLabel71.setText("Unit No.");
 
         UnitIDL2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         UnitIDL2.setText("User Unit ID");
@@ -440,7 +460,7 @@ public class Resident_Main extends javax.swing.JFrame {
                     .addComponent(jLabel71)
                     .addGap(30, 30, 30)
                     .addComponent(UnitIDL2)
-                    .addContainerGap(534, Short.MAX_VALUE)))
+                    .addContainerGap(535, Short.MAX_VALUE)))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,14 +487,14 @@ public class Resident_Main extends javax.swing.JFrame {
                     .addComponent(jLabel49))
                 .addGap(18, 18, 18)
                 .addComponent(UpdateBtn)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(UnitIDL2)
                         .addComponent(jLabel71))
-                    .addContainerGap(168, Short.MAX_VALUE)))
+                    .addContainerGap(167, Short.MAX_VALUE)))
         );
 
         jTabbedPane2.addTab("Update Profile", jPanel6);
@@ -1201,8 +1221,16 @@ public class Resident_Main extends javax.swing.JFrame {
         String email = EmailMOD.getText();
         String password = PasswordMOD.getText();
         String telno = TelNoMOD.getText();
-        String unitID = UnitIDL2.getText();
-
+        String unitNo = UnitIDL2.getText();
+        ArrayList<String> unitdata;
+        String unitID="";
+        unitdata=Functions.Read("Units.txt");
+        for(String i:unitdata){
+                String[] j = i.split(":");
+                    if(j[1].equals(unitNo)){
+                        unitID=j[1];
+                    }
+                }
         ArrayList<String> tempResArray = new ArrayList<>();
 
         try(BufferedReader BR = new BufferedReader (new FileReader("BackupResident.txt"))) {

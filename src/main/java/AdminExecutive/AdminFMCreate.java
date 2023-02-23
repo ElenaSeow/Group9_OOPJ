@@ -149,10 +149,8 @@ public class AdminFMCreate extends javax.swing.JFrame {
         String quantity=Qty.getText();
         String status= Status.getSelectedItem().toString();
         String id = Functions.IdGenerate("Facilities.txt");
-        String newData = id + ":" + name + ":" + quantity + ":" + status;
-//        Facility.
-//        data.add(newData);
-//        Functions.Write("Facilities.txt", data);
+        facilities.add(new Facility(id,name,quantity,status));
+        Facility.Write(facilities);
         JOptionPane.showMessageDialog(null, "Successfully Created");
         AdminFM afm = new AdminFM(Session);
         afm.setVisible(true);

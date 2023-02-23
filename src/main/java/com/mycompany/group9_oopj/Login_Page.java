@@ -478,7 +478,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "You are entering Vendor Page....");
 
                         Session session = new Session(id);
-                        Vendor_Main VP = new Vendor_Main();
+                        Vendor_Main VP = new Vendor_Main(session);
                         VP.setVisible(true);
                         dispose();
                         break;

@@ -42,9 +42,9 @@ public class Resident_Main extends javax.swing.JFrame {
      */
     public Resident_Main(Session session) {
         initComponents();
-        Invoices.tabulateData(invoices, InvoiceTable);
         this.Session = session;
-        id = Session.getId();       
+        id = Session.getId();   
+        Invoices.tabulateData(invoices, InvoiceTable,id);
         residents=new Resident().Import();
         ArrayList<String> unitdata;
         unitdata=Functions.Read("Units.txt");
@@ -683,10 +683,7 @@ public class Resident_Main extends javax.swing.JFrame {
 
         InvoiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Invoice ID", "Unit ID", "Fee", "Outstanding Fee", "Date"

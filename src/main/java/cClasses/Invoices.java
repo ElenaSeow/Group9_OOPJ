@@ -122,6 +122,7 @@ public class Invoices {
             ArrayList<String> data = new ArrayList<>();
             br = new BufferedReader(new FileReader(file));
             String line;
+            br.readLine();
             while((line=br.readLine())!=null){
                 data.add(line);
                 
@@ -142,12 +143,18 @@ public class Invoices {
         return invoices;
     }
     
-     public static void tabulateData(ArrayList<Invoices> invoices,JTable table){
+     public static void tabulateData(ArrayList<Invoices> invoices,JTable table,String id){
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             for(Invoices u:invoices){
+                String userID=u.getUserId();
+                if(id.equals(userID)){
+                    DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
+                    String date = date_format.format(u.getDate());
                 
-                String[] allDataRow = {u.getUnitId(),u.getInvoiceId(),u.getUnitId(),u.getFee(), u.getOutstanding()};
-                model.addRow(allDataRow);
+                    String[] allDataRow = {u.getInvoiceId(),u.getUnitId(),u.getFee(),u.getOutstanding(),date};
+                    model.addRow(allDataRow);
+                }
+                
         }
      }
     

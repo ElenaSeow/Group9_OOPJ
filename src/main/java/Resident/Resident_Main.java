@@ -1250,6 +1250,28 @@ public class Resident_Main extends javax.swing.JFrame {
                 }
         residents = new Resident(Id, name, email, password, role, telno, unitID).Update(residents, Id);
         JOptionPane.showMessageDialog(null, "Successfully Updated");
+        
+        try (BufferedReader brrr = new BufferedReader(new FileReader("BackupResident.txt"))) {
+            String line;
+            Scanner reader = new Scanner(brrr);
+            while ((line = brrr.readLine()) != null) {
+                String[] list = line.split(":");
+                String ResidentId = list[0];
+                String ResidentName = list [1];
+                String ResidentEmail = list[2];
+                String ResidentPassword = list[3];
+                String ResidentNumber = list [5];
+                
+            if (id.equals(ResidentId)) {    
+                NameL.setText(ResidentName);
+                EmailL.setText(ResidentEmail);
+                PasswordL.setText(ResidentPassword);
+                TelNoL.setText(ResidentNumber);
+                } }
+            }   
+    catch (Exception e) {  
+            }
+    JOptionPane.showMessageDialog(null,"Your Details Have Been Modified and Refreshed");    
 
     }//GEN-LAST:event_UpdateBtnActionPerformed
 

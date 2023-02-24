@@ -97,20 +97,14 @@ public class Resident extends User{
                 r.setRole(this.getRole());
                 r.setPassword(this.getPassword());
                 r.setContactNo(this.getContactNo());
+                
                 data.add(r.getId()+":"+r.getName()+":"+r.getEmail()+":"+r.getPassword()+":"+r.getRole()+":"+r.getContactNo()+":"+r.getUnitId());
             }else{
                 data.add(r.getId()+":"+r.getName()+":"+r.getEmail()+":"+r.getPassword()+":"+r.getRole()+":"+r.getContactNo()+":"+r.getUnitId());
             }
         }   pr = new PrintWriter("BackupResident.txt");
         for(String i:data){
-//            String Id = r.getId();
-//            String Name = r.getName();
-//            String Email = r.getEmail();
-//            String Password = r.getPassword();
-//            String Role = r.getRole();
-//            String ContactNo = r.getContactNo();
-//            String UnitId=r.getUnitId();
-//            pr.println(Id+":"+Name+":"+Email+":"+Password+":"+Role+":"+ContactNo+":"+UnitId);
+            
             pr.println(i);
             System.out.println(i);
         }   

@@ -10,7 +10,10 @@ import cClasses.Resident;
 import cClasses.Session;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -263,6 +266,11 @@ public class AdminRM extends javax.swing.JFrame {
         );
 
         jPanel10.setBackground(new java.awt.Color(67, 63, 113));
+        jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel10MouseClicked(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -543,6 +551,18 @@ public class AdminRM extends javax.swing.JFrame {
         afm.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
+        try {
+            // TODO add your handling code here:
+            AdminFB afb = new AdminFB(Session);
+            afb.setVisible(true);
+            dispose();
+        } catch (ParseException ex) {
+            Logger.getLogger(AdminRM.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jPanel10MouseClicked
 
     /**
      * @param args the command line arguments

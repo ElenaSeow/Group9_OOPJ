@@ -8,7 +8,10 @@ import cClasses.Session;
 import cClasses.User;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -232,6 +235,11 @@ public class AdminMain extends javax.swing.JFrame {
         );
 
         jPanel10.setBackground(new java.awt.Color(67, 63, 113));
+        jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel10MouseClicked(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -395,6 +403,16 @@ public class AdminMain extends javax.swing.JFrame {
     private void jPanel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel2MouseEntered
+
+    private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
+        try {
+            AdminFB afb = new AdminFB(Session);
+            afb.setVisible(true);
+            dispose();
+        } catch (ParseException ex) {
+            Logger.getLogger(AdminMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jPanel10MouseClicked
 
     /**
      * @param args the command line arguments

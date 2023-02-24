@@ -3,38 +3,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package AdminExecutive;
-
 import cClasses.Admin;
-import cClasses.Facility;
-import cClasses.Functions;
+import cClasses.Booking;
 import cClasses.Session;
+import cClasses.User;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author HP
  */
-public class AdminFM extends javax.swing.JFrame {
+public class AdminFB extends javax.swing.JFrame {
     Session Session;
-    ArrayList<Facility> facilities;
-    String id;
-
+    ArrayList<Booking> bookings;
     /**
      * Creates new form Admin_Executive_Sample
+     * @param session
+     * @throws java.text.ParseException
      */
-    public AdminFM(Session session) {
+    public AdminFB(Session session) throws ParseException {
         initComponents();
-        this.Session= session;
-        facilities=new Facility().Import();
-        Facility.tabulateData(facilities, FacilityTable);
-        id = session.getId();
+        this.Session = session;
+        String id = Session.getId();
+        bookings=new Booking().Import();
+        bookings=Booking.changeStatus(bookings);
+        Booking.Write(bookings);
+        Booking.tabulateData(bookings, BookingsTable);
         ArrayList<Admin> admins;
         admins= new Admin().Import();
         for(Admin a:admins){
@@ -44,21 +41,7 @@ public class AdminFM extends javax.swing.JFrame {
                 Username.setText(username);
             }
         }
-
     }
-    
-//    public void AddRowToTable()
-//    {
-//        DefaultTableModel FacTable = (DefaultTableModel)FacilityTable.getModel();
-//        FacTable.setRowCount(0);
-//        ArrayList<String> facdata;
-//        facdata = Functions.Read("Facilities.txt");
-//        for(String str:facdata){
-//            String[] list = str.split(":");
-//            String[] facDataRow = {list[0],list[1],list[2],list[3]};
-//            FacTable.addRow(facDataRow);
-//        }
-//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,11 +76,10 @@ public class AdminFM extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        FacilityTable = new javax.swing.JTable();
-        SearchBar = new javax.swing.JTextField();
-        AddFacility = new javax.swing.JButton();
-        ModFacility = new javax.swing.JButton();
-        DeleteFacility = new javax.swing.JButton();
+        BookingsTable = new javax.swing.JTable();
+        NewBooking = new javax.swing.JButton();
+        UpdateBooking = new javax.swing.JButton();
+        DeleteBooking = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,6 +95,9 @@ public class AdminFM extends javax.swing.JFrame {
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel2MouseEntered(evt);
             }
         });
 
@@ -235,6 +220,11 @@ public class AdminFM extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(67, 63, 113));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -258,11 +248,6 @@ public class AdminFM extends javax.swing.JFrame {
         );
 
         jPanel10.setBackground(new java.awt.Color(67, 63, 113));
-        jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel10MouseClicked(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -366,83 +351,60 @@ public class AdminFM extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        FacilityTable.setModel(new javax.swing.table.DefaultTableModel(
+        BookingsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Facility", "Capacity", "Status"
+                "ID", "Name", "Facility", "Date", "Time", "Status"
             }
         ));
-        jScrollPane1.setViewportView(FacilityTable);
+        jScrollPane1.setViewportView(BookingsTable);
 
-        SearchBar.addActionListener(new java.awt.event.ActionListener() {
+        NewBooking.setText("New");
+        NewBooking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchBarActionPerformed(evt);
-            }
-        });
-        SearchBar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                SearchBarKeyReleased(evt);
+                NewBookingActionPerformed(evt);
             }
         });
 
-        AddFacility.setText("Add");
-        AddFacility.addActionListener(new java.awt.event.ActionListener() {
+        UpdateBooking.setText("Update");
+        UpdateBooking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddFacilityActionPerformed(evt);
+                UpdateBookingActionPerformed(evt);
             }
         });
 
-        ModFacility.setText("Modify");
-        ModFacility.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModFacilityActionPerformed(evt);
-            }
-        });
-
-        DeleteFacility.setText("Delete");
-        DeleteFacility.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteFacilityActionPerformed(evt);
-            }
-        });
+        DeleteBooking.setText("Delete");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(AddFacility)
-                        .addGap(78, 78, 78)
-                        .addComponent(ModFacility)
-                        .addGap(90, 90, 90)
-                        .addComponent(DeleteFacility)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(110, 110, 110)
+                .addComponent(NewBooking)
+                .addGap(60, 60, 60)
+                .addComponent(UpdateBooking)
+                .addGap(68, 68, 68)
+                .addComponent(DeleteBooking)
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddFacility)
-                    .addComponent(ModFacility)
-                    .addComponent(DeleteFacility))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(NewBooking)
+                    .addComponent(UpdateBooking)
+                    .addComponent(DeleteBooking))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Facilities", jPanel11);
+        jTabbedPane1.addTab("Facility Booking", jPanel11);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -456,8 +418,7 @@ public class AdminFM extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jTabbedPane1))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -480,82 +441,47 @@ public class AdminFM extends javax.swing.JFrame {
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         // TODO add your handling code here:
-        AdminUM aeum = new AdminUM(Session);
-        aeum.setVisible(true);
+        AdminUM aum = new AdminUM(Session);
+        aum.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
-        AdminRM aer = new AdminRM(Session);
-        aer.setVisible(true);
+        AdminRM arm = new AdminRM(Session);
+        arm.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         // TODO add your handling code here:
-//        AdminCM aec = new AdminCM (Session);
-//        aec.setVisible(true);
-//        dispose();
+
     }//GEN-LAST:event_jPanel6MouseClicked
 
-    private void DeleteFacilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteFacilityActionPerformed
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
         // TODO add your handling code here:
-        //        if(FacilityTable.getSelectionModel().isSelectionEmpty()==false){
-            //            int column = 0;
-            //            int row = FacilityTable.getSelectedRow();
-            //            String Id = FacilityTable.getModel().getValueAt(row, column).toString();
-            //            Functions.Delete("Facilities.txt", Id);
-            //            AdminFM aefm = new AdminFM(Session);
-            //            aefm.setVisible(true);
-            //            dispose();
-            //        }else{
-            //            JOptionPane.showMessageDialog(null, "Please select a row.");
-            //        }
-    }//GEN-LAST:event_DeleteFacilityActionPerformed
+        AdminFM afm = new AdminFM(Session);
+        afm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jPanel9MouseClicked
 
-    private void ModFacilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModFacilityActionPerformed
+    private void jPanel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseEntered
         // TODO add your handling code here:
-        if(FacilityTable.getSelectionModel().isSelectionEmpty()==false){
-            int column = 0;
-            int row = FacilityTable.getSelectedRow();
-            String Id = FacilityTable.getModel().getValueAt(row, column).toString();
-            AdminFMUpdate mf = new AdminFMUpdate(Session);
-            mf.spamdata(Id);
-            mf.setVisible(true);
-            dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Please select a row.");
-        }
-    }//GEN-LAST:event_ModFacilityActionPerformed
+    }//GEN-LAST:event_jPanel2MouseEntered
 
-    private void AddFacilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFacilityActionPerformed
+    private void NewBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewBookingActionPerformed
         // TODO add your handling code here:
-        //        AdminFMCreate afc = new AdminFMCreate(Session);
-        //        afc .setVisible(true);
-        //        dispose();
-    }//GEN-LAST:event_AddFacilityActionPerformed
+        AdminFMCreate afc = new AdminFMCreate(Session);
+        afc.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_NewBookingActionPerformed
 
-    private void SearchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBarKeyReleased
+    private void UpdateBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBookingActionPerformed
         // TODO add your handling code here:
-        String searchString = SearchBar.getText();
-        Functions.Search(searchString, FacilityTable);
-    }//GEN-LAST:event_SearchBarKeyReleased
-
-    private void SearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchBarActionPerformed
-
-    private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
-        try {
-            // TODO add your handling code here:
-            AdminFB afb = new AdminFB(Session);
-            afb.setVisible(true);
-            dispose();
-        } catch (ParseException ex) {
-            Logger.getLogger(AdminFM.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jPanel10MouseClicked
+        AdminFMUpdate afu = new AdminFMUpdate(Session);
+        afu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_UpdateBookingActionPerformed
 
     /**
      * @param args the command line arguments
@@ -593,12 +519,11 @@ public class AdminFM extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddFacility;
+    private javax.swing.JTable BookingsTable;
     private javax.swing.JLabel BuidlingExecutive;
-    private javax.swing.JButton DeleteFacility;
-    private javax.swing.JTable FacilityTable;
-    private javax.swing.JButton ModFacility;
-    private javax.swing.JTextField SearchBar;
+    private javax.swing.JButton DeleteBooking;
+    private javax.swing.JButton NewBooking;
+    private javax.swing.JButton UpdateBooking;
     private javax.swing.JLabel Username;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

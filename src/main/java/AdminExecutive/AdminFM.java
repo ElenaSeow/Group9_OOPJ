@@ -547,14 +547,11 @@ public class AdminFM extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchBarActionPerformed
 
     private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
-        try {
+
             // TODO add your handling code here:
             AdminFB afb = new AdminFB(Session);
             afb.setVisible(true);
             dispose();
-        } catch (ParseException ex) {
-            Logger.getLogger(AdminFM.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_jPanel10MouseClicked
 
     /**

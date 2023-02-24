@@ -553,15 +553,10 @@ public class AdminRM extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel9MouseClicked
 
     private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
-        try {
             // TODO add your handling code here:
             AdminFB afb = new AdminFB(Session);
             afb.setVisible(true);
-            dispose();
-        } catch (ParseException ex) {
-            Logger.getLogger(AdminRM.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+            dispose();     
     }//GEN-LAST:event_jPanel10MouseClicked
 
     /**

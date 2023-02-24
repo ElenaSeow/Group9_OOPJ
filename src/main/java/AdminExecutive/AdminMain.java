@@ -405,13 +405,9 @@ public class AdminMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2MouseEntered
 
     private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
-        try {
             AdminFB afb = new AdminFB(Session);
             afb.setVisible(true);
             dispose();
-        } catch (ParseException ex) {
-            Logger.getLogger(AdminMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_jPanel10MouseClicked
 
     /**

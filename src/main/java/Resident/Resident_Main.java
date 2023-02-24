@@ -5,6 +5,7 @@
 package Resident;
 
 import cClasses.Functions;
+import cClasses.Invoices;
 import cClasses.Resident;
 import cClasses.Session;
 import java.awt.event.ActionEvent;
@@ -33,7 +34,7 @@ public class Resident_Main extends javax.swing.JFrame {
     Session Session;
     String id;
     ArrayList<Resident> residents;
-    //ArrayList<Invoices> invoices = Invoices.Import();
+    ArrayList<Invoices> invoices = new Invoices().Import();
     
     
     /**
@@ -41,7 +42,7 @@ public class Resident_Main extends javax.swing.JFrame {
      */
     public Resident_Main(Session session) {
         initComponents();
-        //Invoices.tabulateDAta(invoices, AllInvoicesTable);
+        Invoices.tabulateData(invoices, InvoiceTable);
         this.Session = session;
         id = Session.getId();       
         residents=new Resident().Import();

@@ -11,6 +11,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,22 +26,26 @@ public class AdminFB extends javax.swing.JFrame {
      * @param session
      * @throws java.text.ParseException
      */
-    public AdminFB(Session session) throws ParseException {
-        initComponents();
-        this.Session = session;
-        String id = Session.getId();
-        bookings=new Booking().Import();
-        bookings=Booking.changeStatus(bookings);
-        Booking.Write(bookings);
-        Booking.tabulateData(bookings, BookingsTable);
-        ArrayList<Admin> admins;
-        admins= new Admin().Import();
-        for(Admin a:admins){
-            String adminId= a.getId();
-            String username = a.getName();
-            if(id.equals(adminId)){
-                Username.setText(username);
+    public AdminFB(Session session) {
+        try {
+            initComponents();
+            this.Session = session;
+            String id = Session.getId();
+            bookings=new Booking().Import();
+            bookings=Booking.changeStatus(bookings);
+            Booking.Write(bookings);
+            Booking.tabulateData(bookings, BookingsTable);
+            ArrayList<Admin> admins;
+            admins= new Admin().Import();
+            for(Admin a:admins){
+                String adminId= a.getId();
+                String username = a.getName();
+                if(id.equals(adminId)){
+                    Username.setText(username);
+                }
             }
+        } catch (ParseException ex) {
+            Logger.getLogger(AdminFB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -80,6 +86,8 @@ public class AdminFB extends javax.swing.JFrame {
         NewBooking = new javax.swing.JButton();
         UpdateBooking = new javax.swing.JButton();
         DeleteBooking = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jPanel12 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -377,25 +385,34 @@ public class AdminFB extends javax.swing.JFrame {
 
         DeleteBooking.setText("Delete");
 
+        jTextField1.setText("jTextField1");
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(NewBooking)
-                .addGap(60, 60, 60)
-                .addComponent(UpdateBooking)
-                .addGap(68, 68, 68)
-                .addComponent(DeleteBooking)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(NewBooking)
+                        .addGap(60, 60, 60)
+                        .addComponent(UpdateBooking)
+                        .addGap(68, 68, 68)
+                        .addComponent(DeleteBooking))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(157, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NewBooking)
@@ -405,6 +422,19 @@ public class AdminFB extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Facility Booking", jPanel11);
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 611, Short.MAX_VALUE)
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 318, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Previous Bookings", jPanel12);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -536,6 +566,7 @@ public class AdminFB extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -547,5 +578,6 @@ public class AdminFB extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

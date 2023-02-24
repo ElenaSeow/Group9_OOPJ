@@ -169,7 +169,7 @@ public class Booking{
                    f.setName(this.getName());
                    
                }
-           }   pr = new PrintWriter("Facilities.txt");
+           }   pr = new PrintWriter("Bookings.txt");
            for(Booking i: bookings){ 
                 String Bid=i.getBookId();
                 String FacId =i.getFacId();
@@ -182,7 +182,7 @@ public class Booking{
                 pr.println(Bid+":"+FacId+":"+userId+":"+name+":"+date+":"+time+":"+status);
                        }
        } catch (FileNotFoundException ex) {
-           Logger.getLogger(Facility.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
        } finally {
            pr.close();
        }
@@ -199,7 +199,7 @@ public class Booking{
                    newBookings.add(f);
                }
            }
-               PrintWriter pr = new PrintWriter("Facilities.txt");
+               PrintWriter pr = new PrintWriter("Boookings.txt");
                for (Booking i: newBookings){
                 String Bid=i.getBookId();
                 String FacId =i.getFacId();
@@ -214,7 +214,7 @@ public class Booking{
                pr.close();
                
         } catch (FileNotFoundException ex) {
-           Logger.getLogger(Facility.class.getName()).log(Level.SEVERE, null, ex);         
+           Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);         
        }
        return newBookings;
 
@@ -223,7 +223,7 @@ public class Booking{
     public static void Write(ArrayList<Booking> bookings){
         PrintWriter pr = null;
         try {
-            pr = new PrintWriter("Facilities.txt");
+            pr = new PrintWriter("Bookings.txt");
             for (Booking i: bookings){
                 String Bid=i.getBookId();
                 String FacId =i.getFacId();
@@ -237,7 +237,7 @@ public class Booking{
                        }
             pr.close();
        } catch (FileNotFoundException ex) {
-           Logger.getLogger(Facility.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
        } finally {
            pr.close();
        }

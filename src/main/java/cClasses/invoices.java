@@ -1,12 +1,101 @@
 package cClasses;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class invoices {
+    private String invoiceId;
+    private String userId;
+    private String unitId;
+    private String fee;
+    private String outstanding;
+    private Date date;
+    
+    public invoices(String invoiceId,String userId,String unitId, String fee, String outstanding, Date date){
+        this.invoiceId=invoiceId;
+        this.userId=userId;
+        this.unitId=unitId;
+        this.fee=fee;
+        this.outstanding=outstanding;
+        this.date=date; 
+    
+    }
+    
+    public invoices(String invoiceId,String userId,String unitId, String fee, String outstanding, String date) throws ParseException{
+        Date tdate = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+
+        this.invoiceId=invoiceId;
+        this.userId=userId;
+        this.unitId=unitId;
+        this.fee=fee;
+        this.outstanding=outstanding;
+        this.date=tdate; 
+    
+    }
+    
+    public invoices() {}
+    
+    public String getInvoiceId() {
+        return invoiceId;
+    }
+    
+    public String getUserId() {
+        return userId;
+    }
+    
+    public String getUnitId() {
+        return unitId;
+    }
+    
+    public String getFee() {
+        return fee;
+    }
+    
+    public String getOutstanding() {
+        return outstanding;
+    }
+    
+    public Date getDate() {
+        return date;
+    }
+    
+    public void setInvoiceId(String invoiceId) {
+        this.invoiceId=invoiceId;
+    }
+    
+    public void setUserId(String userId) {
+        this.userId=userId;
+    }
+    
+    public void setUnitId(String unitId) {
+        this.unitId=unitId;
+    }
+    
+    public void setFee(String fee) {
+        this.fee=fee;
+    }
+    
+    public void setOutstanding(String outstanding) {
+        this.outstanding=outstanding;
+    }
+    
+    public void setDate(Date date) {
+        this.date=date;
+    }
+    
+    
+    
     
     public static class InvoiceInfo {
 
@@ -18,6 +107,36 @@ public class invoices {
         ArrayList<String> date = new ArrayList();
     }
 
+    public ArrayList<invoices> Import() throws ParseException{
+            BufferedReader br = null;
+            ArrayList<invoices> invoices = new ArrayList<>();
+        try {
+
+            String file = "Invoices.txt";
+            ArrayList<String> data = new ArrayList<>();
+            br = new BufferedReader(new FileReader(file));
+            String line;
+            while((line=br.readLine())!=null){
+                data.add(line);
+                
+            }
+            for(String str:data){
+                String[] list = str.split(",");
+                invoices.add(new invoices(list[0],list[1],list[2],list[3],list[4],list[5]));
+                
+                br.close();
+            }   
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return invoices;
+    }
+    
+    
+    
+    
     public static class FileManipulation extends InvoiceInfo {
 
         public void readFile() {

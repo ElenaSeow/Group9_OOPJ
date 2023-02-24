@@ -146,6 +146,7 @@ public class Invoices {
                 
                 String[] allDataRow = {u.getUnitId(),u.getInvoiceId(),u.getUnitId(),u.getFee(), u.getOutstanding()};
                 model.addRow(allDataRow);
+                System.out.println("elena");
         }
      }
     

@@ -1231,11 +1231,14 @@ public class Resident_Main extends javax.swing.JFrame {
 
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
         // TODO add your handling code here:
+        String Id = UserIDL2.getText();
         String name = NameMOD.getText();
         String email = EmailMOD.getText();
         String password = PasswordMOD.getText();
+        String role = RoleL2.getText();
         String telno = TelNoMOD.getText();
         String unitNo = UnitIDL2.getText();
+        
         ArrayList<String> unitdata;
         String unitID="";
         unitdata=Functions.Read("Units.txt");
@@ -1245,80 +1248,8 @@ public class Resident_Main extends javax.swing.JFrame {
                         unitID=j[1];
                     }
                 }
-        ArrayList<String> tempResArray = new ArrayList<>();
-
-        try(BufferedReader BR = new BufferedReader (new FileReader("BackupResident.txt"))) {
-
-            String line; // BR (BackupResident)
-            Scanner reader = new Scanner(BR);
-            while ((line = BR.readLine()) != null) {
-
-                String[] list = line.split(":");
-                String ResidentId = list[0];
-                //                String ResidentName = list [1];
-                //                String ResidentEmail = list[2];
-                //                String ResidentPassword = list[3];
-                //                String ResidentRoles = list[4];
-                //                String ResidentNumber = list [5];
-
-                if (id.equals(ResidentId)) {
-                    tempResArray.add(list[0] + ":" + name + ":" + email + ":" + password + ":" + list[4] + ":" + telno + ":" + unitID);
-                    BufferedWriter bw = new BufferedWriter (new FileWriter("BackupResident.txt"));
-
-                    BufferedWriter bww = new BufferedWriter (new FileWriter("ResPUD.txt", true));
-                    bww.append(System.lineSeparator() + list[0] + ":" + name + ":" + email + ":" + password + ":" + list[4] + ":" + telno +":" + unitID + ":" + Date.getText() + ":" + Time.getText());
-                    bww.close();
-                }
-                else
-                {
-                    tempResArray.add(line);
-                }
-
-            }
-            BR.close();
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Resident_Main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Resident_Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-                try {
-            try (PrintWriter pr = new PrintWriter ("BackupResident.txt")){
-                for (String str: tempResArray) {
-                    pr.println(str);
-                }
-                
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Resident_Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        catch (Exception e) {
-        }
-        
-        try (BufferedReader brrr = new BufferedReader(new FileReader("BackupResident.txt"))) {
-            String line;
-            Scanner reader = new Scanner(brrr);
-            while ((line = brrr.readLine()) != null) {
-                String[] list = line.split(":");
-                String ResidentId = list[0];
-                String ResidentName = list [1];
-                String ResidentEmail = list[2];
-                String ResidentPassword = list[3];
-                String ResidentRoles = list[4];
-                String ResidentNumber = list [5];
-                
-            if (id.equals(ResidentId)) {    
-                NameL.setText(ResidentName);
-                EmailL.setText(ResidentEmail);
-                PasswordL.setText(ResidentPassword);
-                TelNoL.setText(ResidentNumber);
-                } }
-            }   
-    catch (Exception e) {  
-            }
-    JOptionPane.showMessageDialog(null,"Your Details Have Been Modified and Refreshed");    
-
+        residents = new Resident(Id, name, email, password, role, telno, unitID).Update(residents, Id);
+        JOptionPane.showMessageDialog(null, "Successfully Updated");
 
     }//GEN-LAST:event_UpdateBtnActionPerformed
 

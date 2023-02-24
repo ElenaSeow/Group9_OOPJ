@@ -7,7 +7,7 @@ package Resident;
 import cClasses.Functions;
 import cClasses.Resident;
 import cClasses.Session;
-import cClasses.invoices;
+import cClasses.Invoices;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -34,12 +34,15 @@ public class Resident_Main extends javax.swing.JFrame {
     Session Session;
     String id;
     ArrayList<Resident> residents;
-    ArrayList<invoices> invoices;
+    //ArrayList<Invoices> invoices = Invoices.Import();
+    
+    
     /**
      * Creates new form Resident
      */
     public Resident_Main(Session session) {
         initComponents();
+        //Invoices.tabulateDAta(invoices, AllInvoicesTable);
         this.Session = session;
         id = Session.getId();       
         residents=new Resident().Import();
@@ -152,7 +155,7 @@ public class Resident_Main extends javax.swing.JFrame {
         PaymentTable3 = new javax.swing.JTable();
         jPanel23 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        InvoiceTable3 = new javax.swing.JTable();
+        InvoiceTable = new javax.swing.JTable();
         InvoiceButton = new javax.swing.JButton();
         jPanel24 = new javax.swing.JPanel();
         jLabel57 = new javax.swing.JLabel();
@@ -678,7 +681,7 @@ public class Resident_Main extends javax.swing.JFrame {
 
         jPanel23.setBackground(new java.awt.Color(0, 153, 255));
 
-        InvoiceTable3.setModel(new javax.swing.table.DefaultTableModel(
+        InvoiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -689,12 +692,12 @@ public class Resident_Main extends javax.swing.JFrame {
                 "Invoice ID", "Unit ID", "Fee", "Outstanding Fee", "Date"
             }
         ));
-        InvoiceTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+        InvoiceTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                InvoiceTable3MousePressed(evt);
+                InvoiceTableMousePressed(evt);
             }
         });
-        jScrollPane9.setViewportView(InvoiceTable3);
+        jScrollPane9.setViewportView(InvoiceTable);
 
         InvoiceButton.setText("Get Info");
         InvoiceButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1303,9 +1306,9 @@ public class Resident_Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AmountTFPaymentActionPerformed
 
-    private void InvoiceTable3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceTable3MousePressed
+    private void InvoiceTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceTableMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InvoiceTable3MousePressed
+    }//GEN-LAST:event_InvoiceTableMousePressed
 
     private void DateCB5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateCB5ActionPerformed
         // TODO add your handling code here:
@@ -1447,7 +1450,7 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel FeePayment;
     private javax.swing.JLabel FeeStatusPayment;
     private javax.swing.JButton InvoiceButton;
-    private javax.swing.JTable InvoiceTable3;
+    private javax.swing.JTable InvoiceTable;
     private javax.swing.JLabel LogOut;
     private javax.swing.JLabel NameL;
     private javax.swing.JTextField NameMOD;

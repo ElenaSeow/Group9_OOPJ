@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class invoices {
+public class Invoices {
     private String invoiceId;
     private String userId;
     private String unitId;
@@ -23,7 +23,7 @@ public class invoices {
     private String outstanding;
     private Date date;
     
-    public invoices(String invoiceId,String userId,String unitId, String fee, String outstanding, Date date){
+    public Invoices(String invoiceId,String userId,String unitId, String fee, String outstanding, Date date){
         this.invoiceId=invoiceId;
         this.userId=userId;
         this.unitId=unitId;
@@ -33,7 +33,7 @@ public class invoices {
     
     }
     
-    public invoices(String invoiceId,String userId,String unitId, String fee, String outstanding, String date) throws ParseException{
+    public Invoices(String invoiceId,String userId,String unitId, String fee, String outstanding, String date) throws ParseException{
         Date tdate = new SimpleDateFormat("dd-MM-yyyy").parse(date);
 
         this.invoiceId=invoiceId;
@@ -45,8 +45,11 @@ public class invoices {
     
     }
     
-    public invoices() {}
+    public Invoices() {}
     
+    
+   
+            
     public String getInvoiceId() {
         return invoiceId;
     }
@@ -107,10 +110,12 @@ public class invoices {
         ArrayList<String> outstandingFees = new ArrayList();
         ArrayList<String> date = new ArrayList();
     }
-
-    public ArrayList<invoices> Import() throws ParseException{
+    
+    
+    
+    public ArrayList<Invoices> Import() throws ParseException{
             BufferedReader br = null;
-            ArrayList<invoices> invoices = new ArrayList<>();
+            ArrayList<Invoices> invoices = new ArrayList<>();
         try {
 
             String file = "Invoices.txt";
@@ -123,7 +128,7 @@ public class invoices {
             }
             for(String str:data){
                 String[] list = str.split(",");
-                invoices.add(new invoices(list[0],list[1],list[2],list[3],list[4],list[5]));
+                invoices.add(new Invoices(list[0],list[1],list[2],list[3],list[4],list[5]));
                 
                 br.close();
             }   
@@ -135,7 +140,14 @@ public class invoices {
         return invoices;
     }
     
-
+     public static void tabulateData(ArrayList<Invoices> invoices,JTable table){
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            for(Invoices u:invoices){
+                
+                String[] allDataRow = {u.getUnitId(),u.getInvoiceId(),u.getUnitId(),u.getFee(), u.getOutstanding()};
+                model.addRow(allDataRow);
+        }
+     }
     
     public static class FileManipulation extends InvoiceInfo {
 

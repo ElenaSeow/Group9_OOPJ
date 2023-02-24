@@ -43,7 +43,6 @@ public class Resident_Main extends javax.swing.JFrame {
         this.Session = session;
         id = Session.getId();       
         residents=new Resident().Import();
-        invoices=new invoices().Import();
         ArrayList<String> unitdata;
         unitdata=Functions.Read("Units.txt");
         String unitnumber="";

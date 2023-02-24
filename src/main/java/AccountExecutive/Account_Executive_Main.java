@@ -5,6 +5,7 @@
 package AccountExecutive;
 
 import cClasses.invoices;
+import com.mycompany.group9_oopj.Main_Page;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -413,7 +414,10 @@ public class Account_Executive_Main extends javax.swing.JFrame {
     }
     
     private void logoutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseClicked
-        System.exit(0);
+        Main_Page MP = new Main_Page();
+        MP.show(); //display Main Page
+
+        dispose(); //close current frame after open new frame
     }//GEN-LAST:event_logoutBtnMouseClicked
 
     private void userIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIDActionPerformed

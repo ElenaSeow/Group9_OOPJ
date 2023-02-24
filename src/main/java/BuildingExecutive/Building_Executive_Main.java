@@ -1,22 +1,47 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package BuildingExecutive;
 
-/**
- *
- * @author Ryan
- */
-public class Building_Executive_Main extends javax.swing.JFrame {
+import cClasses.Admin;
+import cClasses.BuildingExecutive;
+import cClasses.Functions;
+import cClasses.Session;
+import cClasses.Unit;
+import com.mycompany.group9_oopj.Main_Page;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
+public class Building_Executive_Main extends javax.swing.JFrame {
+    Session Session;
+    ArrayList<Unit> units = Unit.Import();
+    
     /**
      * Creates new form Building_Executive_Main
+     * @param session
      */
-    public Building_Executive_Main() {
+    public Building_Executive_Main(Session session) {
         initComponents();
+   //     AddDataToTable();
+        Unit.tabulateData(units, JobManagementTbl);
+        this.Session = session;
+        String id = Session.getId();
+        ArrayList<BuildingExecutive> buildingexecutives;
+        buildingexecutives = new BuildingExecutive().Import();
+        for(BuildingExecutive b:buildingexecutives){
+            String buildingexecutiveId= b.getId();
+            String username = b.getName();
+            if(id.equals(buildingexecutiveId)){
+                Username.setText(username);
+            }
+        }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,7 +54,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        Username = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         Logout1 = new javax.swing.JLabel();
@@ -40,13 +65,13 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        emName = new javax.swing.JTextField();
+        emEmail = new javax.swing.JTextField();
+        emID = new javax.swing.JTextField();
+        emTitle = new javax.swing.JTextField();
+        emContact = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        JobManagementTbl = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -90,9 +115,9 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Building Executive");
 
-        jLabel8.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Username");
+        Username.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        Username.setForeground(new java.awt.Color(255, 255, 255));
+        Username.setText("Username");
 
         jLabel2.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,7 +133,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                 .addGap(192, 192, 192)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel8)
+                .addComponent(Username)
                 .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
@@ -117,7 +142,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
+                    .addComponent(Username)
                     .addComponent(jLabel2))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -155,8 +180,8 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
         jLabel7.setText("Contact No:");
 
-        jTable.setBackground(new java.awt.Color(204, 204, 204));
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        JobManagementTbl.setBackground(new java.awt.Color(204, 204, 204));
+        JobManagementTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -164,12 +189,12 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
             }
         ));
-        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        JobManagementTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jTableMousePressed(evt);
+                JobManagementTblMousePressed(evt);
             }
         });
-        jScrollPane6.setViewportView(jTable);
+        jScrollPane6.setViewportView(JobManagementTbl);
 
         jLabel9.setText("Employees");
 
@@ -204,7 +229,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(emName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(232, 232, 232))
@@ -213,10 +238,10 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(emEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -236,7 +261,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,19 +269,19 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(emID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(emTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(emEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(emContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
@@ -562,15 +587,23 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Logout1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Logout1MouseClicked
-        System.exit(0);
+        Main_Page MP = new Main_Page();
+        MP.show(); //display Main Page
+
+        dispose(); //close current frame after open new frame
     }//GEN-LAST:event_Logout1MouseClicked
 
-    private void jTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMousePressed
+    private void JobManagementTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JobManagementTblMousePressed
         
-    }//GEN-LAST:event_jTableMousePressed
+    }//GEN-LAST:event_JobManagementTblMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        JobManagementTbl.clearSelection();
+        emName.setText("");
+        emID.setText("");
+        emTitle.setText("");
+        emEmail.setText("");
+        emContact.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -625,16 +658,23 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Building_Executive_Main().setVisible(true);
-            }
-        });
-    }
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Building_Executive_Main().setVisible(true);
+//            }
+//       });
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JobManagementTbl;
     private javax.swing.JLabel Logout1;
+    private javax.swing.JLabel Username;
     private javax.swing.JTable cTable;
+    private javax.swing.JTextField emContact;
+    private javax.swing.JTextField emEmail;
+    private javax.swing.JTextField emID;
+    private javax.swing.JTextField emName;
+    private javax.swing.JTextField emTitle;
     private javax.swing.JTable hTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -665,7 +705,6 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -679,12 +718,6 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTable pTable;
     // End of variables declaration//GEN-END:variables
 }

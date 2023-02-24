@@ -7,7 +7,6 @@ package Resident;
 import cClasses.Functions;
 import cClasses.Resident;
 import cClasses.Session;
-import cClasses.Invoices;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;

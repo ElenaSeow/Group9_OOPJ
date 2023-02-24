@@ -333,7 +333,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "You are entering Building Executive Page....");
 
                         Session session = new Session(id);
-                        Building_Executive_Main BEMP = new Building_Executive_Main();
+                        Building_Executive_Main BEMP = new Building_Executive_Main(session);
                         BEMP.setVisible(true);
                         dispose();
                         break;

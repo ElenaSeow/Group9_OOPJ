@@ -4,8 +4,9 @@
  */
 package AccountExecutive;
 
-import cClasses.invoices;
+
 import com.mycompany.group9_oopj.Main_Page;
+import cClasses.Invoices;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -27,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Account_Executive_Main extends javax.swing.JFrame {
     
-    invoices.FileManipulation IV = new invoices.FileManipulation();
+    Invoices.FileManipulation IV = new Invoices.FileManipulation();
     /**
      * Creates new form Account_Executive_Main
      */

@@ -85,6 +85,7 @@ public class Resident extends User{
             
         }
     } 
+    
     public ArrayList<Resident> Update(ArrayList<Resident> residents, String id){
         PrintWriter pr = null;
         ArrayList<String> data=new ArrayList<>();

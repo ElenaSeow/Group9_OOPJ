@@ -5,6 +5,7 @@
 package AdminExecutive;
 import cClasses.Admin;
 import cClasses.Booking;
+import cClasses.Functions;
 import cClasses.Session;
 import cClasses.User;
 import java.io.BufferedReader;
@@ -35,6 +36,7 @@ public class AdminFB extends javax.swing.JFrame {
             bookings=Booking.changeStatus(bookings);
             Booking.Write(bookings);
             Booking.tabulateData(bookings, BookingsTable);
+            Booking.tabulateData1(bookings,PreviousBookingTable);
             ArrayList<Admin> admins;
             admins= new Admin().Import();
             for(Admin a:admins){
@@ -89,7 +91,8 @@ public class AdminFB extends javax.swing.JFrame {
         SearchBar1 = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        PreviousBookingTable = new javax.swing.JTable();
+        SearchBar2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -387,7 +390,11 @@ public class AdminFB extends javax.swing.JFrame {
 
         DeleteBooking.setText("Delete");
 
-        SearchBar1.setText("Search");
+        SearchBar1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SearchBar1KeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -425,29 +432,43 @@ public class AdminFB extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Facility Booking", jPanel11);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        PreviousBookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Name", "Facility", "Date", "Time", "Status"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(PreviousBookingTable);
+
+        SearchBar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchBar2ActionPerformed(evt);
+            }
+        });
+        SearchBar2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SearchBar2KeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addComponent(SearchBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(9, 9, 9)
+                .addComponent(SearchBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                 .addGap(66, 66, 66))
         );
@@ -531,6 +552,22 @@ public class AdminFB extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_UpdateBookingActionPerformed
 
+    private void SearchBar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBar2ActionPerformed
+        // TODO add your handling code here:
+        String searchString = SearchBar2.getText();
+        Functions.Search(searchString, PreviousBookingTable);
+    }//GEN-LAST:event_SearchBar2ActionPerformed
+
+    private void SearchBar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBar1KeyReleased
+        // TODO add your handling code here:
+        String searchString = SearchBar1.getText();
+        Functions.Search(searchString, BookingsTable);
+    }//GEN-LAST:event_SearchBar1KeyReleased
+
+    private void SearchBar2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBar2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchBar2KeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -571,7 +608,9 @@ public class AdminFB extends javax.swing.JFrame {
     private javax.swing.JLabel BuidlingExecutive;
     private javax.swing.JButton DeleteBooking;
     private javax.swing.JButton NewBooking;
+    private javax.swing.JTable PreviousBookingTable;
     private javax.swing.JTextField SearchBar1;
+    private javax.swing.JTextField SearchBar2;
     private javax.swing.JButton UpdateBooking;
     private javax.swing.JLabel Username;
     private javax.swing.JLabel jLabel1;
@@ -598,6 +637,5 @@ public class AdminFB extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

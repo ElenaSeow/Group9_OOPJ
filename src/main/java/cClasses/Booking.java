@@ -131,7 +131,7 @@ public class Booking{
             long time_difference= date.getTime() - today.getTime();
             long days = (time_difference / (1000*60*60*24)) % 365;  
             if(days<0) {
-                i.setStatus("Invalid");
+                i.setStatus("Ended");
             }
         }
         return bookings;
@@ -141,6 +141,27 @@ public class Booking{
         for(Booking b:bookings){
             String status = b.getStatus();
             if(status.equals("Booked")){
+               DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
+                String date = date_format.format(b.getDate());
+                ArrayList<Facility> facilities = new Facility().Import();
+                String facility = null;
+                for(Facility i :facilities){
+                    if(b.getFacId().equals(i.getId())){
+                        facility =i.getFacility();
+                }
+            }
+            String[] allDataRow = {b.getBookId(),b.getName(),facility,date,b.getTime(),status};
+            model.addRow(allDataRow); 
+            }
+            
+        }
+    }
+    
+     public static void tabulateData1(ArrayList<Booking> bookings, JTable table){
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for(Booking b:bookings){
+            String status = b.getStatus();
+            if(!(status.equals("Booked"))){
                DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
                 String date = date_format.format(b.getDate());
                 ArrayList<Facility> facilities = new Facility().Import();

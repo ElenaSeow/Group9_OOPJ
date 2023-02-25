@@ -1014,7 +1014,7 @@ public class Resident_Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Visitor ID", "Name", "Telephone No."
+                "Visitor ID", "Name", "Telephone No.", "Date"
             }
         ));
         jScrollPane12.setViewportView(VisitorTable);
@@ -1321,6 +1321,12 @@ public class Resident_Main extends javax.swing.JFrame {
     private void Update7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Update7ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+        String searchString = jTextField1.getText();
+        Functions.Search(searchString, VisitorTable);
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments

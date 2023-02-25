@@ -29,32 +29,16 @@ public class VisitorPass {
     private String userId;
     private String visitorId;
     private String name;
-    private Date date;
     private String contactNo;
     
-    public VisitorPass(String userId, String visitorId, String name, Date date, String contactNo) {
+    public VisitorPass(String userId, String visitorId, String name, String contactNo) {
         this.userId=userId;
         this.visitorId=visitorId;
         this.name=name;
-        this.date=date;
         this.contactNo=contactNo;
     }
     
-    public VisitorPass(String userId, String visitorId, String name, String date, String contactNo) {
-        try {
-            Date tdate = new SimpleDateFormat("dd-MM-yyyy").parse(date);
-            
-            this.userId=userId;
-            this.visitorId=visitorId;
-            this.name=name;
-            this.date=tdate;
-            this.contactNo=contactNo;
-        } catch (ParseException ex) {
-            Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-    
+
     public VisitorPass() {}
     
     public String getUserId() {
@@ -67,10 +51,6 @@ public class VisitorPass {
     
     public String getName() {
         return name;
-    }
-    
-    public Date getDate() {
-        return date;
     }
     
     public String getContactNo() {
@@ -89,9 +69,6 @@ public class VisitorPass {
         this.name=name;
     }
     
-    public void setDate(Date date) {
-        this.date=date;
-    }
     
     public void setContactNo(String contactNo) {
         this.contactNo=contactNo;
@@ -102,7 +79,6 @@ public class VisitorPass {
         //ArrayList<String> ID = new ArrayList();
         ArrayList<String> visitorId = new ArrayList();
         ArrayList<String> name = new ArrayList();
-        ArrayList<String> date = new ArrayList();
         ArrayList<String> contactNo = new ArrayList();
         
     }
@@ -123,7 +99,7 @@ public class VisitorPass {
             }
             for(String str:data){
                 String[] list = str.split(",");
-                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3],list[4]));
+                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3]));
                 
                 br.close();
             }   
@@ -141,10 +117,8 @@ public class VisitorPass {
             for(VisitorPass a:visitorpass){
                 String userID=a.getUserId();
                 if(id.equals(userID)){
-                    DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
-                    String date = date_format.format(a.getDate());
                 
-                    String[] allDataRow = {a.getVisitorId(), a.getName(), date, a.getContactNo()};
+                    String[] allDataRow = {a.getVisitorId(), a.getName(), a.getContactNo()};
                     model.addRow(allDataRow);
                 }
                 
@@ -157,7 +131,6 @@ public class VisitorPass {
             //ID.clear();
             visitorId.clear();
             name.clear();
-            date.clear();
             contactNo.clear();
             try ( BufferedReader file = new BufferedReader(new FileReader("VisitorPass.txt"))) {
                 String line;
@@ -167,8 +140,7 @@ public class VisitorPass {
                     //ID.add(values[0]);
                     visitorId.add(values[1]);
                     name.add(values[2]);
-                    date.add(values[3]);
-                    contactNo.add(values[4]);
+                    contactNo.add(values[3]);
                 }
             } catch (IOException e) {
                 System.out.println("Incorrect File Path");

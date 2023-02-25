@@ -1014,7 +1014,7 @@ public class Resident_Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Visitor ID", "Name", "Date", "Telephone No."
+                "Visitor ID", "Name", "Telephone No."
             }
         ));
         jScrollPane12.setViewportView(VisitorTable);

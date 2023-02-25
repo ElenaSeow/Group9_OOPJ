@@ -156,7 +156,6 @@ public class Resident_Main extends javax.swing.JFrame {
         jPanel23 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         InvoiceTable = new javax.swing.JTable();
-        InvoiceButton = new javax.swing.JButton();
         jPanel24 = new javax.swing.JPanel();
         jLabel57 = new javax.swing.JLabel();
         OutstandingFee = new javax.swing.JLabel();
@@ -605,13 +604,13 @@ public class Resident_Main extends javax.swing.JFrame {
 
         PaymentTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Fee", "Details", "Status"
+                "Fee", "Details"
             }
         ));
         jScrollPane8.setViewportView(PaymentTable3);
@@ -645,9 +644,9 @@ public class Resident_Main extends javax.swing.JFrame {
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(PayPaymentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -686,7 +685,7 @@ public class Resident_Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Invoice ID", "Unit ID", "Fee", "Outstanding Fee", "Date"
+                "Invoice ID", "Unit ID", "Fee", "Date"
             }
         ));
         InvoiceTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -696,35 +695,24 @@ public class Resident_Main extends javax.swing.JFrame {
         });
         jScrollPane9.setViewportView(InvoiceTable);
 
-        InvoiceButton.setText("Get Info");
-        InvoiceButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InvoiceButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
         jPanel23Layout.setHorizontalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(InvoiceButton)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(InvoiceButton))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane6.addTab("Invoice History", jPanel23);
+        jTabbedPane6.addTab("Invoice", jPanel23);
 
         jPanel24.setBackground(new java.awt.Color(0, 102, 255));
 
@@ -769,13 +757,13 @@ public class Resident_Main extends javax.swing.JFrame {
 
         OutstandingTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Outstanding Fee", "Details", "Status"
+                "Outstanding Fee", "Details"
             }
         ));
         jScrollPane10.setViewportView(OutstandingTable3);
@@ -853,11 +841,11 @@ public class Resident_Main extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 735, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 262, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jTabbedPane6.addTab("Receipt", jPanel2);
@@ -1381,13 +1369,6 @@ public class Resident_Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_UpdateBtnActionPerformed
 
-    private void InvoiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvoiceButtonActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
-    }//GEN-LAST:event_InvoiceButtonActionPerformed
-
     private void AmountTFOutstandingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountTFOutstandingActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AmountTFOutstandingActionPerformed
@@ -1446,7 +1427,6 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel FeeDetailsPayment;
     private javax.swing.JLabel FeePayment;
     private javax.swing.JLabel FeeStatusPayment;
-    private javax.swing.JButton InvoiceButton;
     private javax.swing.JTable InvoiceTable;
     private javax.swing.JLabel LogOut;
     private javax.swing.JLabel NameL;

@@ -67,7 +67,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                 PasswordL.setText(password);
                 RoleL.setText(role);
                 TelNoL.setText(contactNo);
-                UnitIDL.setText(unitnumber);
+                UnitID.setText(unitnumber);
                 
                 
                 //set text for unitid??
@@ -77,7 +77,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                 EmailMOD.setText(email);
                 PasswordMOD.setText(password);
                 TelNoMOD.setText(contactNo);
-                UnitIDL2.setText(unitnumber);
+                UnitID2.setText(unitnumber);
                 
             }
             
@@ -137,7 +137,7 @@ public class Vendor_Main extends javax.swing.JFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jLabel72 = new javax.swing.JLabel();
-        UnitIDL = new javax.swing.JLabel();
+        UnitID = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         UserIDL = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
@@ -152,7 +152,7 @@ public class Vendor_Main extends javax.swing.JFrame {
         TelNoL = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel71 = new javax.swing.JLabel();
-        UnitIDL2 = new javax.swing.JLabel();
+        UnitID2 = new javax.swing.JLabel();
         UserIDL2 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
@@ -257,8 +257,8 @@ public class Vendor_Main extends javax.swing.JFrame {
         jLabel72.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel72.setText("Unit No.");
 
-        UnitIDL.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        UnitIDL.setText("User Unit ID");
+        UnitID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        UnitID.setText("User Unit ID");
 
         jLabel44.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel44.setText("User ID: ");
@@ -337,7 +337,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                         .addComponent(jLabel72))
                     .addGap(18, 18, 18)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(UnitIDL)
+                        .addComponent(UnitID)
                         .addComponent(UserIDL))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 159, Short.MAX_VALUE)
                     .addComponent(jLabel75)
@@ -369,7 +369,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(UnitIDL)
+                        .addComponent(UnitID)
                         .addComponent(jLabel72)
                         .addComponent(jLabel75))
                     .addGap(18, 18, 18)
@@ -384,8 +384,8 @@ public class Vendor_Main extends javax.swing.JFrame {
         jLabel71.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel71.setText("Unit No.");
 
-        UnitIDL2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        UnitIDL2.setText("User Unit ID");
+        UnitID2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        UnitID2.setText("User Unit ID");
 
         UserIDL2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         UserIDL2.setText("User ID Details");
@@ -466,7 +466,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                     .addGap(27, 27, 27)
                     .addComponent(jLabel71)
                     .addGap(30, 30, 30)
-                    .addComponent(UnitIDL2)
+                    .addComponent(UnitID2)
                     .addContainerGap(524, Short.MAX_VALUE)))
         );
         jPanel9Layout.setVerticalGroup(
@@ -499,7 +499,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(UnitIDL2)
+                        .addComponent(UnitID2)
                         .addComponent(jLabel71))
                     .addContainerGap(168, Short.MAX_VALUE)))
         );
@@ -881,11 +881,14 @@ public class Vendor_Main extends javax.swing.JFrame {
 
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
         // TODO add your handling code here:
+        String Id = UserIDL2.getText();
         String name = NameMOD.getText();
         String email = EmailMOD.getText();
         String password = PasswordMOD.getText();
+        String role = RoleL2.getText();
         String telno = TelNoMOD.getText();
-        String unitNo = UnitIDL2.getText();
+        String unitNo = UnitID2.getText();
+        
         ArrayList<String> unitdata;
         String unitID="";
         unitdata=Functions.Read("Units.txt");
@@ -895,57 +898,10 @@ public class Vendor_Main extends javax.swing.JFrame {
                 unitID=j[1];
             }
         }
-        ArrayList<String> tempResArray = new ArrayList<>();
-
-        try(BufferedReader BR = new BufferedReader (new FileReader("Vendor.txt"))) {
-
-            String line; // BR (BackupResident)
-            Scanner reader = new Scanner(BR);
-            while ((line = BR.readLine()) != null) {
-
-                String[] list = line.split(":");
-                String VendorId = list[0];
-                //                String ResidentName = list [1];
-                //                String ResidentEmail = list[2];
-                //                String ResidentPassword = list[3];
-                //                String ResidentRoles = list[4];
-                //                String ResidentNumber = list [5];
-
-                if (id.equals(VendorId)) {
-                    tempResArray.add(list[0] + ":" + name + ":" + email + ":" + password + ":" + list[4] + ":" + telno + ":" + unitID);
-                    BufferedWriter bw = new BufferedWriter (new FileWriter("Vendor.txt"));
-
-                    BufferedWriter bww = new BufferedWriter (new FileWriter("VenPUD.txt", true));
-                    bww.append(System.lineSeparator() + list[0] + ":" + name + ":" + email + ":" + password + ":" + list[4] + ":" + telno +":" + unitID + ":" + Date.getText() + ":" + Time.getText());
-                    bww.close();
-                }
-                else
-                {
-                    tempResArray.add(line);
-                }
-
-            }
-            BR.close();
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Vendor_Main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Vendor_Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            try (PrintWriter pr = new PrintWriter ("Vendor.txt")){
-                for (String str: tempResArray) {
-                    pr.println(str);
-                }
-
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Vendor_Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        catch (Exception e) {
-        }
-
+            
+        vendors = new Vendor(Id, name, email, password, role, telno, unitID).Update(vendors, Id);
+        JOptionPane.showMessageDialog(null, "Successfully Updated");
+        
         try (BufferedReader brrr = new BufferedReader(new FileReader("Vendor.txt"))) {
             String line;
             Scanner reader = new Scanner(brrr);
@@ -955,20 +911,21 @@ public class Vendor_Main extends javax.swing.JFrame {
                 String VendorName = list [1];
                 String VendorEmail = list[2];
                 String VendorPassword = list[3];
-                String VendorRoles = list[4];
                 String VendorNumber = list [5];
-
-                if (id.equals(VendorId)) {
-                    NameL.setText(VendorName);
-                    EmailL.setText(VendorEmail);
-                    PasswordL.setText(VendorPassword);
-                    TelNoL.setText(VendorNumber);
+                
+            if (id.equals(VendorId)) {    
+                NameL.setText(VendorName);
+                EmailL.setText(VendorEmail);
+                PasswordL.setText(VendorPassword);
+                TelNoL.setText(VendorNumber);
                 } }
+            }   
+    catch (Exception e) {  
             }
-            catch (Exception e) {
-            }
-            JOptionPane.showMessageDialog(null,"Your Details Have Been Modified and Refreshed");
+    JOptionPane.showMessageDialog(null,"Your Details Have Been Modified and Refreshed");    
 
+        
+        
     }//GEN-LAST:event_UpdateBtnActionPerformed
 
     private void AmountTFPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountTFPaymentActionPerformed
@@ -1042,8 +999,8 @@ public class Vendor_Main extends javax.swing.JFrame {
     private javax.swing.JLabel TelNoL;
     private javax.swing.JTextField TelNoMOD;
     private javax.swing.JLabel Time;
-    private javax.swing.JLabel UnitIDL;
-    private javax.swing.JLabel UnitIDL2;
+    private javax.swing.JLabel UnitID;
+    private javax.swing.JLabel UnitID2;
     private javax.swing.JButton UpdateBtn;
     private javax.swing.JLabel UserIDL;
     private javax.swing.JLabel UserIDL2;

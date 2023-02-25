@@ -547,7 +547,7 @@ public class AdminFB extends javax.swing.JFrame {
          if(BookingsTable.getSelectionModel().isSelectionEmpty()==false){
             int column = 0;
             int row = BookingsTable.getSelectedRow();
-            String Id = BookingsTable.getModel().getValueAt(row, column).toString();
+            String Id = BookingsTable.getModel().getValueAt(BookingsTable.convertRowIndexToModel(row), column).toString();
             AdminFBUpdate afu = new AdminFBUpdate(Session);
             afu.spamdata(Id);
             afu.setVisible(true);

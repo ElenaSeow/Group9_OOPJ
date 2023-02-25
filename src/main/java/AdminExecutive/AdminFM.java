@@ -504,7 +504,7 @@ public class AdminFM extends javax.swing.JFrame {
         //        if(FacilityTable.getSelectionModel().isSelectionEmpty()==false){
             //            int column = 0;
             //            int row = FacilityTable.getSelectedRow();
-            //            String Id = FacilityTable.getModel().getValueAt(row, column).toString();
+            //            String Id = FacilityTable.getModel().getValueAt(FacilityTable.convertRowIndexToModel(row), column).toString();
             //            Functions.Delete("Facilities.txt", Id);
             //            AdminFM aefm = new AdminFM(Session);
             //            aefm.setVisible(true);
@@ -519,7 +519,7 @@ public class AdminFM extends javax.swing.JFrame {
         if(FacilityTable.getSelectionModel().isSelectionEmpty()==false){
             int column = 0;
             int row = FacilityTable.getSelectedRow();
-            String Id = FacilityTable.getModel().getValueAt(row, column).toString();
+            String Id = FacilityTable.getModel().getValueAt(FacilityTable.convertRowIndexToModel(row), column).toString();
             AdminFMUpdate mf = new AdminFMUpdate(Session);
             mf.spamdata(Id);
             mf.setVisible(true);

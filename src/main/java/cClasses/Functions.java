@@ -28,7 +28,7 @@ public class Functions {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(model);
         table.setRowSorter(trs);
-        trs.setRowFilter(RowFilter.regexFilter("(?i)" + str));
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + str));       
     }
         
         public static ArrayList<String> Read(String file){

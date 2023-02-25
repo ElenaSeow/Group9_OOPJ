@@ -496,7 +496,7 @@ public class AdminUM extends javax.swing.JFrame {
         if(AllUnitsTable.getSelectionModel().isSelectionEmpty()==false){
             int column = 0;
             int row = AllUnitsTable.getSelectedRow();
-            String Id = AllUnitsTable.getModel().getValueAt(row, column).toString();
+            String Id = AllUnitsTable.getModel().getValueAt(AllUnitsTable.convertRowIndexToModel(row), column).toString();
             AdminUMUpdate uu = new AdminUMUpdate(Session);
             uu.spamdata(Id);
             uu.setVisible(true);
@@ -511,7 +511,7 @@ public class AdminUM extends javax.swing.JFrame {
         if(AllUnitsTable.getSelectionModel().isSelectionEmpty()==false){
             int column = 0;
             int row = AllUnitsTable.getSelectedRow();
-            String Id = AllUnitsTable.getModel().getValueAt(row, column).toString();
+            String Id = AllUnitsTable.getModel().getValueAt(AllUnitsTable.convertRowIndexToModel(row), column).toString();
             units = Unit.Delete(units, Id);
     //        Functions.Delete("Units.txt", Id);
             AdminUM aum = new AdminUM(Session);

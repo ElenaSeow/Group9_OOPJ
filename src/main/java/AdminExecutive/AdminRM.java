@@ -498,7 +498,7 @@ public class AdminRM extends javax.swing.JFrame {
         if(AllResidentTable.getSelectionModel().isSelectionEmpty()==false){
             int column = 0;
             int row = AllResidentTable.getSelectedRow();
-            String Id = AllResidentTable.getModel().getValueAt(row, column).toString();
+            String Id = AllResidentTable.getModel().getValueAt(AllResidentTable.convertRowIndexToModel(row), column).toString();
             AdminRMUpdate ru = new AdminRMUpdate(Session);
             ru.spamdata(Id);
             ru.setVisible(true);
@@ -527,7 +527,7 @@ public class AdminRM extends javax.swing.JFrame {
         if(AllResidentTable.getSelectionModel().isSelectionEmpty()==false){
             int column = 0;
             int row = AllResidentTable.getSelectedRow();
-            String Id = AllResidentTable.getModel().getValueAt(row, column).toString();
+            String Id = AllResidentTable.getModel().getValueAt(AllResidentTable.convertRowIndexToModel(row), column).toString();
     //        Functions.Delete("Resident.txt", Id);
             residents=Resident.Delete(residents, Id);
             AdminRM arm = new AdminRM(Session);

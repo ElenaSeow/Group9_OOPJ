@@ -281,7 +281,7 @@ public class Security_Main extends javax.swing.JFrame {
             .addGap(0, 261, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("REPORT INCIDENT!", jPanel24);
+        jTabbedPane1.addTab("RECORD INCIDENT!", jPanel24);
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);

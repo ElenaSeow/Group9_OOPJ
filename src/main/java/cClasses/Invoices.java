@@ -134,9 +134,9 @@ public class Invoices {
                 br.close();
             }   
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Invoices.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Invoices.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
             Logger.getLogger(Invoices.class.getName()).log(Level.SEVERE, null, ex);
         }

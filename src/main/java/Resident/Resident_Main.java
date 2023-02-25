@@ -8,6 +8,7 @@ import cClasses.Functions;
 import cClasses.Invoices;
 import cClasses.Resident;
 import cClasses.Session;
+import cClasses.VisitorPass;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -35,7 +36,7 @@ public class Resident_Main extends javax.swing.JFrame {
     String id;
     ArrayList<Resident> residents;
     ArrayList<Invoices> invoices = new Invoices().Import();
-    
+    ArrayList<VisitorPass> visitorpass = new VisitorPass().Import();
     
     /**
      * Creates new form Resident
@@ -45,6 +46,9 @@ public class Resident_Main extends javax.swing.JFrame {
         this.Session = session;
         id = Session.getId();   
         Invoices.tabulateData(invoices, InvoiceTable,id);
+        VisitorPass.tabulateData(visitorpass, VisitorTable,id);
+        
+        visitorpass=new VisitorPass().Import();
         residents=new Resident().Import();
         ArrayList<String> unitdata;
         unitdata=Functions.Read("Units.txt");
@@ -183,18 +187,12 @@ public class Resident_Main extends javax.swing.JFrame {
         DateTF4 = new javax.swing.JTextField();
         Update5 = new javax.swing.JButton();
         jPanel27 = new javax.swing.JPanel();
-        jLabel65 = new javax.swing.JLabel();
-        NameTF5 = new javax.swing.JTextField();
-        jLabel66 = new javax.swing.JLabel();
         Update6 = new javax.swing.JButton();
-        DateCB6 = new javax.swing.JComboBox<>();
-        jLabel67 = new javax.swing.JLabel();
-        EndDateCB5 = new javax.swing.JComboBox<>();
-        jLabel68 = new javax.swing.JLabel();
-        PhoneNoTF5 = new javax.swing.JTextField();
         jScrollPane12 = new javax.swing.JScrollPane();
-        VisitorTable5 = new javax.swing.JTable();
+        VisitorTable = new javax.swing.JTable();
         Delete5 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        Update7 = new javax.swing.JButton();
         jPanel28 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
         jScrollPane13 = new javax.swing.JScrollPane();
@@ -1002,22 +1000,6 @@ public class Resident_Main extends javax.swing.JFrame {
         jPanel27.setBackground(new java.awt.Color(204, 204, 255));
         jPanel27.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel65.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel65.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel65.setText("Name: ");
-
-        NameTF5.setForeground(new java.awt.Color(0, 0, 0));
-        NameTF5.setText("Name Details");
-        NameTF5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NameTF5ActionPerformed(evt);
-            }
-        });
-
-        jLabel66.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel66.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel66.setText("Start Date:");
-
         Update6.setText("UPDATE");
         Update6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Update6.addActionListener(new java.awt.event.ActionListener() {
@@ -1026,40 +1008,16 @@ public class Resident_Main extends javax.swing.JFrame {
             }
         });
 
-        DateCB6.setForeground(new java.awt.Color(0, 0, 0));
-        DateCB6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel67.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel67.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel67.setText("End Date:");
-
-        EndDateCB5.setForeground(new java.awt.Color(0, 0, 0));
-        EndDateCB5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel68.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel68.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel68.setText("Phone No:");
-
-        PhoneNoTF5.setForeground(new java.awt.Color(0, 0, 0));
-        PhoneNoTF5.setText("Phone No.");
-        PhoneNoTF5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PhoneNoTF5ActionPerformed(evt);
-            }
-        });
-
-        VisitorTable5.setModel(new javax.swing.table.DefaultTableModel(
+        VisitorTable.setForeground(new java.awt.Color(0, 0, 0));
+        VisitorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Name", "Start Date", "End Date", "Status"
+                "Visitor ID", "Name", "Date", "Telephone No."
             }
         ));
-        jScrollPane12.setViewportView(VisitorTable5);
+        jScrollPane12.setViewportView(VisitorTable);
 
         Delete5.setText("DELETE");
         Delete5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1069,63 +1027,54 @@ public class Resident_Main extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        Update7.setText("ADD NEW");
+        Update7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Update7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Update7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
         jPanel27.setLayout(jPanel27Layout);
         jPanel27Layout.setHorizontalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel27Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel27Layout.createSequentialGroup()
-                        .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel65)
-                            .addComponent(jLabel66)
-                            .addComponent(jLabel67)
-                            .addComponent(jLabel68))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PhoneNoTF5)
-                            .addComponent(EndDateCB5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NameTF5, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                            .addComponent(DateCB6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel27Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(Update6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(191, 191, 191)
+                .addComponent(Update7, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(Update6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(Delete5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(147, 147, 147))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(218, 218, 218))))
         );
         jPanel27Layout.setVerticalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel27Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel65)
-                    .addComponent(NameTF5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel66)
-                    .addComponent(DateCB6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel67)
-                    .addComponent(EndDateCB5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel68)
-                    .addComponent(PhoneNoTF5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(Update6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Delete5)
+                    .addComponent(Delete5)
+                    .addComponent(Update6)
+                    .addComponent(Update7))
                 .addGap(9, 9, 9))
         );
 
@@ -1307,17 +1256,9 @@ public class Resident_Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DateTF4ActionPerformed
 
-    private void NameTF5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTF5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NameTF5ActionPerformed
-
     private void Update6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Update6ActionPerformed
-
-    private void PhoneNoTF5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PhoneNoTF5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PhoneNoTF5ActionPerformed
 
     private void Delete5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete5ActionPerformed
         // TODO add your handling code here:
@@ -1373,6 +1314,14 @@ public class Resident_Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AmountTFOutstandingActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void Update7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Update7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1415,12 +1364,10 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JTable ComplaintTable6;
     private javax.swing.JLabel Date;
     private javax.swing.JComboBox<String> DateCB5;
-    private javax.swing.JComboBox<String> DateCB6;
     private javax.swing.JTextField DateTF4;
     private javax.swing.JButton Delete5;
     private javax.swing.JLabel EmailL;
     private javax.swing.JTextField EmailMOD;
-    private javax.swing.JComboBox<String> EndDateCB5;
     private javax.swing.JComboBox<String> FacilityCB4;
     private javax.swing.JTextField FacilityTF4;
     private javax.swing.JTable FacilityTable4;
@@ -1431,7 +1378,6 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel LogOut;
     private javax.swing.JLabel NameL;
     private javax.swing.JTextField NameMOD;
-    private javax.swing.JTextField NameTF5;
     private javax.swing.JLabel OutstandingDetails;
     private javax.swing.JLabel OutstandingFee;
     private javax.swing.JLabel OutstandingStatus;
@@ -1441,7 +1387,6 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JButton PayOutstandingButton;
     private javax.swing.JButton PayPaymentButton;
     private javax.swing.JTable PaymentTable3;
-    private javax.swing.JTextField PhoneNoTF5;
     private javax.swing.JLabel RoleL;
     private javax.swing.JLabel RoleL2;
     private javax.swing.JButton Send6;
@@ -1453,10 +1398,11 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel UnitIDL2;
     private javax.swing.JButton Update5;
     private javax.swing.JButton Update6;
+    private javax.swing.JButton Update7;
     private javax.swing.JButton UpdateBtn;
     private javax.swing.JLabel UserIDL;
     private javax.swing.JLabel UserIDL2;
-    private javax.swing.JTable VisitorTable5;
+    private javax.swing.JTable VisitorTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
@@ -1477,10 +1423,6 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
@@ -1513,5 +1455,6 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTabbedPane jTabbedPane6;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

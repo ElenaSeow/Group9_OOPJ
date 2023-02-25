@@ -47,6 +47,7 @@ public class Resident_Main extends javax.swing.JFrame {
         id = Session.getId();   
         Invoices.tabulateData(invoices, InvoiceTable,id);
         VisitorPass.tabulateData(visitorpass, VisitorTable,id);
+        
         visitorpass=new VisitorPass().Import();
         residents=new Resident().Import();
         ArrayList<String> unitdata;
@@ -1010,10 +1011,7 @@ public class Resident_Main extends javax.swing.JFrame {
         VisitorTable.setForeground(new java.awt.Color(0, 0, 0));
         VisitorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Visitor ID", "Name", "Date", "Telephone No."

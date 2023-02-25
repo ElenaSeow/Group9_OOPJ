@@ -69,7 +69,7 @@ public class VisitorPass {
         return date;
     }
     
-    public String getContactno() {
+    public String getContactNo() {
         return contactNo;
     }
     
@@ -95,7 +95,7 @@ public class VisitorPass {
     
     public static class VisitorPassInfo {
         
-        ArrayList<String> ID = new ArrayList();
+        //ArrayList<String> ID = new ArrayList();
         ArrayList<String> visitorId = new ArrayList();
         ArrayList<String> name = new ArrayList();
         ArrayList<String> date = new ArrayList();
@@ -119,16 +119,14 @@ public class VisitorPass {
             }
             for(String str:data){
                 String[] list = str.split(",");
-                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3],list[4]));
+                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3]));
                 
                 br.close();
             }   
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(Invoices.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
         }
         return visitorpass;
     
@@ -136,13 +134,13 @@ public class VisitorPass {
     
     public static void tabulateData(ArrayList<VisitorPass> visitorpass,JTable table,String id){
             DefaultTableModel model = (DefaultTableModel) table.getModel();
-            for(VisitorPass u:visitorpass){
-                String userID=u.getUserId();
+            for(VisitorPass a:visitorpass){
+                String userID=a.getUserId();
                 if(id.equals(userID)){
                     DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
-                    String date = date_format.format(u.getDate());
+                    String date = date_format.format(a.getDate());
                 
-                    String[] allDataRow = {u.getVisitorId(), u.getName(), date, u.getContactno()};
+                    String[] allDataRow = {a.getVisitorId(), a.getName(), date, a.getContactNo()};
                     model.addRow(allDataRow);
                 }
                 
@@ -152,7 +150,7 @@ public class VisitorPass {
     public static class FileManipulation extends VisitorPass.VisitorPassInfo {
 
         public void readFile() {
-            ID.clear();
+            //ID.clear();
             visitorId.clear();
             name.clear();
             date.clear();
@@ -162,10 +160,11 @@ public class VisitorPass {
                 file.readLine();
                 while ((line = file.readLine()) != null) {
                     String[] values = line.split(",");
-                    visitorId.add(values[0]);
-                    name.add(values[1]);
-                    date.add(values[2]);
-                    contactNo.add(values[3]);
+                    //ID.add(values[0]);
+                    visitorId.add(values[1]);
+                    name.add(values[2]);
+                    date.add(values[3]);
+                    contactNo.add(values[4]);
                 }
             } catch (IOException e) {
                 System.out.println("Incorrect File Path");

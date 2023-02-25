@@ -28,7 +28,7 @@ public class Functions {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(model);
         table.setRowSorter(trs);
-        trs.setRowFilter(RowFilter.regexFilter("(?i)" + str));
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + str));       
     }
         
         public static ArrayList<String> Read(String file){
@@ -70,4 +70,25 @@ public class Functions {
         String newId= code+newDigit;
         return newId;
     }
+        public static String getFile(String id){
+            String code = id.substring(0,2);
+            String file = null;
+            if(code.equals("BM")){
+                file = "BuildingManager.txt";
+            }else if(code.equals("AD")){
+                file = "AdminExecutive.txt";
+            }else if(code.equals("AE")){
+                file = "AccountExecutive.txt";
+            }else if(code.equals("BE")){
+                file = "BuildingExecutive.txt";
+            }else if(code.equals("RE")){
+                file = "BackupResident.txt";
+            }else if(code.equals("SG")){
+                file = "Security.txt";
+            }else if(code.equals("VE")){
+                file = "Vendor.txt";
+            }
+            return file;
+            
+        }
 }

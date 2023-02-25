@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,26 +29,22 @@ public class AdminFB extends javax.swing.JFrame {
      * @throws java.text.ParseException
      */
     public AdminFB(Session session) {
-        try {
-            initComponents();
-            this.Session = session;
-            String id = Session.getId();
-            bookings=new Booking().Import();
-            bookings=Booking.changeStatus(bookings);
-            Booking.Write(bookings);
-            Booking.tabulateData(bookings, BookingsTable);
-            Booking.tabulateData1(bookings,PreviousBookingTable);
-            ArrayList<Admin> admins;
-            admins= new Admin().Import();
-            for(Admin a:admins){
-                String adminId= a.getId();
-                String username = a.getName();
-                if(id.equals(adminId)){
-                    Username.setText(username);
-                }
+        initComponents();
+        this.Session = session;
+        String id = Session.getId();
+        bookings=new Booking().Import();
+        bookings=Booking.changeStatus(bookings);
+        Booking.Write(bookings);
+        Booking.tabulateData(bookings, BookingsTable);
+        Booking.tabulateData1(bookings,PreviousBookingTable);
+        ArrayList<Admin> admins;
+        admins= new Admin().Import();
+        for(Admin a:admins){
+            String adminId= a.getId();
+            String username = a.getName();
+            if(id.equals(adminId)){
+                Username.setText(username);
             }
-        } catch (ParseException ex) {
-            Logger.getLogger(AdminFB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -540,16 +537,24 @@ public class AdminFB extends javax.swing.JFrame {
 
     private void NewBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewBookingActionPerformed
         // TODO add your handling code here:
-        AdminFMCreate afc = new AdminFMCreate(Session);
+        AdminFBCreate afc = new AdminFBCreate(Session);
         afc.setVisible(true);
         dispose();
     }//GEN-LAST:event_NewBookingActionPerformed
 
     private void UpdateBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBookingActionPerformed
         // TODO add your handling code here:
-        AdminFMUpdate afu = new AdminFMUpdate(Session);
-        afu.setVisible(true);
-        dispose();
+         if(BookingsTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = BookingsTable.getSelectedRow();
+            String Id = BookingsTable.getModel().getValueAt(BookingsTable.convertRowIndexToModel(row), column).toString();
+            AdminFBUpdate afu = new AdminFBUpdate(Session);
+            afu.spamdata(Id);
+            afu.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_UpdateBookingActionPerformed
 
     private void SearchBar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBar2ActionPerformed

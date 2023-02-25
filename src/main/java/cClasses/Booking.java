@@ -96,7 +96,7 @@ public class Booking{
     public void setStatus(String status){
         this.status=status;
     }
-    public ArrayList<Booking> Import() throws ParseException{
+    public ArrayList<Booking> Import(){
             BufferedReader br = null;
             ArrayList<Booking> bookings = new ArrayList<>();
         try {
@@ -118,6 +118,8 @@ public class Booking{
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         }
         return bookings;

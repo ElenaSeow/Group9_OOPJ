@@ -446,7 +446,7 @@ public class Account_Executive_Main extends javax.swing.JFrame {
         if(!paymentAmount.getText().equals("")){
             String outstanding = Integer.toString(Integer.parseInt(outstandingFees.getText())-Integer.parseInt(paymentAmount.getText()));
             String date = LocalDate.now().now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            IV.addFile(userID.getText(), unitID.getText(), fees.getText(), date);
+            IV.addFile(userID.getText(), unitID.getText(), fees.getText(),outstandingFees.getText(), date);
             JOptionPane.showMessageDialog(null,"Successfully Made Payment!");
             paymentAmount.setText("");
         }
@@ -525,7 +525,7 @@ public class Account_Executive_Main extends javax.swing.JFrame {
         if(table.getSelectedRow() != -1){
             String ID = table.getValueAt(table.getSelectedRow(), 0).toString();
             String date = table.getValueAt(table.getSelectedRow(), 5).toString();
-            IV.editFile(ID, userID.getText(), unitID.getText(), fees.getText(), date);
+            IV.editFile(ID, userID.getText(), unitID.getText(), fees.getText(),outstandingFees.getText(), date);
             JOptionPane.showMessageDialog(null,"Successfully Updated Invoice!");
         }
     }//GEN-LAST:event_updateBtnActionPerformed

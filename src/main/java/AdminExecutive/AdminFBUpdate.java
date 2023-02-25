@@ -4,9 +4,12 @@
  */
 package AdminExecutive;
 
+import cClasses.Booking;
 import cClasses.Facility;
 import cClasses.Functions;
 import cClasses.Session;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -17,6 +20,7 @@ import javax.swing.JOptionPane;
 public class AdminFBUpdate extends javax.swing.JFrame {
     Session Session;
     ArrayList<Facility> facilities;
+    ArrayList<Booking>  bookings;
 
     /**
      * Creates new form NewFacility
@@ -25,16 +29,31 @@ public class AdminFBUpdate extends javax.swing.JFrame {
         initComponents();
         this.Session = session;
         facilities=new Facility().Import();
+        bookings=new Booking().Import();
     }
 
     public void spamdata(String id){
-        for(Facility i : facilities){
-            String FacID = i.getId();
-            if(id.equals(FacID)){
-                FacilityID.setText(i.getId());
-                FacName.setText(i.getFacility());
-                Qty.setText(String.valueOf(i.getCapacity()));
+        for(Booking i : bookings){
+            String BookID = i.getBookId();
+            if(id.equals(BookID)){
+                String facID=i.getFacId();
+                FacilityID.setText(facID);
+                for(Facility f:facilities){
+                    if(facID.equals(f.getId())){
+                        FacName.setText(f.getFacility());
+                    }
+                }  
+                UserID.setText(i.getUserId());
+                String file = Functions.getFile(i.getUserId());
+                ArrayList<String> data = Functions.Read(file);
+                for(String a : data){
+                    String[] list = a.split(":");
+                    if(list[0].equals(i.getUserId())){
+                        UserName.setText(list[1]);
+                    }
+                }
                 Status.setSelectedItem(i.getStatus());
+                Time.setSelectedItem(i.getTime());
             }
         }
     }
@@ -47,35 +66,30 @@ public class AdminFBUpdate extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         FacName = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        Qty = new javax.swing.JTextField();
+        UserID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         SaveBtn = new javax.swing.JButton();
         CancelBtn = new javax.swing.JButton();
         Status = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
         FacilityID = new javax.swing.JTextField();
+        Time = new javax.swing.JComboBox<>();
+        UserName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Facility Name");
-
+        FacName.setText("Facility");
         FacName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FacNameActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Total Units");
+        UserID.setText("UserID");
 
         jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Update Booking");
-
-        jLabel4.setText("Status");
 
         SaveBtn.setText("Save");
         SaveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -91,9 +105,13 @@ public class AdminFBUpdate extends javax.swing.JFrame {
             }
         });
 
-        Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Closed", "Renovating" }));
+        Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Booked", "Cancel" }));
 
-        jLabel5.setText("Facility ID");
+        FacilityID.setText("Facility ID");
+
+        Time.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08 00 - 10 00 hrs", "10 00 - 12 00 hrs", "12 00 - 14 00 hrs", "14 00 - 16 00 hrs", "16 00 - 18 00 hrs ", "18 00 - 20 00 hrs", "20 00 - 22 00 hrs", "22 00 - 00 00 hrs", "Whole Day" }));
+
+        UserName.setText("Name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,13 +119,6 @@ public class AdminFBUpdate extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(249, 249, 249)
                         .addComponent(SaveBtn))
@@ -118,14 +129,18 @@ public class AdminFBUpdate extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(72, 72, 72)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Qty, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                            .addComponent(FacilityID))
-                        .addGap(136, 136, 136)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Status, 0, 161, Short.MAX_VALUE)
-                            .addComponent(FacName))))
-                .addGap(112, 154, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(FacilityID)
+                                    .addComponent(FacName, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                                .addGap(92, 92, 92)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(UserID)
+                                    .addComponent(Time, 0, 161, Short.MAX_VALUE)
+                                    .addComponent(UserName)))
+                            .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,23 +152,19 @@ public class AdminFBUpdate extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FacilityID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FacName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(UserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Qty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(37, 37, 37)
-                .addComponent(jLabel5)
-                .addGap(1, 1, 1)
+                    .addComponent(FacName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(125, 125, 125)
                 .addComponent(SaveBtn)
                 .addGap(21, 21, 21))
         );
@@ -166,17 +177,18 @@ public class AdminFBUpdate extends javax.swing.JFrame {
     }//GEN-LAST:event_FacNameActionPerformed
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
-        // TODO add your handling code here:
-        String facName =FacName.getText();
-        String qty = Qty.getText();
-        String status = Status.getSelectedItem().toString();
-        String id = FacilityID.getText();
-        facilities= new Facility(id,facName,qty,status).Update(facilities, id);
-//        Functions.Update("Units.txt", id,facName,qty,status);
-        JOptionPane.showMessageDialog(null, "Successfully Updated");
-        AdminFM afm = new AdminFM(Session);
-        afm.setVisible(true);
-        dispose();
+//        // TODO add your handling code here:
+//        String facName =FacName.getText();
+//        DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
+//        String date = date_format.format(Date.getText());
+//        String status = Status.getSelectedItem().toString();
+//        String id = FacilityID.getText();
+//        facilities= new Facility(id,facName,date,status).Update(facilities, id);
+////        Functions.Update("Units.txt", id,facName,qty,status);
+//        JOptionPane.showMessageDialog(null, "Successfully Updated");
+//        AdminFM afm = new AdminFM(Session);
+//        afm.setVisible(true);
+//        dispose();
     }//GEN-LAST:event_SaveBtnActionPerformed
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
@@ -221,17 +233,16 @@ public class AdminFBUpdate extends javax.swing.JFrame {
 //        });
 //    }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelBtn;
     private javax.swing.JTextField FacName;
     private javax.swing.JTextField FacilityID;
-    private javax.swing.JTextField Qty;
     private javax.swing.JButton SaveBtn;
     private javax.swing.JComboBox<String> Status;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox<String> Time;
+    private javax.swing.JTextField UserID;
+    private javax.swing.JTextField UserName;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }

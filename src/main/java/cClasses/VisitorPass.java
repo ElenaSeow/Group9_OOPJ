@@ -40,14 +40,18 @@ public class VisitorPass {
         this.contactNo=contactNo;
     }
     
-    public VisitorPass(String userId, String visitorId, String name, String date, String contactNo) throws ParseException {
-        Date tdate = new SimpleDateFormat("dd-MM-yyyy").parse(date);
-        
-        this.userId=userId;
-        this.visitorId=visitorId;
-        this.name=name;
-        this.date=tdate;
-        this.contactNo=contactNo;
+    public VisitorPass(String userId, String visitorId, String name, String date, String contactNo) {
+        try {
+            Date tdate = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+            
+            this.userId=userId;
+            this.visitorId=visitorId;
+            this.name=name;
+            this.date=tdate;
+            this.contactNo=contactNo;
+        } catch (ParseException ex) {
+            Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
@@ -119,7 +123,7 @@ public class VisitorPass {
             }
             for(String str:data){
                 String[] list = str.split(",");
-                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3]));
+                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3],list[4]));
                 
                 br.close();
             }   

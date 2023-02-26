@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -137,6 +139,38 @@ public class Booking{
             }
         }
         return bookings;
+    }
+    
+    public boolean checkTime(ArrayList<Booking> bookings,ArrayList<Facility> facilities,JComboBox Time){
+        ArrayList<String> comboValues=new ArrayList<>();
+        for(int i=0;i<Time.getItemCount();i++){
+            comboValues.add((String) Time.getItemAt(i));
+        }
+//        for(String k:comboValues){
+//            System.out.println(k);
+//        }
+        int cap = 0;
+        int count = 0;
+        for(Facility f:facilities){
+            if(this.facId.equals(f.getId())){
+                cap=f.getCapacity();
+            }
+        }
+       for(Booking i:bookings){
+           if(i.getDate().equals(this.date)&&i.getTime().equals(this.time)
+                   &&i.getStatus().equals("Booked")&& i.getFacId().equals(this.facId)){
+               count+=1;
+           }
+       }
+       boolean decision;
+       if(count<cap){
+           decision=true;
+       }else{
+           JOptionPane.showMessageDialog(null, "Time slot is full! Please select another time slot!");
+           decision=false;
+           
+       }
+       return decision;
     }
     public static void tabulateData(ArrayList<Booking> bookings, JTable table){
         DefaultTableModel model = (DefaultTableModel) table.getModel();

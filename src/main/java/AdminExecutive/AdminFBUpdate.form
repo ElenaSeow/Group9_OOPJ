@@ -37,20 +37,18 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="FacilityID" max="32767" attributes="0"/>
-                                  <Component id="FacName" pref="161" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="UserID" max="32767" attributes="0"/>
-                                  <Component id="Time" pref="161" max="32767" attributes="0"/>
-                                  <Component id="UserName" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="Status" min="-2" pref="161" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="FacilityID" max="32767" attributes="0"/>
+                          <Component id="FacName" pref="161" max="32767" attributes="0"/>
+                          <Component id="Status" pref="161" max="32767" attributes="0"/>
+                          <Component id="BookingID" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="UserID" max="32767" attributes="0"/>
+                          <Component id="Time" max="32767" attributes="0"/>
+                          <Component id="UserName" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Date" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -73,20 +71,25 @@
               </Group>
               <EmptySpace pref="26" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="FacilityID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="UserID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BookingID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="FacName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="UserName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="FacilityID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Status" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Time" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="FacName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="Date" min="-2" max="-2" attributes="0"/>
+                  <Component id="Status" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
               <Component id="SaveBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
@@ -153,7 +156,7 @@
     <Component class="javax.swing.JComboBox" name="Time">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="9">
+          <StringArray count="8">
             <StringItem index="0" value="08 00 - 10 00 hrs"/>
             <StringItem index="1" value="10 00 - 12 00 hrs"/>
             <StringItem index="2" value="12 00 - 14 00 hrs"/>
@@ -162,7 +165,6 @@
             <StringItem index="5" value="18 00 - 20 00 hrs"/>
             <StringItem index="6" value="20 00 - 22 00 hrs"/>
             <StringItem index="7" value="22 00 - 00 00 hrs"/>
-            <StringItem index="8" value="Whole Day"/>
           </StringArray>
         </Property>
       </Properties>
@@ -174,6 +176,19 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="Date">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DateMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="BookingID">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Booking ID"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BookingIDActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -22,7 +22,7 @@ public class Employee {
     }
     public Employee(){}
     
-    public void setID(String id){
+    public void setId(String id){
         this.id=id;
     }
     public void setName(String name){
@@ -34,7 +34,7 @@ public class Employee {
     public void setContactNo(String contactNo){
         this.contactNo=contactNo;
     }
-    public String getID(){
+    public String getId(){
         return id;
     }
     public String getName(){

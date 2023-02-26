@@ -27,10 +27,6 @@ public class Security extends User {
     }
     public Security(){}
     
-    public void setName(String name) {
-        super.setName(name);
-    }
-
     @Override
     public ArrayList<Security> Import() {
         BufferedReader br = null;
@@ -140,7 +136,7 @@ public class Security extends User {
             }
             pr.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Security.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
    

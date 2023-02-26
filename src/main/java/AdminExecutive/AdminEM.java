@@ -5,9 +5,11 @@
 package AdminExecutive;
 
 import cClasses.Admin;
+import cClasses.Cleaner;
 import cClasses.Functions;
 import cClasses.Security;
 import cClasses.Session;
+import cClasses.Technician;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.ParseException;
@@ -26,6 +28,8 @@ import javax.swing.table.TableRowSorter;
 public class AdminEM extends javax.swing.JFrame {
     Session Session;
     ArrayList<Security> securities=new Security().Import();
+    ArrayList<Technician> technicians=new Technician().Import();
+    ArrayList<Cleaner> cleaners=new Cleaner().Import();
     /**
      * Creates new form Admin_Executive_Sample
      */
@@ -716,14 +720,40 @@ public class AdminEM extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        AdminEMTCreate tc = new AdminEMTCreate(Session);
+        tc.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        if(TechTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = TechTable.getSelectedRow();
+            String Id = TechTable.getModel().getValueAt(TechTable.convertRowIndexToModel(row), column).toString();
+            AdminEMTUpdate tu = new AdminEMTUpdate(Session);
+            tu.spamdata(Id);
+            tu.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        if(TechTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = TechTable.getSelectedRow();
+            String Id = TechTable.getModel().getValueAt(TechTable.convertRowIndexToModel(row), column).toString();
+    //        Functions.Delete("Resident.txt", Id);
+            technicians=Technician.Delete(technicians, Id);
+            AdminEM aem = new AdminEM(Session);
+            aem.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void SearchBar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBar1KeyReleased
@@ -732,14 +762,40 @@ public class AdminEM extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        AdminEMCCreate cc = new AdminEMCCreate(Session);
+        cc.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        if(CleanTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = CleanTable.getSelectedRow();
+            String Id = CleanTable.getModel().getValueAt(CleanTable.convertRowIndexToModel(row), column).toString();
+            AdminEMCUpdate cu = new AdminEMCUpdate(Session);
+            cu.spamdata(Id);
+            cu.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+         if(CleanTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = CleanTable.getSelectedRow();
+            String Id = CleanTable.getModel().getValueAt(CleanTable.convertRowIndexToModel(row), column).toString();
+    //        Functions.Delete("Resident.txt", Id);
+            cleaners=Cleaner.Delete(cleaners, Id);
+            AdminEM aem = new AdminEM(Session);
+            aem.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void SearchBar2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBar2KeyReleased

@@ -4,8 +4,8 @@
  */
 package AdminExecutive;
 
+import cClasses.Cleaner;
 import cClasses.Functions;
-import cClasses.Security;
 import cClasses.Session;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -14,15 +14,15 @@ import javax.swing.JOptionPane;
  *
  * @author User
  */
-public class AdminEMSUpdate extends javax.swing.JFrame {
+public class AdminEMCUpdate extends javax.swing.JFrame {
      Session Session;
      String id;
-     ArrayList<Security> securities = new Security().Import();
+     ArrayList<Cleaner> cleaners = new Cleaner().Import();
 
     /**
      * Creates new form CreateUnits
      */
-    public AdminEMSUpdate(Session session) {
+    public AdminEMCUpdate(Session session) {
         initComponents();
         this.Session = session;
         id=session.getId();
@@ -33,15 +33,14 @@ public class AdminEMSUpdate extends javax.swing.JFrame {
     public void spamdata(String Id){
         ArrayList<String> data;
         ArrayList<String> unitdata;
-            data = Functions.Read("Security.txt");
-            String unitnumber="";
+            data = Functions.Read("Cleaner.txt");
             for(String str:data){
                 String[] list = str.split(":");
                 if(Id.equals(list[0])){
                     SecID.setText(list[0]);
                     SecName.setText(list[1]);
-                    SecEmail.setText(list[2]);
-                    SecPass.setText(list[3]);
+//                    SecEmail.setText(list[2]);
+//                    SecPass.setText(list[3]);
                     SecRole.setText(list[4]);
                     SecNum.setText(list[5]);
                 }
@@ -60,12 +59,8 @@ public class AdminEMSUpdate extends javax.swing.JFrame {
 
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         SecName = new javax.swing.JTextField();
-        SecEmail = new javax.swing.JTextField();
-        SecPass = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         CancelBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -80,31 +75,12 @@ public class AdminEMSUpdate extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel1.setText("Name");
 
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        jLabel2.setText("Email");
-
-        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        jLabel3.setText("Password");
-
         jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel5.setText("Role");
 
-        SecName.setEditable(false);
         SecName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SecNameActionPerformed(evt);
-            }
-        });
-
-        SecEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SecEmailActionPerformed(evt);
-            }
-        });
-
-        SecPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SecPassActionPerformed(evt);
             }
         });
 
@@ -160,19 +136,15 @@ public class AdminEMSUpdate extends javax.swing.JFrame {
                 .addGap(88, 88, 88)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(SecNum, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                             .addComponent(SecRole, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                            .addComponent(SecEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                            .addComponent(SecName, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                            .addComponent(SecPass, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)))
+                            .addComponent(SecName, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -194,7 +166,7 @@ public class AdminEMSUpdate extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(CancelBtn)
@@ -210,23 +182,15 @@ public class AdminEMSUpdate extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(SecName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SecEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SecPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(23, 23, 23)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(SecRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SecNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(91, 91, 91)
+                    .addComponent(jLabel6)
+                    .addComponent(SecNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(157, 157, 157)
                 .addComponent(SaveBtn)
                 .addGap(23, 23, 23))
         );
@@ -253,24 +217,15 @@ public class AdminEMSUpdate extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SecNameActionPerformed
 
-    private void SecEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SecEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SecEmailActionPerformed
-
-    private void SecPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SecPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SecPassActionPerformed
-
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
         // TODO add your handling code here:
         String Name =SecName.getText();
-        String Email =SecEmail.getText();
-        String Pass = SecPass.getText();
+//        String Email =SecEmail.getText();
+//        String Pass = SecPass.getText();
         String Num = SecNum.getText();
         String Role = SecRole.getText();
         String Id = SecID.getText();
-        securities = new Security(Id,Name,Email,Pass,Role,Num).Update(securities, Id);
-//        Functions.Update("BackupResident.txt", ID,Name,Email,Pass,Role,Num,unitid);
+        cleaners = new Cleaner(Id,Name,Role,Num).Update(cleaners, Id);
         JOptionPane.showMessageDialog(null, "Successfully Updated");
         AdminEM aem = new AdminEM(Session);
         aem.setVisible(true);
@@ -335,16 +290,12 @@ public class AdminEMSUpdate extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelBtn;
     private javax.swing.JButton SaveBtn;
-    private javax.swing.JTextField SecEmail;
     private javax.swing.JTextField SecID;
     private javax.swing.JTextField SecName;
     private javax.swing.JTextField SecNum;
-    private javax.swing.JTextField SecPass;
     private javax.swing.JTextField SecRole;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

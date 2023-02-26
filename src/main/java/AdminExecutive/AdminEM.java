@@ -650,18 +650,18 @@ public class AdminEM extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-//        if(SGTable.getSelectionModel().isSelectionEmpty()==false){
-//            int column = 0;
-//            int row = SGTable.getSelectedRow();
-//            String Id = SGTable.getModel().getValueAt(SGTable.convertRowIndexToModel(row), column).toString();
-//            AdminRMUpdate ru = new AdminRMUpdate(Session);
-//            ru.spamdata(Id);
-//            ru.setVisible(true);
-//            dispose();
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Please select a row.");
-//        }
-//        
+        if(SGTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = SGTable.getSelectedRow();
+            String Id = SGTable.getModel().getValueAt(SGTable.convertRowIndexToModel(row), column).toString();
+            AdminEMSUpdate su = new AdminEMSUpdate(Session);
+            su.spamdata(Id);
+            su.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void SearchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBarKeyReleased
@@ -672,25 +672,25 @@ public class AdminEM extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        AdminRMCreate rc = new AdminRMCreate(Session);
-        rc.setVisible(true);
+        AdminEMSCreate sc = new AdminEMSCreate(Session);
+        sc.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-//        if(SGTable.getSelectionModel().isSelectionEmpty()==false){
-//            int column = 0;
-//            int row = SGTable.getSelectedRow();
-//            String Id = SGTable.getModel().getValueAt(SGTable.convertRowIndexToModel(row), column).toString();
-//    //        Functions.Delete("Resident.txt", Id);
-//            residents=Resident.Delete(residents, Id);
-//            AdminEM arm = new AdminEM(Session);
-//            arm.setVisible(true);
-//            dispose();
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Please select a row.");
-//        }
+        if(SGTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = SGTable.getSelectedRow();
+            String Id = SGTable.getModel().getValueAt(SGTable.convertRowIndexToModel(row), column).toString();
+    //        Functions.Delete("Resident.txt", Id);
+            securities=Security.Delete(securities, Id);
+            AdminEM aem = new AdminEM(Session);
+            aem.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked

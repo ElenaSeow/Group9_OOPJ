@@ -294,6 +294,9 @@
               <Color blue="71" green="3f" red="43" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel7MouseClicked"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">

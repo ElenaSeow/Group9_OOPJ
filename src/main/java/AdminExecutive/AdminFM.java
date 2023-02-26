@@ -212,6 +212,11 @@ public class AdminFM extends javax.swing.JFrame {
         );
 
         jPanel7.setBackground(new java.awt.Color(67, 63, 113));
+        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel7MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -553,6 +558,13 @@ public class AdminFM extends javax.swing.JFrame {
             afb.setVisible(true);
             dispose();
     }//GEN-LAST:event_jPanel10MouseClicked
+
+    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
+        // TODO add your handling code here:
+        AdminEM aem = new AdminEM(Session);
+        aem.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jPanel7MouseClicked
 
     /**
      * @param args the command line arguments

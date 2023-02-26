@@ -36,7 +36,7 @@ public class Security extends User {
         BufferedReader br = null;
         ArrayList<Security> securities = new ArrayList<>();
         try {
-            String file = "Secuiry.txt";
+            String file = "Security.txt";
             ArrayList<String> data = new ArrayList<>();
             br = new BufferedReader(new FileReader(file));
             String line;

@@ -267,7 +267,7 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="UnitID" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UnitIDview" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="UserIDL" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" pref="159" max="32767" attributes="0"/>
@@ -308,7 +308,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="UnitID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UnitIDview" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel72" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel75" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -332,7 +332,7 @@
                             <Property name="text" type="java.lang.String" value="Unit No."/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="UnitID">
+                        <Component class="javax.swing.JLabel" name="UnitIDview">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Helvetica Neue" size="14" style="0"/>
@@ -493,7 +493,7 @@
                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                       <Component id="jLabel71" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="UnitID2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="UnitIDupdate" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace pref="524" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -534,7 +534,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="UnitID2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UnitIDupdate" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel71" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace pref="168" max="32767" attributes="0"/>
@@ -552,7 +552,7 @@
                             <Property name="text" type="java.lang.String" value="Unit No."/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="UnitID2">
+                        <Component class="javax.swing.JLabel" name="UnitIDupdate">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Helvetica Neue" size="14" style="0"/>
@@ -739,7 +739,7 @@
                                           <Component id="AmountTFPayment" min="-2" pref="118" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                                  <EmptySpace pref="28" max="32767" attributes="0"/>
                                   <Component id="jScrollPane8" min="-2" pref="383" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                               </Group>
@@ -883,8 +883,8 @@
                     <Container class="javax.swing.JPanel" name="jPanel23">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                          <JTabbedPaneConstraints tabName="Invoice History">
-                            <Property name="tabTitle" type="java.lang.String" value="Invoice History"/>
+                          <JTabbedPaneConstraints tabName="Invoice">
+                            <Property name="tabTitle" type="java.lang.String" value="Invoice"/>
                           </JTabbedPaneConstraints>
                         </Constraint>
                       </Constraints>
@@ -894,10 +894,8 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane9" min="-2" pref="641" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="InvoiceButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jScrollPane9" min="-2" pref="711" max="-2" attributes="0"/>
+                                  <EmptySpace pref="22" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -906,11 +904,6 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jScrollPane9" min="-2" pref="204" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="InvoiceButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -923,32 +916,50 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="InvoiceTable3">
+                            <Component class="javax.swing.JTable" name="InvoiceTable">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="5" rowCount="4">
+                                  <Table columnCount="4" rowCount="0">
                                     <Column editable="true" title="Invoice ID" type="java.lang.Object"/>
                                     <Column editable="true" title="Unit ID" type="java.lang.Object"/>
                                     <Column editable="true" title="Fee" type="java.lang.Object"/>
-                                    <Column editable="true" title="Outstanding Fee" type="java.lang.Object"/>
                                     <Column editable="true" title="Date" type="java.lang.Object"/>
                                   </Table>
+                                </Property>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
                                 </Property>
                                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
                               </Properties>
                               <Events>
-                                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="InvoiceTable3MousePressed"/>
+                                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="InvoiceTableMousePressed"/>
                               </Events>
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JButton" name="InvoiceButton">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Get Info"/>
-                          </Properties>
-                        </Component>
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="jPanel24">
@@ -966,17 +977,10 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                              <Component id="OutstandingStatus" min="-2" pref="110" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jLabel58" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                              <Component id="OutstandingDetails" min="-2" pref="110" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel58" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                          <Component id="OutstandingDetails" min="-2" pref="110" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
@@ -993,7 +997,7 @@
                                           <Component id="AmountTFOutstanding" min="-2" pref="118" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="42" max="32767" attributes="0"/>
+                                  <EmptySpace pref="40" max="32767" attributes="0"/>
                                   <Component id="jScrollPane10" min="-2" pref="383" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                               </Group>
@@ -1012,12 +1016,7 @@
                                       <Component id="jLabel58" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="OutstandingDetails" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel59" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="OutstandingStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <EmptySpace pref="51" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel60" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="AmountTFOutstanding" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1067,22 +1066,6 @@
                             <Property name="text" type="java.lang.String" value="Fee Details"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel59">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Helvetica Neue" size="16" style="0"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Fee Status:"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="OutstandingStatus">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Helvetica Neue" size="14" style="0"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Fee Status"/>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="jLabel60">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1116,11 +1099,24 @@
                             <Component class="javax.swing.JTable" name="OutstandingTable3">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="3" rowCount="4">
+                                  <Table columnCount="2" rowCount="4">
                                     <Column editable="true" title="Outstanding Fee" type="java.lang.Object"/>
                                     <Column editable="true" title="Details" type="java.lang.Object"/>
-                                    <Column editable="true" title="Status" type="java.lang.Object"/>
                                   </Table>
+                                </Property>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
                                 </Property>
                                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -1143,7 +1139,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="741" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="739" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">

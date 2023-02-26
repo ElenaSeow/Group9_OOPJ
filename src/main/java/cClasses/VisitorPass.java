@@ -30,15 +30,29 @@ public class VisitorPass {
     private String visitorId;
     private String name;
     private String contactNo;
+    private Date date;
     
-    public VisitorPass(String userId, String visitorId, String name, String contactNo) {
+    public VisitorPass(String userId, String visitorId, String name, String contactNo, Date date) {
         this.userId=userId;
         this.visitorId=visitorId;
         this.name=name;
         this.contactNo=contactNo;
+        this.date=date;
     }
     
+    public VisitorPass(String userId, String visitorId, String name, String contactNo, String date) throws ParseException{
+        Date tdate = new SimpleDateFormat("dd-MM-yyyy").parse(date);
 
+        this.userId=userId;
+        this.visitorId=visitorId;
+        this.name=name;
+        this.contactNo=contactNo;
+        this.date=tdate; 
+    
+    }
+    
+    
+    
     public VisitorPass() {}
     
     public String getUserId() {
@@ -57,6 +71,10 @@ public class VisitorPass {
         return contactNo;
     }
     
+    public Date getDate() {
+        return date;
+    }
+    
     public void setUserId(String userId) {
         this.userId=userId;
     }
@@ -69,17 +87,21 @@ public class VisitorPass {
         this.name=name;
     }
     
-    
     public void setContactNo(String contactNo) {
         this.contactNo=contactNo;
     }
     
+    public void setDate(Date date) {
+        this.date=date;
+    }
+    
     public static class VisitorPassInfo {
         
-        //ArrayList<String> ID = new ArrayList();
+        ArrayList<String> ID = new ArrayList();
         ArrayList<String> visitorId = new ArrayList();
         ArrayList<String> name = new ArrayList();
         ArrayList<String> contactNo = new ArrayList();
+        ArrayList<String> date = new ArrayList();
         
     }
     
@@ -99,7 +121,7 @@ public class VisitorPass {
             }
             for(String str:data){
                 String[] list = str.split(",");
-                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3]));
+                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3],list[4]));
                 
                 br.close();
             }   
@@ -107,23 +129,27 @@ public class VisitorPass {
             Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
         }
         return visitorpass;
-    
     }
     
     public static void tabulateData(ArrayList<VisitorPass> visitorpass,JTable table,String id){
             DefaultTableModel model = (DefaultTableModel) table.getModel();
-            for(VisitorPass a:visitorpass){
-                String userID=a.getUserId();
+            for(VisitorPass u:visitorpass){
+                String userID=u.getUserId();
                 if(id.equals(userID)){
+                    DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
+                    String date = date_format.format(u.getDate());
                 
-                    String[] allDataRow = {a.getVisitorId(), a.getName(), a.getContactNo()};
+                    String[] allDataRow = {u.getVisitorId(),u.getName(),u.getContactNo(),date};
                     model.addRow(allDataRow);
                 }
                 
         }
      }
+    
     
     public static class FileManipulation extends VisitorPass.VisitorPassInfo {
 

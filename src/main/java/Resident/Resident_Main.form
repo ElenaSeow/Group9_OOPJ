@@ -830,17 +830,10 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel56" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                                      <Component id="FeeStatusPayment" min="-2" pref="110" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                                      <Component id="FeeDetailsPayment" min="-2" pref="110" max="-2" attributes="0"/>
-                                                  </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                                  <Component id="FeeDetailsPayment" min="-2" pref="110" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel54" min="-2" max="-2" attributes="0"/>
@@ -878,12 +871,7 @@
                                       <Component id="jLabel55" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="FeeDetailsPayment" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel56" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="FeeStatusPayment" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel53" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="AmountTFPayment" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -975,28 +963,6 @@
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Fee Details"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel56">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Helvetica Neue" size="16" style="0"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Fee Status:"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="FeeStatusPayment">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Helvetica Neue" size="14" style="0"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Fee Status"/>
                           </Properties>
                         </Component>
                         <Container class="javax.swing.JScrollPane" name="jScrollPane8">
@@ -1147,17 +1113,10 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                                      <Component id="OutstandingStatus" min="-2" pref="110" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="jLabel58" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                                      <Component id="OutstandingDetails" min="-2" pref="110" max="-2" attributes="0"/>
-                                                  </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel58" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                                  <Component id="OutstandingDetails" min="-2" pref="110" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel57" min="-2" max="-2" attributes="0"/>
@@ -1201,12 +1160,7 @@
                                       <Component id="jLabel58" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="OutstandingDetails" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel59" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="OutstandingStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel60" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="AmountTFOutstanding" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1266,28 +1220,6 @@
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Fee Details"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel59">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Helvetica Neue" size="16" style="0"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Fee Status:"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="OutstandingStatus">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Helvetica Neue" size="14" style="0"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Fee Status"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel60">

@@ -153,8 +153,6 @@ public class Resident_Main extends javax.swing.JFrame {
         PayPaymentButton = new javax.swing.JButton();
         jLabel55 = new javax.swing.JLabel();
         FeeDetailsPayment = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
-        FeeStatusPayment = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         PaymentTable3 = new javax.swing.JTable();
         jPanel23 = new javax.swing.JPanel();
@@ -165,8 +163,6 @@ public class Resident_Main extends javax.swing.JFrame {
         OutstandingFee = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         OutstandingDetails = new javax.swing.JLabel();
-        jLabel59 = new javax.swing.JLabel();
-        OutstandingStatus = new javax.swing.JLabel();
         jLabel60 = new javax.swing.JLabel();
         AmountTFOutstanding = new javax.swing.JTextField();
         PayOutstandingButton = new javax.swing.JButton();
@@ -592,14 +588,6 @@ public class Resident_Main extends javax.swing.JFrame {
         FeeDetailsPayment.setForeground(new java.awt.Color(255, 255, 255));
         FeeDetailsPayment.setText("Fee Details");
 
-        jLabel56.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel56.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel56.setText("Fee Status:");
-
-        FeeStatusPayment.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        FeeStatusPayment.setForeground(new java.awt.Color(255, 255, 255));
-        FeeStatusPayment.setText("Fee Status");
-
         PaymentTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -622,15 +610,10 @@ public class Resident_Main extends javax.swing.JFrame {
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
-                                    .addComponent(jLabel56)
-                                    .addGap(25, 25, 25)
-                                    .addComponent(FeeStatusPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel22Layout.createSequentialGroup()
-                                    .addComponent(jLabel55)
-                                    .addGap(21, 21, 21)
-                                    .addComponent(FeeDetailsPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addComponent(jLabel55)
+                                .addGap(21, 21, 21)
+                                .addComponent(FeeDetailsPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel22Layout.createSequentialGroup()
                                 .addComponent(jLabel54)
                                 .addGap(75, 75, 75)
@@ -657,11 +640,7 @@ public class Resident_Main extends javax.swing.JFrame {
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel55)
                     .addComponent(FeeDetailsPayment))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel56)
-                    .addComponent(FeeStatusPayment))
-                .addGap(26, 26, 26)
+                .addGap(72, 72, 72)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel53)
                     .addComponent(AmountTFPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -730,14 +709,6 @@ public class Resident_Main extends javax.swing.JFrame {
         OutstandingDetails.setForeground(new java.awt.Color(255, 255, 255));
         OutstandingDetails.setText("Fee Details");
 
-        jLabel59.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel59.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel59.setText("Fee Status:");
-
-        OutstandingStatus.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        OutstandingStatus.setForeground(new java.awt.Color(255, 255, 255));
-        OutstandingStatus.setText("Fee Status");
-
         jLabel60.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel60.setForeground(new java.awt.Color(255, 255, 255));
         jLabel60.setText("Amount:");
@@ -775,15 +746,10 @@ public class Resident_Main extends javax.swing.JFrame {
                     .addGroup(jPanel24Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel24Layout.createSequentialGroup()
-                                    .addComponent(jLabel59)
-                                    .addGap(25, 25, 25)
-                                    .addComponent(OutstandingStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel24Layout.createSequentialGroup()
-                                    .addComponent(jLabel58)
-                                    .addGap(21, 21, 21)
-                                    .addComponent(OutstandingDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel24Layout.createSequentialGroup()
+                                .addComponent(jLabel58)
+                                .addGap(21, 21, 21)
+                                .addComponent(OutstandingDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel24Layout.createSequentialGroup()
                                 .addComponent(jLabel57)
                                 .addGap(75, 75, 75)
@@ -814,11 +780,7 @@ public class Resident_Main extends javax.swing.JFrame {
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel58)
                     .addComponent(OutstandingDetails))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel59)
-                    .addComponent(OutstandingStatus))
-                .addGap(18, 18, 18)
+                .addGap(56, 56, 56)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel60)
                     .addComponent(AmountTFOutstanding, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1320,6 +1282,7 @@ public class Resident_Main extends javax.swing.JFrame {
 
     private void Update7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update7ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_Update7ActionPerformed
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
@@ -1379,14 +1342,12 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JTable FacilityTable4;
     private javax.swing.JLabel FeeDetailsPayment;
     private javax.swing.JLabel FeePayment;
-    private javax.swing.JLabel FeeStatusPayment;
     private javax.swing.JTable InvoiceTable;
     private javax.swing.JLabel LogOut;
     private javax.swing.JLabel NameL;
     private javax.swing.JTextField NameMOD;
     private javax.swing.JLabel OutstandingDetails;
     private javax.swing.JLabel OutstandingFee;
-    private javax.swing.JLabel OutstandingStatus;
     private javax.swing.JTable OutstandingTable3;
     private javax.swing.JLabel PasswordL;
     private javax.swing.JTextField PasswordMOD;
@@ -1420,10 +1381,8 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;

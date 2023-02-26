@@ -21,18 +21,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Vendor extends User {
     private String unitId;
-
-    public Vendor(String id, String name, String email, String password, String role, String contactNo, String unidId) {
+    
+    public Vendor(String id, String name, String email, String password, String role, String contactNo, String unitId) {
         super(id, name, email, password, role, contactNo);
         this.unitId=unitId;
+        
     }
-    
-    public Vendor() {}
+    public Vendor(){}
     
     public void setName(String name) {
         super.setName(name);
     }
-
     public void setUnitId(String unitId){
         this.unitId=unitId;
     }
@@ -87,6 +86,11 @@ public class Vendor extends User {
             
         }
     } 
+    
+    
+    
+    
+    
     public ArrayList<Vendor> Update(ArrayList<Vendor> vendors, String id){
         PrintWriter pr = null;
         ArrayList<String> data=new ArrayList<>();

@@ -4,6 +4,10 @@
  */
 package cClasses;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,6 +20,7 @@ public class Complaint {
     String complaintId;
     String desc;
     String status;
+    String userID;
     Date updateDate;
     Date complaintDate;
     
@@ -27,5 +32,6 @@ public class Complaint {
         this.complaintDate=complaintDate;
     }
     
+   
 }
 

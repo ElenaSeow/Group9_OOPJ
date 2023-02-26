@@ -478,7 +478,7 @@ public class Account_Executive_Main extends javax.swing.JFrame {
         if (!userIDInput.equals("")) {
             DefaultTableModel model = new DefaultTableModel();
             table.setModel(model);
-            try (BufferedReader br = new BufferedReader(new FileReader("Invoices.txt"))) {
+            try (BufferedReader br = new BufferedReader(new FileReader("Payment.txt"))) {
                 String firstLine = br.readLine().trim();
                 String[] columnNames = firstLine.split(",");
                 model.setColumnIdentifiers(columnNames);
@@ -535,7 +535,7 @@ public class Account_Executive_Main extends javax.swing.JFrame {
         if(!userID.getText().equals("")){
             table.setModel(new DefaultTableModel());
             try {
-                BufferedReader br = new BufferedReader(new FileReader("Invoices.txt"));
+                BufferedReader br = new BufferedReader(new FileReader("Payment.txt"));
                 String firstLine = br.readLine().trim();
                 String[] columnsName = firstLine.split(":");
                 DefaultTableModel model = (DefaultTableModel) table.getModel();

@@ -118,7 +118,7 @@ public class Invoices {
             ArrayList<Invoices> invoices = new ArrayList<>();
         try {
 
-            String file = "Invoices.txt";
+            String file = "Payment.txt";
             ArrayList<String> data = new ArrayList<>();
             br = new BufferedReader(new FileReader(file));
             String line;
@@ -167,7 +167,7 @@ public class Invoices {
             fees.clear();
             outstandingFees.clear();
             date.clear();
-            try ( BufferedReader file = new BufferedReader(new FileReader("Invoices.txt"))) {
+            try ( BufferedReader file = new BufferedReader(new FileReader("Payment.txt"))) {
                 String line;
                 file.readLine();
                 while ((line = file.readLine()) != null) {
@@ -196,7 +196,7 @@ public class Invoices {
                     this.date.set(i, date);
                 }
             }
-            try ( FileWriter file = new FileWriter("Invoices.txt");) {
+            try ( FileWriter file = new FileWriter("Payment.txt");) {
                 file.write("INVOICE ID,USER ID,UNIT ID,FEE,OUTSTANDING,DATE\n");
                 for (int i = 0; i < this.ID.size(); i++) {
                     file.write(this.ID.get(i) + "," + 
@@ -214,7 +214,7 @@ public class Invoices {
 
         public void addFile(String userID, String unitID, String fee, String outstanding, String date) {
             readFile();
-            try ( FileWriter file = new FileWriter("Invoices.txt",true);) {
+            try ( FileWriter file = new FileWriter("Payment.txt",true);) {
                 String ID = "IV"+(this.ID.size()+1);
                 file.write(ID + "," + userID + "," + unitID + "," + fee + "," + outstanding + "," + date + "\n");
                 file.close();
@@ -235,7 +235,7 @@ public class Invoices {
                     this.date.remove(i);
                 }
             }
-            try ( FileWriter file = new FileWriter("Invoices.txt");) {
+            try ( FileWriter file = new FileWriter("Payment.txt");) {
                 file.write("INVOICE ID,USER ID,UNIT ID,FEE,OUTSTANDING,DATE\n");
                 for (int i = 0; i < this.ID.size(); i++) {
                     file.write(this.ID.get(i) + "," + 

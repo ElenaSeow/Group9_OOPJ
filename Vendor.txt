@@ -1,2 +1,2 @@
-VE001:MeganTEST:megan@gmail.com:megan123:Vendor:012-111-6666:UN004
-VE002:Darren:darren@gmail.com:darren123:Vendor:012-555-6666:UN005
+VE001:MeganTEST:meganTEST@gmail.com:megan123:Vendor:012-777-0001:UN004
+VE002:Darren:darren@gmail.com:darren123:Vendor:012-111-9992:UN005

@@ -99,6 +99,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="FacName">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Facility"/>
       </Properties>
       <Events>
@@ -150,6 +151,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="FacilityID">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Facility ID"/>
       </Properties>
     </Component>
@@ -184,6 +186,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="BookingID">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Booking ID"/>
       </Properties>
       <Events>

@@ -87,6 +87,7 @@ public class AdminFBUpdate extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        FacName.setEditable(false);
         FacName.setText("Facility");
         FacName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +117,7 @@ public class AdminFBUpdate extends javax.swing.JFrame {
 
         Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Booked", "Cancel" }));
 
+        FacilityID.setEditable(false);
         FacilityID.setText("Facility ID");
 
         Time.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08 00 - 10 00 hrs", "10 00 - 12 00 hrs", "12 00 - 14 00 hrs", "14 00 - 16 00 hrs", "16 00 - 18 00 hrs ", "18 00 - 20 00 hrs", "20 00 - 22 00 hrs", "22 00 - 00 00 hrs" }));
@@ -128,6 +130,7 @@ public class AdminFBUpdate extends javax.swing.JFrame {
             }
         });
 
+        BookingID.setEditable(false);
         BookingID.setText("Booking ID");
         BookingID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

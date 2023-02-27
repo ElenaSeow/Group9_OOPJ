@@ -169,4 +169,11 @@ public class Facility {
            pr.close();
        }
     }
+    public static ArrayList<String> getFacilities(ArrayList<Facility> facilities){
+        ArrayList<String> facNames = new ArrayList<>();
+        for(Facility i:facilities){
+            facNames.add(i.getFacility());
+        }
+        return facNames;
+    }
 }

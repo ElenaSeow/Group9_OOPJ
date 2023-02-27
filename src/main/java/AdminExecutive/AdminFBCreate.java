@@ -4,11 +4,17 @@
  */
 package AdminExecutive;
 
-import cClasses.Admin;
+import cClasses.Booking;
 import cClasses.Facility;
 import cClasses.Functions;
 import cClasses.Session;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +24,7 @@ import javax.swing.JOptionPane;
 public class AdminFBCreate extends javax.swing.JFrame {
     Session Session;
     ArrayList<Facility> facilities;
+    ArrayList<Booking>  bookings;
 
     /**
      * Creates new form NewFacility
@@ -25,9 +32,23 @@ public class AdminFBCreate extends javax.swing.JFrame {
     public AdminFBCreate(Session session) {
         initComponents();
         this.Session = session;
-        facilities = new Facility().Import();
+        facilities=new Facility().Import();
+        bookings=new Booking().Import();
+        Date.setMinSelectableDate(new Date());
+        String bookid = Functions.IdGenerate("Bookings.txt");
+        BookingID.setText(bookid);
+        ArrayList<String> facNames = Facility.getFacilities(facilities);
+        for(String i : facNames){
+            facName.addItem(String.valueOf(i));
+        }
+        facName.setSelectedIndex(0);
+        for(Facility j: facilities){
+            if(j.getFacility().equals(facName.getSelectedItem().toString())){
+                FacilityID.setText(j.getId());
+            }
+        }
+    }    
         
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,33 +59,30 @@ public class AdminFBCreate extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        FacName = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        Qty = new javax.swing.JTextField();
+        UserID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         SaveBtn = new javax.swing.JButton();
         CancelBtn = new javax.swing.JButton();
         Status = new javax.swing.JComboBox<>();
+        FacilityID = new javax.swing.JTextField();
+        Time = new javax.swing.JComboBox<>();
+        UserName = new javax.swing.JTextField();
+        Date = new com.toedter.calendar.JDateChooser();
+        BookingID = new javax.swing.JTextField();
+        facName = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Facility Name");
-
-        FacName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FacNameActionPerformed(evt);
+        UserID.setText("UserID");
+        UserID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                UserIDKeyReleased(evt);
             }
         });
 
-        jLabel2.setText("Total Units");
-
         jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("New Facility");
-
-        jLabel4.setText("Status");
+        jLabel3.setText("Facility Booking");
 
         SaveBtn.setText("Save");
         SaveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -80,57 +98,91 @@ public class AdminFBCreate extends javax.swing.JFrame {
             }
         });
 
-        Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Closed", "Renovating" }));
+        Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Booked", "Cancel" }));
+
+        FacilityID.setEditable(false);
+        FacilityID.setText("Facility ID");
+
+        Time.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08 00 - 10 00 hrs", "10 00 - 12 00 hrs", "12 00 - 14 00 hrs", "14 00 - 16 00 hrs", "16 00 - 18 00 hrs ", "18 00 - 20 00 hrs", "20 00 - 22 00 hrs", "22 00 - 00 00 hrs" }));
+
+        UserName.setText("Name");
+
+        Date.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DateMouseClicked(evt);
+            }
+        });
+
+        BookingID.setEditable(false);
+        BookingID.setText("Booking ID");
+        BookingID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingIDActionPerformed(evt);
+            }
+        });
+
+        facName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facNameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Qty)
-                    .addComponent(FacName)
-                    .addComponent(Status, 0, 201, Short.MAX_VALUE))
-                .addGap(72, 72, 72))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(249, 249, 249)
+                        .addComponent(SaveBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(CancelBtn)
+                        .addGap(64, 64, 64)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(FacilityID)
+                            .addComponent(Status, 0, 161, Short.MAX_VALUE)
+                            .addComponent(BookingID)
+                            .addComponent(facName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(92, 92, 92)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(UserID)
+                            .addComponent(Time, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(UserName)
+                            .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(82, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(CancelBtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(249, 249, 249)
-                        .addComponent(SaveBtn)))
-                .addContainerGap(165, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(CancelBtn)
-                .addGap(5, 5, 5)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(FacName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(UserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BookingID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Qty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
+                    .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FacilityID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(facName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addGap(72, 72, 72)
                 .addComponent(SaveBtn)
                 .addGap(21, 21, 21))
         );
@@ -138,33 +190,78 @@ public class AdminFBCreate extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FacNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FacNameActionPerformed
-
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
-        // TODO add your handling code here:
-//        ArrayList<String> data;
-//        data = Functions.Read("Facilities.txt");
-        String name =FacName.getText();
-        String quantity=Qty.getText();
-        String status= Status.getSelectedItem().toString();
-        String id = Functions.IdGenerate("Facilities.txt");
-        facilities.add(new Facility(id,name,quantity,status));
-        Facility.Write(facilities);
-        JOptionPane.showMessageDialog(null, "Successfully Created");
-        AdminFM afm = new AdminFM(Session);
-        afm.setVisible(true);
-        dispose();
-        
+        if(BookingID.getText().equals("")&&FacilityID.getText().equals("")&& UserID.getText().equals("")&&UserName.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please fill all details to book!");
+        }else{
+        try {
+            // TODO add your handling code here:
+            String userName =UserName.getText();
+            Date BookedDate = Date.getDate();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            String dateBooked = dateFormat.format(BookedDate);
+            String status = Status.getSelectedItem().toString();
+            String facid = FacilityID.getText();
+            String bookID=BookingID.getText();
+            String userID=UserID.getText();
+            String time = Time.getSelectedItem().toString();
+            boolean checker =new Booking(bookID,facid,userID,userName,dateBooked,time,status).checkTime(bookings,facilities,Time);
+            if(checker==true){
+                bookings.add(new Booking(bookID,facid,userID,userName,dateBooked,time,status));
+                Booking.Write(bookings);
+                //        Functions.Update("Units.txt", id,facName,qty,status);
+                JOptionPane.showMessageDialog(null, "Successfully Booked");
+                AdminFB afb = new AdminFB(Session);
+                afb.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Unable to Book. Slots are full!");
+            }
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(AdminFBCreate.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
     }//GEN-LAST:event_SaveBtnActionPerformed
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
         // TODO add your handling code here:
-        AdminFM afm = new AdminFM(Session);
-        afm.setVisible(true);
-        dispose();        
+        AdminFB afb = new AdminFB(Session);
+        afb.setVisible(true);
+        dispose();
     }//GEN-LAST:event_CancelBtnActionPerformed
+
+    private void BookingIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BookingIDActionPerformed
+
+    private void DateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DateMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_DateMouseClicked
+
+    private void facNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facNameActionPerformed
+        // TODO add your handling code here:
+        
+        for(Facility j: facilities){
+            if(j.getFacility().equals(facName.getSelectedItem().toString())){
+                FacilityID.setText(j.getId());
+            }
+        }
+    }//GEN-LAST:event_facNameActionPerformed
+
+    private void UserIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UserIDKeyReleased
+        // TODO add your handling code here:
+        String uid = UserID.getText();
+            String file = Functions.getFile(uid);
+            ArrayList<String> data = Functions.Read(file);
+            for(String a : data){
+                String[] list = a.split(":");
+                if(list[0].equals(uid)){
+                    UserName.setText(list[1]);
+                }
+            }
+    }//GEN-LAST:event_UserIDKeyReleased
 
     /**
      * @param args the command line arguments
@@ -201,15 +298,18 @@ public class AdminFBCreate extends javax.swing.JFrame {
 //        });
 //    }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField BookingID;
     private javax.swing.JButton CancelBtn;
-    private javax.swing.JTextField FacName;
-    private javax.swing.JTextField Qty;
+    private com.toedter.calendar.JDateChooser Date;
+    private javax.swing.JTextField FacilityID;
     private javax.swing.JButton SaveBtn;
     private javax.swing.JComboBox<String> Status;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox<String> Time;
+    private javax.swing.JTextField UserID;
+    private javax.swing.JTextField UserName;
+    private javax.swing.JComboBox<String> facName;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

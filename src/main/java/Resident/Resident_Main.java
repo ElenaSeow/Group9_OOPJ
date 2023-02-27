@@ -13,20 +13,15 @@ import cClasses.VisitorPass;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -152,11 +147,11 @@ public class Resident_Main extends javax.swing.JFrame {
         jPanel21 = new javax.swing.JPanel();
         jTabbedPane6 = new javax.swing.JTabbedPane();
         jPanel22 = new javax.swing.JPanel();
-        AmountTFPayment = new javax.swing.JTextField();
+        AmountPayment = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
         FeePayment = new javax.swing.JLabel();
-        PayPaymentButton = new javax.swing.JButton();
+        PAYbutton = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
         PaymentTable = new javax.swing.JTable();
         jLabel55 = new javax.swing.JLabel();
@@ -566,11 +561,11 @@ public class Resident_Main extends javax.swing.JFrame {
 
         jPanel22.setBackground(new java.awt.Color(0, 204, 255));
 
-        AmountTFPayment.setForeground(new java.awt.Color(0, 0, 0));
-        AmountTFPayment.setText("Amount");
-        AmountTFPayment.addActionListener(new java.awt.event.ActionListener() {
+        AmountPayment.setForeground(new java.awt.Color(0, 0, 0));
+        AmountPayment.setText("Amount");
+        AmountPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AmountTFPaymentActionPerformed(evt);
+                AmountPaymentActionPerformed(evt);
             }
         });
 
@@ -586,8 +581,13 @@ public class Resident_Main extends javax.swing.JFrame {
         FeePayment.setForeground(new java.awt.Color(255, 255, 255));
         FeePayment.setText("Fee");
 
-        PayPaymentButton.setText("PAY");
-        PayPaymentButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PAYbutton.setText("PAY");
+        PAYbutton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PAYbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PAYbuttonActionPerformed(evt);
+            }
+        });
 
         PaymentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -597,6 +597,11 @@ public class Resident_Main extends javax.swing.JFrame {
                 "Fee", "Date"
             }
         ));
+        PaymentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                PaymentTableMousePressed(evt);
+            }
+        });
         jScrollPane8.setViewportView(PaymentTable);
 
         jLabel55.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
@@ -619,7 +624,7 @@ public class Resident_Main extends javax.swing.JFrame {
                             .addGroup(jPanel22Layout.createSequentialGroup()
                                 .addComponent(jLabel53)
                                 .addGap(46, 46, 46)
-                                .addComponent(AmountTFPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(AmountPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel22Layout.createSequentialGroup()
                                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel54)
@@ -630,7 +635,7 @@ public class Resident_Main extends javax.swing.JFrame {
                                     .addComponent(FeePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addGap(88, 88, 88)
-                        .addComponent(PayPaymentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(PAYbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                 .addContainerGap())
@@ -649,9 +654,9 @@ public class Resident_Main extends javax.swing.JFrame {
                 .addGap(72, 72, 72)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel53)
-                    .addComponent(AmountTFPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AmountPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(PayPaymentButton)
+                .addComponent(PAYbutton)
                 .addContainerGap(37, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
@@ -1228,9 +1233,9 @@ public class Resident_Main extends javax.swing.JFrame {
     }
     
     
-    private void AmountTFPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountTFPaymentActionPerformed
+    private void AmountPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountPaymentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AmountTFPaymentActionPerformed
+    }//GEN-LAST:event_AmountPaymentActionPerformed
 
     private void InvoiceTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceTableMousePressed
         // TODO add your handling code here:
@@ -1342,6 +1347,49 @@ public class Resident_Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void PaymentTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PaymentTableMousePressed
+        // TODO add your handling code here:
+        if(PaymentTable.getSelectedRow() != -1){
+            FeePayment.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 0).toString());
+            DatePayment.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 1).toString());
+        }
+        
+    }//GEN-LAST:event_PaymentTableMousePressed
+
+    private void PAYbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PAYbuttonActionPerformed
+        // TODO add your handling code here:
+        // AmountPayment
+        if(!AmountPayment.getText().equals("")){
+            PaymentTable.setModel(new DefaultTableModel());
+            try {
+                BufferedReader br = new BufferedReader(new FileReader("Payment.txt"));
+                String firstLine = br.readLine().trim();
+                String[] columnsName = firstLine.split(",");
+                DefaultTableModel model = (DefaultTableModel) PaymentTable.getModel();
+                model.setColumnIdentifiers(columnsName);
+                Object[] tableLines = br.lines().toArray();
+                for (int i = 0; i < tableLines.length; i++) {
+                    String line = tableLines[i].toString().trim();
+                    String[] dataRow = line.split(",");
+                    if(dataRow[3].equals(AmountPayment.getText())){
+                        String feebalance = "0";
+                        PaymentTable.setValueAt(feebalance,PaymentTable.getSelectedRow(),0);
+                            JOptionPane.showMessageDialog(null, "You Have Made Payment SUccessfully!");
+//                        model.addRow(dataRow);
+//                        AmountPayment.setText(dataRow[3]);
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null,"Please Enter The Correct Amount to Make Payment!");
+                    }
+                }
+
+            } catch (IOException e) {
+                System.out.println("Incorrect File");
+            }
+        }
+        
+    }//GEN-LAST:event_PAYbuttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1378,8 +1426,8 @@ public class Resident_Main extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AmountPayment;
     private javax.swing.JTextField AmountTFOutstanding;
-    private javax.swing.JTextField AmountTFPayment;
     private javax.swing.JButton Book4;
     private javax.swing.JTable ComplaintTable6;
     private javax.swing.JLabel Date;
@@ -1400,10 +1448,10 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JTextField NameMOD;
     private javax.swing.JLabel OutstandingFee;
     private javax.swing.JTable OutstandingTable;
+    private javax.swing.JButton PAYbutton;
     private javax.swing.JLabel PasswordL;
     private javax.swing.JTextField PasswordMOD;
     private javax.swing.JButton PayOutstandingButton;
-    private javax.swing.JButton PayPaymentButton;
     private javax.swing.JTable PaymentTable;
     private javax.swing.JTable ReceiptTable;
     private javax.swing.JLabel RoleL;

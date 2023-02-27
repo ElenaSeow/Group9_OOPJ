@@ -155,7 +155,9 @@ public class Payment {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             for(Payment u:payment){
                 String userID=u.getUserId();
-                if(id.equals(userID)){
+                        String fee = u.getFee();
+
+                if(id.equals(userID) && !fee.equals("0")){
                     DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
                     String date = date_format.format(u.getDate());
                 
@@ -196,6 +198,11 @@ public class Payment {
         }
     }
 }
+    
+    
+    public static void PAY(ArrayList<Payment> payment, JTable table, String id) {
+        
+    }
      
     
     

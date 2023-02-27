@@ -7,6 +7,7 @@ package cClasses;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -196,17 +197,66 @@ public class Payment {
             String[] allDataRow = {u.getInvoiceId(),u.getUnitId(),date};
             model.addRow(allDataRow);
         }
+    }  
+    
     }
-}
-    
-    
-    public static void PAY(ArrayList<Payment> payment, JTable table, String id) {
+    public static class FileManipulation extends PaymentInfo {
+        public void readFile() {
+            ID.clear();
+            userID.clear();
+            unitID.clear();
+            fees.clear();
+            outstandingFees.clear();
+            date.clear();
+            try ( BufferedReader file = new BufferedReader(new FileReader("Payment.txt"))) {
+                String line;
+                file.readLine();
+                while ((line = file.readLine()) != null) {
+                    String[] values = line.split(",");
+                    ID.add(values[0]);
+                    userID.add(values[1]);
+                    unitID.add(values[2]);
+                    fees.add(values[3]);
+                    outstandingFees.add(values[4]);
+                    date.add(values[5]);
+                }
+            } catch (IOException e) {
+                System.out.println("Incorrect File Path");
+            }
+        }
+        
+        
+        public void PAY(String ID, String userID, String unitID, String fee, String outstanding, String date) {
+            readFile();
+            for (int i = 0; i < this.ID.size(); i++) {
+                if (ID.equals(this.ID.get(i))) {
+                    this.ID.set(i, ID);
+                    this.userID.set(i, userID);
+                    this.unitID.set(i, unitID);
+                    this.fees.set(i, fee);
+                    this.outstandingFees.set(i, outstanding);
+                    this.date.set(i, date);
+                }
+            }
+            try ( FileWriter file = new FileWriter("Payment.txt");) {
+                for (int i = 0; i < this.ID.size(); i++) {
+                    file.write(this.ID.get(i) + "," + 
+                            this.userID.get(i) + "," + 
+                            this.unitID.get(i) + "," + 
+                            this.fees.get(i) + "," + 
+                            this.outstandingFees.get(i) + "," + 
+                            this.date.get(i) + "\n");
+                }
+                file.close();
+            } catch (IOException e) {
+                System.out.println("Incorrect File Path");
+            }
+        }
         
     }
-     
-    
-    
-    
-    
-    
 }
+    
+    
+    
+    
+    

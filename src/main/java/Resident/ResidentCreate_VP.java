@@ -5,10 +5,12 @@
 package Resident;
 
 import cClasses.Functions;
+import cClasses.Resident;
 import cClasses.Session;
 import cClasses.VisitorPass;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +18,7 @@ import java.util.ArrayList;
  */
 public class ResidentCreate_VP extends javax.swing.JFrame {
     Session Session;
+    String id;
     ArrayList<VisitorPass> visitorpass;
     /**
      * Creates new form ResidentCreate_VP
@@ -23,7 +26,18 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
     public ResidentCreate_VP(Session session) {
         initComponents();
         this.Session = session;
+        id=session.getId();
+        String id = session.getId();
+        
         visitorpass = new VisitorPass().Import();
+        ArrayList<Resident> resident;
+        resident = new Resident().Import();
+        for(Resident a:resident) {
+            String userId = a.getId();
+            if(id.equals(userId)) {
+                UserId.setText(userId);
+            }
+        }
     }
 
     /**
@@ -42,6 +56,9 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Name = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        UserId = new javax.swing.JLabel();
+        VisitoriD = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,6 +96,16 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Visitor ID");
+
+        UserId.setText("jLabel5");
+
+        VisitoriD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VisitoriDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,25 +113,28 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(SaveBtn))
+                        .addGap(151, 151, 151)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(CancelBtn))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(UserId, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CancelBtn))
                         .addGap(151, 151, 151)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(SaveBtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                .addGap(0, 117, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TelNo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(88, 88, 88)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(TelNo, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(VisitoriD, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(88, 88, 88))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,21 +143,39 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
                 .addComponent(CancelBtn)
                 .addGap(5, 5, 5)
                 .addComponent(jLabel3)
-                .addGap(35, 35, 35)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4)
+                    .addComponent(VisitoriD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(TelNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                    .addComponent(TelNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(90, 90, 90)
                 .addComponent(SaveBtn)
-                .addGap(54, 54, 54))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(UserId)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+//        public void VisitorID() {
+//            ArrayList<Integer> List = new ArrayList<Integer>();
+//             for (int i = 0; i < unitTable.getRowCount(); i++) {
+//            List.add(Integer.parseInt(unitTable.getValueAt(i,0).toString().substring(2,5)));
+//        }
+//        int max = Collections.max(List);
+//        int newID = max + 1;
+//        adduidTF.setText(String.format("UI" + "%03d" ,newID) );
+//        }
+         
+
 
     private void TelNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelNoActionPerformed
         // TODO add your handling code here:
@@ -135,10 +183,18 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
         
-        String telno = TelNo.getText();
+        String id = UserId.getText();
         String name = Name.getText();
+        String contactNo = TelNo.getText();
         String visitorid = Functions.IdGenerate("VisitorPass.txt");
         
+        visitorpass.add(new VisitorPass(id, visitorid, name, contactNo));
+        VisitorPass.Write(visitorpass);
+        JOptionPane.showMessageDialog(null, "Successfully Updated");
+        Resident_Main RM = new Resident_Main(Session);
+        RM.setVisible(true);
+        dispose();
+
         
 
     }//GEN-LAST:event_SaveBtnActionPerformed
@@ -153,6 +209,10 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
     private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NameActionPerformed
+
+    private void VisitoriDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisitoriDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VisitoriDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,8 +254,11 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
     private javax.swing.JTextField Name;
     private javax.swing.JButton SaveBtn;
     private javax.swing.JTextField TelNo;
+    private javax.swing.JLabel UserId;
+    private javax.swing.JTextField VisitoriD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

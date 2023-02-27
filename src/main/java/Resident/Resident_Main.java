@@ -13,12 +13,18 @@ import cClasses.VisitorPass;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -34,7 +40,7 @@ public class Resident_Main extends javax.swing.JFrame {
     ArrayList<Invoices> invoices = new Invoices().Import();
     ArrayList<VisitorPass> visitorpass = new VisitorPass().Import();
     ArrayList<Payment> payment = new Payment().Import();
-    
+    Payment.FileManipulation PY = new Payment.FileManipulation();
     
     /**
      * Creates new form Resident
@@ -93,6 +99,7 @@ public class Resident_Main extends javax.swing.JFrame {
             }
         }
         
+         
         dt(); //Input Date and Time
     }
 
@@ -1011,7 +1018,7 @@ public class Resident_Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Visitor ID", "Name", "Telephone No.", "Date"
+                "Visitor ID", "Name", "Telephone No."
             }
         ));
         jScrollPane12.setViewportView(VisitorTable);
@@ -1202,6 +1209,9 @@ public class Resident_Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
     // For Date and Time
     Timer t;
     SimpleDateFormat st;
@@ -1231,6 +1241,21 @@ public class Resident_Main extends javax.swing.JFrame {
            t.start(); 
         
     }
+        public void VisitorID() {
+            ArrayList<Integer> List = new ArrayList<Integer>();
+             for (int i = 0; i < VisitorTable.getRowCount(); i++) {
+            List.add(Integer.parseInt(VisitorTable.getValueAt(i,0).toString().substring(2,5)));
+        }
+        int max = Collections.max(List);
+        int newID = max + 1;
+        ResidentCreate_VP rcvp = new ResidentCreate_VP(Session);
+        
+        //VisitorID.setText(String.format("VI" + "%03d" ,newID) );
+        }
+    
+        
+
+
     
     
     private void AmountPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountPaymentActionPerformed
@@ -1317,6 +1342,10 @@ public class Resident_Main extends javax.swing.JFrame {
 
     private void Update7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update7ActionPerformed
         // TODO add your handling code here:
+        ResidentCreate_VP create = new ResidentCreate_VP(Session);
+        create.setVisible(true);
+        dispose();
+        
         
     }//GEN-LAST:event_Update7ActionPerformed
 
@@ -1358,36 +1387,11 @@ public class Resident_Main extends javax.swing.JFrame {
 
     private void PAYbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PAYbuttonActionPerformed
         // TODO add your handling code here:
-        // AmountPayment
-        if(!AmountPayment.getText().equals("")){
-            PaymentTable.setModel(new DefaultTableModel());
-            try {
-                BufferedReader br = new BufferedReader(new FileReader("Payment.txt"));
-                String firstLine = br.readLine().trim();
-                String[] columnsName = firstLine.split(",");
-                DefaultTableModel model = (DefaultTableModel) PaymentTable.getModel();
-                model.setColumnIdentifiers(columnsName);
-                Object[] tableLines = br.lines().toArray();
-                for (int i = 0; i < tableLines.length; i++) {
-                    String line = tableLines[i].toString().trim();
-                    String[] dataRow = line.split(",");
-                    if(dataRow[3].equals(AmountPayment.getText())){
-                        String feebalance = "0";
-                        PaymentTable.setValueAt(feebalance,PaymentTable.getSelectedRow(),0);
-                            JOptionPane.showMessageDialog(null, "You Have Made Payment SUccessfully!");
-//                        model.addRow(dataRow);
-//                        AmountPayment.setText(dataRow[3]);
-                    }
-                    else {
-                        JOptionPane.showMessageDialog(null,"Please Enter The Correct Amount to Make Payment!");
-                    }
-                }
-
-            } catch (IOException e) {
-                System.out.println("Incorrect File");
-            }
+        if(PaymentTable.getSelectedRow() != -1){
+            String Amount = PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 0).toString();
+            //PY.PAY(AmountPayment.getText());
+            JOptionPane.showMessageDialog(null,"Successfully Updated Invoice!");
         }
-        
     }//GEN-LAST:event_PAYbuttonActionPerformed
 
     /**

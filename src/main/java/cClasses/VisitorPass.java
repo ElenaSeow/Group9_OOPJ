@@ -25,31 +25,32 @@ import javax.swing.table.DefaultTableModel;
  * @author HP
  */
 public class VisitorPass {
+
+    public static void Write(ArrayList<VisitorPass> visitorpass) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     private String userId;
     private String visitorId;
     private String name;
     private String contactNo;
-    private Date date;
     
-    public VisitorPass(String userId, String visitorId, String name, String contactNo, Date date) {
+    public VisitorPass(String userId, String visitorId, String name, String contactNo) {
         this.userId=userId;
         this.visitorId=visitorId;
         this.name=name;
         this.contactNo=contactNo;
-        this.date=date;
     }
     
-    public VisitorPass(String userId, String visitorId, String name, String contactNo, String date) throws ParseException{
-        Date tdate = new SimpleDateFormat("dd-MM-yyyy").parse(date);
-
-        this.userId=userId;
-        this.visitorId=visitorId;
-        this.name=name;
-        this.contactNo=contactNo;
-        this.date=tdate; 
-    
-    }
+//    public VisitorPass(String userId, String visitorId, String name, String contactNo, String date) throws ParseException{
+//        Date tdate = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+//
+//        this.userId=userId;
+//        this.visitorId=visitorId;
+//        this.name=name;
+//        this.contactNo=contactNo;
+//    
+//    }
     
     
     
@@ -71,9 +72,9 @@ public class VisitorPass {
         return contactNo;
     }
     
-    public Date getDate() {
-        return date;
-    }
+//    public Date getDate() {
+//        return date;
+//    }
     
     public void setUserId(String userId) {
         this.userId=userId;
@@ -91,9 +92,9 @@ public class VisitorPass {
         this.contactNo=contactNo;
     }
     
-    public void setDate(Date date) {
-        this.date=date;
-    }
+//    public void setDate(Date date) {
+//        this.date=date;
+//    }
     
     public static class VisitorPassInfo {
         
@@ -101,7 +102,7 @@ public class VisitorPass {
         ArrayList<String> visitorId = new ArrayList();
         ArrayList<String> name = new ArrayList();
         ArrayList<String> contactNo = new ArrayList();
-        ArrayList<String> date = new ArrayList();
+//        ArrayList<String> date = new ArrayList();
         
     }
     
@@ -121,7 +122,7 @@ public class VisitorPass {
             }
             for(String str:data){
                 String[] list = str.split(",");
-                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3],list[4]));
+                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3]));
                 
                 br.close();
             }   
@@ -129,9 +130,7 @@ public class VisitorPass {
             Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         return visitorpass;
     }
     
@@ -140,10 +139,10 @@ public class VisitorPass {
             for(VisitorPass u:visitorpass){
                 String userID=u.getUserId();
                 if(id.equals(userID)){
-                    DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
-                    String date = date_format.format(u.getDate());
+//                    DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
+//                    String date = date_format.format(u.getDate());
                 
-                    String[] allDataRow = {u.getVisitorId(),u.getName(),u.getContactNo(),date};
+                    String[] allDataRow = {u.getVisitorId(),u.getName(),u.getContactNo()};
                     model.addRow(allDataRow);
                 }
                 
@@ -172,7 +171,23 @@ public class VisitorPass {
                 System.out.println("Incorrect File Path");
             }
         }
-
+        
+        public static void Write(ArrayList<VisitorPass> visitorpass){
+            PrintWriter pr;
+        try {
+            pr = new PrintWriter("Units.txt");
+            for (VisitorPass i: visitorpass){
+                String id=i.getUserId();
+                String name=i.getName();
+                String visitorid =i.getVisitorId();
+                String contactNo=i.getContactNo();
+                pr.println(id+":"+name + ":" + visitorid + ":" + contactNo);
+            }
+            pr.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
         
     }
     

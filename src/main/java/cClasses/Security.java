@@ -59,7 +59,7 @@ public class Security extends User {
    public static void tabulateData(ArrayList<Security> securities,JTable table){
        DefaultTableModel model = (DefaultTableModel) table.getModel();
        for(Security s: securities){
-            String[] allDataRow = {s.getId(),s.getName(),s.getEmail(),s.getPassword(),s.getRole(),s.getContactNo()};
+            String[] allDataRow = {s.getName(),s.getId(),s.getRole(),s.getEmail(),s.getPassword(),s.getContactNo()};
             model.addRow(allDataRow);
         }
     }

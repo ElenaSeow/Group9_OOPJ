@@ -499,9 +499,9 @@ public class AdminFM extends javax.swing.JFrame {
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         // TODO add your handling code here:
-//        AdminCM aec = new AdminCM (Session);
-//        aec.setVisible(true);
-//        dispose();
+        AdminCM aec = new AdminCM(Session);
+        aec.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void DeleteFacilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteFacilityActionPerformed

@@ -12,6 +12,7 @@ import Resident.Resident_Main;
 import Security.Security_Main;
 import Vendor.Vendor_Main;
 import cClasses.Session;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -107,6 +108,11 @@ public class Login_Page extends javax.swing.JFrame {
                 PasswordTFFocusGained(evt);
             }
         });
+        PasswordTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PasswordTFKeyPressed(evt);
+            }
+        });
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -123,6 +129,11 @@ public class Login_Page extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(114, 126, 224));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPanel3KeyPressed(evt);
+            }
+        });
 
         LoginBtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         LoginBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -497,6 +508,15 @@ public class Login_Page extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_LoginBtnMouseClicked
 
+    private void jPanel3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel3KeyPressed
+
+    private void PasswordTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordTFKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_PasswordTFKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -537,14 +557,10 @@ public class Login_Page extends javax.swing.JFrame {
     public javax.swing.JTextField EmailTF;
     private javax.swing.JLabel LoginBtn;
     public javax.swing.JPasswordField PasswordTF;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

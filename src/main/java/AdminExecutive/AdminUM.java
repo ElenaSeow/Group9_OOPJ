@@ -164,6 +164,9 @@ public class AdminUM extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel6MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel6MouseEntered(evt);
+            }
         });
 
         jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
@@ -550,9 +553,9 @@ public class AdminUM extends javax.swing.JFrame {
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         // TODO add your handling code here:
-//        Admin_Executive_Complaint aec = new Admin_Executive_Complaint(logindetails);
-//        aec.setVisible(true);
-//        dispose();
+        AdminCM aec = new AdminCM(Session);
+        aec.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
@@ -575,6 +578,10 @@ public class AdminUM extends javax.swing.JFrame {
         aem.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel7MouseClicked
+
+    private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel6MouseEntered
 
     /**
      * @param args the command line arguments

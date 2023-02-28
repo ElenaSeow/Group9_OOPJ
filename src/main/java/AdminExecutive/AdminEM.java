@@ -699,9 +699,9 @@ public class AdminEM extends javax.swing.JFrame {
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         // TODO add your handling code here:
-//        Admin_Executive_Complaint aec = new Admin_Executive_Complaint(logindetails);
-//        aec.setVisible(true);
-//        dispose();
+        AdminCM aec = new AdminCM(Session);
+        aec.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked

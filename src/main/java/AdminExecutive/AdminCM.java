@@ -3,29 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package AdminExecutive;
+
 import cClasses.Admin;
+import cClasses.Complaint;
+import cClasses.Functions;
 import cClasses.Session;
-import cClasses.User;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author HP
  */
-public class AdminMain extends javax.swing.JFrame {
+public class AdminCM extends javax.swing.JFrame {
     Session Session;
+    ArrayList<Complaint> complaints = new Complaint().Import();
     /**
      * Creates new form Admin_Executive_Sample
      */
-    public AdminMain(Session session) {
+    public AdminCM(Session session) {
         initComponents();
-        this.Session = session;
-        String id = Session.getId();
+        this.Session= session;
+        String id = session.getId();
+        Complaint.tabulateData(complaints, PendingTable);
+        Complaint.tabulateData1(complaints, ComplaintTable);
         ArrayList<Admin> admins;
         admins= new Admin().Import();
         for(Admin a:admins){
@@ -35,7 +39,10 @@ public class AdminMain extends javax.swing.JFrame {
                 Username.setText(username);
             }
         }
+
     }
+    
+//    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,6 +74,21 @@ public class AdminMain extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         BuidlingExecutive = new javax.swing.JLabel();
         Username = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        PendingTable = new javax.swing.JTable();
+        SearchBar = new javax.swing.JTextField();
+        newComplaint = new javax.swing.JButton();
+        updatePendComplaint = new javax.swing.JButton();
+        deletePendComplaint = new javax.swing.JButton();
+        ViewPending = new javax.swing.JButton();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ComplaintTable = new javax.swing.JTable();
+        SearchBar1 = new javax.swing.JTextField();
+        ViewAll = new javax.swing.JButton();
+        deleteComplaint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,9 +104,6 @@ public class AdminMain extends javax.swing.JFrame {
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel2MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel2MouseEntered(evt);
             }
         });
 
@@ -138,11 +157,6 @@ public class AdminMain extends javax.swing.JFrame {
         );
 
         jPanel6.setBackground(new java.awt.Color(67, 63, 113));
-        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel6MouseClicked(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -184,11 +198,6 @@ public class AdminMain extends javax.swing.JFrame {
         );
 
         jPanel7.setBackground(new java.awt.Color(67, 63, 113));
-        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel7MouseClicked(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -240,11 +249,6 @@ public class AdminMain extends javax.swing.JFrame {
         );
 
         jPanel10.setBackground(new java.awt.Color(67, 63, 113));
-        jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel10MouseClicked(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -310,7 +314,7 @@ public class AdminMain extends javax.swing.JFrame {
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -334,7 +338,7 @@ public class AdminMain extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(BuidlingExecutive)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Username)
                 .addGap(23, 23, 23))
         );
@@ -348,17 +352,176 @@ public class AdminMain extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
+        PendingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "User ID", "Title", "Date", "Description"
+            }
+        ));
+        jScrollPane1.setViewportView(PendingTable);
+
+        SearchBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchBarActionPerformed(evt);
+            }
+        });
+        SearchBar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SearchBarKeyReleased(evt);
+            }
+        });
+
+        newComplaint.setText("New");
+        newComplaint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newComplaintActionPerformed(evt);
+            }
+        });
+
+        updatePendComplaint.setText("Update");
+        updatePendComplaint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatePendComplaintActionPerformed(evt);
+            }
+        });
+
+        deletePendComplaint.setText("Delete");
+        deletePendComplaint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletePendComplaintActionPerformed(evt);
+            }
+        });
+
+        ViewPending.setText("View More");
+        ViewPending.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewPendingActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(newComplaint)
+                        .addGap(63, 63, 63)
+                        .addComponent(updatePendComplaint)
+                        .addGap(65, 65, 65)
+                        .addComponent(ViewPending)
+                        .addGap(57, 57, 57)
+                        .addComponent(deletePendComplaint)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deletePendComplaint, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(newComplaint)
+                        .addComponent(updatePendComplaint)
+                        .addComponent(ViewPending)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Pending Complaints", jPanel12);
+
+        ComplaintTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "User ID", "Title", "Date", "Description"
+            }
+        ));
+        jScrollPane2.setViewportView(ComplaintTable);
+
+        SearchBar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchBar1ActionPerformed(evt);
+            }
+        });
+        SearchBar1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SearchBar1KeyReleased(evt);
+            }
+        });
+
+        ViewAll.setText("View More");
+        ViewAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewAllActionPerformed(evt);
+            }
+        });
+
+        deleteComplaint.setText("Delete");
+        deleteComplaint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteComplaintActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(211, 211, 211)
+                        .addComponent(ViewAll)
+                        .addGap(90, 90, 90)
+                        .addComponent(deleteComplaint))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(SearchBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(152, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(SearchBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ViewAll)
+                    .addComponent(deleteComplaint))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Reviewed Complaints", jPanel11);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -381,48 +544,123 @@ public class AdminMain extends javax.swing.JFrame {
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         // TODO add your handling code here:
-        AdminUM aum = new AdminUM(Session);
-        aum.setVisible(true);
+        AdminUM aeum = new AdminUM(Session);
+        aeum.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
-        AdminRM arm = new AdminRM(Session);
-        arm.setVisible(true);
+        AdminRM aer = new AdminRM(Session);
+        aer.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel5MouseClicked
 
-    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
+    private void SearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBarActionPerformed
         // TODO add your handling code here:
-        AdminCM aec = new AdminCM(Session);
-        aec.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jPanel6MouseClicked
+    }//GEN-LAST:event_SearchBarActionPerformed
+
+    private void SearchBar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchBar1ActionPerformed
+
+    private void newComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newComplaintActionPerformed
+        // TODO add your handling code here:
+        AdminCMCreate nc = new AdminCMCreate(Session);
+        nc.setVisible(true);
+    }//GEN-LAST:event_newComplaintActionPerformed
+
+    private void updatePendComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePendComplaintActionPerformed
+        // TODO add your handling code here:
+        if(PendingTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = PendingTable.getSelectedRow();
+            String Id = PendingTable.getModel().getValueAt(row, column).toString();
+            AdminCMUpdate acmf = new AdminCMUpdate(Session);
+            acmf.spamdata(Id);
+            acmf.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+    }//GEN-LAST:event_updatePendComplaintActionPerformed
+
+    private void ViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewAllActionPerformed
+        // TODO add your handling code here:
+//        if(ComplaintTable.getSelectionModel().isSelectionEmpty()==false){
+//            int column = 0;
+//            int row = ComplaintTable.getSelectedRow();
+//            String Id = ComplaintTable.getModel().getValueAt(row, column).toString();
+//            AdminComplaintView acv = new AdminComplaintView(logindetails);
+//            acv.spamdata(Id);
+//            acv.setVisible(true);
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Please select a row.");
+//        }
+    }//GEN-LAST:event_ViewAllActionPerformed
+
+    private void ViewPendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewPendingActionPerformed
+        // TODO add your handling code here:
+//         if(PendingTable.getSelectionModel().isSelectionEmpty()==false){
+//            int column = 0;
+//            int row = PendingTable.getSelectedRow();
+//            String Id = PendingTable.getModel().getValueAt(row, column).toString();
+//            AdminComplaintView acv = new AdminComplaintView(logindetails);
+//            acv.spamdata(Id);
+//            acv.setVisible(true);
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Please select a row.");
+//        }
+    }//GEN-LAST:event_ViewPendingActionPerformed
+
+    private void deletePendComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePendComplaintActionPerformed
+        // TODO add your handling code here:
+        if(PendingTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = PendingTable.getSelectedRow();
+            String Id = PendingTable.getModel().getValueAt(row, column).toString();
+            Complaint.Delete(complaints, Id);
+            AdminCM aec= new AdminCM(Session);
+            aec.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+    }//GEN-LAST:event_deletePendComplaintActionPerformed
+
+    private void deleteComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteComplaintActionPerformed
+        // TODO add your handling code here:
+        if(ComplaintTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = ComplaintTable.getSelectedRow();
+            String Id = ComplaintTable.getModel().getValueAt(row, column).toString();
+            Complaint.Delete(complaints, Id);
+            AdminCM acm = new AdminCM(Session);
+            acm.setVisible(true);
+            dispose();
+         }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+    }//GEN-LAST:event_deleteComplaintActionPerformed
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
         // TODO add your handling code here:
-        AdminFM afm = new AdminFM(Session);
-        afm.setVisible(true);
+        AdminFM aefm = new AdminFM(Session);
+        aefm.setVisible(true);
         dispose();
     }//GEN-LAST:event_jPanel9MouseClicked
 
-    private void jPanel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseEntered
+    private void SearchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBarKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel2MouseEntered
+        String searchString = SearchBar.getText();
+        Functions.Search(searchString, PendingTable);
+    }//GEN-LAST:event_SearchBarKeyReleased
 
-    private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
-            AdminFB afb = new AdminFB(Session);
-            afb.setVisible(true);
-            dispose();
-    }//GEN-LAST:event_jPanel10MouseClicked
-
-    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
+    private void SearchBar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBar1KeyReleased
         // TODO add your handling code here:
-        AdminEM aem = new AdminEM(Session);
-        aem.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jPanel7MouseClicked
+        String searchString = SearchBar1.getText();
+        Functions.Search(searchString, ComplaintTable);
+    }//GEN-LAST:event_SearchBar1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -461,7 +699,15 @@ public class AdminMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BuidlingExecutive;
+    private javax.swing.JTable ComplaintTable;
+    private javax.swing.JTable PendingTable;
+    private javax.swing.JTextField SearchBar;
+    private javax.swing.JTextField SearchBar1;
     private javax.swing.JLabel Username;
+    private javax.swing.JButton ViewAll;
+    private javax.swing.JButton ViewPending;
+    private javax.swing.JButton deleteComplaint;
+    private javax.swing.JButton deletePendComplaint;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -472,6 +718,8 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -480,6 +728,11 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton newComplaint;
+    private javax.swing.JButton updatePendComplaint;
     // End of variables declaration//GEN-END:variables
 }

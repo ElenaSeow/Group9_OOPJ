@@ -9,7 +9,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -70,6 +72,13 @@ public class Functions {
         String newId= code+newDigit;
         return newId;
     }
+        public static String date(){
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+            Date date = new Date(); 
+            String strDate = formatter.format(date);
+            return strDate;
+        }
+        
         public static String getFile(String id){
             String code = id.substring(0,2);
             String file = null;

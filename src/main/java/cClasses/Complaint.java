@@ -53,6 +53,7 @@ public class Complaint {
             Logger.getLogger(Complaint.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+        public Complaint(){}
     
     
     public String getComplaintId(){
@@ -136,6 +137,20 @@ public class Complaint {
         for(Complaint c:complaints){
             String status = c.getStatus();
             if(status.equals("Pending")){
+               DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
+                String cdate = date_format.format(c.getComplaintDate());
+                String udate = date_format.format(c.getUpdateDate());
+            String[] allDataRow = {c.getComplaintId(),c.getDesc(),cdate,udate,status};
+            model.addRow(allDataRow); 
+            }
+            
+        }
+    }
+   public static void tabulateData1(ArrayList<Complaint> complaints, JTable table){
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for(Complaint c:complaints){
+            String status = c.getStatus();
+            if(status.equals("Reviewed")){
                DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
                 String cdate = date_format.format(c.getComplaintDate());
                 String udate = date_format.format(c.getUpdateDate());

@@ -526,6 +526,9 @@ public class AdminFB extends javax.swing.JFrame {
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         // TODO add your handling code here:
+        AdminCM aec = new AdminCM(Session);
+        aec.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jPanel6MouseClicked
 

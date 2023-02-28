@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public class Building_Executive_Main extends javax.swing.JFrame {
     Session Session;
     String id;
-    ArrayList<BuildingExecutive> buildingexecutives;
+    ArrayList<BuildingExecutive> buildingexecutives = new BuildingExecutive().Import();
     ArrayList<Security> securities = new Security().Import();
   //ArrayList<Complaint> complaints = new Complaint().Import();
   //ArrayList<Patrols> patrols = new Patrols().Import();

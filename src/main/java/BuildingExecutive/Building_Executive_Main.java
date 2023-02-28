@@ -1,11 +1,15 @@
 package BuildingExecutive;
 
 
+import AdminExecutive.AdminUM;
 import cClasses.BuildingExecutive;
 import cClasses.Complaint;
 import cClasses.Functions;
+import cClasses.Jobs;
+import cClasses.Resident;
 import cClasses.Security;
 import cClasses.Session;
+import cClasses.Unit;
 import com.mycompany.group9_oopj.Main_Page;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -28,6 +33,8 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     ArrayList<Security> securities = new Security().Import();
   //ArrayList<Complaint> complaints = new Complaint().Import();
   //ArrayList<Patrols> patrols = new Patrols().Import();
+    
+    Jobs.getInfo j = new Jobs.getInfo();
     
     /**
      * Creates new form Building_Executive_Main
@@ -48,16 +55,9 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         for(BuildingExecutive b:buildingexecutives){
             String username = b.getName();
             String buildingexecutiveId= b.getId();
-            String role = b.getRole();
-            String email = b.getEmail();
-            String contactNo = b.getContactNo();
             if(id.equals(buildingexecutiveId)){
                 
-                emName.setText(username);
-                emID.setText(buildingexecutiveId);
-                emRole.setText(role);
-                emEmail.setText(email);
-                emContact.setText(contactNo);
+                Username.setText(username);
             
             }
         }
@@ -109,6 +109,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        Username = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         Logout1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -126,10 +127,12 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         JobManagementTbl = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        ClearBtn = new javax.swing.JButton();
+        UpdateBtn = new javax.swing.JButton();
+        DeleteBtn = new javax.swing.JButton();
+        AssignBtn = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        emPassword = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -174,6 +177,10 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText(" Parkhill Residence");
 
+        Username.setFont(new java.awt.Font("Bell MT", 0, 14)); // NOI18N
+        Username.setForeground(new java.awt.Color(255, 255, 255));
+        Username.setText("Username");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -181,9 +188,11 @@ public class Building_Executive_Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(298, 298, 298)
+                .addGap(192, 192, 192)
                 .addComponent(jLabel3)
-                .addContainerGap())
+                .addGap(36, 36, 36)
+                .addComponent(Username)
+                .addGap(17, 17, 17))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +200,8 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(Username))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -240,7 +250,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "Name", "ID", "Role", "Email", "Password", "Contact No."
             }
         ));
         JobManagementTbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -252,21 +262,39 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
         jLabel9.setText("Employees");
 
-        jButton1.setText("Clear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ClearBtn.setText("Clear");
+        ClearBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ClearBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Update");
-
-        jButton3.setText("Delete");
-
-        jButton4.setText("Assign");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        UpdateBtn.setText("Update");
+        UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                UpdateBtnActionPerformed(evt);
+            }
+        });
+
+        DeleteBtn.setText("Delete");
+        DeleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteBtnActionPerformed(evt);
+            }
+        });
+
+        AssignBtn.setText("Assign");
+        AssignBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AssignBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Password:");
+
+        emPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emPasswordActionPerformed(evt);
             }
         });
 
@@ -275,50 +303,58 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addGap(232, 232, 232))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addComponent(emName))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emID)
-                            .addComponent(emRole)
-                            .addComponent(emEmail)
-                            .addComponent(emContact)))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1)
-                            .addComponent(jButton4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(emContact, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                                    .addComponent(emPassword)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(emID)
+                                    .addComponent(emRole)
+                                    .addComponent(emEmail)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emName, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(259, 259, 259)
+                        .addComponent(jLabel9)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ClearBtn)
+                            .addComponent(AssignBtn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                            .addComponent(UpdateBtn)
+                            .addComponent(DeleteBtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(emName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(emName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(emID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -332,21 +368,24 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                             .addComponent(emEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(emPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(emContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(ClearBtn)
+                            .addComponent(UpdateBtn))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4)))
+                            .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AssignBtn)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Job Management", jPanel2);
@@ -420,7 +459,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -526,7 +565,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton9)
                             .addComponent(jButton8))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -577,7 +616,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(75, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -616,9 +655,12 @@ public class Building_Executive_Main extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1)
+                        .addContainerGap())
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -663,21 +705,54 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Logout1MouseClicked
 
     private void JobManagementTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JobManagementTblMousePressed
-        
+        if(JobManagementTbl.getSelectedRow() != -1){
+            emName.setText(JobManagementTbl.getValueAt(JobManagementTbl.getSelectedRow(), 0).toString());
+            emID.setText(JobManagementTbl.getValueAt(JobManagementTbl.getSelectedRow(), 1).toString());
+            emRole.setText(JobManagementTbl.getValueAt(JobManagementTbl.getSelectedRow(), 2).toString());
+            emEmail.setText(JobManagementTbl.getValueAt(JobManagementTbl.getSelectedRow(), 3).toString());
+            emPassword.setText(JobManagementTbl.getValueAt(JobManagementTbl.getSelectedRow(), 4).toString());
+            emContact.setText(JobManagementTbl.getValueAt(JobManagementTbl.getSelectedRow(), 5).toString());
+        }
     }//GEN-LAST:event_JobManagementTblMousePressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ClearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearBtnActionPerformed
         JobManagementTbl.clearSelection();
         emName.setText("");
         emID.setText("");
         emRole.setText("");
         emEmail.setText("");
+        emPassword.setText("");
         emContact.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ClearBtnActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void AssignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AssignBtnActionPerformed
+        String x = emID.getText().replaceAll("[0-9]", "");
+        if(x.equals("BM") || x.equals("AE") || x.equals("AD") || x.equals("BEXEC") || x.equals("RE") || x.equals("VE")){
+            JOptionPane.showMessageDialog(null, "You Don't Have Access!");
+        }else{
+            if (!emID.getText().equals("") || 
+                !emName.getText().equals("") || 
+                !emEmail.getText().equals("") || 
+                !emPassword.getText().equals("") || 
+                !emRole.getText().equals("") || 
+                !emContact.getText().equals("")) 
+            {
+                j.addFile(emID.getText(), 
+                        emName.getText(), 
+                        emEmail.getText(),
+                        emPassword.getText(),
+                        emRole.getText(),
+                        emContact.getText());
+                JOptionPane.showMessageDialog(null, "Successfully Assigned Job!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Missing Inputs");
+            }
+            DefaultTableModel model = (DefaultTableModel)JobManagementTbl.getModel();
+            model.setRowCount(0);
+            Security.tabulateData(securities, JobManagementTbl);
+        } 
+    
+    }//GEN-LAST:event_AssignBtnActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -702,6 +777,71 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     private void emRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emRoleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emRoleActionPerformed
+
+    private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
+        String Id = emID.getText();
+        String name = emName.getText();
+        String email = emEmail.getText();
+        String password = emPassword.getText();
+        String role = emRole.getText();
+        String contact = emContact.getText();
+        
+        ArrayList<String> emdata;
+        emdata=Functions.Read("Security.txt");
+        for(String i:emdata){
+                String[] j = i.split(":");
+                    if(j[1].equals(Id)){
+                        Id=j[1];
+                    }
+                }
+        securities = new Security(Id, name, email, password, role, contact).Update(securities, Id);
+        JOptionPane.showMessageDialog(null, "Successfully Updated");
+        
+        try (BufferedReader brrr = new BufferedReader(new FileReader("Security.txt"))) {
+            String line;
+            Scanner reader = new Scanner(brrr);
+            while ((line = brrr.readLine()) != null) {
+                String[] list = line.split(":");
+                String SecurityId = list[0];
+                String SecurityName = list [1];
+                String SecurityEmail = list[2];
+                String SecurityPassword = list[3];
+                String SecurityContact = list [5];
+                
+            if (emID.equals(SecurityId)) {    
+                emName.setText(SecurityName);
+                emEmail.setText(SecurityEmail);
+                emPassword.setText(SecurityPassword);
+                emContact.setText(SecurityContact);
+                } }
+            }   
+    catch (Exception e) {  
+            }
+    JOptionPane.showMessageDialog(null,"Your Details Have Been Modified and Refreshed");    
+
+    DefaultTableModel model = (DefaultTableModel)JobManagementTbl.getModel();
+    model.setRowCount(0);
+    Security.tabulateData(securities, JobManagementTbl);
+    
+    }//GEN-LAST:event_UpdateBtnActionPerformed
+
+    private void DeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBtnActionPerformed
+        if(JobManagementTbl.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = JobManagementTbl.getSelectedRow();
+            String Id = JobManagementTbl.getModel().getValueAt(JobManagementTbl.convertRowIndexToModel(row), column).toString();
+            j.deleteFile(emID.getText());
+            Building_Executive_Main bem = new Building_Executive_Main(Session);
+            bem.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+    }//GEN-LAST:event_DeleteBtnActionPerformed
+
+    private void emPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -739,21 +879,23 @@ public class Building_Executive_Main extends javax.swing.JFrame {
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AssignBtn;
+    private javax.swing.JButton ClearBtn;
     private javax.swing.JLabel Date;
+    private javax.swing.JButton DeleteBtn;
     private javax.swing.JTable JobManagementTbl;
     private javax.swing.JLabel Logout1;
     private javax.swing.JLabel Time;
+    private javax.swing.JButton UpdateBtn;
+    private javax.swing.JLabel Username;
     private javax.swing.JTable cTable;
     private javax.swing.JTextField emContact;
     private javax.swing.JTextField emEmail;
     private javax.swing.JTextField emID;
     private javax.swing.JTextField emName;
+    private javax.swing.JTextField emPassword;
     private javax.swing.JTextField emRole;
     private javax.swing.JTable hTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -779,6 +921,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

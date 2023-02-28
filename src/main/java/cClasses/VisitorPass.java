@@ -172,7 +172,7 @@ public class VisitorPass {
             }
         }
         
-        public static void Write(ArrayList<VisitorPass> visitorpass){
+        public void Write(ArrayList<VisitorPass> visitorpass){
             PrintWriter pr;
         try {
             pr = new PrintWriter("Units.txt");
@@ -191,7 +191,32 @@ public class VisitorPass {
         
     }
     
-    
+    public static ArrayList<VisitorPass>Delete(ArrayList<VisitorPass> visitorpass, String id){
+            ArrayList<VisitorPass> newVisitor= new ArrayList<>();
+        try {
+           for(VisitorPass r:visitorpass){
+               String Id = r.getUserId();
+               if(id.equals(Id)){
+               }else{
+                  // newResidents.add(r);
+               }
+           }
+               PrintWriter pr = new PrintWriter("VisitorPass.txt");
+                for (VisitorPass i: visitorpass){
+                    String userId = i.getUserId();
+                    String visitorId=i.getVisitorId();
+                    String name=i.getName();
+                    String contactNo =i.getContactNo();
+                    
+                    pr.println(userId+":"+visitorId+":"+name+":"+contactNo);
+            }
+            pr.close();
+               
+        } catch (FileNotFoundException ex) {
+           Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);         
+       }
+       return newVisitor;
+     }
     
     
     

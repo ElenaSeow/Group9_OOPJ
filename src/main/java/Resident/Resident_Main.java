@@ -1106,7 +1106,7 @@ public class Resident_Main extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ComplaintID", "Description", "Date", "Status"
+                "ComplaintID", "Description", "Status", "Date"
             }
         ));
         jScrollPane14.setViewportView(ComplaintTable6);
@@ -1280,10 +1280,25 @@ public class Resident_Main extends javax.swing.JFrame {
 
     private void Update6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update6ActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_Update6ActionPerformed
 
     private void Delete5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete5ActionPerformed
         // TODO add your handling code here:
+        if(VisitorTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = VisitorTable.getSelectedRow();
+            String Id = VisitorTable.getModel().getValueAt(VisitorTable.convertRowIndexToModel(row), column).toString();
+            visitorpass = VisitorPass.Delete(visitorpass, Id);
+    //        Functions.Delete("Units.txt", Id);
+            Resident_Main aum = new Resident_Main(Session);
+            aum.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+        
     }//GEN-LAST:event_Delete5ActionPerformed
 
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed

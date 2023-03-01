@@ -1,29 +1,22 @@
 package BuildingExecutive;
 
-
-import AdminExecutive.AdminUM;
-import AdminExecutive.AdminUMUpdate;
 import cClasses.BuildingExecutive;
 import cClasses.Complaint;
 import cClasses.Functions;
 import cClasses.Jobs;
+import cClasses.Patrolling;
 import cClasses.Patrols;
-import cClasses.Resident;
 import cClasses.Security;
 import cClasses.Session;
-import cClasses.Unit;
 import com.mycompany.group9_oopj.Main_Page;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -38,6 +31,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     
     Complaint.fileManipulation c = new Complaint.fileManipulation();
     Jobs.getInfo j = new Jobs.getInfo();
+    Patrolling.getInfo p = new Patrolling.getInfo();
     
     /**
      * Creates new form Building_Executive_Main
@@ -924,21 +918,44 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_pDeleteBtnActionPerformed
 
     private void pAssignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pAssignBtnActionPerformed
-       if(PatrollingTbl.getSelectionModel().isSelectionEmpty()==false){
-            int column = 0;
-            int row = PatrollingTbl.getSelectedRow();
-            String Id = PatrollingTbl.getModel().getValueAt(PatrollingTbl.convertRowIndexToModel(row), column).toString();
-            String secid =psSID.getText();
-            String time = psTime.getText();
-            String date = psDate.getText();
-            patrols = new Patrols(Id,secid,time,date).Update(patrols, Id);
-            JOptionPane.showMessageDialog(null, "Successfully Updated");
-            Building_Executive_Main bem = new Building_Executive_Main(Session);
-            bem.setVisible(true);
-            dispose();
-            }   else{
-            JOptionPane.showMessageDialog(null, "Please select a row.");
-        }
+//       if(PatrollingTbl.getSelectionModel().isSelectionEmpty()==false){
+//            int column = 0;
+//            int row = PatrollingTbl.getSelectedRow();
+//            String Id = PatrollingTbl.getModel().getValueAt(PatrollingTbl.convertRowIndexToModel(row), column).toString();
+//            String secid =psSID.getText();
+//            String time = psTime.getText();
+//            String date = psDate.getText();
+//            patrols = new Patrols(Id,secid,time,date).Update(patrols, Id);
+//            JOptionPane.showMessageDialog(null, "Successfully Updated");
+//            Building_Executive_Main bem = new Building_Executive_Main(Session);
+//            bem.setVisible(true);
+//            dispose();
+//            }   else{
+//            JOptionPane.showMessageDialog(null, "Please select a row.");
+//        }
+
+        if (!psCID.getText().equals("") || 
+                !psSID.getText().equals("") || 
+                !psTime.getText().equals("") || 
+                !psDate.getText().equals("")) 
+            {
+                p.addFile(psCID.getText(), 
+                        psSID.getText(), 
+                        psTime.getText(),
+                        psDate.getText());
+                patrols.add(new Patrols(psCID.getText(), 
+                        psSID.getText(), 
+                        psTime.getText(),
+                        psDate.getText()));
+                JOptionPane.showMessageDialog(null, "Successfully Assigned Job!");
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Missing Inputs");
+            }
+            DefaultTableModel model = (DefaultTableModel)PatrollingTbl.getModel();
+            model.setRowCount(0);
+            Patrols.tabulateData(patrols, PatrollingTbl);
+        
     }//GEN-LAST:event_pAssignBtnActionPerformed
 
     private void psTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psTimeActionPerformed

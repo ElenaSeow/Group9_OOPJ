@@ -27,8 +27,19 @@ public class Security_Main extends javax.swing.JFrame {
         this.Session = session;
         id = Session.getId();  
         
-//        VisitorPass.tabulateData(visitorpass, VisitorPassTable,id);
+        VisitorPass.tabulateData(visitorpass, VisitorPassTable,id);
         
+        visitorpass=new VisitorPass().Import();
+        
+        ArrayList<Security> admins;
+        admins= new Security().Import();
+        for(Security a:admins){
+            String adminId= a.getId();
+            String username = a.getName();
+            if(id.equals(adminId)){
+//                Username.setText(username);
+            }
+        }
     }
 
     /** This method is called from within the constructor to
@@ -117,13 +128,10 @@ public class Security_Main extends javax.swing.JFrame {
 
         VisitorPassTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Visito ID", "User ID", "Name", "Contact No"
+                "Visitor ID", "Name", "Contact No"
             }
         ));
         jScrollPane1.setViewportView(VisitorPassTable);

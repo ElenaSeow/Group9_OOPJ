@@ -1,2 +1,2 @@
-CM001:AD001:Description:Resovled:28-02-2023
-CM002:RE001:Description:Reviewed:28-02-2023
+CM001:AD001:Description:Pending:28-02-2023:28-02-2023
+CM002:RE001:Description:Reviewed:28-02-2023:28-02-2023

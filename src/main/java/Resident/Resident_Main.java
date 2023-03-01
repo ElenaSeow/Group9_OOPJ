@@ -42,6 +42,7 @@ public class Resident_Main extends javax.swing.JFrame {
     Session Session;
     String id;
     ArrayList<Resident> residents;
+    
     ArrayList<Invoices> invoices = new Invoices().Import();
     ArrayList<VisitorPass> visitorpass = new VisitorPass().Import();
     ArrayList<Payment> payment = new Payment().Import();
@@ -56,6 +57,7 @@ public class Resident_Main extends javax.swing.JFrame {
         initComponents();
         this.Session = session;
         id = Session.getId();   
+        
         Invoices.tabulateData(invoices, InvoiceTable,id);
         VisitorPass.tabulateData(visitorpass, VisitorTable,id);
         Payment.tabulateData(payment, PaymentTable,id);

@@ -34,7 +34,7 @@ public class Vendor_Main extends javax.swing.JFrame {
     Session Session;
     String id;
     ArrayList<Vendor> vendors;
-    ArrayList<Invoices> invoices = new Invoices().Import();
+    //ArrayList<Invoices> invoices = new Invoices().Import();
     /**
      * Creates new form Vendor_Main
      */
@@ -42,11 +42,8 @@ public class Vendor_Main extends javax.swing.JFrame {
         initComponents();
         this.Session = session;
         id = Session.getId();
-        Invoices.tabulateData(invoices, InvoiceTable,id);
         
         vendors=new Vendor().Import();
-        
-        
         ArrayList<String> unitdata;
         unitdata=Functions.Read("Units.txt");
         String unitnumber="";
@@ -74,7 +71,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                 PasswordL.setText(password);
                 RoleL.setText(role);
                 TelNoL.setText(contactNo);
-                UnitIDview.setText(unitnumber);
+                UnitIDL.setText(unitnumber);
                 
                 
                 //set text for unitid??
@@ -84,13 +81,10 @@ public class Vendor_Main extends javax.swing.JFrame {
                 EmailMOD.setText(email);
                 PasswordMOD.setText(password);
                 TelNoMOD.setText(contactNo);
-                UnitIDupdate.setText(unitnumber);
+                UnitIDL2.setText(unitnumber);
                 
             }
         }
-                dt(); //Input Date and Time
-
-        
     }
 
     /**
@@ -101,35 +95,7 @@ public class Vendor_Main extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     
     
-    // For Date and Time
-    Timer t;
-    SimpleDateFormat st;
-    
-    public void dt(){
-    
-        // Date
-        Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        
-        String dd = sdf.format(d);
-        Date.setText(dd);
-        
-        // Time
-        t = new Timer (0, new ActionListener () {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            
-                Date dt = new Date();
-                st = new SimpleDateFormat("hh:mm:ss a");
-                
-                String tt = st.format(dt);
-                Time.setText(tt);
-            }
-        }); 
-           t.start(); 
-        
-    }
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -143,7 +109,7 @@ public class Vendor_Main extends javax.swing.JFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jLabel72 = new javax.swing.JLabel();
-        UnitIDview = new javax.swing.JLabel();
+        UnitIDL = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         UserIDL = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
@@ -158,7 +124,7 @@ public class Vendor_Main extends javax.swing.JFrame {
         TelNoL = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel71 = new javax.swing.JLabel();
-        UnitIDupdate = new javax.swing.JLabel();
+        UnitIDL2 = new javax.swing.JLabel();
         UserIDL2 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
@@ -182,8 +148,6 @@ public class Vendor_Main extends javax.swing.JFrame {
         PayPaymentButton = new javax.swing.JButton();
         jLabel55 = new javax.swing.JLabel();
         FeeDetailsPayment = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
-        FeeStatusPayment = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         PaymentTable3 = new javax.swing.JTable();
         jPanel23 = new javax.swing.JPanel();
@@ -200,6 +164,9 @@ public class Vendor_Main extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         OutstandingTable3 = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ReceiptTable = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         Date = new javax.swing.JLabel();
         Time = new javax.swing.JLabel();
@@ -260,8 +227,8 @@ public class Vendor_Main extends javax.swing.JFrame {
         jLabel72.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel72.setText("Unit No.");
 
-        UnitIDview.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        UnitIDview.setText("User Unit ID");
+        UnitIDL.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        UnitIDL.setText("User Unit ID");
 
         jLabel44.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel44.setText("User ID: ");
@@ -340,7 +307,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                         .addComponent(jLabel72))
                     .addGap(18, 18, 18)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(UnitIDview)
+                        .addComponent(UnitIDL)
                         .addComponent(UserIDL))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 159, Short.MAX_VALUE)
                     .addComponent(jLabel75)
@@ -372,7 +339,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(UnitIDview)
+                        .addComponent(UnitIDL)
                         .addComponent(jLabel72)
                         .addComponent(jLabel75))
                     .addGap(18, 18, 18)
@@ -387,8 +354,8 @@ public class Vendor_Main extends javax.swing.JFrame {
         jLabel71.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel71.setText("Unit No.");
 
-        UnitIDupdate.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        UnitIDupdate.setText("User Unit ID");
+        UnitIDL2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        UnitIDL2.setText("User Unit ID");
 
         UserIDL2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         UserIDL2.setText("User ID Details");
@@ -469,7 +436,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                     .addGap(27, 27, 27)
                     .addComponent(jLabel71)
                     .addGap(30, 30, 30)
-                    .addComponent(UnitIDupdate)
+                    .addComponent(UnitIDL2)
                     .addContainerGap(524, Short.MAX_VALUE)))
         );
         jPanel9Layout.setVerticalGroup(
@@ -502,7 +469,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(UnitIDupdate)
+                        .addComponent(UnitIDL2)
                         .addComponent(jLabel71))
                     .addContainerGap(168, Short.MAX_VALUE)))
         );
@@ -548,26 +515,20 @@ public class Vendor_Main extends javax.swing.JFrame {
         PayPaymentButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel55.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel55.setText("Fee Details:");
+        jLabel55.setText("Date:");
 
         FeeDetailsPayment.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        FeeDetailsPayment.setText("Fee Details");
-
-        jLabel56.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel56.setText("Fee Status:");
-
-        FeeStatusPayment.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        FeeStatusPayment.setText("Fee Status");
+        FeeDetailsPayment.setText("Date");
 
         PaymentTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Fee", "Details", "Status"
+                "Fee", "Date"
             }
         ));
         jScrollPane8.setViewportView(PaymentTable3);
@@ -579,26 +540,22 @@ public class Vendor_Main extends javax.swing.JFrame {
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel22Layout.createSequentialGroup()
-                            .addComponent(jLabel56)
-                            .addGap(25, 25, 25)
-                            .addComponent(FeeStatusPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel22Layout.createSequentialGroup()
-                            .addComponent(jLabel55)
-                            .addGap(21, 21, 21)
-                            .addComponent(FeeDetailsPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(PayPaymentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addComponent(jLabel54)
-                        .addGap(75, 75, 75)
-                        .addComponent(FeePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel22Layout.createSequentialGroup()
                         .addComponent(jLabel53)
                         .addGap(46, 46, 46)
-                        .addComponent(AmountTFPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(AmountTFPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
+                            .addComponent(jLabel55)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(FeeDetailsPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
+                            .addComponent(jLabel54)
+                            .addGap(75, 75, 75)
+                            .addComponent(FeePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
@@ -614,11 +571,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel55)
                     .addComponent(FeeDetailsPayment))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel56)
-                    .addComponent(FeeStatusPayment))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel53)
                     .addComponent(AmountTFPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -661,7 +614,7 @@ public class Vendor_Main extends javax.swing.JFrame {
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 37, Short.MAX_VALUE))
         );
 
         jTabbedPane6.addTab("Invoice", jPanel23);
@@ -673,10 +626,10 @@ public class Vendor_Main extends javax.swing.JFrame {
         OutstandingFee.setText("Fee");
 
         jLabel58.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel58.setText("Fee Details:");
+        jLabel58.setText("Date:");
 
         OutstandingDetails.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        OutstandingDetails.setText("Fee Details");
+        OutstandingDetails.setText("Date");
 
         jLabel60.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel60.setText("Amount:");
@@ -694,7 +647,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Outstanding Fee", "Details"
+                "Outstanding Fee", "Date"
             }
         ));
         jScrollPane10.setViewportView(OutstandingTable3);
@@ -707,20 +660,21 @@ public class Vendor_Main extends javax.swing.JFrame {
                 .addGap(52, 52, 52)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel24Layout.createSequentialGroup()
-                        .addComponent(jLabel58)
-                        .addGap(21, 21, 21)
-                        .addComponent(OutstandingDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel24Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(PayOutstandingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel24Layout.createSequentialGroup()
-                        .addComponent(jLabel57)
-                        .addGap(75, 75, 75)
-                        .addComponent(OutstandingFee, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel24Layout.createSequentialGroup()
                         .addComponent(jLabel60)
                         .addGap(46, 46, 46)
-                        .addComponent(AmountTFOutstanding, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(AmountTFOutstanding, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel24Layout.createSequentialGroup()
+                            .addComponent(jLabel58)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(OutstandingDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel24Layout.createSequentialGroup()
+                            .addComponent(jLabel57)
+                            .addGap(75, 75, 75)
+                            .addComponent(OutstandingFee, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
@@ -736,7 +690,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel58)
                     .addComponent(OutstandingDetails))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel60)
                     .addComponent(AmountTFOutstanding, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -751,15 +705,42 @@ public class Vendor_Main extends javax.swing.JFrame {
 
         jTabbedPane6.addTab("Outstanding", jPanel24);
 
+        jButton1.setText("Print");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        ReceiptTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Invoice ID", "Unit ID", "Date"
+            }
+        ));
+        jScrollPane1.setViewportView(ReceiptTable);
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 739, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(34, 34, 34))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 218, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jTabbedPane6.addTab("Receipt", jPanel10);
@@ -791,7 +772,7 @@ public class Vendor_Main extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 261, Short.MAX_VALUE)
+            .addGap(0, 284, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Complaints", jPanel6);
@@ -831,11 +812,11 @@ public class Vendor_Main extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Time)
                     .addComponent(Date))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(197, 197, 197))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -846,7 +827,7 @@ public class Vendor_Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -858,48 +839,6 @@ public class Vendor_Main extends javax.swing.JFrame {
 
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
         // TODO add your handling code here:
-        String Id = UserIDL2.getText();
-        String name = NameMOD.getText();
-        String email = EmailMOD.getText();
-        String password = PasswordMOD.getText();
-        String role = RoleL2.getText();
-        String telno = TelNoMOD.getText();
-        String unitNo = UnitIDupdate.getText();
-        
-        ArrayList<String> unitdata;
-        String unitID="";
-        unitdata=Functions.Read("Units.txt");
-        for(String i:unitdata){
-            String[] j = i.split(":");
-            if(j[1].equals(unitNo)){
-                unitID=j[1];
-            }
-        }
-            
-        vendors = new Vendor(Id, name, email, password, role, telno, unitID).Update(vendors, Id);
-        JOptionPane.showMessageDialog(null, "Successfully Updated");
-        
-        try (BufferedReader brrr = new BufferedReader(new FileReader("Vendor.txt"))) {
-            String line;
-            Scanner reader = new Scanner(brrr);
-            while ((line = brrr.readLine()) != null) {
-                String[] list = line.split(":");
-                String VendorId = list[0];
-                String VendorName = list [1];
-                String VendorEmail = list[2];
-                String VendorPassword = list[3];
-                String VendorNumber = list [5];
-                
-            if (id.equals(VendorId)) {    
-                NameL.setText(VendorName);
-                EmailL.setText(VendorEmail);
-                PasswordL.setText(VendorPassword);
-                TelNoL.setText(VendorNumber);
-                } }
-            }   
-    catch (Exception e) {  
-            }
-    JOptionPane.showMessageDialog(null,"Your Details Have Been Modified and Refreshed");    
 
         
         
@@ -912,6 +851,12 @@ public class Vendor_Main extends javax.swing.JFrame {
     private void InvoiceTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceTableMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_InvoiceTableMousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -956,7 +901,6 @@ public class Vendor_Main extends javax.swing.JFrame {
     private javax.swing.JTextField EmailMOD;
     private javax.swing.JLabel FeeDetailsPayment;
     private javax.swing.JLabel FeePayment;
-    private javax.swing.JLabel FeeStatusPayment;
     private javax.swing.JTable InvoiceTable;
     private javax.swing.JLabel Logout;
     private javax.swing.JLabel NameL;
@@ -969,16 +913,18 @@ public class Vendor_Main extends javax.swing.JFrame {
     private javax.swing.JButton PayOutstandingButton;
     private javax.swing.JButton PayPaymentButton;
     private javax.swing.JTable PaymentTable3;
+    private javax.swing.JTable ReceiptTable;
     private javax.swing.JLabel RoleL;
     private javax.swing.JLabel RoleL2;
     private javax.swing.JLabel TelNoL;
     private javax.swing.JTextField TelNoMOD;
     private javax.swing.JLabel Time;
-    private javax.swing.JLabel UnitIDupdate;
-    private javax.swing.JLabel UnitIDview;
+    private javax.swing.JLabel UnitIDL;
+    private javax.swing.JLabel UnitIDL2;
     private javax.swing.JButton UpdateBtn;
     private javax.swing.JLabel UserIDL;
     private javax.swing.JLabel UserIDL2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
@@ -990,7 +936,6 @@ public class Vendor_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel60;
@@ -1013,6 +958,7 @@ public class Vendor_Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;

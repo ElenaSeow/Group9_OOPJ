@@ -213,6 +213,28 @@ public class Booking{
             
         }
     }
+     
+     public static void tabulateBooking(ArrayList<Booking> bookings, JTable table,String id){
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for(Booking b:bookings){
+            String status = b.getStatus();
+            String Id = b.getUserId();
+            if((status.equals("Booked"))&&(Id.equals(id))){
+               DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
+                String date = date_format.format(b.getDate());
+                ArrayList<Facility> facilities = new Facility().Import();
+                String facility = null;
+                for(Facility i :facilities){
+                    if(b.getFacId().equals(i.getId())){
+                        facility =i.getFacility();
+                }
+            }
+            String[] allDataRow = {b.getBookId(),facility,date,b.getTime(),status};
+            model.addRow(allDataRow); 
+            }
+            
+        }
+    }
     
     public ArrayList<Booking> Update(ArrayList<Booking> bookings, String id){
             PrintWriter pr = null;
@@ -224,6 +246,7 @@ public class Booking{
                    f.setTime(this.getTime());
                    f.setUserId(this.getUserId());
                    f.setName(this.getName());
+                   f.setStatus(this.getStatus());
                    
                }
            }   pr = new PrintWriter("Bookings.txt");
@@ -298,5 +321,13 @@ public class Booking{
        } finally {
            pr.close();
        }
+    }
+    
+    public static void facilityChooser(ArrayList<Facility> facilities,JComboBox jbox){
+         ArrayList<String> facNames = Facility.getFacilities(facilities);
+        for(String i : facNames){
+            jbox.addItem(String.valueOf(i));
+        }
+        jbox.setSelectedIndex(0);
     }
 }

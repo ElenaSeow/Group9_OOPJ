@@ -4,6 +4,10 @@
  */
 package Resident;
 
+import AdminExecutive.AdminFB;
+import AdminExecutive.AdminFBUpdate;
+import cClasses.Booking;
+import cClasses.Facility;
 import cClasses.Functions;
 import cClasses.Invoices;
 import cClasses.Payment;
@@ -18,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,6 +46,8 @@ public class Resident_Main extends javax.swing.JFrame {
     ArrayList<VisitorPass> visitorpass = new VisitorPass().Import();
     ArrayList<Payment> payment = new Payment().Import();
     Payment.FileManipulation PY = new Payment.FileManipulation();
+    ArrayList<Facility> facilities = new Facility().Import();
+    ArrayList<Booking> bookings = new Booking().Import();
     
     /**
      * Creates new form Resident
@@ -54,6 +61,11 @@ public class Resident_Main extends javax.swing.JFrame {
         Payment.tabulateData(payment, PaymentTable,id);
         Payment.tabulateDataOutstanding(payment, OutstandingTable, id);
         Payment.tabulateReceipt(payment, ReceiptTable,id);
+        Booking.tabulateBooking(bookings,FacilityTable4,id);
+        
+        // Bookings code
+        Booking.facilityChooser(facilities, FacilityCB4);
+        DateChooser1.setMinSelectableDate(new Date());
         
         visitorpass=new VisitorPass().Import();
         residents=new Resident().Import();
@@ -180,19 +192,6 @@ public class Resident_Main extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ReceiptTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jPanel25 = new javax.swing.JPanel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        FacilityTable4 = new javax.swing.JTable();
-        jLabel61 = new javax.swing.JLabel();
-        jLabel62 = new javax.swing.JLabel();
-        Book4 = new javax.swing.JButton();
-        FacilityCB4 = new javax.swing.JComboBox<>();
-        DateCB5 = new javax.swing.JComboBox<>();
-        jLabel63 = new javax.swing.JLabel();
-        jLabel64 = new javax.swing.JLabel();
-        FacilityTF4 = new javax.swing.JTextField();
-        DateTF4 = new javax.swing.JTextField();
-        Update5 = new javax.swing.JButton();
         jPanel27 = new javax.swing.JPanel();
         Update6 = new javax.swing.JButton();
         jScrollPane12 = new javax.swing.JScrollPane();
@@ -207,6 +206,17 @@ public class Resident_Main extends javax.swing.JFrame {
         Send6 = new javax.swing.JButton();
         jScrollPane14 = new javax.swing.JScrollPane();
         ComplaintTable6 = new javax.swing.JTable();
+        jPanel25 = new javax.swing.JPanel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        FacilityTable4 = new javax.swing.JTable();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        Book4 = new javax.swing.JButton();
+        FacilityCB4 = new javax.swing.JComboBox<>();
+        Update5 = new javax.swing.JButton();
+        DateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel65 = new javax.swing.JLabel();
+        FacilityCB5 = new javax.swing.JComboBox<>();
         Time = new javax.swing.JLabel();
         Date = new javax.swing.JLabel();
 
@@ -871,136 +881,6 @@ public class Resident_Main extends javax.swing.JFrame {
 
         jTabbedPane4.addTab("Finance", jPanel21);
 
-        jPanel25.setBackground(new java.awt.Color(204, 204, 255));
-
-        FacilityTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "FacilityID", "Facility", "Date", "Status"
-            }
-        ));
-        jScrollPane11.setViewportView(FacilityTable4);
-
-        jLabel61.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel61.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel61.setText("Select Facility: ");
-
-        jLabel62.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel62.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel62.setText("Set Date:");
-
-        Book4.setText("BOOK");
-        Book4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        FacilityCB4.setForeground(new java.awt.Color(0, 0, 0));
-        FacilityCB4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        DateCB5.setForeground(new java.awt.Color(0, 0, 0));
-        DateCB5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        DateCB5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DateCB5ActionPerformed(evt);
-            }
-        });
-
-        jLabel63.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel63.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel63.setText("Facility:");
-
-        jLabel64.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel64.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel64.setText("Date:");
-
-        FacilityTF4.setForeground(new java.awt.Color(0, 0, 0));
-        FacilityTF4.setText("Facility");
-        FacilityTF4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FacilityTF4ActionPerformed(evt);
-            }
-        });
-
-        DateTF4.setForeground(new java.awt.Color(0, 0, 0));
-        DateTF4.setText("Date");
-        DateTF4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DateTF4ActionPerformed(evt);
-            }
-        });
-
-        Update5.setText("UPDATE");
-        Update5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
-        jPanel25.setLayout(jPanel25Layout);
-        jPanel25Layout.setHorizontalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel25Layout.createSequentialGroup()
-                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel25Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel61)
-                            .addComponent(jLabel62)
-                            .addComponent(jLabel63)
-                            .addComponent(jLabel64))
-                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel25Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(DateCB5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(FacilityCB4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel25Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(DateTF4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(FacilityTF4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel25Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(Book4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel25Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(Update5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
-        jPanel25Layout.setVerticalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel25Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel61)
-                    .addComponent(FacilityCB4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel62)
-                    .addComponent(DateCB5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(Book4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel63)
-                    .addComponent(FacilityTF4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel64)
-                    .addComponent(DateTF4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(Update5)
-                .addContainerGap(66, Short.MAX_VALUE))
-            .addGroup(jPanel25Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane4.addTab("Facility Booking", jPanel25);
-
         jPanel27.setBackground(new java.awt.Color(204, 204, 255));
         jPanel27.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -1147,6 +1027,109 @@ public class Resident_Main extends javax.swing.JFrame {
 
         jTabbedPane4.addTab("Complaints", jPanel28);
 
+        jPanel25.setBackground(new java.awt.Color(204, 204, 255));
+
+        FacilityTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "BookingID", "Facility", "Date", "Time", "Status"
+            }
+        ));
+        jScrollPane11.setViewportView(FacilityTable4);
+
+        jLabel61.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel61.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel61.setText("Select Facility: ");
+
+        jLabel62.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel62.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel62.setText("Set Date:");
+
+        Book4.setText("BOOK");
+        Book4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Book4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Book4ActionPerformed(evt);
+            }
+        });
+
+        FacilityCB4.setForeground(new java.awt.Color(0, 0, 0));
+
+        Update5.setText("UPDATE");
+        Update5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Update5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Update5ActionPerformed(evt);
+            }
+        });
+
+        jLabel65.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel65.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel65.setText("Set Time:");
+
+        FacilityCB5.setForeground(new java.awt.Color(0, 0, 0));
+        FacilityCB5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08 00 - 10 00 hrs", "10 00 - 12 00 hrs", "12 00 - 14 00 hrs", "14 00 - 16 00 hrs", "16 00 - 18 00 hrs ", "18 00 - 20 00 hrs", "20 00 - 22 00 hrs", "22 00 - 00 00 hrs" }));
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel25Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel61)
+                            .addGroup(jPanel25Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jLabel62))
+                            .addComponent(jLabel65))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(FacilityCB5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(FacilityCB4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(52, 52, 52))
+                    .addGroup(jPanel25Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Update5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Book4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel25Layout.createSequentialGroup()
+                        .addGap(0, 45, Short.MAX_VALUE)
+                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(FacilityCB4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel61))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel62)
+                            .addComponent(DateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel65)
+                            .addComponent(FacilityCB5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addComponent(Book4)
+                        .addGap(18, 18, 18)
+                        .addComponent(Update5)
+                        .addGap(52, 52, 52))
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabbedPane4.addTab("Facility Booking", jPanel25);
+
         Time.setBackground(new java.awt.Color(0, 0, 0));
         Time.setFont(new java.awt.Font("Bell MT", 0, 14)); // NOI18N
         Time.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1185,9 +1168,8 @@ public class Resident_Main extends javax.swing.JFrame {
                     .addComponent(Date))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1265,18 +1247,6 @@ public class Resident_Main extends javax.swing.JFrame {
     private void InvoiceTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceTableMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_InvoiceTableMousePressed
-
-    private void DateCB5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateCB5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DateCB5ActionPerformed
-
-    private void FacilityTF4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacilityTF4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FacilityTF4ActionPerformed
-
-    private void DateTF4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateTF4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DateTF4ActionPerformed
 
     private void Update6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update6ActionPerformed
         // TODO add your handling code here:
@@ -1409,6 +1379,66 @@ public class Resident_Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PAYbuttonActionPerformed
 
+    private void Book4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Book4ActionPerformed
+        // TODO add your handling code here:
+        
+        String userName =Session.getName();
+        Date BookedDate = DateChooser1.getDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String dateBooked = dateFormat.format(BookedDate);
+        String facName = FacilityCB4.getSelectedItem().toString();
+        String facid = null;
+        for(Facility j: facilities){
+            if(j.getFacility().equals(facName)){
+                facid = j.getId();
+            }
+        }
+        String status = "Booked";
+
+        String bookID=Functions.IdGenerate("Bookings.txt");
+        String userID=Session.getId();
+        String time = FacilityCB5.getSelectedItem().toString();
+         if(bookID.equals("")&& facid.equals("")&& userID.equals("")&& userName.equals("")){
+            JOptionPane.showMessageDialog(null, "Please fill all details to book!");
+        }else{
+            try {
+                boolean checker =new Booking(bookID,facid,userID,userName,dateBooked,time,status).checkTime(bookings,facilities,FacilityCB5);
+                if(checker==true){
+                    bookings.add(new Booking(bookID,facid,userID,userName,dateBooked,time,status));
+                    Booking.Write(bookings);
+                    //        Functions.Update("Units.txt", id,facName,qty,status);
+                    JOptionPane.showMessageDialog(null, "Successfully Booked");
+//                    AdminFB afb = new AdminFB(Session);
+//                    afb.setVisible(true);
+//                    dispose();
+                    DefaultTableModel model = (DefaultTableModel) FacilityTable4.getModel();
+                    model.setRowCount(0);
+                    Booking.tabulateBooking(bookings,FacilityTable4,id);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Unable to Book. Slots are full!");
+                }   } catch (ParseException ex) {
+                Logger.getLogger(Resident_Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+         }
+
+    }//GEN-LAST:event_Book4ActionPerformed
+
+    private void Update5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update5ActionPerformed
+        // TODO add your handling code here:
+         if(FacilityTable4.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = FacilityTable4.getSelectedRow();
+            String Id = FacilityTable4.getModel().getValueAt(FacilityTable4.convertRowIndexToModel(row), column).toString();
+            ResidentFBUpdate rfu = new ResidentFBUpdate(Session);
+            rfu.spamdata(Id);
+            rfu.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+    }//GEN-LAST:event_Update5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1443,22 +1473,21 @@ public class Resident_Main extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AmountPayment;
     private javax.swing.JTextField AmountTFOutstanding;
     private javax.swing.JButton Book4;
     private javax.swing.JTable ComplaintTable6;
     private javax.swing.JLabel Date;
-    private javax.swing.JComboBox<String> DateCB5;
+    private com.toedter.calendar.JDateChooser DateChooser1;
     private javax.swing.JLabel DateOutstanding;
     private javax.swing.JLabel DatePayment;
-    private javax.swing.JTextField DateTF4;
     private javax.swing.JButton Delete5;
     private javax.swing.JLabel EmailL;
     private javax.swing.JTextField EmailMOD;
     private javax.swing.JComboBox<String> FacilityCB4;
-    private javax.swing.JTextField FacilityTF4;
+    private javax.swing.JComboBox<String> FacilityCB5;
     private javax.swing.JTable FacilityTable4;
     private javax.swing.JLabel FeePayment;
     private javax.swing.JTable InvoiceTable;
@@ -1506,8 +1535,7 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;

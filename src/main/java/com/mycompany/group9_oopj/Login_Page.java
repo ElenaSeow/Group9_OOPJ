@@ -453,7 +453,7 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "You are entering Security Page....");
 
                         Session session = new Session(id);
-                        Security_Main SP = new Security_Main();
+                        Security_Main SP = new Security_Main(session);
                         SP.setVisible(true);
                         dispose();
                         break;

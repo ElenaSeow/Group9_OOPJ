@@ -41,6 +41,7 @@ public class VisitorPass {
         this.visitorId=visitorId;
         this.name=name;
         this.contactNo=contactNo;
+        this.plateNo=plateNo;
     }
     
 //    public VisitorPass(String userId, String visitorId, String name, String contactNo, String date) throws ParseException{
@@ -71,6 +72,9 @@ public class VisitorPass {
     
     public String getContactNo() {
         return contactNo;
+    }
+    public String getPlateNo(){
+        return plateNo;
     }
     
 //    public Date getDate() {

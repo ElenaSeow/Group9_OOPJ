@@ -566,7 +566,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
         jLabel16.setText("Status:");
 
-        cStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Resolved" }));
+        cStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Reviewed" }));
         cStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cStatusActionPerformed(evt);
@@ -598,7 +598,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );

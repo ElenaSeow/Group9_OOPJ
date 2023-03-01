@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
 public class VisitorPass {
 
     public static void Write(ArrayList<VisitorPass> visitorpass) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
     
     private String userId;
@@ -35,7 +35,7 @@ public class VisitorPass {
     private String name;
     private String contactNo;
     
-    public VisitorPass(String userId, String visitorId, String name, String contactNo) {
+    public VisitorPass( String visitorId,String userId, String name, String contactNo) {
         this.userId=userId;
         this.visitorId=visitorId;
         this.name=name;

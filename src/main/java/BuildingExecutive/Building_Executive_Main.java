@@ -781,7 +781,14 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                         emPassword.getText(),
                         emRole.getText(),
                         emContact.getText());
+                securities.add(new Security(emID.getText(), 
+                        emName.getText(), 
+                        emEmail.getText(),
+                        emPassword.getText(),
+                        emRole.getText(),
+                        emContact.getText()));
                 JOptionPane.showMessageDialog(null, "Successfully Assigned Job!");
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Missing Inputs");
             }
@@ -874,10 +881,11 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
     private void jDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteBtnActionPerformed
         if(JobManagementTbl.getSelectionModel().isSelectionEmpty()==false){
-            int column = 0;
+            int column = 1;
             int row = JobManagementTbl.getSelectedRow();
             String Id = JobManagementTbl.getModel().getValueAt(JobManagementTbl.convertRowIndexToModel(row), column).toString();
-            j.deleteFile(emID.getText());
+            System.out.println(Id);
+            securities=Security.Delete(securities,Id);
             Building_Executive_Main bem = new Building_Executive_Main(Session);
             bem.setVisible(true);
             dispose();

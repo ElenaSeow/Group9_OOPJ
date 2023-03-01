@@ -160,6 +160,11 @@ public class Account_Executive_Main extends javax.swing.JFrame {
                 feesMouseClicked(evt);
             }
         });
+        fees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                feesActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Unit ID:");
 
@@ -529,6 +534,10 @@ public class Account_Executive_Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Successfully Updated Invoice!");
         }
     }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void feesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_feesActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {                                     
 

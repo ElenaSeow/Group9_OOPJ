@@ -56,11 +56,9 @@ public class Resident_Main extends javax.swing.JFrame {
         initComponents();
         this.Session = session;
         id = Session.getId();   
-        Invoices.tabulateData(invoices, InvoiceTable,id);
-        VisitorPass.tabulateData(visitorpass, VisitorTable,id);
-        Payment.tabulateData(payment, PaymentTable,id);
-        Payment.tabulateDataOutstanding(payment, OutstandingTable, id);
-        Payment.tabulateReceipt(payment, ReceiptTable,id);
+       
+        
+       
         Booking.tabulateBooking(bookings,FacilityTable4,id);
         
         // Bookings code
@@ -70,9 +68,12 @@ public class Resident_Main extends javax.swing.JFrame {
         
         
         //VisitorPass
-        
-        
-        
+         VisitorPass.tabulateData(visitorpass, VisitorTable,id);
+        //Payment
+        Invoices.tabulateData(invoices, InvoiceTable,id);
+        Payment.tabulateData(payment, PaymentTable,id);
+        Payment.tabulateDataOutstanding(payment, OutstandingTable, id);
+        Payment.tabulateReceipt(payment, ReceiptTable,id);
         
         visitorpass=new VisitorPass().Import();
         residents=new Resident().Import();
@@ -176,12 +177,16 @@ public class Resident_Main extends javax.swing.JFrame {
         AmountPayment = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
-        FeePayment = new javax.swing.JLabel();
+        Outstanding = new javax.swing.JLabel();
         PAYbutton = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
         PaymentTable = new javax.swing.JTable();
         jLabel55 = new javax.swing.JLabel();
         DatePayment = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        FeePayment = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        TotalPayable = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         InvoiceTable = new javax.swing.JTable();
@@ -587,6 +592,11 @@ public class Resident_Main extends javax.swing.JFrame {
 
         AmountPayment.setForeground(new java.awt.Color(0, 0, 0));
         AmountPayment.setText("Amount");
+        AmountPayment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AmountPaymentMouseClicked(evt);
+            }
+        });
         AmountPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AmountPaymentActionPerformed(evt);
@@ -601,9 +611,9 @@ public class Resident_Main extends javax.swing.JFrame {
         jLabel54.setForeground(new java.awt.Color(255, 255, 255));
         jLabel54.setText("Fee:");
 
-        FeePayment.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        FeePayment.setForeground(new java.awt.Color(255, 255, 255));
-        FeePayment.setText("Fee");
+        Outstanding.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        Outstanding.setForeground(new java.awt.Color(255, 255, 255));
+        Outstanding.setText("Outstanding");
 
         PAYbutton.setText("PAY");
         PAYbutton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -618,7 +628,7 @@ public class Resident_Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Fee", "Date"
+                "ID", "Fee", "Outstanding", "Date"
             }
         ));
         PaymentTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -636,32 +646,50 @@ public class Resident_Main extends javax.swing.JFrame {
         DatePayment.setForeground(new java.awt.Color(255, 255, 255));
         DatePayment.setText("Date");
 
+        jLabel56.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel56.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel56.setText("Outstanding:");
+
+        FeePayment.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        FeePayment.setForeground(new java.awt.Color(255, 255, 255));
+        FeePayment.setText("Fee");
+
+        jLabel59.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel59.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel59.setText("Total Payable:");
+
+        TotalPayable.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        TotalPayable.setForeground(new java.awt.Color(255, 255, 255));
+        TotalPayable.setText("Total");
+
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel22Layout.createSequentialGroup()
-                                .addComponent(jLabel53)
-                                .addGap(46, 46, 46)
-                                .addComponent(AmountPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel22Layout.createSequentialGroup()
-                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel54)
-                                    .addComponent(jLabel55))
-                                .addGap(68, 68, 68)
-                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(DatePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(FeePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel22Layout.createSequentialGroup()
                         .addGap(88, 88, 88)
-                        .addComponent(PAYbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+                        .addComponent(PAYbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel54)
+                            .addComponent(jLabel55)
+                            .addComponent(jLabel59))
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TotalPayable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(FeePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Outstanding, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DatePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel56)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+                        .addComponent(jLabel53)
+                        .addGap(90, 90, 90)
+                        .addComponent(AmountPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel22Layout.setVerticalGroup(
@@ -671,17 +699,25 @@ public class Resident_Main extends javax.swing.JFrame {
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel54)
                     .addComponent(FeePayment))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel56)
+                    .addComponent(Outstanding))
+                .addGap(15, 15, 15)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel55)
                     .addComponent(DatePayment))
-                .addGap(72, 72, 72)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel59)
+                    .addComponent(TotalPayable))
+                .addGap(13, 13, 13)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel53)
                     .addComponent(AmountPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(PAYbutton)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -1371,8 +1407,13 @@ public class Resident_Main extends javax.swing.JFrame {
     private void PaymentTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PaymentTableMousePressed
         // TODO add your handling code here:
         if(PaymentTable.getSelectedRow() != -1){
-            FeePayment.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 0).toString());
-            DatePayment.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 1).toString());
+            int out = Integer.parseInt(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 1).toString());
+            int fee = Integer.parseInt(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 2).toString());
+            FeePayment.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 1).toString());
+            DatePayment.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 3).toString());
+            Outstanding.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 2).toString());
+            String total =String.valueOf(out+fee) ;
+            TotalPayable.setText(total);
         }
         
     }//GEN-LAST:event_PaymentTableMousePressed
@@ -1446,6 +1487,11 @@ public class Resident_Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Update5ActionPerformed
 
+    private void AmountPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AmountPaymentMouseClicked
+        // TODO add your handling code here:
+        AmountPayment.setText("");
+    }//GEN-LAST:event_AmountPaymentMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1501,6 +1547,7 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel LogOut;
     private javax.swing.JLabel NameL;
     private javax.swing.JTextField NameMOD;
+    private javax.swing.JLabel Outstanding;
     private javax.swing.JLabel OutstandingFee;
     private javax.swing.JTable OutstandingTable;
     private javax.swing.JButton PAYbutton;
@@ -1516,6 +1563,7 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JTextField TelNoMOD;
     private javax.swing.JTextArea TextArea6;
     private javax.swing.JLabel Time;
+    private javax.swing.JLabel TotalPayable;
     private javax.swing.JLabel UnitIDL;
     private javax.swing.JLabel UnitIDL2;
     private javax.swing.JButton Update5;
@@ -1537,8 +1585,10 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;

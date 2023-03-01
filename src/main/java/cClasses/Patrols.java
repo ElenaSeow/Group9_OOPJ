@@ -12,10 +12,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Patrols extends PatrolUser {
-    private String id;
+    private String checkid;
     
-    public Patrols(String checkid, String secid, String date, String time, String inOut) {
-        super(checkid, secid, date, time, inOut);
+    public Patrols(String checkid, String secid, String date, String time) {
+        super(checkid, secid, date, time);
         
     }
     public Patrols(){}
@@ -35,7 +35,7 @@ public class Patrols extends PatrolUser {
             }
             for(String str:data){
                 String[] list = str.split(",");
-                patrols.add(new Patrols(list[0],list[1],list[2],list[3],list[4]));
+                patrols.add(new Patrols(list[0],list[1],list[2],list[3]));
                 
                 br.close();
                 
@@ -51,27 +51,26 @@ public class Patrols extends PatrolUser {
    public static void tabulateData(ArrayList<Patrols> patrols,JTable table){
        DefaultTableModel model = (DefaultTableModel) table.getModel();
        for(Patrols s: patrols){
-            String[] allDataRow = {s.getcheckid(),s.getsecid(),s.getdate(),s.gettime(),s.getinOut()};
+            String[] allDataRow = {s.getcheckid(),s.getsecid(),s.getdate(),s.gettime()};
             model.addRow(allDataRow);
         }
     }
    public ArrayList<Patrols> Update(ArrayList<Patrols> patrols, String checkid){
-        PrintWriter pr = null;
+        
         ArrayList<String> data=new ArrayList<>();
     try {
         for(Patrols s:patrols){
             String Id = s.getcheckid();
-            if(id.equals(Id)){
+            if(checkid.equals(Id)){
                 s.setsecid(this.getsecid());
                 s.setdate(this.getdate());
                 s.settime(this.gettime());
-                s.setinOut(this.getinOut());
                 
-                data.add(s.getcheckid()+","+s.getsecid()+","+s.getdate()+","+s.gettime()+","+s.getinOut());
+                data.add(s.getcheckid()+","+s.getsecid()+","+s.getdate()+","+s.gettime());
             }else{
-                data.add(s.getcheckid()+","+s.getsecid()+","+s.getdate()+","+s.gettime()+","+s.getinOut());
+                data.add(s.getcheckid()+","+s.getsecid()+","+s.getdate()+","+s.gettime());
             }
-        }   pr = new PrintWriter("Patrols.txt");
+        }   PrintWriter pr = new PrintWriter("Patrols.txt");
         for(String i:data){
             
             pr.println(i);
@@ -80,7 +79,7 @@ public class Patrols extends PatrolUser {
     } catch (FileNotFoundException ex) {
         Logger.getLogger(Patrols.class.getName()).log(Level.SEVERE, null, ex);
     }finally{
-        pr.close();
+        
     }
         return patrols;
     }
@@ -96,13 +95,12 @@ public class Patrols extends PatrolUser {
                }
            }
                PrintWriter pr = new PrintWriter("Patrols.txt");
-                for (Patrols i: patrols){
+                for (Patrols i: newPatrols){
                     String id = i.getcheckid();
                     String secid=i.getsecid();
                     String date=i.getdate();
                     String time =i.gettime();
-                    String inOut = i.getinOut();
-                    pr.println(id+","+secid+","+date+","+time+","+inOut);
+                    pr.println(id+","+secid+","+date+","+time);
             }
             pr.close();
                
@@ -121,8 +119,7 @@ public class Patrols extends PatrolUser {
                     String secid=i.getsecid();
                     String date=i.getdate();
                     String time =i.gettime();
-                    String inOut = i.getinOut();
-                    pr.println(id+","+secid+","+date+","+time+","+inOut);
+                    pr.println(id+","+secid+","+date+","+time);
             }
             pr.close();
         } catch (FileNotFoundException ex) {

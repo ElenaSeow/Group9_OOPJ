@@ -7,14 +7,12 @@ abstract public class PatrolUser {
     private String secid;
     private String date;
     private String time;
-    private String inOut;
-
-    public PatrolUser(String checkid, String secid, String date, String time, String inOut){
+    
+    public PatrolUser(String checkid, String secid, String date, String time){
         this.checkid=checkid;
         this.secid=secid;
         this.date=date;
-        this.time=time;
-        this.inOut=inOut;  
+        this.time=time; 
     }
     public PatrolUser(){}
 
@@ -46,12 +44,7 @@ abstract public class PatrolUser {
     public void settime(String time){
         this.time=time;
     }
-    public String getinOut(){
-        return inOut;
-    }
-    public void setinOut(String date){
-        this.inOut=inOut;
-    }
+
 
     public abstract ArrayList<?> Import();
 }

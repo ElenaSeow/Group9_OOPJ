@@ -35,7 +35,7 @@ public class AdminEM extends javax.swing.JFrame {
      */
     public AdminEM(Session session) {
         initComponents();
-        Security.tabulateData(securities, SGTable);
+        Security.tabulateData1(securities, SGTable);
 //        AddDataToTable();
         this.Session = session;
         String id = session.getId();
@@ -688,7 +688,7 @@ public class AdminEM extends javax.swing.JFrame {
             int row = SGTable.getSelectedRow();
             String Id = SGTable.getModel().getValueAt(SGTable.convertRowIndexToModel(row), column).toString();
     //        Functions.Delete("Resident.txt", Id);
-            securities=Security.Delete(securities, Id);
+            securities=Security.delete(securities, Id);
             AdminEM aem = new AdminEM(Session);
             aem.setVisible(true);
             dispose();

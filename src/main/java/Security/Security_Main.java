@@ -72,6 +72,8 @@ public class Security_Main extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel23 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        PatrollingTbl = new javax.swing.JTable();
         jPanel24 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -265,15 +267,37 @@ public class Security_Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Visitor Entry", jPanel22);
 
+        PatrollingTbl.setBackground(new java.awt.Color(204, 204, 204));
+        PatrollingTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Checkpoint ID", "Security ID", "Date", "Time", "Status"
+            }
+        ));
+        PatrollingTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                PatrollingTblMousePressed(evt);
+            }
+        });
+        jScrollPane7.setViewportView(PatrollingTbl);
+
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
         jPanel23Layout.setHorizontalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 752, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
+                .addContainerGap(219, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 261, Short.MAX_VALUE)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Checkpoint", jPanel23);
@@ -351,6 +375,15 @@ public class Security_Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void PatrollingTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PatrollingTblMousePressed
+        if(PatrollingTbl.getSelectedRow() != -1){
+            psCID.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 0).toString());
+            psSID.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 1).toString());
+            psTime.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 2).toString());
+            psDate.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 3).toString());
+        }
+    }//GEN-LAST:event_PatrollingTblMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -388,6 +421,7 @@ public class Security_Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logout8;
+    private javax.swing.JTable PatrollingTbl;
     private javax.swing.JTable VisitorPassTable;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -407,6 +441,7 @@ public class Security_Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel24;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables

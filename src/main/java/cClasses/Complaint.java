@@ -151,13 +151,13 @@ public class Complaint {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         for(Complaint c:complaints){
             String status = c.getStatus();
-            if(status.equals("Reviewed")){
+            
                DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
                 String cdate = date_format.format(c.getComplaintDate());
                 String udate = date_format.format(c.getUpdateDate());
-            String[] allDataRow = {c.getComplaintId(),c.getDesc(),cdate,udate,status};
+            String[] allDataRow = {c.getComplaintId(),c.getUserId(),c.getDesc(),udate,status};
             model.addRow(allDataRow); 
-            }
+            
             
         }
     }
@@ -275,29 +275,39 @@ public class Complaint {
         }
      
      public void editFile(String cID, String uID, String description, String date, String status) {
-            readFile();
-            for (int i = 0; i < this.cID.size(); i++) {
-                if (cID.equals(this.cID.get(i))) {
-                    this.cID.set(i, cID);
-                    this.uID.set(i, uID);
-                    this.description.set(i, description);
-                    this.date.set(i, date);
-                    this.status.set(i, status);
-                }
-            }
-            try ( FileWriter file = new FileWriter("complaints.txt");) {
-                for (int i = 0; i < this.cID.size(); i++) {
-                    file.write(this.cID.get(i) + ":" + 
-                            this.uID.get(i) + ":" + 
-                            this.description.get(i) + ":" + 
-                            this.date.get(i) + ":" + 
-                            this.status.get(i) + "\n");
-                }
-                file.close();
-            } catch (IOException e) {
-                System.out.println("Incorrect File Path");
+        readFile();
+        for (int i = 0; i < this.cID.size(); i++) {
+            if (cID.equals(this.cID.get(i))) {
+                this.cID.set(i, cID);
+                this.uID.set(i, uID);
+                this.description.set(i, description);
+                this.date.set(i, date);
+                this.status.set(i, status);
             }
         }
+        try ( FileWriter file = new FileWriter("complaints.txt");) {
+            for (int i = 0; i < this.cID.size(); i++) {
+                file.write(this.cID.get(i) + ":" + 
+                        this.uID.get(i) + ":" + 
+                        this.description.get(i) + ":" + 
+                        this.date.get(i) + ":" + 
+                        this.status.get(i) + "\n");
+            }
+            file.close();
+        } catch (IOException e) {
+            System.out.println("Incorrect File Path");
+        }
+
+        // Print out the updated data
+        for (int i = 0; i < this.cID.size(); i++) {
+            System.out.println(this.cID.get(i) + ":" + 
+                    this.uID.get(i) + ":" + 
+                    this.description.get(i) + ":" + 
+                    this.date.get(i) + ":" + 
+                    this.status.get(i));
+            }
+        }
+
     }
 }
 

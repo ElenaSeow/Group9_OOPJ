@@ -1,29 +1,22 @@
 package BuildingExecutive;
 
-
-import AdminExecutive.AdminUM;
-import AdminExecutive.AdminUMUpdate;
 import cClasses.BuildingExecutive;
 import cClasses.Complaint;
 import cClasses.Functions;
 import cClasses.Jobs;
+import cClasses.Patrolling;
 import cClasses.Patrols;
-import cClasses.Resident;
 import cClasses.Security;
 import cClasses.Session;
-import cClasses.Unit;
 import com.mycompany.group9_oopj.Main_Page;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -38,6 +31,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     
     Complaint.fileManipulation c = new Complaint.fileManipulation();
     Jobs.getInfo j = new Jobs.getInfo();
+    Patrolling.getInfo p = new Patrolling.getInfo();
     
     /**
      * Creates new form Building_Executive_Main
@@ -49,7 +43,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         id = Session.getId(); 
         Security.tabulateData(securities, JobManagementTbl);
         Patrols.tabulateData(patrols, PatrollingTbl);
-        Complaint.tabulateData(complaints, ComplaintsTbl);
+        Complaint.tabulateData1(complaints, ComplaintsTbl);
         Patrols.tabulateData(patrols, PatrollingHistoryTbl);
         
         securities = new Security().Import();
@@ -448,7 +442,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Checkpoint ID", "Security ID", "Time", "Date"
+                "Checkpoint ID", "Security ID", "Date", "Time"
             }
         ));
         PatrollingTbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -485,36 +479,34 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(12, 126, Short.MAX_VALUE)
-                                .addComponent(pDeleteBtn)
-                                .addGap(40, 40, 40))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(25, 25, 25)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(pAssignBtn)
-                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(psCID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                                            .addGap(33, 33, 33)
-                                                            .addComponent(jLabel13)
-                                                            .addGap(5, 5, 5))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                .addComponent(jLabel12)
-                                                                .addComponent(jLabel10))
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(psDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(psTime)
-                                                        .addComponent(psSID))))))
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(pAssignBtn)
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(psCID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(jLabel12)
+                                                            .addComponent(jLabel10))
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(psSID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(psDate, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(jLabel13)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(psTime, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(76, 76, 76)
                                         .addComponent(pClearBtn)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pDeleteBtn)
+                                .addGap(40, 40, 40)))
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27))
         );
@@ -531,13 +523,13 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                     .addComponent(psSID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(psTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(psDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(psTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(psDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addGap(55, 55, 55)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pAssignBtn)
                     .addComponent(pDeleteBtn))
@@ -574,7 +566,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
         jLabel16.setText("Status:");
 
-        cStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Resolved" }));
+        cStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Reviewed" }));
         cStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cStatusActionPerformed(evt);
@@ -606,7 +598,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -924,21 +916,29 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_pDeleteBtnActionPerformed
 
     private void pAssignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pAssignBtnActionPerformed
-       if(PatrollingTbl.getSelectionModel().isSelectionEmpty()==false){
-            int column = 0;
-            int row = PatrollingTbl.getSelectedRow();
-            String Id = PatrollingTbl.getModel().getValueAt(PatrollingTbl.convertRowIndexToModel(row), column).toString();
-            String secid =psSID.getText();
-            String time = psTime.getText();
-            String date = psDate.getText();
-            patrols = new Patrols(Id,secid,time,date).Update(patrols, Id);
-            JOptionPane.showMessageDialog(null, "Successfully Updated");
-            Building_Executive_Main bem = new Building_Executive_Main(Session);
-            bem.setVisible(true);
-            dispose();
-            }   else{
-            JOptionPane.showMessageDialog(null, "Please select a row.");
-        }
+
+        if (!psCID.getText().equals("") || 
+                !psSID.getText().equals("") || 
+                !psTime.getText().equals("") || 
+                !psDate.getText().equals("")) 
+            {
+                p.addFile(psCID.getText(), 
+                        psSID.getText(), 
+                        psTime.getText(),
+                        psDate.getText());
+                patrols.add(new Patrols(psCID.getText(), 
+                        psSID.getText(), 
+                        psTime.getText(),
+                        psDate.getText()));
+                JOptionPane.showMessageDialog(null, "Successfully Assigned Job!");
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Missing Inputs");
+            }
+            DefaultTableModel model = (DefaultTableModel)PatrollingTbl.getModel();
+            model.setRowCount(0);
+            Patrols.tabulateData(patrols, PatrollingTbl);
+        
     }//GEN-LAST:event_pAssignBtnActionPerformed
 
     private void psTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psTimeActionPerformed
@@ -946,10 +946,19 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_psTimeActionPerformed
 
     private void cUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cUpdateBtnActionPerformed
-        if(ComplaintsTbl.getSelectedRow() != -1){
-            String date = ComplaintsTbl.getValueAt(ComplaintsTbl.getSelectedRow(), 3).toString();
-            String description = ComplaintsTbl.getValueAt(ComplaintsTbl.getSelectedRow(), 2).toString();
-            c.editFile(ComplaintsTbl.getValueAt(ComplaintsTbl.getSelectedRow(), 0).toString(), UID.getText(), description, date, cStatus.getSelectedItem().toString());
+        int selectedRow = ComplaintsTbl.getSelectedRow();
+            if(selectedRow != -1){
+            String cID = ComplaintsTbl.getValueAt(selectedRow, 0).toString();
+            String uID = UID.getText();
+            String description = ComplaintsTbl.getValueAt(selectedRow, 2).toString();
+            String date = ComplaintsTbl.getValueAt(selectedRow, 3).toString();
+            String status = cStatus.getSelectedItem().toString();
+            c.editFile(cID, uID, description, date, status);
+
+            // Update the table with the new data
+            DefaultTableModel model = (DefaultTableModel) ComplaintsTbl.getModel();
+            model.setValueAt(status, selectedRow, 4);
+
             JOptionPane.showMessageDialog(null,"Successfully Updated Complaint!");
         }
     }//GEN-LAST:event_cUpdateBtnActionPerformed

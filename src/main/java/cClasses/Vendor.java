@@ -39,6 +39,7 @@ public class Vendor extends User {
         return unitId;
     }
     
+    
     @Override
     public ArrayList<Vendor> Import(){
         BufferedReader br = null;
@@ -67,8 +68,6 @@ public class Vendor extends User {
             }
         return vendors;
         }
-
-    
     
     public static void tabulateData(ArrayList<Vendor> vendors,JTable table){
        DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -87,10 +86,6 @@ public class Vendor extends User {
         }
     } 
     
-    
-    
-    
-    
     public ArrayList<Vendor> Update(ArrayList<Vendor> vendors, String id){
         PrintWriter pr = null;
         ArrayList<String> data=new ArrayList<>();
@@ -103,20 +98,14 @@ public class Vendor extends User {
                 r.setRole(this.getRole());
                 r.setPassword(this.getPassword());
                 r.setContactNo(this.getContactNo());
+                
                 data.add(r.getId()+":"+r.getName()+":"+r.getEmail()+":"+r.getPassword()+":"+r.getRole()+":"+r.getContactNo()+":"+r.getUnitId());
             }else{
                 data.add(r.getId()+":"+r.getName()+":"+r.getEmail()+":"+r.getPassword()+":"+r.getRole()+":"+r.getContactNo()+":"+r.getUnitId());
             }
         }   pr = new PrintWriter("Vendor.txt");
         for(String i:data){
-//            String Id = r.getId();
-//            String Name = r.getName();
-//            String Email = r.getEmail();
-//            String Password = r.getPassword();
-//            String Role = r.getRole();
-//            String ContactNo = r.getContactNo();
-//            String UnitId=r.getUnitId();
-//            pr.println(Id+":"+Name+":"+Email+":"+Password+":"+Role+":"+ContactNo+":"+UnitId);
+            
             pr.println(i);
             System.out.println(i);
         }   
@@ -176,6 +165,5 @@ public class Vendor extends User {
             Logger.getLogger(Vendor.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
-
 
 }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 
  abstract public class User {
+    // Declare private instance variables for the User class
     private String id;
     private String name;
     private String email;
@@ -19,9 +20,7 @@ import java.util.ArrayList;
     private String role;
     private String contactNo;
     
- 
-    
-    
+    // Define a constructor for the User class that initializes the instance variables
     public User(String id, String name, String email, String password, String role, String contactNo){
         this.id=id;
         this.name=name;
@@ -30,6 +29,7 @@ import java.util.ArrayList;
         this.role=role;
         this.contactNo=contactNo;   
     }
+    // Define a default constructor for the User class
     public User(){}
     
     public User(String id){

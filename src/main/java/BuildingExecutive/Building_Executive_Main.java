@@ -43,7 +43,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         id = Session.getId(); 
         Security.tabulateData(securities, JobManagementTbl);
         Patrols.tabulateData(patrols, PatrollingTbl);
-        Complaint.tabulateData(complaints, ComplaintsTbl);
+        Complaint.tabulateData1(complaints, ComplaintsTbl);
         Patrols.tabulateData(patrols, PatrollingHistoryTbl);
         
         securities = new Security().Import();

@@ -151,13 +151,13 @@ public class Complaint {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         for(Complaint c:complaints){
             String status = c.getStatus();
-            if(status.equals("Reviewed")){
+            
                DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
                 String cdate = date_format.format(c.getComplaintDate());
                 String udate = date_format.format(c.getUpdateDate());
-            String[] allDataRow = {c.getComplaintId(),c.getDesc(),cdate,udate,status};
+            String[] allDataRow = {c.getComplaintId(),c.getUserId(),c.getDesc(),udate,status};
             model.addRow(allDataRow); 
-            }
+            
             
         }
     }

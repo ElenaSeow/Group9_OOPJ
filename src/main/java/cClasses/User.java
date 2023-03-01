@@ -27,7 +27,7 @@ import java.util.ArrayList;
         this.email=email;
         this.password=password;
         this.role=role;
-        this.contactNo=contactNo;
+        this.contactNo=contactNo;   
     }
     // Define a default constructor for the User class
     public User(){}

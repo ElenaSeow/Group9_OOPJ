@@ -8,6 +8,7 @@ import cClasses.Complaint;
 import cClasses.Functions;
 import cClasses.Session;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -172,10 +173,14 @@ ArrayList<Complaint> complaints = new Complaint().Import();
         String uid = Session.getId();
         String status = "Pending";
         String date = Functions.date();
-        String action = "";
         String ID = Functions.IdGenerate("complaints.txt");
-        complaints.add(new Complaint(ID,uid,desc,status,date,date));
-        Complaint.Write(complaints);
+         if(uid.isEmpty() && ID.isEmpty() && date.isEmpty() && desc.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please fill in all the data!");
+        }else{
+            Complaint cnew = new Complaint(ID,uid,desc,status,date,date);
+            complaints.add(cnew);
+            Complaint.Write(complaints);
+         }
     }//GEN-LAST:event_SubmitBtnActionPerformed
 
     private void UIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UIDActionPerformed

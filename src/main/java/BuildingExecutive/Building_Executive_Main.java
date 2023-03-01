@@ -6,6 +6,7 @@ import cClasses.BuildingExecutive;
 import cClasses.Complaint;
 import cClasses.Functions;
 import cClasses.Jobs;
+import cClasses.Patrols;
 import cClasses.Resident;
 import cClasses.Security;
 import cClasses.Session;
@@ -32,7 +33,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     ArrayList<BuildingExecutive> buildingexecutives = new BuildingExecutive().Import();
     ArrayList<Security> securities = new Security().Import();
   //ArrayList<Complaint> complaints = new Complaint().Import();
-  //ArrayList<Patrols> patrols = new Patrols().Import();
+    ArrayList<Patrols> patrols = new Patrols().Import();
     
     Jobs.getInfo j = new Jobs.getInfo();
     
@@ -45,10 +46,11 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         this.Session = session;
         id = Session.getId(); 
         Security.tabulateData(securities, JobManagementTbl);
+        Patrols.tabulateData(patrols, PatrollingTbl);
         
         securities = new Security().Import();
       //complaints = new Complaint().Import();
-      //patrols = new Patrols().Import();
+        patrols = new Patrols().Import();
         ArrayList<String> securitydata;
         securitydata = Functions.Read("Security.txt");
         String emid = "";
@@ -147,7 +149,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        pTable = new javax.swing.JTable();
+        PatrollingTbl = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -419,8 +421,8 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
         jLabel14.setText("Patrolling Schedules");
 
-        pTable.setBackground(new java.awt.Color(204, 204, 204));
-        pTable.setModel(new javax.swing.table.DefaultTableModel(
+        PatrollingTbl.setBackground(new java.awt.Color(204, 204, 204));
+        PatrollingTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -428,12 +430,12 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
             }
         ));
-        pTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        PatrollingTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                pTableMousePressed(evt);
+                PatrollingTblMousePressed(evt);
             }
         });
-        jScrollPane7.setViewportView(pTable);
+        jScrollPane7.setViewportView(PatrollingTbl);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -758,9 +760,9 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void pTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pTableMousePressed
+    private void PatrollingTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PatrollingTblMousePressed
         
-    }//GEN-LAST:event_pTableMousePressed
+    }//GEN-LAST:event_PatrollingTblMousePressed
 
     private void cTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cTableMousePressed
         
@@ -885,6 +887,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     private javax.swing.JButton DeleteBtn;
     private javax.swing.JTable JobManagementTbl;
     private javax.swing.JLabel Logout1;
+    private javax.swing.JTable PatrollingTbl;
     private javax.swing.JLabel Time;
     private javax.swing.JButton UpdateBtn;
     private javax.swing.JLabel Username;
@@ -935,6 +938,5 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable pTable;
     // End of variables declaration//GEN-END:variables
 }

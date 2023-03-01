@@ -24,12 +24,12 @@ import javax.swing.table.DefaultTableModel;
  * @author HP
  */
 public class Complaint {
-    String complaintId;
-    String desc;
-    String status;
-    String userId;
-    Date updateDate;
-    Date complaintDate;
+    private String complaintId;
+    private String desc;
+    private String status;
+    private String userId;
+    private Date updateDate;
+    private Date complaintDate;
     
     public Complaint(String complaintId,String userId,String desc, String status, Date complaintDate, Date updateDate){
         this.complaintId=complaintId;

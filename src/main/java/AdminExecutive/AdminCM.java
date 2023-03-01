@@ -587,30 +587,30 @@ public class AdminCM extends javax.swing.JFrame {
 
     private void ViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewAllActionPerformed
         // TODO add your handling code here:
-//        if(ComplaintTable.getSelectionModel().isSelectionEmpty()==false){
-//            int column = 0;
-//            int row = ComplaintTable.getSelectedRow();
-//            String Id = ComplaintTable.getModel().getValueAt(row, column).toString();
-//            AdminComplaintView acv = new AdminComplaintView(logindetails);
-//            acv.spamdata(Id);
-//            acv.setVisible(true);
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Please select a row.");
-//        }
+        if(ComplaintTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = ComplaintTable.getSelectedRow();
+            String Id = ComplaintTable.getModel().getValueAt(row, column).toString();
+            AdminCMView acv = new AdminCMView(Session);
+            acv.spamdata(Id);
+            acv.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_ViewAllActionPerformed
 
     private void ViewPendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewPendingActionPerformed
         // TODO add your handling code here:
-//         if(PendingTable.getSelectionModel().isSelectionEmpty()==false){
-//            int column = 0;
-//            int row = PendingTable.getSelectedRow();
-//            String Id = PendingTable.getModel().getValueAt(row, column).toString();
-//            AdminComplaintView acv = new AdminComplaintView(logindetails);
-//            acv.spamdata(Id);
-//            acv.setVisible(true);
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Please select a row.");
-//        }
+         if(PendingTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = PendingTable.getSelectedRow();
+            String Id = PendingTable.getModel().getValueAt(row, column).toString();
+            AdminCMView acv = new AdminCMView(Session);
+            acv.spamdata(Id);
+            acv.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_ViewPendingActionPerformed
 
     private void deletePendComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePendComplaintActionPerformed

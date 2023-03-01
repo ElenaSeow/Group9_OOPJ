@@ -44,7 +44,7 @@ public class Resident_Main extends javax.swing.JFrame {
     ArrayList<Resident> residents;
     ArrayList<Invoices> invoices = new Invoices().Import();
     ArrayList<VisitorPass> visitorpass = new VisitorPass().Import();
-    ArrayList<Payment> payment = new Payment().Import();
+    ArrayList<Payment> payments = new Payment().Import();
     Payment.FileManipulation PY = new Payment.FileManipulation();
     ArrayList<Facility> facilities = new Facility().Import();
     ArrayList<Booking> bookings = new Booking().Import();
@@ -71,9 +71,9 @@ public class Resident_Main extends javax.swing.JFrame {
          VisitorPass.tabulateData(visitorpass, VisitorTable,id);
         //Payment
         Invoices.tabulateData(invoices, InvoiceTable,id);
-        Payment.tabulateData(payment, PaymentTable,id);
-        Payment.tabulateDataOutstanding(payment, OutstandingTable, id);
-        Payment.tabulateReceipt(payment, ReceiptTable,id);
+        Payment.tabulateData(payments, PaymentTable,id);
+        Payment.tabulateDataOutstanding(payments, OutstandingTable, id);
+        Payment.tabulateReceipt(payments, ReceiptTable,id);
         
         visitorpass=new VisitorPass().Import();
         residents=new Resident().Import();
@@ -941,7 +941,7 @@ public class Resident_Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Visitor ID", "Name", "Telephone No."
+                "Visitor ID", "Name", "Telephone No.", "Plate No"
             }
         ));
         jScrollPane12.setViewportView(VisitorTable);
@@ -1420,10 +1420,14 @@ public class Resident_Main extends javax.swing.JFrame {
 
     private void PAYbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PAYbuttonActionPerformed
         // TODO add your handling code here:
-        if(PaymentTable.getSelectedRow() != -1){
-            String Amount = PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 0).toString();
-            //PY.PAY(AmountPayment.getText());
+        if(PaymentTable.getSelectedRow() != -1&& ((Integer.parseInt(AmountPayment.getText()))<=(Integer.parseInt(TotalPayable.getText())))){
+            String Id = PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 0).toString();
+            int amount = Integer.parseInt(AmountPayment.getText());
+            payments=Payment.PAY(payments, Id, amount);
             JOptionPane.showMessageDialog(null,"Successfully Updated Invoice!");
+            DefaultTableModel model = (DefaultTableModel) PaymentTable.getModel();
+            model.setRowCount(0);
+            Payment.tabulateData(payments, PaymentTable, id);
         }
     }//GEN-LAST:event_PAYbuttonActionPerformed
 

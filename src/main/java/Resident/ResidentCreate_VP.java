@@ -175,9 +175,9 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PlateNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(55, 55, 55)
                 .addComponent(SaveBtn)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(UserId)
                 .addContainerGap())
         );
@@ -210,6 +210,9 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
         String plateNo = PlateNo.getText();
         
         visitorpass.add(new VisitorPass(id, visitorid, name, contactNo, plateNo));
+        String plateno = PlateNo.getText();
+        
+        visitorpass.add(new VisitorPass(id, visitorid, name, contactNo, plateno));
         VisitorPass.Write(visitorpass);
         JOptionPane.showMessageDialog(null, "Successfully Updated");
         Resident_Main RM = new Resident_Main(Session);

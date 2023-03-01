@@ -106,8 +106,9 @@ public class Functions {
                 newId = "UN001";
             }else if(filedata.equals("complaints.txt")){
                 newId = "CM001";
+            }else if(filedata.equals("Receipt.txt")){
+                newId = "RP001";
             }
-           
         
         }else{
             ArrayList<String> Ids = new ArrayList<>();

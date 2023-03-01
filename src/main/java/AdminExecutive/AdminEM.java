@@ -35,7 +35,7 @@ public class AdminEM extends javax.swing.JFrame {
      */
     public AdminEM(Session session) {
         initComponents();
-        Security.tabulateData(securities, SGTable);
+        Security.tabulateData1(securities, SGTable);
 //        AddDataToTable();
         this.Session = session;
         String id = session.getId();

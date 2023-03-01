@@ -918,21 +918,6 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_pDeleteBtnActionPerformed
 
     private void pAssignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pAssignBtnActionPerformed
-//       if(PatrollingTbl.getSelectionModel().isSelectionEmpty()==false){
-//            int column = 0;
-//            int row = PatrollingTbl.getSelectedRow();
-//            String Id = PatrollingTbl.getModel().getValueAt(PatrollingTbl.convertRowIndexToModel(row), column).toString();
-//            String secid =psSID.getText();
-//            String time = psTime.getText();
-//            String date = psDate.getText();
-//            patrols = new Patrols(Id,secid,time,date).Update(patrols, Id);
-//            JOptionPane.showMessageDialog(null, "Successfully Updated");
-//            Building_Executive_Main bem = new Building_Executive_Main(Session);
-//            bem.setVisible(true);
-//            dispose();
-//            }   else{
-//            JOptionPane.showMessageDialog(null, "Please select a row.");
-//        }
 
         if (!psCID.getText().equals("") || 
                 !psSID.getText().equals("") || 
@@ -963,10 +948,19 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_psTimeActionPerformed
 
     private void cUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cUpdateBtnActionPerformed
-        if(ComplaintsTbl.getSelectedRow() != -1){
-            String date = ComplaintsTbl.getValueAt(ComplaintsTbl.getSelectedRow(), 3).toString();
-            String description = ComplaintsTbl.getValueAt(ComplaintsTbl.getSelectedRow(), 2).toString();
-            c.editFile(ComplaintsTbl.getValueAt(ComplaintsTbl.getSelectedRow(), 0).toString(), UID.getText(), description, date, cStatus.getSelectedItem().toString());
+        int selectedRow = ComplaintsTbl.getSelectedRow();
+            if(selectedRow != -1){
+            String cID = ComplaintsTbl.getValueAt(selectedRow, 0).toString();
+            String uID = UID.getText();
+            String description = ComplaintsTbl.getValueAt(selectedRow, 2).toString();
+            String date = ComplaintsTbl.getValueAt(selectedRow, 3).toString();
+            String status = cStatus.getSelectedItem().toString();
+            c.editFile(cID, uID, description, date, status);
+
+            // Update the table with the new data
+            DefaultTableModel model = (DefaultTableModel) ComplaintsTbl.getModel();
+            model.setValueAt(status, selectedRow, 4);
+
             JOptionPane.showMessageDialog(null,"Successfully Updated Complaint!");
         }
     }//GEN-LAST:event_cUpdateBtnActionPerformed

@@ -12,7 +12,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Security extends User {
-    private String id;
     
     public Security(String id, String name, String email, String password, String role, String contactNo) {
         super(id, name, email, password, role, contactNo);

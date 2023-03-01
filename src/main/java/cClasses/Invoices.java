@@ -197,14 +197,14 @@ public class Invoices {
                 }
             }
             try ( FileWriter file = new FileWriter("Payment.txt");) {
-                file.write("INVOICE ID,USER ID,UNIT ID,FEE,OUTSTANDING,DATE\n");
+                file.write("INVOICE ID,USER ID,UNIT ID,FEE,OUTSTANDING,DATE,STATUS\n");
                 for (int i = 0; i < this.ID.size(); i++) {
                     file.write(this.ID.get(i) + "," + 
                             this.userID.get(i) + "," + 
                             this.unitID.get(i) + "," + 
                             this.fees.get(i) + "," + 
                             this.outstandingFees.get(i) + "," + 
-                            this.date.get(i) + "\n");
+                            this.date.get(i) + ",Unpaid\n");
                 }
                 file.close();
             } catch (IOException e) {
@@ -216,7 +216,7 @@ public class Invoices {
             readFile();
             try ( FileWriter file = new FileWriter("Payment.txt",true);) {
                 String ID = "IV"+(this.ID.size()+1);
-                file.write(ID + "," + userID + "," + unitID + "," + fee + "," + outstanding + "," + date + "\n");
+                file.write(ID + "," + userID + "," + unitID + "," + fee + "," + outstanding + "," + date + ",Unpaid\n");
                 file.close();
             } catch (IOException e) {
                 System.out.println("Incorrect File Path");
@@ -236,14 +236,14 @@ public class Invoices {
                 }
             }
             try ( FileWriter file = new FileWriter("Payment.txt");) {
-                file.write("INVOICE ID,USER ID,UNIT ID,FEE,OUTSTANDING,DATE\n");
+                file.write("INVOICE ID,USER ID,UNIT ID,FEE,OUTSTANDING,DATE,STATUS\n");
                 for (int i = 0; i < this.ID.size(); i++) {
                     file.write(this.ID.get(i) + "," + 
                             this.userID.get(i) + "," + 
                             this.unitID.get(i) + "," + 
                             this.fees.get(i) + "," + 
                             this.outstandingFees.get(i) + "," + 
-                            this.date.get(i) + "\n");
+                            this.date.get(i) + ",Unpaid\n");
                 }
                 file.close();
             } catch (IOException e) {

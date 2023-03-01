@@ -31,18 +31,20 @@ public class Payment {
     private String fee;
     private String outstanding;
     private Date date;
+    private String status;
     
-    public Payment(String invoiceId,String userId,String unitId, String fee, String outstanding, Date date){
+    public Payment(String invoiceId,String userId,String unitId, String fee, String outstanding, Date date, String status){
         this.invoiceId=invoiceId;
         this.userId=userId;
         this.unitId=unitId;
         this.fee=fee;
         this.outstanding=outstanding;
         this.date=date; 
+        this.status=status;
     
     }
     
-    public Payment(String invoiceId,String userId,String unitId, String fee, String outstanding, String date) throws ParseException{
+    public Payment(String invoiceId,String userId,String unitId, String fee, String outstanding, String date, String status) throws ParseException{
         Date tdate = new SimpleDateFormat("dd-MM-yyyy").parse(date);
 
         this.invoiceId=invoiceId;
@@ -51,6 +53,7 @@ public class Payment {
         this.fee=fee;
         this.outstanding=outstanding;
         this.date=tdate; 
+        this.status=status;
     
     }
     
@@ -118,6 +121,7 @@ public class Payment {
         ArrayList<String> fees = new ArrayList();
         ArrayList<String> outstandingFees = new ArrayList();
         ArrayList<String> date = new ArrayList();
+        ArrayList<String> status = new ArrayList();
     }
     
     
@@ -138,7 +142,7 @@ public class Payment {
             }
             for(String str:data){
                 String[] list = str.split(",");
-                payment.add(new Payment(list[0],list[1],list[2],list[3],list[4],list[5]));
+                payment.add(new Payment(list[0],list[1],list[2],list[3],list[4],list[5],list[6]));
                 
                 br.close();
             }   
@@ -219,6 +223,7 @@ public class Payment {
                     fees.add(values[3]);
                     outstandingFees.add(values[4]);
                     date.add(values[5]);
+                    status.add(values[6]);
                 }
             } catch (IOException e) {
                 System.out.println("Incorrect File Path");

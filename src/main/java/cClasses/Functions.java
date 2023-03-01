@@ -76,26 +76,73 @@ public class Functions {
         public static String IdGenerate(String file){
         ArrayList<String> filedata;
         filedata =Functions.Read(file);
-        ArrayList<String> Ids = new ArrayList<>();
-        for(String str:filedata){
-            String[] list = str.split(":");
-            Ids.add(list[0]);
+        String newId="";
+        if(filedata.equals(null)){
+            if(file.equals("AccountExecutive.txt")){
+                newId = "AE001";
+            }else if(filedata.equals("BackupResident.txt")){
+                newId = "RE001";
+            }else if(filedata.equals("BackupVendor.txt")){
+                newId = "VE001";
+            }else if(filedata.equals("BuildingManager")){
+                newId = "BM001";
+            }else if(filedata.equals("Bookings.txt")){
+                newId = "BK001";
+            }else if(filedata.equals("BuildingExecutive.txt")){
+                newId = "BE001";
+            }else if(filedata.equals("Cleaner.txt")){
+                newId = "CL001";
+            }else if(filedata.equals("Facilities.txt")){
+                newId = "FA001";
+            }else if(filedata.equals("BackupResident.txt")){
+                newId = "RE001";
+            }else if(filedata.equals("Patrols.txt")){
+                newId = "CP001";
+            }else if(filedata.equals("Security.txt")){
+                newId = "SG001";
+            }else if(filedata.equals("Technician.txt")){
+                newId = "TE001";
+            }else if(filedata.equals("Units.txt")){
+                newId = "UN001";
+            }else if(filedata.equals("complaints.txt")){
+                newId = "CM001";
+            }
+           
+        
+        }else{
+            ArrayList<String> Ids = new ArrayList<>();
+            for(String str:filedata){
+                String[] list = str.split(":");
+                Ids.add(list[0]);
+            }
+            int len = Ids.size();
+            String lastID = Ids.get(len-1);
+            String code = lastID.substring(0,2);
+            int digit = Integer.parseInt(lastID.substring(2));
+            digit += 1;
+            String pattern ="000";
+            DecimalFormat myFormatter = new DecimalFormat(pattern);
+            String newDigit = myFormatter.format(digit);
+            newId= code+newDigit;
         }
-        int len = Ids.size();
-        String lastID = Ids.get(len-1);
-        String code = lastID.substring(0,2);
-        int digit = Integer.parseInt(lastID.substring(2));
-        digit += 1;
-        String pattern ="000";
-        DecimalFormat myFormatter = new DecimalFormat(pattern);
-        String newDigit = myFormatter.format(digit);
-        String newId= code+newDigit;
         return newId;
+        
     }
         
          public static String IdGenerate2(String file){
         ArrayList<String> filedata;
         filedata =Functions.SkipRead(file);
+        String newId="";
+        if(filedata.equals(null)){
+            if(file.equals("Patrols.txt")){
+                newId = "CP001";
+            }else if(filedata.equals("VisitorPass.txt")){
+                newId = "VP001";
+            }else if(filedata.equals("BackupVendor.txt")){
+                newId = "VE001";
+            }
+        }else{
+        
         ArrayList<String> Ids = new ArrayList<>();
         for(String str:filedata){
             String[] list = str.split(",");
@@ -109,7 +156,8 @@ public class Functions {
         String pattern ="000";
         DecimalFormat myFormatter = new DecimalFormat(pattern);
         String newDigit = myFormatter.format(digit);
-        String newId= code+newDigit;
+        newId= code+newDigit;
+        }
         return newId;
     }
         public static String date(){

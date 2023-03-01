@@ -204,7 +204,7 @@ public class Invoices {
                             this.unitID.get(i) + "," + 
                             this.fees.get(i) + "," + 
                             this.outstandingFees.get(i) + "," + 
-                            this.date.get(i) + ",Unpaid\n");
+                            this.date.get(i) + "\n");
                 }
                 file.close();
             } catch (IOException e) {
@@ -216,7 +216,7 @@ public class Invoices {
             readFile();
             try ( FileWriter file = new FileWriter("Payment.txt",true);) {
                 String ID = "IV"+(this.ID.size()+1);
-                file.write(ID + "," + userID + "," + unitID + "," + fee + "," + outstanding + "," + date + ",Unpaid\n");
+                file.write(ID + "," + userID + "," + unitID + "," + fee + "," + outstanding + "," + date + "\n");
                 file.close();
             } catch (IOException e) {
                 System.out.println("Incorrect File Path");
@@ -243,7 +243,7 @@ public class Invoices {
                             this.unitID.get(i) + "," + 
                             this.fees.get(i) + "," + 
                             this.outstandingFees.get(i) + "," + 
-                            this.date.get(i) + ",Unpaid\n");
+                            this.date.get(i) + "\n");
                 }
                 file.close();
             } catch (IOException e) {

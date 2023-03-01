@@ -31,20 +31,18 @@ public class Payment {
     private String fee;
     private String outstanding;
     private Date date;
-    private String status;
     
-    public Payment(String invoiceId,String userId,String unitId, String fee, String outstanding, Date date, String status){
+    public Payment(String invoiceId,String userId,String unitId, String fee, String outstanding, Date date){
         this.invoiceId=invoiceId;
         this.userId=userId;
         this.unitId=unitId;
         this.fee=fee;
         this.outstanding=outstanding;
         this.date=date; 
-        this.status=status;
     
     }
     
-    public Payment(String invoiceId,String userId,String unitId, String fee, String outstanding, String date, String status) throws ParseException{
+    public Payment(String invoiceId,String userId,String unitId, String fee, String outstanding, String date) throws ParseException{
         Date tdate = new SimpleDateFormat("dd-MM-yyyy").parse(date);
 
         this.invoiceId=invoiceId;
@@ -53,8 +51,7 @@ public class Payment {
         this.fee=fee;
         this.outstanding=outstanding;
         this.date=tdate; 
-        this.status=status;
-    
+
     }
     
     public Payment() {}
@@ -121,7 +118,6 @@ public class Payment {
         ArrayList<String> fees = new ArrayList();
         ArrayList<String> outstandingFees = new ArrayList();
         ArrayList<String> date = new ArrayList();
-        ArrayList<String> status = new ArrayList();
     }
     
     
@@ -142,7 +138,7 @@ public class Payment {
             }
             for(String str:data){
                 String[] list = str.split(",");
-                payment.add(new Payment(list[0],list[1],list[2],list[3],list[4],list[5],list[6]));
+                payment.add(new Payment(list[0],list[1],list[2],list[3],list[4],list[5]));
                 
                 br.close();
             }   
@@ -166,7 +162,7 @@ public class Payment {
                     DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
                     String date = date_format.format(u.getDate());
                 
-                    String[] allDataRow = {u.getFee(),date};
+                    String[] allDataRow = {u.getInvoiceId(),u.getFee(),u.getOutstanding(),date};
                     model.addRow(allDataRow);
                 }
                 
@@ -202,8 +198,32 @@ public class Payment {
             model.addRow(allDataRow);
         }
     }  
-    
     }
+    
+    public void PAY(ArrayList<Payment> payments,String ID, int amount) {
+            for(Payment i: payments){
+                String id = i.getInvoiceId();
+                if(id.equals(ID)){
+                    String userid = i.getUserId();
+                    String unitid = i.getUnitId();
+                    String fee = i.getFee();
+                    String outstanding = i.getOutstanding();
+                    String idate = new SimpleDateFormat("dd-MM-yyyy").format(i.getDate());
+                    int newfee = Integer.parseInt(fee) - amount;
+                    int newout = Integer.parseInt(outstanding)- amount;
+                    if(newfee<0){
+                        newfee=0;
+                    }
+                    fee = String.valueOf(newfee);
+                    outstanding = String.valueOf(newout);
+                    i.setFee(fee);
+                    i.setOutstanding(outstanding);
+                }
+            }
+           
+        }
+    
+  
     public static class FileManipulation extends PaymentInfo {
         public void readFile() {
             ID.clear();
@@ -223,7 +243,7 @@ public class Payment {
                     fees.add(values[3]);
                     outstandingFees.add(values[4]);
                     date.add(values[5]);
-                    status.add(values[6]);
+                    
                 }
             } catch (IOException e) {
                 System.out.println("Incorrect File Path");
@@ -231,36 +251,13 @@ public class Payment {
         }
         
         
-        public void PAY(String ID, String userID, String unitID, String fee, String outstanding, String date) {
-            readFile();
-            for (int i = 0; i < this.ID.size(); i++) {
-                if (ID.equals(this.ID.get(i))) {
-                    this.ID.set(i, ID);
-                    this.userID.set(i, userID);
-                    this.unitID.set(i, unitID);
-                    this.fees.set(i, fee);
-                    this.outstandingFees.set(i, outstanding);
-                    this.date.set(i, date);
-                }
-            }
-            try ( FileWriter file = new FileWriter("Payment.txt");) {
-                for (int i = 0; i < this.ID.size(); i++) {
-                    file.write(this.ID.get(i) + "," + 
-                            this.userID.get(i) + "," + 
-                            this.unitID.get(i) + "," + 
-                            this.fees.get(i) + "," + 
-                            this.outstandingFees.get(i) + "," + 
-                            this.date.get(i) + "\n");
-                }
-                file.close();
-            } catch (IOException e) {
-                System.out.println("Incorrect File Path");
-            }
-        }
         
     }
 }
+        
     
+
+   
     
     
     

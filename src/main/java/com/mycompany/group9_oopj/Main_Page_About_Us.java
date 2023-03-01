@@ -32,6 +32,7 @@ public class Main_Page_About_Us extends javax.swing.JFrame {
         Location = new javax.swing.JLabel();
         AboutUs = new javax.swing.JLabel();
         Login = new javax.swing.JLabel();
+        VisitorPassLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -96,11 +97,23 @@ public class Main_Page_About_Us extends javax.swing.JFrame {
             }
         });
 
+        VisitorPassLabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        VisitorPassLabel.setForeground(new java.awt.Color(255, 255, 255));
+        VisitorPassLabel.setText("VISITOR PASS");
+        VisitorPassLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VisitorPassLabelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(VisitorPassLabel)
+                .addGap(251, 251, 251))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(21, 21, 21)
@@ -117,7 +130,10 @@ public class Main_Page_About_Us extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 63, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(VisitorPassLabel)
+                .addGap(22, 22, 22))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(20, 20, 20)
@@ -298,6 +314,13 @@ public class Main_Page_About_Us extends javax.swing.JFrame {
         dispose(); //close current frame after open new frame
     }//GEN-LAST:event_LoginMouseClicked
 
+    private void VisitorPassLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisitorPassLabelMouseClicked
+        // TODO add your handling code here:
+        View_Visitor_Pass VVP = new View_Visitor_Pass();
+        VVP.show();
+        dispose();
+    }//GEN-LAST:event_VisitorPassLabelMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -339,6 +362,7 @@ public class Main_Page_About_Us extends javax.swing.JFrame {
     private javax.swing.JLabel Home;
     private javax.swing.JLabel Location;
     private javax.swing.JLabel Login;
+    private javax.swing.JLabel VisitorPassLabel;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

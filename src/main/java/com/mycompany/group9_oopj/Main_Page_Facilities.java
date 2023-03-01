@@ -47,6 +47,7 @@ public class Main_Page_Facilities extends javax.swing.JFrame {
         Location = new javax.swing.JLabel();
         AboutUs = new javax.swing.JLabel();
         Login = new javax.swing.JLabel();
+        VisitorPassLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -235,6 +236,15 @@ public class Main_Page_Facilities extends javax.swing.JFrame {
             }
         });
 
+        VisitorPassLabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        VisitorPassLabel.setForeground(new java.awt.Color(255, 255, 255));
+        VisitorPassLabel.setText("VISITOR PASS");
+        VisitorPassLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VisitorPassLabelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -248,6 +258,8 @@ public class Main_Page_Facilities extends javax.swing.JFrame {
                 .addComponent(Location)
                 .addGap(18, 18, 18)
                 .addComponent(AboutUs)
+                .addGap(18, 18, 18)
+                .addComponent(VisitorPassLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Login)
                 .addGap(20, 20, 20))
@@ -262,7 +274,8 @@ public class Main_Page_Facilities extends javax.swing.JFrame {
                     .addComponent(Facilities)
                     .addComponent(Location)
                     .addComponent(AboutUs)
-                    .addComponent(Login))
+                    .addComponent(Login)
+                    .addComponent(VisitorPassLabel))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -317,6 +330,13 @@ public class Main_Page_Facilities extends javax.swing.JFrame {
         dispose(); //close current frame after open new frame
     }//GEN-LAST:event_LoginMouseClicked
 
+    private void VisitorPassLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisitorPassLabelMouseClicked
+        // TODO add your handling code here:
+        View_Visitor_Pass VVP = new View_Visitor_Pass();
+        VVP.show();
+        dispose();
+    }//GEN-LAST:event_VisitorPassLabelMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -358,6 +378,7 @@ public class Main_Page_Facilities extends javax.swing.JFrame {
     private javax.swing.JLabel Home;
     private javax.swing.JLabel Location;
     private javax.swing.JLabel Login;
+    private javax.swing.JLabel VisitorPassLabel;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

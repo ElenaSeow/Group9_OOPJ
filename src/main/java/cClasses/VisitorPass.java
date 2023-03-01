@@ -186,6 +186,21 @@ public class VisitorPass {
         }
      }
     
+    public static void ViewVisitorPass(ArrayList<VisitorPass> visitorpass,JTable table,String id){
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            for(VisitorPass u:visitorpass){
+                String userID=u.getUserId();
+                if(id.equals(userID)){
+//                    DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
+//                    String date = date_format.format(u.getDate());
+                
+                    String[] allDataRow = {u.getVisitorId(),u.getUserId(),u.getName(),u.getContactNo(),u.getPlateNo()};
+                    model.addRow(allDataRow);
+                }
+                
+        }
+     }
+    
     
     public static class FileManipulation extends VisitorPass.VisitorPassInfo {
 

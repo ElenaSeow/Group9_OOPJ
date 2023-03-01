@@ -377,10 +377,10 @@ public class Security_Main extends javax.swing.JFrame {
 
     private void PatrollingTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PatrollingTblMousePressed
         if(PatrollingTbl.getSelectedRow() != -1){
-            psCID.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 0).toString());
-            psSID.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 1).toString());
-            psTime.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 2).toString());
-            psDate.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 3).toString());
+//            psCID.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 0).toString());
+//            psSID.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 1).toString());
+//            psTime.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 2).toString());
+//            psDate.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 3).toString());
         }
     }//GEN-LAST:event_PatrollingTblMousePressed
 

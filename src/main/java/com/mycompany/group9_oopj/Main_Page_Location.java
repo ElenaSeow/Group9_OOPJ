@@ -32,6 +32,7 @@ public class Main_Page_Location extends javax.swing.JFrame {
         Location = new javax.swing.JLabel();
         AboutUs = new javax.swing.JLabel();
         Login = new javax.swing.JLabel();
+        VisitorPassLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -98,6 +99,10 @@ public class Main_Page_Location extends javax.swing.JFrame {
             }
         });
 
+        VisitorPassLabel2.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        VisitorPassLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        VisitorPassLabel2.setText("VISITOR PASS");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -105,12 +110,14 @@ public class Main_Page_Location extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(Home)
-                .addGap(80, 80, 80)
+                .addGap(47, 47, 47)
                 .addComponent(Facilities)
                 .addGap(18, 18, 18)
                 .addComponent(Location)
                 .addGap(18, 18, 18)
                 .addComponent(AboutUs)
+                .addGap(18, 18, 18)
+                .addComponent(VisitorPassLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Login)
                 .addGap(20, 20, 20))
@@ -124,7 +131,8 @@ public class Main_Page_Location extends javax.swing.JFrame {
                     .addComponent(Facilities)
                     .addComponent(Location)
                     .addComponent(AboutUs)
-                    .addComponent(Login))
+                    .addComponent(Login)
+                    .addComponent(VisitorPassLabel2))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -357,6 +365,9 @@ public class Main_Page_Location extends javax.swing.JFrame {
     private javax.swing.JLabel Home;
     private javax.swing.JLabel Location;
     private javax.swing.JLabel Login;
+    private javax.swing.JLabel VisitorPassLabel;
+    private javax.swing.JLabel VisitorPassLabel1;
+    private javax.swing.JLabel VisitorPassLabel2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

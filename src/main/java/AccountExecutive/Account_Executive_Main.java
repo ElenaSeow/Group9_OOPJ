@@ -486,7 +486,7 @@ public class Account_Executive_Main extends javax.swing.JFrame {
                 for (Object tableLine : tableLines) {
                     String line = tableLine.toString().trim();
                     String[] dataRow = line.split(",");
-                    if (dataRow.length == columnNames.length && dataRow[1].equals(userIDInput)) {
+                    if (dataRow[1].equals(userIDInput)) {
                      model.addRow(dataRow);
                         unitID.setText(dataRow[2]);
                         fees.setText(dataRow[3]);

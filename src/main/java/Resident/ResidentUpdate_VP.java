@@ -4,6 +4,7 @@
  */
 package Resident;
 
+import cClasses.Booking;
 import cClasses.Functions;
 import cClasses.Resident;
 import cClasses.Session;
@@ -16,14 +17,14 @@ import javax.swing.JOptionPane;
  *
  * @author HP
  */
-public class ResidentCreate_VP extends javax.swing.JFrame {
+public class ResidentUpdate_VP extends javax.swing.JFrame {
     Session Session;
     String id;
     ArrayList<VisitorPass> visitorpass;
     /**
      * Creates new form ResidentCreate_VP
      */
-    public ResidentCreate_VP(Session session) {
+    public ResidentUpdate_VP(Session session) {
         initComponents();
         this.Session = session;
         id=session.getId();
@@ -41,6 +42,17 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
             }
         }
     }
+      public void spamdata(String id){
+        for(VisitorPass i : visitorpass){
+            String VID = i.getVisitorId();
+            if(id.equals(VID)){
+                VisitoriD.setText(i.getVisitorId());
+                Name.setText(i.getName());
+                TelNo.setText(i.getContactNo());
+                PlateNo.setText(i.getPlateNo());
+            }
+        }
+      }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,7 +86,7 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("New Visitor Pass");
+        jLabel3.setText("Update Visitor Pass");
 
         SaveBtn.setText("Save");
         SaveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -209,7 +221,7 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
         String visitorid = Functions.IdGenerate("VisitorPass.txt");
         String plateNo = PlateNo.getText();
         
-        visitorpass.add(new VisitorPass(id, visitorid, name, contactNo, plateNo));
+        visitorpass= new VisitorPass(id, visitorid, name, contactNo, plateNo).Update(visitorpass,id);
         VisitorPass.Write(visitorpass);
         JOptionPane.showMessageDialog(null, "Successfully Updated");
         Resident_Main RM = new Resident_Main(Session);

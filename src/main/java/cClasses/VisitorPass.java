@@ -36,7 +36,7 @@ public class VisitorPass {
     private String contactNo;
     private String plateNo;
     
-    public VisitorPass( String visitorId,String userId, String name, String contactNo) {
+    public VisitorPass( String visitorId,String userId, String name, String contactNo,String plateNo) {
         this.userId=userId;
         this.visitorId=visitorId;
         this.name=name;
@@ -97,6 +97,10 @@ public class VisitorPass {
         this.contactNo=contactNo;
     }
     
+    public void setPlateNo(String plateNo){
+        this.plateNo=plateNo;
+    }
+    
 //    public void setDate(Date date) {
 //        this.date=date;
 //    }
@@ -107,6 +111,7 @@ public class VisitorPass {
         ArrayList<String> visitorId = new ArrayList();
         ArrayList<String> name = new ArrayList();
         ArrayList<String> contactNo = new ArrayList();
+        ArrayList<String> plateNo = new ArrayList();
 //        ArrayList<String> date = new ArrayList();
         
     }
@@ -127,7 +132,7 @@ public class VisitorPass {
             }
             for(String str:data){
                 String[] list = str.split(",");
-                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3]));
+                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3],list[4]));
                 
                 br.close();
             }   
@@ -139,6 +144,33 @@ public class VisitorPass {
         return visitorpass;
     }
     
+    public ArrayList<VisitorPass> Update(ArrayList<VisitorPass> visitorpass, String id){
+            PrintWriter pr = null;
+        try {
+           for(VisitorPass f:visitorpass){
+               String Id = f.getVisitorId();
+               if(id.equals(Id)){
+                   f.setName(this.getName());
+                   f.setContactNo(this.getContactNo());
+                   f.setPlateNo(this.getPlateNo());
+               }
+           }   pr = new PrintWriter("Facilities.txt");
+           for(VisitorPass i: visitorpass){ 
+                String vid=i.getVisitorId();
+                String name =i.getName();
+                String telno =i.getContactNo();
+                String plateNo =i.getPlateNo();
+                pr.println(vid+":"+name+":"+telno+":"+plateNo);
+                       }
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(Facility.class.getName()).log(Level.SEVERE, null, ex);
+       } finally {
+           pr.close();
+       }
+       return visitorpass;
+        }
+    
+    
     public static void tabulateData(ArrayList<VisitorPass> visitorpass,JTable table,String id){
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             for(VisitorPass u:visitorpass){
@@ -147,7 +179,7 @@ public class VisitorPass {
 //                    DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
 //                    String date = date_format.format(u.getDate());
                 
-                    String[] allDataRow = {u.getVisitorId(),u.getName(),u.getContactNo()};
+                    String[] allDataRow = {u.getVisitorId(),u.getName(),u.getContactNo(),u.getPlateNo()};
                     model.addRow(allDataRow);
                 }
                 
@@ -171,6 +203,7 @@ public class VisitorPass {
                     visitorId.add(values[1]);
                     name.add(values[2]);
                     contactNo.add(values[3]);
+                    plateNo.add(values[4]);
                 }
             } catch (IOException e) {
                 System.out.println("Incorrect File Path");
@@ -186,7 +219,8 @@ public class VisitorPass {
                 String name=i.getName();
                 String visitorid =i.getVisitorId();
                 String contactNo=i.getContactNo();
-                pr.println(id+":"+name + ":" + visitorid + ":" + contactNo);
+                String plateno = i.getPlateNo();
+                pr.println(id+","+name + "," + visitorid + "," + contactNo+","+plateno);
             }
             pr.close();
         } catch (FileNotFoundException ex) {
@@ -212,8 +246,9 @@ public class VisitorPass {
                     String visitorId=i.getVisitorId();
                     String name=i.getName();
                     String contactNo =i.getContactNo();
+                    String plateno = i.getPlateNo();
                     
-                    pr.println(userId+":"+visitorId+":"+name+":"+contactNo);
+                    pr.println(userId+","+visitorId+","+name+","+contactNo+","+plateno);
             }
             pr.close();
                

@@ -33,10 +33,12 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     String id;
     ArrayList<BuildingExecutive> buildingexecutives = new BuildingExecutive().Import();
     ArrayList<Security> securities = new Security().Import();
-  //ArrayList<Complaint> complaints = new Complaint().Import();
+    ArrayList<Complaint> complaints = new Complaint().Import();
     ArrayList<Patrols> patrols = new Patrols().Import();
     
+    Complaint.fileManipulation c = new Complaint.fileManipulation();
     Jobs.getInfo j = new Jobs.getInfo();
+    
     /**
      * Creates new form Building_Executive_Main
      * @param session
@@ -47,19 +49,23 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         id = Session.getId(); 
         Security.tabulateData(securities, JobManagementTbl);
         Patrols.tabulateData(patrols, PatrollingTbl);
+        Complaint.tabulateData(complaints, ComplaintsTbl);
+        Patrols.tabulateData(patrols, PatrollingHistoryTbl);
         
         securities = new Security().Import();
-      //complaints = new Complaint().Import();
+        complaints = new Complaint().Import();
         patrols = new Patrols().Import();
         ArrayList<String> securitydata;
         securitydata = Functions.Read("Security.txt");
         String emid = "";
         for(BuildingExecutive b:buildingexecutives){
             String username = b.getName();
+            String userID = b.getId();
             String buildingexecutiveId= b.getId();
             if(id.equals(buildingexecutiveId)){
                 
                 Username.setText(username);
+                UID.setText(userID);
             
             }
         }
@@ -112,6 +118,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Username = new javax.swing.JLabel();
+        UID = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         Logout1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -160,7 +167,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        hTable = new javax.swing.JTable();
+        PatrollingHistoryTbl = new javax.swing.JTable();
         Date = new javax.swing.JLabel();
         Time = new javax.swing.JLabel();
 
@@ -182,6 +189,9 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         Username.setForeground(new java.awt.Color(255, 255, 255));
         Username.setText("Username");
 
+        UID.setForeground(new java.awt.Color(255, 255, 255));
+        UID.setText("UID");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -189,21 +199,31 @@ public class Building_Executive_Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(192, 192, 192)
+                .addGap(173, 173, 173)
                 .addComponent(jLabel3)
-                .addGap(36, 36, 36)
-                .addComponent(Username)
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(UID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Username))
                 .addGap(17, 17, 17))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(Username))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(Username)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(UID)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel9.setBackground(new java.awt.Color(67, 63, 113));
@@ -554,7 +574,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
         jLabel16.setText("Status:");
 
-        cStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Resolved" }));
         cStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cStatusActionPerformed(evt);
@@ -562,6 +582,11 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         });
 
         cUpdateBtn.setText("Update");
+        cUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cUpdateBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -581,7 +606,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -608,21 +633,21 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
         jLabel17.setText("History");
 
-        hTable.setBackground(new java.awt.Color(204, 204, 204));
-        hTable.setModel(new javax.swing.table.DefaultTableModel(
+        PatrollingHistoryTbl.setBackground(new java.awt.Color(204, 204, 204));
+        PatrollingHistoryTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-
+                "Checkpoint ID", "Security ID", "Time", "Date"
             }
         ));
-        hTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        PatrollingHistoryTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                hTableMousePressed(evt);
+                PatrollingHistoryTblMousePressed(evt);
             }
         });
-        jScrollPane4.setViewportView(hTable);
+        jScrollPane4.setViewportView(PatrollingHistoryTbl);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -785,16 +810,16 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_PatrollingTblMousePressed
 
     private void ComplaintsTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComplaintsTblMousePressed
-        
+        cStatus.setSelectedItem(ComplaintsTbl.getValueAt(ComplaintsTbl.getSelectedRow(), 4).toString());
     }//GEN-LAST:event_ComplaintsTblMousePressed
 
     private void cStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cStatusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cStatusActionPerformed
 
-    private void hTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hTableMousePressed
+    private void PatrollingHistoryTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PatrollingHistoryTblMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_hTableMousePressed
+    }//GEN-LAST:event_PatrollingHistoryTblMousePressed
 
     private void emRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emRoleActionPerformed
         // TODO add your handling code here:
@@ -905,6 +930,15 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_psTimeActionPerformed
 
+    private void cUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cUpdateBtnActionPerformed
+        if(ComplaintsTbl.getSelectedRow() != -1){
+            String date = ComplaintsTbl.getValueAt(ComplaintsTbl.getSelectedRow(), 3).toString();
+            String description = ComplaintsTbl.getValueAt(ComplaintsTbl.getSelectedRow(), 2).toString();
+            c.editFile(ComplaintsTbl.getValueAt(ComplaintsTbl.getSelectedRow(), 0).toString(), UID.getText(), description, date, cStatus.getSelectedItem().toString());
+            JOptionPane.showMessageDialog(null,"Successfully Updated Complaint!");
+        }
+    }//GEN-LAST:event_cUpdateBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -945,8 +979,10 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     private javax.swing.JLabel Date;
     private javax.swing.JTable JobManagementTbl;
     private javax.swing.JLabel Logout1;
+    private javax.swing.JTable PatrollingHistoryTbl;
     private javax.swing.JTable PatrollingTbl;
     private javax.swing.JLabel Time;
+    private javax.swing.JLabel UID;
     private javax.swing.JLabel Username;
     private javax.swing.JComboBox<String> cStatus;
     private javax.swing.JButton cUpdateBtn;
@@ -956,7 +992,6 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     private javax.swing.JTextField emName;
     private javax.swing.JTextField emPassword;
     private javax.swing.JTextField emRole;
-    private javax.swing.JTable hTable;
     private javax.swing.JButton jAssignBtn;
     private javax.swing.JButton jClearBtn;
     private javax.swing.JButton jDeleteBtn;

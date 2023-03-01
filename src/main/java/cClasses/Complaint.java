@@ -7,6 +7,7 @@ package cClasses;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -240,6 +241,63 @@ public class Complaint {
        } finally {
            pr.close();
        }
+    }
+     
+     public static class info {
+
+        ArrayList<String> cID = new ArrayList();
+        ArrayList<String> uID = new ArrayList();
+        ArrayList<String> description = new ArrayList();
+        ArrayList<String> date = new ArrayList();
+        ArrayList<String> status = new ArrayList();
+    }
+     public static class fileManipulation extends info {
+     public void readFile() {
+            cID.clear();
+            uID.clear();
+            description.clear();
+            date.clear();
+            status.clear();
+            try ( BufferedReader file = new BufferedReader(new FileReader("complaints.txt"))) {
+                String line;
+                file.readLine();
+                while ((line = file.readLine()) != null) {
+                    String[] values = line.split(":");
+                    cID.add(values[0]);
+                    uID.add(values[1]);
+                    description.add(values[2]);
+                    date.add(values[3]);
+                    status.add(values[4]);
+                }
+            } catch (IOException e) {
+                System.out.println("Incorrect File Path");
+            }
+        }
+     
+     public void editFile(String cID, String uID, String description, String date, String status) {
+            readFile();
+            for (int i = 0; i < this.cID.size(); i++) {
+                if (cID.equals(this.cID.get(i))) {
+                    this.cID.set(i, cID);
+                    this.uID.set(i, uID);
+                    this.description.set(i, description);
+                    this.date.set(i, date);
+                    this.status.set(i, status);
+                }
+            }
+            try ( FileWriter file = new FileWriter("complaints.txt");) {
+                for (int i = 0; i < this.cID.size(); i++) {
+                    file.write(this.cID.get(i) + ":" + 
+                            this.uID.get(i) + ":" + 
+                            this.description.get(i) + ":" + 
+                            this.date.get(i) + ":" + 
+                            this.status.get(i) + "\n");
+                }
+                file.close();
+            } catch (IOException e) {
+                System.out.println("Incorrect File Path");
+            }
+        }
     }
 }
 

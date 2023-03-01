@@ -84,7 +84,32 @@ public class Security extends User {
     }
         return securities;
     }
-    
+    public static ArrayList<Security> delete(ArrayList<Security> securities, String id) {
+        ArrayList<Security> newSecurities = new ArrayList<>();
+        try {
+            for (Security s : securities) {
+                if (!s.getId().equals(id)) {
+                    newSecurities.add(s);
+                }
+            }
+
+            PrintWriter pr = new PrintWriter("Security.txt");
+            for (Security i : newSecurities) {
+                String ID = i.getId();
+                String name = i.getName();
+                String email = i.getEmail();
+                String password = i.getPassword();
+                String role = i.getRole();
+                String contactNo = i.getContactNo();
+                pr.println(ID + ":" + name + ":" + email + ":" + password + ":" + role + ":" + contactNo);
+            }
+            pr.close();
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Security.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return newSecurities;
+}
      public static ArrayList<Security> delete(ArrayList<Security> securities, String id, int rowIndex) {
         ArrayList<Security> newSecurities = new ArrayList<>();
         try {

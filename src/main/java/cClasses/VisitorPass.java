@@ -34,6 +34,7 @@ public class VisitorPass {
     private String visitorId;
     private String name;
     private String contactNo;
+    private String plateNo;
     
     public VisitorPass( String visitorId,String userId, String name, String contactNo) {
         this.userId=userId;

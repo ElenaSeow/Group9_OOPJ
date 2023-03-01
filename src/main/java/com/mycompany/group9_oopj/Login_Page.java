@@ -411,7 +411,7 @@ public class Login_Page extends javax.swing.JFrame {
                     String roles = list[4];
                     String number = list [5];
 
-                    if (id.equals(ID) && password.equals(pwd) && roles.equals("Resident")) {
+                    if (id.equals(ID) && password.equals(pwd) && (roles.equals("Resident")||roles.equals("Tenant"))) {
                         JOptionPane.showMessageDialog(null, "Login Successfull!");
                         JOptionPane.showMessageDialog(null, "You are entering Resident Page....");
 

@@ -28,6 +28,8 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
         this.Session = session;
         id=session.getId();
         String id = session.getId();
+        String vid = Functions.IdGenerate2("VisitorPass.txt");
+        VisitoriD.setText(vid);
         
         visitorpass = new VisitorPass().Import();
         ArrayList<Resident> resident;
@@ -100,6 +102,7 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
 
         UserId.setText("jLabel5");
 
+        VisitoriD.setEditable(false);
         VisitoriD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VisitoriDActionPerformed(evt);

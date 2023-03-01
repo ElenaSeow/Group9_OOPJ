@@ -68,6 +68,13 @@ public class Resident_Main extends javax.swing.JFrame {
         // Bookings code
         Booking.facilityChooser(facilities, FacilityCB4);
         DateChooser1.setMinSelectableDate(new Date());
+        bookings=Booking.changeStatus(bookings);
+        
+        
+        //VisitorPass
+        
+        
+        
         
         visitorpass=new VisitorPass().Import();
         residents=new Resident().Import();

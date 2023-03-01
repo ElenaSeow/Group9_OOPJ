@@ -781,7 +781,14 @@ public class Building_Executive_Main extends javax.swing.JFrame {
                         emPassword.getText(),
                         emRole.getText(),
                         emContact.getText());
+                securities.add(new Security(emID.getText(), 
+                        emName.getText(), 
+                        emEmail.getText(),
+                        emPassword.getText(),
+                        emRole.getText(),
+                        emContact.getText()));
                 JOptionPane.showMessageDialog(null, "Successfully Assigned Job!");
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Missing Inputs");
             }
@@ -873,16 +880,24 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jUpdateBtnActionPerformed
 
     private void jDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteBtnActionPerformed
-        if(JobManagementTbl.getSelectionModel().isSelectionEmpty()==false){
-            int column = 0;
-            int row = JobManagementTbl.getSelectedRow();
-            String Id = JobManagementTbl.getModel().getValueAt(JobManagementTbl.convertRowIndexToModel(row), column).toString();
-            j.deleteFile(emID.getText());
-            Building_Executive_Main bem = new Building_Executive_Main(Session);
-            bem.setVisible(true);
-            dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Please select a row.");
+        if (JobManagementTbl.getSelectionModel().isSelectionEmpty() == false) {
+        int column = 1;
+        int rowIndex = JobManagementTbl.getSelectedRow();
+        String Id = JobManagementTbl.getModel().getValueAt(JobManagementTbl.convertRowIndexToModel(rowIndex), column).toString();
+
+        securities = Security.delete(securities, Id, rowIndex);
+
+        DefaultTableModel model = (DefaultTableModel) JobManagementTbl.getModel();
+        model.setRowCount(0);
+        for (Security s : securities) {
+            model.addRow(new Object[]{s.getId(), s.getName(), s.getContactNo()});
+        }
+
+        Building_Executive_Main bem = new Building_Executive_Main(Session);
+        bem.setVisible(true);
+        dispose();
+    } else {
+        JOptionPane.showMessageDialog(null, "Please select a row.");
         }
     }//GEN-LAST:event_jDeleteBtnActionPerformed
 

@@ -6,6 +6,7 @@ package Vendor;
 
 import cClasses.Functions;
 import cClasses.Invoices;
+import cClasses.Payment;
 import cClasses.Session;
 import cClasses.Vendor;
 import java.awt.event.ActionEvent;
@@ -34,6 +35,11 @@ public class Vendor_Main extends javax.swing.JFrame {
     Session Session;
     String id;
     ArrayList<Vendor> vendors;
+    
+    ArrayList<Invoices> invoices = new Invoices().Import();
+    ArrayList<Payment> payment = new Payment().Import();
+    
+    
     //ArrayList<Invoices> invoices = new Invoices().Import();
     /**
      * Creates new form Vendor_Main
@@ -42,6 +48,11 @@ public class Vendor_Main extends javax.swing.JFrame {
         initComponents();
         this.Session = session;
         id = Session.getId();
+        
+        Invoices.tabulateData(invoices, InvoiceTable,id);
+        Payment.tabulateData(payment, PaymentTable,id);
+        Payment.tabulateDataOutstanding(payment, OutstandingTable, id);
+        Payment.tabulateReceipt(payment, ReceiptTable,id);
         
         vendors=new Vendor().Import();
         ArrayList<String> unitdata;
@@ -85,6 +96,7 @@ public class Vendor_Main extends javax.swing.JFrame {
                 
             }
         }
+        dt(); //Input Date and Time
     }
 
     /**
@@ -94,6 +106,35 @@ public class Vendor_Main extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     
+    // For Date and Time
+    
+        Timer t;
+    SimpleDateFormat st;
+    
+    public void dt(){
+    
+        // Date
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
+        String dd = sdf.format(d);
+        Date.setText(dd);
+        
+        // Time
+        t = new Timer (0, new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            
+                Date dt = new Date();
+                st = new SimpleDateFormat("hh:mm:ss a");
+                
+                String tt = st.format(dt);
+                Time.setText(tt);
+            }
+        }); 
+           t.start(); 
+    }
     
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -149,7 +190,7 @@ public class Vendor_Main extends javax.swing.JFrame {
         jLabel55 = new javax.swing.JLabel();
         FeeDetailsPayment = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        PaymentTable3 = new javax.swing.JTable();
+        PaymentTable = new javax.swing.JTable();
         jPanel23 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         InvoiceTable = new javax.swing.JTable();
@@ -162,7 +203,7 @@ public class Vendor_Main extends javax.swing.JFrame {
         AmountTFOutstanding = new javax.swing.JTextField();
         PayOutstandingButton = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
-        OutstandingTable3 = new javax.swing.JTable();
+        OutstandingTable = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -520,18 +561,15 @@ public class Vendor_Main extends javax.swing.JFrame {
         FeeDetailsPayment.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         FeeDetailsPayment.setText("Date");
 
-        PaymentTable3.setModel(new javax.swing.table.DefaultTableModel(
+        PaymentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Fee", "Date"
             }
         ));
-        jScrollPane8.setViewportView(PaymentTable3);
+        jScrollPane8.setViewportView(PaymentTable);
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -639,18 +677,15 @@ public class Vendor_Main extends javax.swing.JFrame {
         PayOutstandingButton.setText("PAY");
         PayOutstandingButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        OutstandingTable3.setModel(new javax.swing.table.DefaultTableModel(
+        OutstandingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Outstanding Fee", "Date"
             }
         ));
-        jScrollPane10.setViewportView(OutstandingTable3);
+        jScrollPane10.setViewportView(OutstandingTable);
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
@@ -839,6 +874,47 @@ public class Vendor_Main extends javax.swing.JFrame {
 
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
         // TODO add your handling code here:
+        String Id = UserIDL2.getText();
+        String name = NameMOD.getText();
+        String email = EmailMOD.getText();
+        String password = PasswordMOD.getText();
+        String role = RoleL2.getText();
+        String telno = TelNoMOD.getText();
+        String unitNo = UnitIDL2.getText();
+        
+        ArrayList<String> unitdata;
+        String unitID="";
+        unitdata=Functions.Read("Units.txt");
+        for(String i:unitdata){
+                String[] j = i.split(":");
+                    if(j[1].equals(unitNo)){
+                        unitID=j[1];
+                    }
+                }
+        vendors = new Vendor(Id, name, email, password, role, telno, unitID).Update(vendors, Id);
+        JOptionPane.showMessageDialog(null, "Successfully Updated");
+        
+        try (BufferedReader brrr = new BufferedReader(new FileReader("BackupResident.txt"))) {
+            String line;
+            Scanner reader = new Scanner(brrr);
+            while ((line = brrr.readLine()) != null) {
+                String[] list = line.split(":");
+                String VendorId = list[0];
+                String VendorName = list [1];
+                String VendorEmail = list[2];
+                String VendorPassword = list[3];
+                String VendorNumber = list [5];
+                
+            if (id.equals(VendorId)) {    
+                NameL.setText(VendorName);
+                EmailL.setText(VendorEmail);
+                PasswordL.setText(VendorPassword);
+                TelNoL.setText(VendorNumber);
+                } }
+            }   
+    catch (Exception e) {  
+            }
+    JOptionPane.showMessageDialog(null,"Your Details Have Been Modified and Refreshed");    
 
         
         
@@ -907,12 +983,12 @@ public class Vendor_Main extends javax.swing.JFrame {
     private javax.swing.JTextField NameMOD;
     private javax.swing.JLabel OutstandingDetails;
     private javax.swing.JLabel OutstandingFee;
-    private javax.swing.JTable OutstandingTable3;
+    private javax.swing.JTable OutstandingTable;
     private javax.swing.JLabel PasswordL;
     private javax.swing.JTextField PasswordMOD;
     private javax.swing.JButton PayOutstandingButton;
     private javax.swing.JButton PayPaymentButton;
-    private javax.swing.JTable PaymentTable3;
+    private javax.swing.JTable PaymentTable;
     private javax.swing.JTable ReceiptTable;
     private javax.swing.JLabel RoleL;
     private javax.swing.JLabel RoleL2;

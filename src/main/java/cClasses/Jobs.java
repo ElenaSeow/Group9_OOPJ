@@ -75,21 +75,15 @@ public class Jobs {
         public void addFile(String ID, String name, String email, String password, String role, String contact) {
             readFile();
             try ( FileWriter file = new FileWriter("Security.txt",true);) {
-                int n = 2;
                 String[] newName = name.split(" ");
-                ID = ID.replaceAll("[0-9]", "");
-                for(int i=0;i<this.ID.size();i++){
-                    if(this.ID.get(i).contains(ID)){
-                        n+=1;
-                    }
-                }
-                ID = ID+Integer.toString(n);
                 file.write(ID+":"+name+":"+email+":"+password+":"+role+":"+contact+"\n");
                 file.close();
             } catch (IOException e) {
                 System.out.println("Incorrect File Path");
                 }
             }
+        
+        
         
         public void deleteFile(String ID) {
             readFile();

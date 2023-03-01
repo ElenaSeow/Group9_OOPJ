@@ -52,6 +52,26 @@ public class Functions {
         
        return data; 
     }
+         public static ArrayList<String> SkipRead(String file){
+        ArrayList<String> data = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            br.readLine();
+            
+            while((line=br.readLine())!=null){
+                data.add(line);
+            }
+        br.close();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Functions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Functions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       return data; 
+    }
         
         public static String IdGenerate(String file){
         ArrayList<String> filedata;
@@ -59,6 +79,26 @@ public class Functions {
         ArrayList<String> Ids = new ArrayList<>();
         for(String str:filedata){
             String[] list = str.split(":");
+            Ids.add(list[0]);
+        }
+        int len = Ids.size();
+        String lastID = Ids.get(len-1);
+        String code = lastID.substring(0,2);
+        int digit = Integer.parseInt(lastID.substring(2));
+        digit += 1;
+        String pattern ="000";
+        DecimalFormat myFormatter = new DecimalFormat(pattern);
+        String newDigit = myFormatter.format(digit);
+        String newId= code+newDigit;
+        return newId;
+    }
+        
+         public static String IdGenerate2(String file){
+        ArrayList<String> filedata;
+        filedata =Functions.SkipRead(file);
+        ArrayList<String> Ids = new ArrayList<>();
+        for(String str:filedata){
+            String[] list = str.split(",");
             Ids.add(list[0]);
         }
         int len = Ids.size();

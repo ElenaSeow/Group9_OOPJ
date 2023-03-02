@@ -180,10 +180,7 @@ public class Security_Main extends javax.swing.JFrame {
 
         VisitorPassEntry.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Visitor ID", "User ID", "Name", "Contact No", "Plate No.", "Status"
@@ -286,10 +283,7 @@ public class Security_Main extends javax.swing.JFrame {
 
         IncidentTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Incident ID", "User ID", "Description"

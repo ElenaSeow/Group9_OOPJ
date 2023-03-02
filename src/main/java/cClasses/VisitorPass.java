@@ -210,6 +210,18 @@ public class VisitorPass {
         }
      }
     
+    public static void ViewVisitorPassforSG(ArrayList<VisitorPass> visitorpass,JTable table,String id){
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            for(VisitorPass u:visitorpass){
+
+                
+                    String[] allDataRow = {u.getVisitorId(),u.getUserId(),u.getName(),u.getContactNo(),u.getPlateNo(),u.getStatus()};
+                    model.addRow(allDataRow);
+                
+     
+                
+        }
+     }
     
     public static class FileManipulation extends VisitorPass.VisitorPassInfo {
 

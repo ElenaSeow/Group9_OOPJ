@@ -7,12 +7,14 @@ abstract public class PatrolUser {
     private String secid;
     private String date;
     private String time;
+    private String status;
     
-    public PatrolUser(String checkid, String secid, String date, String time){
+    public PatrolUser(String checkid, String secid, String date, String time, String status){
         this.checkid=checkid;
         this.secid=secid;
         this.date=date;
         this.time=time; 
+        this.status=status;
     }
     public PatrolUser(){}
 
@@ -44,7 +46,13 @@ abstract public class PatrolUser {
     public void settime(String time){
         this.time=time;
     }
-
+    public String getstatus() {
+        return status;
+    }
+    public void setstatus(String status) {
+        this.status=status;
+    }
+    
 
     public abstract ArrayList<?> Import();
 }

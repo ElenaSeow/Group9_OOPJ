@@ -28,9 +28,8 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
         this.Session = session;
         id=session.getId();
         String id = session.getId();
-        
-        //String vid = Functions.IdGenerate2("VisitorPass.txt");
-        //VisitoriD.setText(vid);
+        String vid = Functions.IdGenerate2("VisitorPass.txt");
+        VisitoriD.setText(vid);
         
         visitorpass = new VisitorPass().Import();
         ArrayList<Resident> resident;
@@ -204,14 +203,14 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
         
-        //String id = UserId.getText();
+        String id = UserId.getText();
         String name = Name.getText();
         String contactNo = TelNo.getText();
+        String vid = Functions.IdGenerate2("VisitorPass.txt");
         String plateNo = PlateNo.getText();
         String status = "Pending";
-        
-        String id = Functions.IdGenerate2("VisitorPass.txt");
-        visitorpass.add(new VisitorPass(id,id, name, contactNo, plateNo,status));
+       
+        visitorpass.add(new VisitorPass(vid, id, name, contactNo, plateNo,status));
         VisitorPass.Write(visitorpass);
         JOptionPane.showMessageDialog(null, "Successfully Updated");
         Resident_Main RM = new Resident_Main(Session);

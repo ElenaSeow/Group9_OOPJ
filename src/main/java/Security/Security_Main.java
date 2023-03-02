@@ -6,12 +6,19 @@
 package Security;
 
 import BuildingExecutive.Building_Executive_Update_Complaints;
+import cClasses.Functions;
+import cClasses.Incident;
 import cClasses.Patrols;
 import cClasses.Security;
 import cClasses.Session;
 import cClasses.VisitorPass;
+import com.mycompany.group9_oopj.Main_Page;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +30,8 @@ public class Security_Main extends javax.swing.JFrame {
     ArrayList<Security> security;
     ArrayList<VisitorPass> visitorpass = new VisitorPass().Import();
     ArrayList<Patrols> patrols = new Patrols().Import();
+    ArrayList<Incident> incidents = new Incident().Import();
+    Incident.getInfo i = new Incident.getInfo();
     
     /** Creates new form Security_Main */
     public Security_Main(Session session) {
@@ -34,7 +43,7 @@ public class Security_Main extends javax.swing.JFrame {
         VisitorPass.ViewVisitorPassforSG(visitorpass, VisitorPassEntry,id);
         
         Patrols.tabulateData(patrols, CheckpointTbl);
-        
+        Incident.tabulateData(incidents, IncidentTbl);
         visitorpass=new VisitorPass().Import();
         
         ArrayList<Security> securities;
@@ -62,7 +71,7 @@ public class Security_Main extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel20 = new javax.swing.JPanel();
-        Logout8 = new javax.swing.JLabel();
+        LogoutBtn = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -79,16 +88,16 @@ public class Security_Main extends javax.swing.JFrame {
         CheckpointTbl = new javax.swing.JTable();
         jPanel24 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        IncidentTbl = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        ICID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        UID = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Description = new javax.swing.JTextArea();
+        AddBtn = new javax.swing.JButton();
+        UpdateBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,12 +129,12 @@ public class Security_Main extends javax.swing.JFrame {
         jPanel20.setBackground(new java.awt.Color(67, 63, 113));
         jPanel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        Logout8.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        Logout8.setForeground(new java.awt.Color(255, 255, 255));
-        Logout8.setText("    Logout");
-        Logout8.addMouseListener(new java.awt.event.MouseAdapter() {
+        LogoutBtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        LogoutBtn.setForeground(new java.awt.Color(255, 255, 255));
+        LogoutBtn.setText("    Logout");
+        LogoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Logout8MouseClicked(evt);
+                LogoutBtnMouseClicked(evt);
             }
         });
 
@@ -133,11 +142,11 @@ public class Security_Main extends javax.swing.JFrame {
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Logout8, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+            .addComponent(LogoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Logout8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+            .addComponent(LogoutBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
         );
 
         VisitorPassTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -275,7 +284,7 @@ public class Security_Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Checkpoint", jPanel23);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        IncidentTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -286,25 +295,40 @@ public class Security_Main extends javax.swing.JFrame {
                 "Incident ID", "User ID", "Description"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        IncidentTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                IncidentTblMousePressed(evt);
+            }
+        });
+        jScrollPane3.setViewportView(IncidentTbl);
 
         jLabel1.setText("Incident ID");
 
-        jTextField1.setText("Incident ID");
+        ICID.setText("Incident ID");
 
         jLabel3.setText("User ID");
 
-        jTextField2.setText("User ID");
+        UID.setText("User ID");
 
         jLabel4.setText("Description");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        Description.setColumns(20);
+        Description.setRows(5);
+        jScrollPane4.setViewportView(Description);
 
-        jButton1.setText("Add");
+        AddBtn.setText("Add");
+        AddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Update");
+        UpdateBtn.setText("Update");
+        UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
@@ -320,11 +344,11 @@ public class Security_Main extends javax.swing.JFrame {
                                     .addGroup(jPanel24Layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addGap(32, 32, 32)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(ICID, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel24Layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(UID, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel24Layout.createSequentialGroup()
                                     .addComponent(jLabel4)
                                     .addGap(128, 128, 128)))
@@ -333,9 +357,9 @@ public class Security_Main extends javax.swing.JFrame {
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel24Layout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addComponent(jButton1)
+                        .addComponent(AddBtn)
                         .addGap(42, 42, 42)
-                        .addComponent(jButton2)))
+                        .addComponent(UpdateBtn)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
                 .addGap(17, 17, 17))
@@ -351,23 +375,23 @@ public class Security_Main extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ICID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(UID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                            .addComponent(AddBtn)
+                            .addComponent(UpdateBtn))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("RECORD INCIDENT!", jPanel24);
+        jTabbedPane1.addTab("Incidents", jPanel24);
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -409,9 +433,12 @@ public class Security_Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Logout8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Logout8MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_Logout8MouseClicked
+    private void LogoutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutBtnMouseClicked
+        Main_Page MP = new Main_Page();
+        MP.show(); //display Main Page
+
+        dispose(); //close current frame after open new frame
+    }//GEN-LAST:event_LogoutBtnMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -440,6 +467,77 @@ public class Security_Main extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_cUpdateBtnActionPerformed
+
+    private void IncidentTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncidentTblMousePressed
+        if(IncidentTbl.getSelectedRow() != -1){
+            ICID.setText(IncidentTbl.getValueAt(IncidentTbl.getSelectedRow(), 0).toString());
+            UID.setText(IncidentTbl.getValueAt(IncidentTbl.getSelectedRow(), 1).toString());
+            Description.setText(IncidentTbl.getValueAt(IncidentTbl.getSelectedRow(), 2).toString());
+        }
+    }//GEN-LAST:event_IncidentTblMousePressed
+
+    private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
+        String Id = ICID.getText();
+        String userID = UID.getText();
+        String Desc = Description.getText();
+        
+        ArrayList<String> icdata;
+        icdata=Functions.Read("Incidents.txt");
+        for(String i:icdata){
+                String[] j = i.split(":");
+                    if(j[1].equals(Id)){
+                        Id=j[1];
+                    }
+                }
+        incidents = new Incident(Id, userID, Desc).Update(incidents, Id);
+        JOptionPane.showMessageDialog(null, "Successfully Updated");
+        
+        try (BufferedReader brrr = new BufferedReader(new FileReader("Incident.txt"))) {
+            String line;
+            Scanner reader = new Scanner(brrr);
+            while ((line = brrr.readLine()) != null) {
+                String[] list = line.split(":");
+                String IcId = list[0];
+                String UserID = list [1];
+                String Descrip = list[2];
+                
+            if (ICID.equals(IcId)) {    
+                UID.setText(UserID);
+                Description.setText(Descrip);
+
+                } }
+            }   
+    catch (Exception e) {  
+            }
+    JOptionPane.showMessageDialog(null,"Your Details Have Been Modified and Refreshed");    
+
+    DefaultTableModel model = (DefaultTableModel)IncidentTbl.getModel();
+    model.setRowCount(0);
+    Incident.tabulateData(incidents, IncidentTbl);
+    }//GEN-LAST:event_UpdateBtnActionPerformed
+
+    private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
+
+            if (!ICID.getText().equals("") || 
+                !UID.getText().equals("") || 
+                !Description.getText().equals(""))
+            {
+                i.addFile(ICID.getText(), 
+                        UID.getText(), 
+                        Description.getText());
+                incidents.add(new Incident(ICID.getText(), 
+                        UID.getText(), 
+                        Description.getText()));
+                JOptionPane.showMessageDialog(null, "Successfully Assigned Job!");
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Missing Inputs");
+            }
+            DefaultTableModel model = (DefaultTableModel)IncidentTbl.getModel();
+            model.setRowCount(0);
+            Incident.tabulateData(incidents, IncidentTbl);
+        
+    }//GEN-LAST:event_AddBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -477,13 +575,17 @@ public class Security_Main extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddBtn;
     private javax.swing.JTable CheckpointTbl;
-    private javax.swing.JLabel Logout8;
+    private javax.swing.JTextArea Description;
+    private javax.swing.JTextField ICID;
+    private javax.swing.JTable IncidentTbl;
+    private javax.swing.JLabel LogoutBtn;
+    private javax.swing.JTextField UID;
+    private javax.swing.JButton UpdateBtn;
     private javax.swing.JTable VisitorPassEntry;
     private javax.swing.JTable VisitorPassTable;
     private javax.swing.JButton cUpdateBtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -504,10 +606,6 @@ public class Security_Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
 }

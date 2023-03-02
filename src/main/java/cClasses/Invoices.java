@@ -198,7 +198,7 @@ public class Invoices {
                 }
             }
             try ( FileWriter file = new FileWriter("Payment.txt");) {
-                file.write("INVOICE ID,USER ID,UNIT ID,FEE,OUTSTANDING,DATE,STATUS\n");
+                file.write("INVOICE ID,USER ID,UNIT ID,FEE,OUTSTANDING,DATE\n");
                 for (int i = 0; i < this.ID.size(); i++) {
                     file.write(this.ID.get(i) + "," + 
                             this.userID.get(i) + "," + 
@@ -237,7 +237,7 @@ public class Invoices {
                 }
             }
             try ( FileWriter file = new FileWriter("Payment.txt");) {
-                file.write("INVOICE ID,USER ID,UNIT ID,FEE,OUTSTANDING,DATE,STATUS\n");
+                file.write("INVOICE ID,USER ID,UNIT ID,FEE,OUTSTANDING,DATE\n");
                 for (int i = 0; i < this.ID.size(); i++) {
                     file.write(this.ID.get(i) + "," + 
                             this.userID.get(i) + "," + 

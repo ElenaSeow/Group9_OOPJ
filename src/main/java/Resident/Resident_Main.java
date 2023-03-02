@@ -1371,6 +1371,8 @@ public class Resident_Main extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) PaymentTable.getModel();
             model.setRowCount(0);
             Payment.tabulateData(payments, PaymentTable, id);
+            
+            //Invoice.tabulateData(invoices, PaymentTable,id);
             receipts=new Receipt().newReceipt(receipts, id, amount);
         }
     }//GEN-LAST:event_PAYbuttonActionPerformed

@@ -1450,6 +1450,10 @@
                                   <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                                   <Component id="Send6" min="-2" pref="127" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                                  <Component id="UpdateCM" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace pref="27" max="32767" attributes="0"/>
                           <Component id="jScrollPane14" min="-2" max="-2" attributes="0"/>
@@ -1466,7 +1470,9 @@
                           <Component id="jScrollPane13" min="-2" pref="119" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="Send6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="82" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="UpdateCM" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="41" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -1515,6 +1521,9 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Send6ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane14">
                   <AuxValues>
@@ -1526,7 +1535,7 @@
                     <Component class="javax.swing.JTable" name="ComplaintTable6">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
+                          <Table columnCount="4" rowCount="0">
                             <Column editable="true" title="ComplaintID" type="java.lang.Object"/>
                             <Column editable="true" title="Description" type="java.lang.Object"/>
                             <Column editable="true" title="Status" type="java.lang.Object"/>
@@ -1564,6 +1573,14 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="UpdateCM">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="UPDATE"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UpdateCMActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel25">

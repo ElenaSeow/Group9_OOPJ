@@ -4,9 +4,11 @@
  */
 package Resident;
 
+import AdminExecutive.AdminCMView;
 import AdminExecutive.AdminFB;
 import AdminExecutive.AdminFBUpdate;
 import cClasses.Booking;
+import cClasses.Complaint;
 import cClasses.Facility;
 import cClasses.Functions;
 import cClasses.Invoices;
@@ -50,6 +52,7 @@ public class Resident_Main extends javax.swing.JFrame {
     ArrayList<Facility> facilities = new Facility().Import();
     ArrayList<Booking> bookings = new Booking().Import();
     ArrayList<Receipt> receipts = new Receipt().Import();
+    ArrayList<Complaint> complaints =new Complaint().Import();
     
     /**
      * Creates new form Resident
@@ -76,6 +79,9 @@ public class Resident_Main extends javax.swing.JFrame {
         Payment.tabulateData(payments, PaymentTable,id);
 //        Payment.tabulateReceipt(payments, ReceiptTable,id);
         Receipt.tabulateData(receipts,ReceiptTable,id);
+        
+        //Complaint
+        Complaint.tabulateData(complaints, ComplaintTable6, id);
         
         visitorpass=new VisitorPass().Import();
         residents=new Resident().Import();
@@ -210,6 +216,7 @@ public class Resident_Main extends javax.swing.JFrame {
         Send6 = new javax.swing.JButton();
         jScrollPane14 = new javax.swing.JScrollPane();
         ComplaintTable6 = new javax.swing.JTable();
+        UpdateCM = new javax.swing.JButton();
         jPanel25 = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
         FacilityTable4 = new javax.swing.JTable();
@@ -911,19 +918,28 @@ public class Resident_Main extends javax.swing.JFrame {
 
         Send6.setText("SEND");
         Send6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Send6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Send6ActionPerformed(evt);
+            }
+        });
 
         ComplaintTable6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ComplaintID", "Description", "Status", "Date"
             }
         ));
         jScrollPane14.setViewportView(ComplaintTable6);
+
+        UpdateCM.setText("UPDATE");
+        UpdateCM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateCMActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
@@ -938,7 +954,10 @@ public class Resident_Main extends javax.swing.JFrame {
                             .addComponent(jLabel69)))
                     .addGroup(jPanel28Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
-                        .addComponent(Send6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Send6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel28Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(UpdateCM)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
@@ -952,7 +971,9 @@ public class Resident_Main extends javax.swing.JFrame {
                 .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Send6)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(UpdateCM)
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(jPanel28Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -1384,6 +1405,47 @@ public class Resident_Main extends javax.swing.JFrame {
         AmountPayment.setText("");
     }//GEN-LAST:event_AmountPaymentMouseClicked
 
+    private void Send6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Send6ActionPerformed
+        if(!(TextArea6.getText().isEmpty())){
+        
+        try {
+            // TODO add your handling code here:
+            String Id = Functions.IdGenerate("complaints.txt");
+            String userId = id;
+            String desc = TextArea6.getText().trim();
+            String status = "Pending";
+            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+            String now = df.format(new Date());
+            Date cdate = df.parse(now);
+            complaints.add(new Complaint(Id,userId,desc,status,cdate,cdate));
+            Complaint.Write(complaints);
+             JOptionPane.showMessageDialog(null,"Successfully Lodged New Complaint!");
+             DefaultTableModel model = (DefaultTableModel) ComplaintTable6.getModel();
+             model.setRowCount(0);
+             Complaint.tabulateData(complaints, ComplaintTable6, id);
+        } catch (ParseException ex) {
+            Logger.getLogger(Resident_Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }else{
+             JOptionPane.showMessageDialog(null,"Please describe your complaint in the text area to lodge a new complaint!");
+        }
+    }//GEN-LAST:event_Send6ActionPerformed
+
+    private void UpdateCMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateCMActionPerformed
+        // TODO add your handling code here:
+        if(ComplaintTable6.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = ComplaintTable6.getSelectedRow();
+            String Id = ComplaintTable6.getModel().getValueAt(row, column).toString();
+            ResidentUpdate_CM ruc = new ResidentUpdate_CM(Session);
+            ruc.spamdata(Id);
+            ruc.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+    }//GEN-LAST:event_UpdateCMActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1457,6 +1519,7 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JButton Update6;
     private javax.swing.JButton Update7;
     private javax.swing.JButton UpdateBtn;
+    private javax.swing.JButton UpdateCM;
     private javax.swing.JLabel UserIDL;
     private javax.swing.JLabel UserIDL2;
     private javax.swing.JTable VisitorTable;

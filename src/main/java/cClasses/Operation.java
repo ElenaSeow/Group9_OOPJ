@@ -52,9 +52,8 @@ public class Operation {
         this.enddate = edate;
     }
 
-    public Operation() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public Operation() {}
+       
     
     public String getId(){
         return id;

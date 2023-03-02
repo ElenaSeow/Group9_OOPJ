@@ -535,10 +535,10 @@ public class AdminFM extends javax.swing.JFrame {
     }//GEN-LAST:event_ModFacilityActionPerformed
 
     private void AddFacilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFacilityActionPerformed
-        // TODO add your handling code here:
-        //        AdminFMCreate afc = new AdminFMCreate(Session);
-        //        afc .setVisible(true);
-        //        dispose();
+//         TODO add your handling code here:
+                AdminFMCreate afc = new AdminFMCreate(Session);
+                afc .setVisible(true);
+                dispose();
     }//GEN-LAST:event_AddFacilityActionPerformed
 
     private void SearchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchBarKeyReleased

@@ -1200,7 +1200,9 @@ public class Resident_Main extends javax.swing.JFrame {
     
     private void Update6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update6ActionPerformed
         // TODO add your handling code here:
-        
+        ResidentUpdate_VP RUP = new ResidentUpdate_VP(Session);
+        RUP.setVisible(true);
+        dispose();
         
     }//GEN-LAST:event_Update6ActionPerformed
 

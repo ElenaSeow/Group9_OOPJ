@@ -1390,11 +1390,14 @@ public class Resident_Main extends javax.swing.JFrame {
         if(PaymentTable.getSelectedRow() != -1&& ((Integer.parseInt(AmountPayment.getText()))<=(Integer.parseInt(TotalPayable.getText())))){
             String Id = PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 0).toString();
             int amount = Integer.parseInt(AmountPayment.getText());
+            
             payments=Payment.PAY(payments, Id, amount);
             receipts=new Receipt().newReceipt(receipts, id, amount);
             invoices=null;
             invoices=new Invoices().Import();
+            
             JOptionPane.showMessageDialog(null,"Successfully Updated Invoice!");
+            
             DefaultTableModel model1 = (DefaultTableModel) PaymentTable.getModel();
             DefaultTableModel model2 = (DefaultTableModel) InvoiceTable.getModel();
             DefaultTableModel model3 = (DefaultTableModel) ReceiptTable.getModel();

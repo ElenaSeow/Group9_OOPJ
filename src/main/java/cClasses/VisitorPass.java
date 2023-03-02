@@ -35,13 +35,15 @@ public class VisitorPass {
     private String name;
     private String contactNo;
     private String plateNo;
+    private String status;
     
-    public VisitorPass( String visitorId,String userId, String name, String contactNo,String plateNo) {
+    public VisitorPass( String visitorId,String userId, String name, String contactNo,String plateNo,String status) {
         this.userId=userId;
         this.visitorId=visitorId;
         this.name=name;
         this.contactNo=contactNo;
         this.plateNo=plateNo;
+        this.status=status;
     }
     
 //    public VisitorPass(String userId, String visitorId, String name, String contactNo, String date) throws ParseException{
@@ -76,6 +78,9 @@ public class VisitorPass {
     public String getPlateNo(){
         return plateNo;
     }
+    public String getStatus(){
+        return status;
+    }
     
 //    public Date getDate() {
 //        return date;
@@ -100,6 +105,9 @@ public class VisitorPass {
     public void setPlateNo(String plateNo){
         this.plateNo=plateNo;
     }
+    public void setStatus(String status){
+        this.status=status;
+    }
     
 //    public void setDate(Date date) {
 //        this.date=date;
@@ -112,6 +120,7 @@ public class VisitorPass {
         ArrayList<String> name = new ArrayList();
         ArrayList<String> contactNo = new ArrayList();
         ArrayList<String> plateNo = new ArrayList();
+        ArrayList<String> status = new ArrayList();
 //        ArrayList<String> date = new ArrayList();
         
     }
@@ -132,7 +141,7 @@ public class VisitorPass {
             }
             for(String str:data){
                 String[] list = str.split(",");
-                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3],list[4]));
+                visitorpass.add(new VisitorPass(list[0],list[1],list[2],list[3],list[4],list[5]));
                 
                 br.close();
             }   
@@ -153,6 +162,7 @@ public class VisitorPass {
                    f.setName(this.getName());
                    f.setContactNo(this.getContactNo());
                    f.setPlateNo(this.getPlateNo());
+                   f.setStatus(this.getStatus());
                }
            }   pr = new PrintWriter("Facilities.txt");
            for(VisitorPass i: visitorpass){ 
@@ -160,7 +170,8 @@ public class VisitorPass {
                 String name =i.getName();
                 String telno =i.getContactNo();
                 String plateNo =i.getPlateNo();
-                pr.println(vid+":"+name+":"+telno+":"+plateNo);
+                String status = i.getStatus();
+                pr.println(vid+","+name+","+telno+","+plateNo+","+status);
                        }
        } catch (FileNotFoundException ex) {
            Logger.getLogger(Facility.class.getName()).log(Level.SEVERE, null, ex);
@@ -179,7 +190,7 @@ public class VisitorPass {
 //                    DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
 //                    String date = date_format.format(u.getDate());
                 
-                    String[] allDataRow = {u.getVisitorId(),u.getName(),u.getContactNo(),u.getPlateNo()};
+                    String[] allDataRow = {u.getVisitorId(),u.getName(),u.getContactNo(),u.getPlateNo(),u.getStatus()};
                     model.addRow(allDataRow);
                 }
                 
@@ -194,7 +205,7 @@ public class VisitorPass {
 //                    DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
 //                    String date = date_format.format(u.getDate());
                 
-                    String[] allDataRow = {u.getVisitorId(),u.getUserId(),u.getName(),u.getContactNo(),u.getPlateNo()};
+                    String[] allDataRow = {u.getVisitorId(),u.getUserId(),u.getName(),u.getContactNo(),u.getPlateNo(),u.getStatus()};
                     model.addRow(allDataRow);
                 }
                 
@@ -219,6 +230,7 @@ public class VisitorPass {
                     name.add(values[2]);
                     contactNo.add(values[3]);
                     plateNo.add(values[4]);
+                    status.add(values[5]);
                 }
             } catch (IOException e) {
                 System.out.println("Incorrect File Path");
@@ -235,11 +247,12 @@ public class VisitorPass {
                 String visitorid =i.getVisitorId();
                 String contactNo=i.getContactNo();
                 String plateno = i.getPlateNo();
-                pr.println(id+","+name + "," + visitorid + "," + contactNo+","+plateno);
+                String status = i.getStatus();
+                pr.println(id+","+name + "," + visitorid + "," + contactNo+","+plateno+","+status);
             }
             pr.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
         
@@ -262,13 +275,14 @@ public class VisitorPass {
                     String name=i.getName();
                     String contactNo =i.getContactNo();
                     String plateno = i.getPlateNo();
+                    String status = i.getStatus();
                     
-                    pr.println(userId+","+visitorId+","+name+","+contactNo+","+plateno);
+                    pr.println(userId+","+visitorId+","+name+","+contactNo+","+plateno+","+status);
             }
             pr.close();
                
         } catch (FileNotFoundException ex) {
-           Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);         
+           Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);         
        }
        return newVisitor;
      }

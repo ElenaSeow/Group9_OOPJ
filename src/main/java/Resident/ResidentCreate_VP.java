@@ -208,11 +208,9 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
         String contactNo = TelNo.getText();
         String visitorid = Functions.IdGenerate("VisitorPass.txt");
         String plateNo = PlateNo.getText();
-        
-        visitorpass.add(new VisitorPass(id, visitorid, name, contactNo, plateNo));
-        String plateno = PlateNo.getText();
-        
-        visitorpass.add(new VisitorPass(id, visitorid, name, contactNo, plateno));
+        String status = "Pending";
+       
+        visitorpass.add(new VisitorPass(id, visitorid, name, contactNo, plateNo,status));
         VisitorPass.Write(visitorpass);
         JOptionPane.showMessageDialog(null, "Successfully Updated");
         Resident_Main RM = new Resident_Main(Session);

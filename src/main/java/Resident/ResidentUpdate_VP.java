@@ -86,7 +86,6 @@ public class ResidentUpdate_VP extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Update Visitor Pass");
 
         SaveBtn.setText("Save");
         SaveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -187,9 +186,9 @@ public class ResidentUpdate_VP extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PlateNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(55, 55, 55)
                 .addComponent(SaveBtn)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(UserId)
                 .addContainerGap())
         );
@@ -220,8 +219,9 @@ public class ResidentUpdate_VP extends javax.swing.JFrame {
         String contactNo = TelNo.getText();
         String visitorid = Functions.IdGenerate("VisitorPass.txt");
         String plateNo = PlateNo.getText();
+        String status = "Pending";
         
-        visitorpass= new VisitorPass(id, visitorid, name, contactNo, plateNo).Update(visitorpass,id);
+        visitorpass= new VisitorPass(id, visitorid, name, contactNo, plateNo,status).Update(visitorpass,id);
         VisitorPass.Write(visitorpass);
         JOptionPane.showMessageDialog(null, "Successfully Updated");
         Resident_Main RM = new Resident_Main(Session);

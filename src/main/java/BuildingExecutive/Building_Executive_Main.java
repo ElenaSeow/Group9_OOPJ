@@ -1,5 +1,6 @@
 package BuildingExecutive;
 
+import Resident.ResidentUpdate_CM;
 import cClasses.BuildingExecutive;
 import cClasses.Complaint;
 import cClasses.Functions;
@@ -43,7 +44,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         id = Session.getId(); 
         Security.tabulateData(securities, JobManagementTbl);
         Patrols.tabulateData(patrols, PatrollingTbl);
-        Complaint.tabulateData1(complaints, ComplaintsTbl);
+        Complaint.tabulateData2(complaints, ComplaintsTbl);
         Patrols.tabulateData(patrols, PatrollingHistoryTbl);
         
         securities = new Security().Import();
@@ -140,8 +141,6 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         ComplaintsTbl = new javax.swing.JTable();
-        jLabel16 = new javax.swing.JLabel();
-        cStatus = new javax.swing.JComboBox<>();
         cUpdateBtn = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -425,15 +424,6 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(ComplaintsTbl);
 
-        jLabel16.setText("Status:");
-
-        cStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Reviewed" }));
-        cStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cStatusActionPerformed(evt);
-            }
-        });
-
         cUpdateBtn.setText("Update");
         cUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -445,41 +435,31 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(cUpdateBtn)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel15)
-                .addGap(234, 234, 234))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(cUpdateBtn))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(292, 292, 292))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16)
-                            .addComponent(cStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addComponent(cUpdateBtn)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(23, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cUpdateBtn)
+                        .addGap(31, 31, 31))))
         );
 
         jTabbedPane1.addTab("Complaints", jPanel4);
@@ -832,12 +812,8 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_PatrollingTblMousePressed
 
     private void ComplaintsTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComplaintsTblMousePressed
-        cStatus.setSelectedItem(ComplaintsTbl.getValueAt(ComplaintsTbl.getSelectedRow(), 4).toString());
+       
     }//GEN-LAST:event_ComplaintsTblMousePressed
-
-    private void cStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cStatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cStatusActionPerformed
 
     private void PatrollingHistoryTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PatrollingHistoryTblMousePressed
         // TODO add your handling code here:
@@ -972,20 +948,16 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_psTimeActionPerformed
 
     private void cUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cUpdateBtnActionPerformed
-        int selectedRow = ComplaintsTbl.getSelectedRow();
-            if(selectedRow != -1){
-            String cID = ComplaintsTbl.getValueAt(selectedRow, 0).toString();
-            String uID = UID.getText();
-            String description = ComplaintsTbl.getValueAt(selectedRow, 2).toString();
-            String date = ComplaintsTbl.getValueAt(selectedRow, 3).toString();
-            String status = cStatus.getSelectedItem().toString();
-            c.editFile(cID, uID, description, date, status);
-
-            // Update the table with the new data
-            DefaultTableModel model = (DefaultTableModel) ComplaintsTbl.getModel();
-            model.setValueAt(status, selectedRow, 4);
-
-            JOptionPane.showMessageDialog(null,"Successfully Updated Complaint!");
+        if(ComplaintsTbl.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = ComplaintsTbl.getSelectedRow();
+            String Id = ComplaintsTbl.getModel().getValueAt(row, column).toString();
+            Building_Executive_Update_Complaints beuc = new Building_Executive_Update_Complaints(Session);
+            beuc.spamdata(Id);
+            beuc.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
         }
     }//GEN-LAST:event_cUpdateBtnActionPerformed
 
@@ -1042,7 +1014,6 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     private javax.swing.JLabel Time;
     private javax.swing.JLabel UID;
     private javax.swing.JLabel Username;
-    private javax.swing.JComboBox<String> cStatus;
     private javax.swing.JButton cUpdateBtn;
     private javax.swing.JTextField emContact;
     private javax.swing.JTextField emEmail;
@@ -1060,7 +1031,6 @@ public class Building_Executive_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;

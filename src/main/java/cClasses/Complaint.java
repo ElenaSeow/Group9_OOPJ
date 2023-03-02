@@ -177,6 +177,21 @@ public class Complaint {
         }
     }
    
+   public static void tabulateData2(ArrayList<Complaint> complaints, JTable table){
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for(Complaint c:complaints){
+            String status = c.getStatus();
+            
+               DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
+                String cdate = date_format.format(c.getComplaintDate());
+                String udate = date_format.format(c.getUpdateDate());
+            String[] allDataRow = {c.getComplaintId(),c.getUserId(),c.getDesc(),udate,status};
+            model.addRow(allDataRow); 
+            
+            
+        }
+    }
+   
     public ArrayList<Complaint> Update(ArrayList<Complaint> complaints, String id){
             PrintWriter pr = null;
         try {

@@ -43,10 +43,13 @@ public class Resident_Main extends javax.swing.JFrame {
     Session Session;
     String id;
     ArrayList<Resident> residents;
+    
     ArrayList<Invoices> invoices = new Invoices().Import();
     ArrayList<VisitorPass> visitorpass = new VisitorPass().Import();
+    
     ArrayList<Payment> payments = new Payment().Import();
     Payment.FileManipulation PY = new Payment.FileManipulation();
+    
     ArrayList<Facility> facilities = new Facility().Import();
     ArrayList<Booking> bookings = new Booking().Import();
     ArrayList<Receipt> receipts = new Receipt().Import();

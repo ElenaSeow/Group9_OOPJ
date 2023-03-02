@@ -7,6 +7,7 @@ package Resident;
 import AdminExecutive.AdminCMView;
 import AdminExecutive.AdminFB;
 import AdminExecutive.AdminFBUpdate;
+import BuildingManager.BMUMUpdate_AE;
 import cClasses.Booking;
 import cClasses.Complaint;
 import cClasses.Facility;
@@ -1200,9 +1201,17 @@ public class Resident_Main extends javax.swing.JFrame {
     
     private void Update6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update6ActionPerformed
         // TODO add your handling code here:
-        ResidentUpdate_VP RUP = new ResidentUpdate_VP(Session);
-        RUP.setVisible(true);
-        dispose();
+         if(VisitorTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = VisitorTable.getSelectedRow();
+            String Id = VisitorTable.getModel().getValueAt(row, column).toString();
+            ResidentUpdate_VP ruvp = new ResidentUpdate_VP(Session);
+            ruvp.spamdata(Id);
+            ruvp.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
         
     }//GEN-LAST:event_Update6ActionPerformed
 

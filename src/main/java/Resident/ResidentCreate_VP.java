@@ -203,13 +203,15 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
         
-        String vid = Functions.IdGenerate2("VisitorPass.txt");
-        String id = UserId.getText();
+        String vid = VisitoriD.getText();
+        String Id = UserId.getText();
         String name = Name.getText();
         String contactNo = TelNo.getText();
         String plateNo = PlateNo.getText();
         String status = "Pending";
-       
+       if(Id.isEmpty()&&name.isEmpty()&&contactNo.isEmpty()&&plateNo.isEmpty()){
+           JOptionPane.showMessageDialog(null, "Please fill in all the data!");
+       }else{
         visitorpass.add(new VisitorPass(vid, id, name, contactNo, plateNo,status));
         VisitorPass.Write(visitorpass);
         JOptionPane.showMessageDialog(null, "Successfully Updated");
@@ -217,7 +219,7 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
         RM.setVisible(true);
         dispose();
 
-        
+       }
 
     }//GEN-LAST:event_SaveBtnActionPerformed
 

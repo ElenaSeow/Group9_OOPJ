@@ -418,10 +418,17 @@ public class Security_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_LogoutBtnMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        SecurityUpdate_Visitor SUV = new SecurityUpdate_Visitor(Session);
-        SUV.show();
-        dispose();
+        if(VisitorPassEntry.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = VisitorPassEntry.getSelectedRow();
+            String Id = VisitorPassEntry.getModel().getValueAt(row, column).toString();
+            SecurityUpdate_Visitor suv = new SecurityUpdate_Visitor(Session);
+            suv.spamdata(Id);
+            suv.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void CheckpointTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckpointTblMousePressed

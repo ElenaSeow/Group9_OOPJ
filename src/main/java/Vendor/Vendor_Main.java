@@ -4,6 +4,7 @@
  */
 package Vendor;
 
+import cClasses.Complaint;
 import cClasses.Functions;
 import cClasses.Invoices;
 import cClasses.Payment;
@@ -19,6 +20,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,6 +46,7 @@ public class Vendor_Main extends javax.swing.JFrame {
     Payment.FileManipulation PY = new Payment.FileManipulation();
     
     ArrayList<Receipt> receipts = new Receipt().Import();
+    ArrayList<Complaint> complaints =new Complaint().Import();
     
     //ArrayList<Invoices> invoices = new Invoices().Import();
     /**
@@ -58,6 +61,11 @@ public class Vendor_Main extends javax.swing.JFrame {
         Invoices.tabulateData(invoices, InvoiceTable,id);
         Payment.tabulateData(payments, PaymentTable,id);
         //Payment.tabulateReceipt(payment, ReceiptTable,id);
+        
+        
+        //Complaint
+        Complaint.tabulateData(complaints, ComplaintTable6, id);
+        
         
         Receipt.tabulateData(receipts,ReceiptTable,id);
         
@@ -210,6 +218,13 @@ public class Vendor_Main extends javax.swing.JFrame {
         ReceiptTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        ComplaintTable6 = new javax.swing.JTable();
+        jLabel69 = new javax.swing.JLabel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        TextArea6 = new javax.swing.JTextArea();
+        Send6 = new javax.swing.JButton();
+        UpdateCM = new javax.swing.JButton();
         Date = new javax.swing.JLabel();
         Time = new javax.swing.JLabel();
 
@@ -772,15 +787,77 @@ public class Vendor_Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Finance", jPanel5);
 
+        ComplaintTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ComplaintID", "Description", "Status", "Date"
+            }
+        ));
+        jScrollPane14.setViewportView(ComplaintTable6);
+
+        jLabel69.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        jLabel69.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel69.setText("State your complaints here:");
+
+        TextArea6.setColumns(20);
+        TextArea6.setForeground(new java.awt.Color(0, 0, 0));
+        TextArea6.setRows(5);
+        jScrollPane13.setViewportView(TextArea6);
+
+        Send6.setText("SEND");
+        Send6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Send6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Send6ActionPerformed(evt);
+            }
+        });
+
+        UpdateCM.setText("UPDATE");
+        UpdateCM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateCMActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 751, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel69)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(Send6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(UpdateCM)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 284, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel69)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Send6)
+                .addGap(18, 18, 18)
+                .addComponent(UpdateCM)
+                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Complaints", jPanel6);
@@ -967,6 +1044,47 @@ public class Vendor_Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void Send6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Send6ActionPerformed
+        if(!(TextArea6.getText().isEmpty())){
+
+            try {
+                // TODO add your handling code here:
+                String Id = Functions.IdGenerate("complaints.txt");
+                String userId = id;
+                String desc = TextArea6.getText().replace("\n"," ");
+                String status = "Pending";
+                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                String now = df.format(new Date());
+                Date cdate = df.parse(now);
+                complaints.add(new Complaint(Id,userId,desc,status,cdate,cdate));
+                Complaint.Write(complaints);
+                JOptionPane.showMessageDialog(null,"Successfully Lodged New Complaint!");
+                DefaultTableModel model = (DefaultTableModel) ComplaintTable6.getModel();
+                model.setRowCount(0);
+                Complaint.tabulateData(complaints, ComplaintTable6, id);
+            } catch (ParseException ex) {
+                Logger.getLogger(Vendor_Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,"Please describe your complaint in the text area to lodge a new complaint!");
+        }
+    }//GEN-LAST:event_Send6ActionPerformed
+
+    private void UpdateCMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateCMActionPerformed
+        // TODO add your handling code here:
+        if(ComplaintTable6.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = ComplaintTable6.getSelectedRow();
+            String Id = ComplaintTable6.getModel().getValueAt(row, column).toString();
+            VendorUpdate_CM ruc = new VendorUpdate_CM(Session);
+            ruc.spamdata(Id);
+            ruc.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+    }//GEN-LAST:event_UpdateCMActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1004,6 +1122,7 @@ public class Vendor_Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AmountPayment;
+    private javax.swing.JTable ComplaintTable6;
     private javax.swing.JLabel Date;
     private javax.swing.JLabel DatePayment;
     private javax.swing.JLabel EmailL;
@@ -1021,13 +1140,16 @@ public class Vendor_Main extends javax.swing.JFrame {
     private javax.swing.JTable ReceiptTable;
     private javax.swing.JLabel RoleL;
     private javax.swing.JLabel RoleL2;
+    private javax.swing.JButton Send6;
     private javax.swing.JLabel TelNoL;
     private javax.swing.JTextField TelNoMOD;
+    private javax.swing.JTextArea TextArea6;
     private javax.swing.JLabel Time;
     private javax.swing.JLabel TotalPayable;
     private javax.swing.JLabel UnitIDL;
     private javax.swing.JLabel UnitIDL2;
     private javax.swing.JButton UpdateBtn;
+    private javax.swing.JButton UpdateCM;
     private javax.swing.JLabel UserIDL;
     private javax.swing.JLabel UserIDL2;
     private javax.swing.JButton jButton1;
@@ -1044,6 +1166,7 @@ public class Vendor_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel59;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
@@ -1063,6 +1186,8 @@ public class Vendor_Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;

@@ -15,6 +15,7 @@ public class Patrolling {
         ArrayList<String> secid = new ArrayList();
         ArrayList<String> date = new ArrayList();
         ArrayList<String> time = new ArrayList();
+        ArrayList<String> status = new ArrayList();
     }
     
     public static class fileManipulation extends info {
@@ -24,6 +25,7 @@ public class Patrolling {
             secid.clear();
             date.clear();
             time.clear();
+            status.clear();
             try ( BufferedReader file = new BufferedReader(new FileReader("Patrols.txt"))) {
                 String line;
                 file.readLine();
@@ -33,13 +35,14 @@ public class Patrolling {
                     secid.add(values[1]);
                     date.add(values[2]);
                     time.add(values[3]);
+                    status.add(values[4]);
                 }
             } catch (IOException e) {
                 System.out.println("Incorrect File Path");
             }
         }
         
-        public void editFile(String checkid, String secid, String date, String time) {
+        public void editFile(String checkid, String secid, String date, String time, String status) {
             readFile();
             for(int i=0;i<this.checkid.size();i++){
                 if(checkid.equals(this.checkid.get(i))){
@@ -47,6 +50,7 @@ public class Patrolling {
                     this.secid.set(i, secid);
                     this.date.set(i, date);
                     this.time.set(i, time);
+                    this.status.set(i, status);
                 }
             }
             try ( FileWriter file = new FileWriter("Patrols.txt");) {
@@ -54,7 +58,8 @@ public class Patrolling {
                     file.write(this.checkid.get(i) + "," 
                             + this.secid.get(i) + "," 
                             + this.date.get(i) + "," 
-                            + this.time.get(i)+ "\n");
+                            + this.time.get(i)+ ","
+                            + this.status.get(i) + "\n");
                 }
                 file.close();
             } catch (IOException e) {
@@ -62,10 +67,10 @@ public class Patrolling {
             }
         }
     
-        public void addFile(String checkid, String secid, String date, String time) {
+        public void addFile(String checkid, String secid, String date, String time, String status) {
             readFile();
             try ( FileWriter file = new FileWriter("Patrols.txt",true);) {
-                file.write(checkid+","+secid+","+date+","+time+"\n");
+                file.write(checkid+","+secid+","+date+","+time+","+status+ "\n");
                 file.close();
             } catch (IOException e) {
                 System.out.println("Incorrect File Path");
@@ -82,6 +87,7 @@ public class Patrolling {
                     this.secid.remove(i);
                     this.date.remove(i);
                     this.time.remove(i);
+                    this.status.remove(i);
                 }
             }
             try ( FileWriter file = new FileWriter("Patrols.txt");) {
@@ -96,7 +102,8 @@ public class Patrolling {
                     file.write(this.checkid.get(i) + "," 
                             + this.secid.get(i) + "," 
                             + this.date.get(i) + ","  
-                            + this.time.get(i)+ "\n");
+                            + this.time.get(i)+ ","
+                            + this.status.get(i) + "\n");
                 }
                 file.close();
             } catch (IOException e) {
@@ -126,6 +133,7 @@ public class Patrolling {
             info.add(secid.get(index));
             info.add(date.get(index));
             info.add(time.get(index));
+            info.add(status.get(index));
             return info;
         }
         
@@ -138,6 +146,7 @@ public class Patrolling {
                     info.add(secid.get(i));
                     info.add(date.get(i));
                     info.add(time.get(i));
+                    info.add(status.get(i));
                 }
             }
             return info;

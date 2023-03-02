@@ -14,8 +14,8 @@ import javax.swing.table.DefaultTableModel;
 public class Patrols extends PatrolUser {
     private String checkid;
     
-    public Patrols(String checkid, String secid, String date, String time) {
-        super(checkid, secid, date, time);
+    public Patrols(String checkid, String secid, String date, String time, String status) {
+        super(checkid, secid, date, time, status);
         
     }
     public Patrols(){}
@@ -35,7 +35,7 @@ public class Patrols extends PatrolUser {
             }
             for(String str:data){
                 String[] list = str.split(",");
-                patrols.add(new Patrols(list[0],list[1],list[2],list[3]));
+                patrols.add(new Patrols(list[0],list[1],list[2],list[3],list[4]));
                 
                 br.close();
                 
@@ -51,7 +51,7 @@ public class Patrols extends PatrolUser {
    public static void tabulateData(ArrayList<Patrols> patrols,JTable table){
        DefaultTableModel model = (DefaultTableModel) table.getModel();
        for(Patrols s: patrols){
-            String[] allDataRow = {s.getcheckid(),s.getsecid(),s.getdate(),s.gettime()};
+            String[] allDataRow = {s.getcheckid(),s.getsecid(),s.getdate(),s.gettime(),s.getstatus() };
             model.addRow(allDataRow);
         }
     }
@@ -65,10 +65,11 @@ public class Patrols extends PatrolUser {
                 s.setsecid(this.getsecid());
                 s.setdate(this.getdate());
                 s.settime(this.gettime());
+                s.setstatus(this.getstatus());
                 
-                data.add(s.getcheckid()+","+s.getsecid()+","+s.getdate()+","+s.gettime());
+                data.add(s.getcheckid()+","+s.getsecid()+","+s.getdate()+","+s.gettime()+","+s.getstatus());
             }else{
-                data.add(s.getcheckid()+","+s.getsecid()+","+s.getdate()+","+s.gettime());
+                data.add(s.getcheckid()+","+s.getsecid()+","+s.getdate()+","+s.gettime()+","+s.getstatus());
             }
         }   PrintWriter pr = new PrintWriter("Patrols.txt");
         for(String i:data){
@@ -100,7 +101,8 @@ public class Patrols extends PatrolUser {
                     String secid=i.getsecid();
                     String date=i.getdate();
                     String time =i.gettime();
-                    pr.println(id+","+secid+","+date+","+time);
+                    String status =i.getstatus();
+                    pr.println(id+","+secid+","+date+","+time+","+status);
             }
             pr.close();
                
@@ -119,7 +121,8 @@ public class Patrols extends PatrolUser {
                     String secid=i.getsecid();
                     String date=i.getdate();
                     String time =i.gettime();
-                    pr.println(id+","+secid+","+date+","+time);
+                    String status=i.getstatus();
+                    pr.println(id+","+secid+","+date+","+time+","+status);
             }
             pr.close();
         } catch (FileNotFoundException ex) {

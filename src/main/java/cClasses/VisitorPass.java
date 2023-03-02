@@ -164,7 +164,7 @@ public class VisitorPass {
                    f.setPlateNo(this.getPlateNo());
                    f.setStatus(this.getStatus());
                }
-           }   pr = new PrintWriter("Facilities.txt");
+           }   pr = new PrintWriter("VisitorPass.txt");
            for(VisitorPass i: visitorpass){ 
                 String vid=i.getVisitorId();
                 String name =i.getName();
@@ -174,7 +174,7 @@ public class VisitorPass {
                 pr.println(vid+","+name+","+telno+","+plateNo+","+status);
                        }
        } catch (FileNotFoundException ex) {
-           Logger.getLogger(Facility.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
        } finally {
            pr.close();
        }

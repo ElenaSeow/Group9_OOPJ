@@ -69,7 +69,7 @@ public class AdminEMCCreate extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Resident/Tenant Details");
+        jLabel4.setText("Employee Details");
 
         CancelBtn.setText("Cancel");
         CancelBtn.addActionListener(new java.awt.event.ActionListener() {

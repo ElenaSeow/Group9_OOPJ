@@ -142,7 +142,7 @@
               <Font name="Baskerville Old Face" size="24" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Resident/Tenant Details"/>
+            <Property name="text" type="java.lang.String" value="Employee Details"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="CancelBtn">

@@ -11,6 +11,7 @@ import cClasses.Facility;
 import cClasses.Functions;
 import cClasses.Invoices;
 import cClasses.Payment;
+import cClasses.Receipt;
 import cClasses.Resident;
 import cClasses.Session;
 import cClasses.VisitorPass;
@@ -48,6 +49,7 @@ public class Resident_Main extends javax.swing.JFrame {
     Payment.FileManipulation PY = new Payment.FileManipulation();
     ArrayList<Facility> facilities = new Facility().Import();
     ArrayList<Booking> bookings = new Booking().Import();
+    ArrayList<Receipt> receipts = new Receipt().Import();
     
     /**
      * Creates new form Resident
@@ -73,7 +75,8 @@ public class Resident_Main extends javax.swing.JFrame {
         Invoices.tabulateData(invoices, InvoiceTable,id);
         Payment.tabulateData(payments, PaymentTable,id);
         Payment.tabulateDataOutstanding(payments, OutstandingTable, id);
-        Payment.tabulateReceipt(payments, ReceiptTable,id);
+//        Payment.tabulateReceipt(payments, ReceiptTable,id);
+        Receipt.tabulateData(receipts,ReceiptTable,id);
         
         visitorpass=new VisitorPass().Import();
         residents=new Resident().Import();
@@ -870,7 +873,7 @@ public class Resident_Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Invoice ID", "Unit ID", "Date"
+                "Receipt ID", "Amount", "Date"
             }
         ));
         jScrollPane1.setViewportView(ReceiptTable);
@@ -1387,12 +1390,12 @@ public class Resident_Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         if(ReceiptTable.getSelectedRow() != -1){
-            String invoiceID = ReceiptTable.getValueAt(ReceiptTable.getSelectedRow(), 0).toString();
-            String unitID = ReceiptTable.getValueAt(ReceiptTable.getSelectedRow(), 1).toString();
+            String receiptID = ReceiptTable.getValueAt(ReceiptTable.getSelectedRow(), 0).toString();
+            String Amount = ReceiptTable.getValueAt(ReceiptTable.getSelectedRow(), 1).toString();
             String date = ReceiptTable.getValueAt(ReceiptTable.getSelectedRow(), 2).toString();
             JOptionPane.showMessageDialog(null,"============== Receipt ==============\n"
-                                                            + "Invoice ID: " + invoiceID + "\n"
-                                                            + "Unit ID: " + unitID + "\n"
+                                                            + "Receipt ID: " + receiptID + "\n"
+                                                            + "Amount Paid: " + Amount + "\n"
                                                             + "Date: " + date + "\n"
                                                             + "\n"
                                                             + "We are thrilled to confirm that your payment\n"
@@ -1428,6 +1431,7 @@ public class Resident_Main extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) PaymentTable.getModel();
             model.setRowCount(0);
             Payment.tabulateData(payments, PaymentTable, id);
+            receipts=new Receipt().newReceipt(receipts, id, amount);
         }
     }//GEN-LAST:event_PAYbuttonActionPerformed
 

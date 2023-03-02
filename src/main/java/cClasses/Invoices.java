@@ -147,7 +147,8 @@ public class Invoices {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             for(Invoices u:invoices){
                 String userID=u.getUserId();
-                if(id.equals(userID)){
+                String fee = u.getFee();
+                if(id.equals(userID)&& !fee.equals("0")){
                     DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
                     String date = date_format.format(u.getDate());
                 

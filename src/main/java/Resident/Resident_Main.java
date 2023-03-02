@@ -74,7 +74,6 @@ public class Resident_Main extends javax.swing.JFrame {
         //Payment
         Invoices.tabulateData(invoices, InvoiceTable,id);
         Payment.tabulateData(payments, PaymentTable,id);
-        Payment.tabulateDataOutstanding(payments, OutstandingTable, id);
 //        Payment.tabulateReceipt(payments, ReceiptTable,id);
         Receipt.tabulateData(receipts,ReceiptTable,id);
         
@@ -193,16 +192,6 @@ public class Resident_Main extends javax.swing.JFrame {
         jPanel23 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         InvoiceTable = new javax.swing.JTable();
-        jPanel24 = new javax.swing.JPanel();
-        jLabel57 = new javax.swing.JLabel();
-        OutstandingFee = new javax.swing.JLabel();
-        jLabel60 = new javax.swing.JLabel();
-        AmountTFOutstanding = new javax.swing.JTextField();
-        PayOutstandingButton = new javax.swing.JButton();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        OutstandingTable = new javax.swing.JTable();
-        jLabel58 = new javax.swing.JLabel();
-        DateOutstanding = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ReceiptTable = new javax.swing.JTable();
@@ -765,107 +754,6 @@ public class Resident_Main extends javax.swing.JFrame {
 
         jTabbedPane6.addTab("Invoice", jPanel23);
 
-        jPanel24.setBackground(new java.awt.Color(0, 102, 255));
-
-        jLabel57.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel57.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel57.setText("Fee:");
-
-        OutstandingFee.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        OutstandingFee.setForeground(new java.awt.Color(255, 255, 255));
-        OutstandingFee.setText("Fee");
-
-        jLabel60.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel60.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel60.setText("Amount:");
-
-        AmountTFOutstanding.setForeground(new java.awt.Color(0, 0, 0));
-        AmountTFOutstanding.setText("Amount");
-        AmountTFOutstanding.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AmountTFOutstandingActionPerformed(evt);
-            }
-        });
-
-        PayOutstandingButton.setText("PAY");
-        PayOutstandingButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        OutstandingTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Outstanding Fee", "Date"
-            }
-        ));
-        jScrollPane10.setViewportView(OutstandingTable);
-
-        jLabel58.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel58.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel58.setText("Date:");
-
-        DateOutstanding.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        DateOutstanding.setForeground(new java.awt.Color(255, 255, 255));
-        DateOutstanding.setText("Date");
-
-        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
-        jPanel24.setLayout(jPanel24Layout);
-        jPanel24Layout.setHorizontalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel24Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                                .addComponent(jLabel60)
-                                .addGap(46, 46, 46)
-                                .addComponent(AmountTFOutstanding, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                                .addComponent(PayOutstandingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel24Layout.createSequentialGroup()
-                                .addComponent(jLabel58)
-                                .addGap(75, 75, 75)
-                                .addComponent(DateOutstanding, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel24Layout.createSequentialGroup()
-                                .addComponent(jLabel57)
-                                .addGap(75, 75, 75)
-                                .addComponent(OutstandingFee, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)))
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel24Layout.setVerticalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel57)
-                    .addComponent(OutstandingFee))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel58)
-                    .addComponent(DateOutstanding))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel60)
-                    .addComponent(AmountTFOutstanding, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(PayOutstandingButton)
-                .addContainerGap(65, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane6.addTab("Outstanding", jPanel24);
-
         jPanel2.setBackground(new java.awt.Color(0, 0, 255));
 
         ReceiptTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -1286,14 +1174,6 @@ public class Resident_Main extends javax.swing.JFrame {
 
     
     
-    private void AmountPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountPaymentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AmountPaymentActionPerformed
-
-    private void InvoiceTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceTableMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InvoiceTableMousePressed
-
     private void Update6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update6ActionPerformed
         // TODO add your handling code here:
         
@@ -1363,10 +1243,6 @@ public class Resident_Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_UpdateBtnActionPerformed
 
-    private void AmountTFOutstandingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountTFOutstandingActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AmountTFOutstandingActionPerformed
-
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -1385,55 +1261,6 @@ public class Resident_Main extends javax.swing.JFrame {
         String searchString = jTextField1.getText();
         Functions.Search(searchString, VisitorTable);
     }//GEN-LAST:event_jTextField1KeyReleased
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        if(ReceiptTable.getSelectedRow() != -1){
-            String receiptID = ReceiptTable.getValueAt(ReceiptTable.getSelectedRow(), 0).toString();
-            String Amount = ReceiptTable.getValueAt(ReceiptTable.getSelectedRow(), 1).toString();
-            String date = ReceiptTable.getValueAt(ReceiptTable.getSelectedRow(), 2).toString();
-            JOptionPane.showMessageDialog(null,"============== Receipt ==============\n"
-                                                            + "Receipt ID: " + receiptID + "\n"
-                                                            + "Amount Paid: " + Amount + "\n"
-                                                            + "Date: " + date + "\n"
-                                                            + "\n"
-                                                            + "We are thrilled to confirm that your payment\n"
-                                                            + "has been received and processed. Thank you for\n"
-                                                            + "being a valued resident. We look forward to \n"
-                                                            + "serving you again soon.\n"
-                                                            + "============= Thank You! ============="
-            );
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void PaymentTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PaymentTableMousePressed
-        // TODO add your handling code here:
-        if(PaymentTable.getSelectedRow() != -1){
-            int out = Integer.parseInt(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 1).toString());
-            int fee = Integer.parseInt(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 2).toString());
-            FeePayment.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 1).toString());
-            DatePayment.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 3).toString());
-            Outstanding.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 2).toString());
-            String total =String.valueOf(out+fee) ;
-            TotalPayable.setText(total);
-        }
-        
-    }//GEN-LAST:event_PaymentTableMousePressed
-
-    private void PAYbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PAYbuttonActionPerformed
-        // TODO add your handling code here:
-        if(PaymentTable.getSelectedRow() != -1&& ((Integer.parseInt(AmountPayment.getText()))<=(Integer.parseInt(TotalPayable.getText())))){
-            String Id = PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 0).toString();
-            int amount = Integer.parseInt(AmountPayment.getText());
-            payments=Payment.PAY(payments, Id, amount);
-            JOptionPane.showMessageDialog(null,"Successfully Updated Invoice!");
-            DefaultTableModel model = (DefaultTableModel) PaymentTable.getModel();
-            model.setRowCount(0);
-            Payment.tabulateData(payments, PaymentTable, id);
-            receipts=new Receipt().newReceipt(receipts, id, amount);
-        }
-    }//GEN-LAST:event_PAYbuttonActionPerformed
 
     private void Book4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Book4ActionPerformed
         // TODO add your handling code here:
@@ -1495,6 +1322,63 @@ public class Resident_Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Update5ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        if(ReceiptTable.getSelectedRow() != -1){
+            String receiptID = ReceiptTable.getValueAt(ReceiptTable.getSelectedRow(), 0).toString();
+            String Amount = ReceiptTable.getValueAt(ReceiptTable.getSelectedRow(), 1).toString();
+            String date = ReceiptTable.getValueAt(ReceiptTable.getSelectedRow(), 2).toString();
+            JOptionPane.showMessageDialog(null,"============== Receipt ==============\n"
+                + "Receipt ID: " + receiptID + "\n"
+                + "Amount Paid: " + Amount + "\n"
+                + "Date: " + date + "\n"
+                + "\n"
+                + "We are thrilled to confirm that your payment\n"
+                + "has been received and processed. Thank you for\n"
+                + "being a valued resident. We look forward to \n"
+                + "serving you again soon.\n"
+                + "============= Thank You! ============="
+            );
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void InvoiceTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceTableMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InvoiceTableMousePressed
+
+    private void PaymentTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PaymentTableMousePressed
+        // TODO add your handling code here:
+        if(PaymentTable.getSelectedRow() != -1){
+            int out = Integer.parseInt(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 1).toString());
+            int fee = Integer.parseInt(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 2).toString());
+            FeePayment.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 1).toString());
+            DatePayment.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 3).toString());
+            Outstanding.setText(PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 2).toString());
+            String total =String.valueOf(out+fee) ;
+            TotalPayable.setText(total);
+        }
+
+    }//GEN-LAST:event_PaymentTableMousePressed
+
+    private void PAYbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PAYbuttonActionPerformed
+        // TODO add your handling code here:
+        if(PaymentTable.getSelectedRow() != -1&& ((Integer.parseInt(AmountPayment.getText()))<=(Integer.parseInt(TotalPayable.getText())))){
+            String Id = PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 0).toString();
+            int amount = Integer.parseInt(AmountPayment.getText());
+            payments=Payment.PAY(payments, Id, amount);
+            JOptionPane.showMessageDialog(null,"Successfully Updated Invoice!");
+            DefaultTableModel model = (DefaultTableModel) PaymentTable.getModel();
+            model.setRowCount(0);
+            Payment.tabulateData(payments, PaymentTable, id);
+            receipts=new Receipt().newReceipt(receipts, id, amount);
+        }
+    }//GEN-LAST:event_PAYbuttonActionPerformed
+
+    private void AmountPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountPaymentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AmountPaymentActionPerformed
+
     private void AmountPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AmountPaymentMouseClicked
         // TODO add your handling code here:
         AmountPayment.setText("");
@@ -1537,12 +1421,10 @@ public class Resident_Main extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AmountPayment;
-    private javax.swing.JTextField AmountTFOutstanding;
     private javax.swing.JButton Book4;
     private javax.swing.JTable ComplaintTable6;
     private javax.swing.JLabel Date;
     private com.toedter.calendar.JDateChooser DateChooser1;
-    private javax.swing.JLabel DateOutstanding;
     private javax.swing.JLabel DatePayment;
     private javax.swing.JButton Delete5;
     private javax.swing.JLabel EmailL;
@@ -1556,12 +1438,9 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel NameL;
     private javax.swing.JTextField NameMOD;
     private javax.swing.JLabel Outstanding;
-    private javax.swing.JLabel OutstandingFee;
-    private javax.swing.JTable OutstandingTable;
     private javax.swing.JButton PAYbutton;
     private javax.swing.JLabel PasswordL;
     private javax.swing.JTextField PasswordMOD;
-    private javax.swing.JButton PayOutstandingButton;
     private javax.swing.JTable PaymentTable;
     private javax.swing.JTable ReceiptTable;
     private javax.swing.JLabel RoleL;
@@ -1594,10 +1473,7 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel65;
@@ -1615,7 +1491,6 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
@@ -1624,7 +1499,6 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;

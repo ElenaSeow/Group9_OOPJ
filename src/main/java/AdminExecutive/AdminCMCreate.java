@@ -166,8 +166,6 @@ ArrayList<Complaint> complaints = new Complaint().Import();
 
     private void SubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBtnActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> data;
-        data = Functions.Read("BuildingExecutive.txt");
 //        String title = Title.getText();
         String desc=Description.getText();
         String uid = Session.getId();

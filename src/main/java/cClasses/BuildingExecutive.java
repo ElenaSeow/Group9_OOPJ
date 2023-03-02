@@ -59,7 +59,7 @@ public class BuildingExecutive extends User {
    public static void tabulateData(ArrayList<BuildingExecutive> buildingexecutives,JTable table){
        DefaultTableModel model = (DefaultTableModel) table.getModel();
        for(BuildingExecutive b:buildingexecutives){
-            String[] allDataRow = {b.getId(),b.getName(),b.getEmail(),b.getPassword(),b.getRole(),b.getContactNo()};
+            String[] allDataRow = {b.getId(),b.getName(),b.getEmail(),b.getContactNo()};
             model.addRow(allDataRow);
             
         }
@@ -104,11 +104,30 @@ public class BuildingExecutive extends User {
                pr.close();
                
         } catch (FileNotFoundException ex) {
-           Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);         
+           Logger.getLogger(BuildingExecutive.class.getName()).log(Level.SEVERE, null, ex);         
        }
        return newBuildingExecutives;
 
    }
+   public static void Write(ArrayList<BuildingExecutive> buildingexecutives){
+        PrintWriter pr = null;
+    try {
+        pr = new PrintWriter("BuildingExecutive.txt");
+        for (BuildingExecutive a:buildingexecutives){
+            String Id=a.getId();
+            String name=a.getName();
+            String email=a.getEmail();
+            String password=a.getPassword();
+            String role=a.getRole();
+            String number=a.getContactNo();
+            pr.println(Id+":"+name+":"+email+":"+password+":"+role+":"+number);
+        }
+        pr.close();    
+    } catch (FileNotFoundException ex){
+        Logger.getLogger(BuildingExecutive.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
+   
 }
 
 

@@ -7,6 +7,7 @@ package com.mycompany.group9_oopj;
 import AccountExecutive.Account_Executive_Main;
 import AdminExecutive.AdminMain;
 import BuildingExecutive.Building_Executive_Main;
+import BuildingManager.BMMain;
 import BuildingManager.Building_Manager_Main;
 import Resident.Resident_Main;
 import Security.Security_Main;
@@ -380,8 +381,8 @@ public class Login_Page extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "You are entering Building Manager Page....");
 
                         Session session = new Session(id);
-                        Building_Manager_Main BMS = new Building_Manager_Main();
-                        BMS.setVisible(true);
+                        BMMain BMM = new BMMain(session);
+                        BMM.setVisible(true);
                         dispose();
                         break;
                     }

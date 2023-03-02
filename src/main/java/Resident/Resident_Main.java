@@ -1388,11 +1388,22 @@ public class Resident_Main extends javax.swing.JFrame {
             String Id = PaymentTable.getValueAt(PaymentTable.getSelectedRow(), 0).toString();
             int amount = Integer.parseInt(AmountPayment.getText());
             payments=Payment.PAY(payments, Id, amount);
-            JOptionPane.showMessageDialog(null,"Successfully Updated Invoice!");
-            DefaultTableModel model = (DefaultTableModel) PaymentTable.getModel();
-            model.setRowCount(0);
-            Payment.tabulateData(payments, PaymentTable, id);
             receipts=new Receipt().newReceipt(receipts, id, amount);
+            invoices=null;
+            invoices=new Invoices().Import();
+            JOptionPane.showMessageDialog(null,"Successfully Updated Invoice!");
+            DefaultTableModel model1 = (DefaultTableModel) PaymentTable.getModel();
+            DefaultTableModel model2 = (DefaultTableModel) InvoiceTable.getModel();
+            DefaultTableModel model3 = (DefaultTableModel) ReceiptTable.getModel();
+
+            model1.setRowCount(0);
+            model2.setRowCount(0);
+            model3.setRowCount(0);
+            
+            Payment.tabulateData(payments, PaymentTable, id);
+            Invoices.tabulateData(invoices, InvoiceTable,id);
+            Receipt.tabulateData(receipts,ReceiptTable,id);
+
         }
     }//GEN-LAST:event_PAYbuttonActionPerformed
 

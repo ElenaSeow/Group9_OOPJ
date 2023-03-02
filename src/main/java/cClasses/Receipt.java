@@ -108,7 +108,7 @@ public class Receipt {
      public static void Write(ArrayList<Receipt> receipts){
          PrintWriter pr = null;
         try { 
-            pr = new PrintWriter("Receipt.txr");
+            pr = new PrintWriter("Receipt.txt");
             for(Receipt i: receipts){
                 String rid=i.getId();
                 String userId =i.getUserId();
@@ -131,6 +131,6 @@ public class Receipt {
          String amt = String.valueOf(amount);
          receipts.add(new Receipt(id,userid,amt,date));
          Receipt.Write(receipts);
-         return null;
+         return receipts;
      }
 }

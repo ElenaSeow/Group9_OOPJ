@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,33 +58,60 @@ public class Patrols extends PatrolUser {
         }
     }
    public ArrayList<Patrols> Update(ArrayList<Patrols> patrols, String checkid){
-        
-        ArrayList<String> data=new ArrayList<>();
-    try {
-        for(Patrols s:patrols){
-            String Id = s.getcheckid();
-            if(checkid.equals(Id)){
-                s.setsecid(this.getsecid());
-                s.setdate(this.getdate());
-                s.settime(this.gettime());
-                s.setstatus(this.getstatus());
-                
-                data.add(s.getcheckid()+","+s.getsecid()+","+s.getdate()+","+s.gettime()+","+s.getstatus());
-            }else{
-                data.add(s.getcheckid()+","+s.getsecid()+","+s.getdate()+","+s.gettime()+","+s.getstatus());
-            }
-        }   PrintWriter pr = new PrintWriter("Patrols.txt");
-        for(String i:data){
-            
-            pr.println(i);
-            System.out.println(i);
-        }   
-    } catch (FileNotFoundException ex) {
-        Logger.getLogger(Patrols.class.getName()).log(Level.SEVERE, null, ex);
-    }finally{
-        
-    }
-        return patrols;
+//        
+//        ArrayList<String> data=new ArrayList<>();
+//    try {
+//        for(Patrols s:patrols){
+//            String Id = s.getcheckid();
+//            if(checkid.equals(Id)){
+//                s.setsecid(this.getsecid());
+//                s.setdate(this.getdate());
+//                s.settime(this.gettime());
+//                s.setstatus(this.getstatus());
+//                
+//                data.add(s.getcheckid()+","+s.getsecid()+","+s.getdate()+","+s.gettime()+","+s.getstatus());
+//            }else{
+//                data.add(s.getcheckid()+","+s.getsecid()+","+s.getdate()+","+s.gettime()+","+s.getstatus());
+//            }
+//        }   PrintWriter pr = new PrintWriter("Patrols.txt");
+//        for(String i:data){
+//            
+//            pr.println(i);
+//            System.out.println(i);
+//        }   
+//    } catch (FileNotFoundException ex) {
+//        Logger.getLogger(Patrols.class.getName()).log(Level.SEVERE, null, ex);
+//    }finally{
+//        
+//    }
+//        return patrols;
+
+        PrintWriter pr = null;
+        try {
+           for(Patrols s:patrols){
+               String Id = s.getcheckid();
+               if(checkid.equals(Id)){
+                   s.setsecid(this.getsecid());
+                   s.setdate(this.getdate());
+                   s.settime(this.gettime());
+                   s.setstatus(this.getstatus());
+                   
+               }
+           }   pr = new PrintWriter("Patrols.txt");
+           for(Patrols i: patrols){ 
+                String Id =i.getcheckid();
+                String secid = i.getsecid();
+                String date = i.getdate();
+                String time = i.gettime();
+                String status = i.getstatus();
+                pr.println(Id+","+secid+","+date+","+time+","+status);
+                       }
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(Complaint.class.getName()).log(Level.SEVERE, null, ex);
+       } finally {
+           pr.close();
+       }
+       return patrols;
     }
     
      public static ArrayList<Patrols>Delete(ArrayList<Patrols> patrols, String checkid){

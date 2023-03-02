@@ -238,9 +238,9 @@ public class VisitorPass {
         }
         
         public void Write(ArrayList<VisitorPass> visitorpass){
-            PrintWriter pr;
+            PrintWriter pr = null;
         try {
-            pr = new PrintWriter("Units.txt");
+            pr = new PrintWriter("VisitorPass.txt");
             for (VisitorPass i: visitorpass){
                 String id=i.getUserId();
                 String name=i.getName();
@@ -248,7 +248,7 @@ public class VisitorPass {
                 String contactNo=i.getContactNo();
                 String plateno = i.getPlateNo();
                 String status = i.getStatus();
-                pr.println(id+","+name + "," + visitorid + "," + contactNo+","+plateno+","+status);
+                pr.println(visitorid+","+id + "," + name + "," + contactNo+","+plateno+","+status);
             }
             pr.close();
         } catch (FileNotFoundException ex) {

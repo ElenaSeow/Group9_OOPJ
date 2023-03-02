@@ -1,0 +1,6 @@
+OP001:Building:Maintenance:3500:27-02-2023:28-02-2023
+OP002:Gym Cleaning:Maintenance:700:01-03-2023:03-03-2023
+OP003:New Studio:Project:340000:05-05-2023:07-05-2025
+OP004:megan:Project:20:01-03-2023:02-03-2023
+OP005:Cafeteria:Project:6000:28-02-2023:17-03-2023
+OP006:Badminton court:Maintenance:200:28-02-2023:28-02-2023

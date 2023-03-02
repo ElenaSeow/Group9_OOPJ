@@ -5,6 +5,7 @@
 package BuildingManager;
 
 import cClasses.BuildingManager;
+import cClasses.Operation;
 import cClasses.Session;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,15 +26,24 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BMOB extends javax.swing.JFrame {
     Session Session;
+    ArrayList<Operation> operations = new Operation().Import();
     /**
      * Creates new form Building_Manager_Sample
      */
     public BMOB(Session session) {
         initComponents();
+        Operation.tabulateData1(operations, MaintTable);
+        Operation.tabulateData2(operations,ProjTable);
         this.Session = session;
         String id = session.getId();
         ArrayList<BuildingManager> buildingmanagers = new BuildingManager().Import();
-        
+         for(BuildingManager b:buildingmanagers){
+            String Id= b.getId();
+            String username = b.getName();
+            if(id.equals(Id)){
+                Username.setText(username);
+            }
+        }
     }
     
     
@@ -66,6 +77,14 @@ public class BMOB extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        MaintTable = new javax.swing.JTable();
+        MaintView = new javax.swing.JButton();
+        MaintCreate = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ProjTable = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -278,6 +297,30 @@ public class BMOB extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
+        MaintTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name"
+            }
+        ));
+        jScrollPane1.setViewportView(MaintTable);
+
+        MaintView.setText("View Details");
+        MaintView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MaintViewMouseClicked(evt);
+            }
+        });
+
+        MaintCreate.setText("Create");
+        MaintCreate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MaintCreateMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -286,16 +329,79 @@ public class BMOB extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(MaintView)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MaintCreate)
+                .addGap(70, 70, 70))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MaintView)
+                    .addComponent(MaintCreate))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Operation", jPanel9);
+        jTabbedPane1.addTab("Maintenances", jPanel9);
+
+        ProjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name"
+            }
+        ));
+        jScrollPane2.setViewportView(ProjTable);
+
+        jButton3.setText("jButton1");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
+        jButton4.setText("jButton2");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(86, 86, 86))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Projects", jPanel10);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -350,6 +456,52 @@ public class BMOB extends javax.swing.JFrame {
 //        dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    private void MaintViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MaintViewMouseClicked
+        // TODO add your handling code here:
+        if(MaintTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = MaintTable.getSelectedRow();
+            String Id = MaintTable.getModel().getValueAt(MaintTable.convertRowIndexToModel(row), column).toString();
+            BMOBMaint_View vv = new BMOBMaint_View(Session);
+            vv.spamdata(Id);
+            vv.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Select a maintenance operation first.");
+        }
+    }//GEN-LAST:event_MaintViewMouseClicked
+
+    private void MaintCreateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MaintCreateMouseClicked
+        // TODO add your handling code here:
+        BMOBMaint_Create rp = new BMOBMaint_Create(Session);
+        rp.setVisible(true);
+        
+        dispose();
+    }//GEN-LAST:event_MaintCreateMouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        BMOBProj_Create rp = new BMOBProj_Create(Session);
+        rp.setVisible(true);
+        
+        dispose();
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        if(ProjTable.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = ProjTable.getSelectedRow();
+            String Id = ProjTable.getModel().getValueAt(ProjTable.convertRowIndexToModel(row), column).toString();
+            BMOBProj_View pv = new BMOBProj_View(Session);
+            pv.spamdata(Id);
+            pv.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Select a project first.");
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -387,7 +539,13 @@ public class BMOB extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BuidlingExecutive;
+    private javax.swing.JButton MaintCreate;
+    private javax.swing.JTable MaintTable;
+    private javax.swing.JButton MaintView;
+    private javax.swing.JTable ProjTable;
     private javax.swing.JLabel Username;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -395,6 +553,7 @@ public class BMOB extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -404,6 +563,7 @@ public class BMOB extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables

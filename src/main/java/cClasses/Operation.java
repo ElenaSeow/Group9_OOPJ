@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * @author User
  */
 public class Operation {
-    private String oid;
+    private String id;
     private String name;
     private String type;
     private String budget;
@@ -32,32 +32,36 @@ public class Operation {
     private String enddate;
     
     
-    public Operation(String oid, String name, String type, String budget, String startdate, String enddate){
-        this.oid = oid;
+    public Operation(String id, String name, String type, String budget, String startdate, String enddate){
+        this.id = id;
         this.name = name;
         this.type = type;
         this.budget = budget;
         this.startdate = startdate;
         this.enddate = enddate;
     }
-    public Operation(String oid, String name, String type, String budget, Date startdate, Date enddate){
+    public Operation(String id, String name, String type, String budget, Date startdate, Date enddate){
         DateFormat dateFormat =new SimpleDateFormat("dd-MM-yyyy");
         String sdate = dateFormat.format(startdate);
         String edate =dateFormat.format((enddate));
-        this.oid = oid;
+        this.id = id;
         this.name = name;
         this.type = type;
         this.budget = budget;
         this.startdate = sdate;
         this.enddate = edate;
     }
-    
-    public String getOid(){
-        return oid;
+
+    public Operation() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    public void setOid(String oid){
-        this.oid = oid;
+    public String getId(){
+        return id;
+    }
+    
+    public void setId(String oid){
+        this.id = id;
     }
     
     public String getName(){
@@ -107,7 +111,7 @@ public class Operation {
         ArrayList<Operation> op = new ArrayList<Operation>();
     try {
         
-        String file = "operationbudget.txt";
+        String file = "Budget.txt";
         ArrayList<String> data = new ArrayList<>();
         br = new BufferedReader(new FileReader(file));
         String line;
@@ -129,11 +133,25 @@ public class Operation {
         }
     return op;    
     }
-    public static void tabulateData(ArrayList<Operation> op,JTable table){
+    public static void tabulateData1(ArrayList<Operation> op,JTable table){
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         for(Operation o:op){
-            String[] allDataRow = {o.getOid(),o.getName()};
-            model.addRow(allDataRow);
+            if(o.getType().equals("Maintenance")){
+                String[] allDataRow = {o.getId(),o.getName()};
+                model.addRow(allDataRow);
+            }
+           
+        }
+    }
+    
+     public static void tabulateData2(ArrayList<Operation> op,JTable table){
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for(Operation o:op){
+            if(o.getType().equals("Project")){
+                String[] allDataRow = {o.getId(),o.getName()};
+                model.addRow(allDataRow);
+            }
+           
         }
     }
     
@@ -141,9 +159,9 @@ public class Operation {
     public static void Write(ArrayList<Operation> op){
         PrintWriter pr = null;
     try {
-        pr = new PrintWriter("operationbudget.txt");
+        pr = new PrintWriter("Budget.txt");
         for (Operation o:op){
-            String Id=o.getOid();
+            String Id=o.getId();
             String name=o.getName();
             String type=o.getType();
             String budget=o.getBudget();

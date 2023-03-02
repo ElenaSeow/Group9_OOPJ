@@ -33,7 +33,7 @@ public class Security_Main extends javax.swing.JFrame {
         VisitorPass.ViewVisitorPassforSG(visitorpass, VisitorPassTable,id);
         VisitorPass.ViewVisitorPassforSG(visitorpass, VisitorPassEntry,id);
         
-        Patrols.tabulateData(patrols, PatrollingTbl);
+        Patrols.tabulateData(patrols, CheckpointTbl);
         
         visitorpass=new VisitorPass().Import();
         
@@ -76,7 +76,7 @@ public class Security_Main extends javax.swing.JFrame {
         jPanel23 = new javax.swing.JPanel();
         cUpdateBtn = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
-        PatrollingTbl = new javax.swing.JTable();
+        CheckpointTbl = new javax.swing.JTable();
         jPanel24 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -225,8 +225,8 @@ public class Security_Main extends javax.swing.JFrame {
             }
         });
 
-        PatrollingTbl.setBackground(new java.awt.Color(204, 204, 204));
-        PatrollingTbl.setModel(new javax.swing.table.DefaultTableModel(
+        CheckpointTbl.setBackground(new java.awt.Color(204, 204, 204));
+        CheckpointTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -234,12 +234,12 @@ public class Security_Main extends javax.swing.JFrame {
                 "Checkpoint ID", "Security ID", "Date", "Time", "Status"
             }
         ));
-        PatrollingTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        CheckpointTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                PatrollingTblMousePressed(evt);
+                CheckpointTblMousePressed(evt);
             }
         });
-        jScrollPane7.setViewportView(PatrollingTbl);
+        jScrollPane7.setViewportView(CheckpointTbl);
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -325,17 +325,27 @@ public class Security_Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void PatrollingTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PatrollingTblMousePressed
+    private void CheckpointTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckpointTblMousePressed
 //        if(PatrollingTbl.getSelectedRow() != -1){
 ////            psCID.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 0).toString());
 ////            psSID.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 1).toString());
 ////            psTime.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 2).toString());
 ////            psDate.setText(PatrollingTbl.getValueAt(PatrollingTbl.getSelectedRow(), 3).toString());
 //        }
-    }//GEN-LAST:event_PatrollingTblMousePressed
+    }//GEN-LAST:event_CheckpointTblMousePressed
 
     private void cUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cUpdateBtnActionPerformed
-        // TODO add your handling code here:
+        if(CheckpointTbl.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = CheckpointTbl.getSelectedRow();
+            String Id = CheckpointTbl.getModel().getValueAt(row, column).toString();
+            SecurityUpdate_Patrols sup = new SecurityUpdate_Patrols(Session);
+            sup.spamdata(Id);
+            sup.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
        
     }//GEN-LAST:event_cUpdateBtnActionPerformed
 
@@ -375,8 +385,8 @@ public class Security_Main extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable CheckpointTbl;
     private javax.swing.JLabel Logout8;
-    private javax.swing.JTable PatrollingTbl;
     private javax.swing.JTable VisitorPassEntry;
     private javax.swing.JTable VisitorPassTable;
     private javax.swing.JButton cUpdateBtn;

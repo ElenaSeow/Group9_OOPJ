@@ -131,6 +131,6 @@ public class Receipt {
          String amt = String.valueOf(amount);
          receipts.add(new Receipt(id,userid,amt,date));
          Receipt.Write(receipts);
-         return null;
+         return receipts;
      }
 }

@@ -147,6 +147,21 @@ public class Complaint {
             
         }
     }
+   
+   public static void tabulateData(ArrayList<Complaint> complaints, JTable table,String id){
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for(Complaint c:complaints){
+            String userid = c.getUserId();
+            if(userid.equals(id)){
+               DateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
+                String cdate = date_format.format(c.getComplaintDate());
+                String udate = date_format.format(c.getUpdateDate());
+            String[] allDataRow = {c.getComplaintId(),c.getDesc(),c.getStatus(),cdate};
+            model.addRow(allDataRow); 
+            }
+            
+        }
+    }
    public static void tabulateData1(ArrayList<Complaint> complaints, JTable table){
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         for(Complaint c:complaints){
@@ -233,7 +248,7 @@ public class Complaint {
                 String udate = date_format.format(i.getUpdateDate());
                 String desc=i.getDesc();
                 String status =i.getStatus();
-                pr.println(Id+":"+UserID+":"+desc+":"+cdate+":"+udate+":"+status);
+                pr.println(Id+":"+UserID+":"+desc+":"+status+":"+cdate+":"+udate);
                        }
             pr.close();
        } catch (FileNotFoundException ex) {

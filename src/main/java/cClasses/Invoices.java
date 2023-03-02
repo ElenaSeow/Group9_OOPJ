@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -252,4 +253,50 @@ public class Invoices {
             }
         }
     }
+    
+    public static ArrayList<Invoices> PAY(ArrayList<Invoices> invoices,String ID, int amount) {
+            PrintWriter pr = null;
+        try {
+            for(Invoices i: invoices){
+                String id = i.getInvoiceId();
+                if(id.equals(ID)){
+                    String userid = i.getUserId();
+                    String unitid = i.getUnitId();
+                    String fee = i.getFee();
+                    String outstanding = i.getOutstanding();
+                    String idate = new SimpleDateFormat("dd-MM-yyyy").format(i.getDate());
+                    int newfee = Integer.parseInt(fee) - amount;
+                    int newout = Integer.parseInt(outstanding);
+                    if(newfee<0){
+                        newout+=newfee;
+                        newfee=0;
+                    }
+                    fee = String.valueOf(newfee);
+                    outstanding = String.valueOf(newout);
+                    i.setFee(fee);
+                    i.setOutstanding(outstanding);
+                    
+                }
+            }
+            pr = new PrintWriter("Payment.txt");
+            pr.println("INVOICE ID,USER ID,UNIT ID,FEE,OUTSTANDING,DATE");
+            for(Invoices p: invoices){
+                String id = p.getInvoiceId();
+                String userid = p.getUserId();
+                String unitid = p.getUnitId();
+                String fee = p.getFee();
+                String outstanding = p.getOutstanding();
+                String idate = new SimpleDateFormat("dd-MM-yyyy").format(p.getDate());
+                pr.println(id+","+userid+","+unitid+","+fee+","+outstanding+","+idate);
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Payment.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            pr.close();
+        }
+        return invoices;
+        }
+    
+    
 }

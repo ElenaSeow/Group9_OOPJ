@@ -203,10 +203,10 @@ public class ResidentCreate_VP extends javax.swing.JFrame {
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
         
+        String vid = Functions.IdGenerate2("VisitorPass.txt");
         String id = UserId.getText();
         String name = Name.getText();
         String contactNo = TelNo.getText();
-        String vid = Functions.IdGenerate2("VisitorPass.txt");
         String plateNo = PlateNo.getText();
         String status = "Pending";
        

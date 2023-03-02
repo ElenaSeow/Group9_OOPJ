@@ -1429,7 +1429,7 @@ public class Resident_Main extends javax.swing.JFrame {
             // TODO add your handling code here:
             String Id = Functions.IdGenerate("complaints.txt");
             String userId = id;
-            String desc = TextArea6.getText().trim();
+            String desc = TextArea6.getText().replace("\n"," ");
             String status = "Pending";
             SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             String now = df.format(new Date());

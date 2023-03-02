@@ -275,7 +275,7 @@ public class ResidentUpdate_CM extends javax.swing.JFrame {
         String id = ID.getText();
         String date= Date.getText();
         String status = Status.getText();
-        String desc = Description.getText();
+        String desc = Description.getText().replace("\n"," ");
         String update = "";
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         for(Complaint i :complaints){

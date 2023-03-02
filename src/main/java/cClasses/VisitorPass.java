@@ -26,9 +26,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VisitorPass {
 
-    public static void Write(ArrayList<VisitorPass> visitorpass) {
-        
-    }
+    
     
     private String userId;
     private String visitorId;
@@ -164,15 +162,18 @@ public class VisitorPass {
                    f.setPlateNo(this.getPlateNo());
                    f.setStatus(this.getStatus());
                }
-           }   pr = new PrintWriter("VisitorPass.txt");
+           }    pr = new PrintWriter("VisitorPass.txt");
+                pr.println("VISITOR ID,USER ID,NAME,CONTACT NO,PLATE NO,STATUS");
            for(VisitorPass i: visitorpass){ 
                 String vid=i.getVisitorId();
+                String userId=i.getUserId();
                 String name =i.getName();
                 String telno =i.getContactNo();
                 String plateNo =i.getPlateNo();
                 String status = i.getStatus();
-                pr.println(vid+","+name+","+telno+","+plateNo+","+status);
+                pr.println(vid+","+userId+","+name+","+telno+","+plateNo+","+status);
                        }
+           pr.close();
        } catch (FileNotFoundException ex) {
            Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
        } finally {
@@ -180,6 +181,28 @@ public class VisitorPass {
        }
        return visitorpass;
         }
+    
+    
+    public static void Write(ArrayList<VisitorPass> visitorpass) {
+        PrintWriter pr = null;
+        try {
+            pr = new PrintWriter("VisitorPass.txt");
+            pr.println("VISITOR ID,USER ID,NAME,CONTACT NO,PLATE NO,STATUS");
+            for (VisitorPass i: visitorpass){
+                String id=i.getUserId();
+                String name=i.getName();
+                String visitorid =i.getVisitorId();
+                String contactNo=i.getContactNo();
+                String plateno = i.getPlateNo();
+                String status = i.getStatus();
+                pr.println(visitorid+","+id + "," + name + "," + contactNo+","+plateno+","+status);
+            }
+            pr.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(VisitorPass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     
     
     public static void tabulateData(ArrayList<VisitorPass> visitorpass,JTable table,String id){

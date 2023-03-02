@@ -559,17 +559,17 @@ public class BMUM extends javax.swing.JFrame {
    
     private void AccUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccUpdateBtnActionPerformed
         // TODO add your handling code here:
-//        if(Account_Table.getSelectionModel().isSelectionEmpty()==false){
-//            int column = 0;
-//            int row = Account_Table.getSelectedRow();
-//            String Id = Account_Table.getModel().getValueAt(row, column).toString();
-//            Acc_Mod_Form uf = new Acc_Mod_Form(logindetails);
-//            uf.spamdata(Id);
-//            uf.setVisible(true);
-//            dispose();
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Please select a row.");
-//        }
+        if(Account_Table.getSelectionModel().isSelectionEmpty()==false){
+            int column = 0;
+            int row = Account_Table.getSelectedRow();
+            String Id = Account_Table.getModel().getValueAt(row, column).toString();
+            BMUMUpdate_AE uf = new BMUMUpdate_AE(Session);
+            uf.spamdata(Id);
+            uf.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
             
             
     }//GEN-LAST:event_AccUpdateBtnActionPerformed
@@ -580,9 +580,9 @@ public class BMUM extends javax.swing.JFrame {
 
     private void BuildCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuildCreateBtnActionPerformed
         // TODO add your handling code here:
-//        Build_Create_Form acf = new Build_Create_Form(logindetails);
-//        acf.setVisible(true);
-//        dispose();
+        BMUMCreate_BE acf = new BMUMCreate_BE(Session);
+        acf.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BuildCreateBtnActionPerformed
 
     private void AccCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccCreateBtnActionPerformed
@@ -622,13 +622,13 @@ public class BMUM extends javax.swing.JFrame {
 
     private void BuildDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuildDeleteBtnActionPerformed
         // TODO add your handling code here:
-//        int column = 0;
-//        int row = Building_Table.getSelectedRow();
-//        String Id = Building_Table.getModel().getValueAt(row, column).toString();
-//        Functions.Delete("BuildingExecutive.txt", Id);
-//        BMUM bmum = new BMUM(logindetails);
-//        dispose();
-//        bmum.setVisible(true);
+        int column = 0;
+        int row = Building_Table.getSelectedRow();
+        String Id = Building_Table.getModel().getValueAt(row, column).toString();
+        buildingexecutives = new BuildingExecutive().Delete(buildingexecutives, Id);
+        BMUM bmum = new BMUM(Session);
+        dispose();
+        bmum.setVisible(true);
     }//GEN-LAST:event_BuildDeleteBtnActionPerformed
 
     private void searchboxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchboxKeyReleased

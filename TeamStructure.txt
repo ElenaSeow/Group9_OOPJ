@@ -3,3 +3,4 @@ TS002:OP002:Technician:35:Office Block B
 TS003:OP001:Security Guard:8:Nightshifts
 TS004:OP002:Technician:10:Block A and B and C
 TS005:OP003:Technician:12:1pm to 3pm
+TS006:OP003:Technician:20000:Fix wiring system

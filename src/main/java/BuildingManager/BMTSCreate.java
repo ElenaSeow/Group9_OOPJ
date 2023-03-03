@@ -30,12 +30,7 @@ public class BMTSCreate extends javax.swing.JFrame {
         initComponents();
         this.Session = session;
         operations = new Operation().Import();
-        for(Operation i: operations){
-            String oid = i.getId();
-            if(oid.equals(OpId.getSelectedItem().toString())){
-                Op.setText(i.getName());
-            }
-        }
+       
         TeamId.setText(Functions.IdGenerate("TeamStructure.txt"));
         ArrayList<String> opNames = Operation.getOperations(operations);
         for(String i : opNames){
@@ -233,7 +228,7 @@ public class BMTSCreate extends javax.swing.JFrame {
         String opId =OpId.getSelectedItem().toString();
         String role =Role.getSelectedItem().toString();
         String amount = Amount.getText();
-        String remarks = Remarks.getText();
+        String remarks = Remarks.getText().replace("\n", " ");
         if(opId.isEmpty()&& role.isEmpty()&& amount.isEmpty()&& remarks.isEmpty()){
              JOptionPane.showMessageDialog(null, "Please fill in all the data!");
         }else{

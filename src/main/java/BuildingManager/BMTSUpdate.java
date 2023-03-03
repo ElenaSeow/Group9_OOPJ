@@ -245,7 +245,7 @@ public class BMTSUpdate extends javax.swing.JFrame {
         String opId =OpId.getSelectedItem().toString();
         String role =Role.getSelectedItem().toString();
         String amount = Amount.getText();
-        String remarks = Remarks.getText();
+        String remarks = Remarks.getText().replace("\n"," ");
         if(opId.isEmpty()&& role.isEmpty()&& amount.isEmpty()&& remarks.isEmpty()){
              JOptionPane.showMessageDialog(null, "Please fill in all the data!");
         }else{

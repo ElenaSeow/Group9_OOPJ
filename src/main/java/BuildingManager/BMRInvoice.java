@@ -95,7 +95,8 @@ public class BMRInvoice extends javax.swing.JFrame {
 
         Chooser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "This Month", "Overall" }));
 
-        jButton2.setText("GENERATE REPORTAAAAAA!!!!");
+        jButton2.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jButton2.setText("Generate Report");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

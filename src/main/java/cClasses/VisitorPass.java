@@ -220,11 +220,19 @@ public class VisitorPass {
         }
      }
     public static void tabulateReport(JTable table){
+        ArrayList<Resident> residents = new Resident().Import();
         ArrayList<VisitorPass> visitorpass = new VisitorPass().Import();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
             for(VisitorPass u:visitorpass){
-                String[] allDataRow = {u.getVisitorId(),u.getName(),u.getContactNo(),u.getPlateNo(),u.getStatus()};
+                String userID = u.getUserId();
+                String username= "";
+                for(Resident i : residents){
+                    if(userID.equals(i.getId())){
+                        username = i.getName();
+                    }
+                }
+                String[] allDataRow = {u.getVisitorId(),username,u.getName(),u.getContactNo(),u.getPlateNo(),u.getStatus()};
                 model.addRow(allDataRow);
                 
         }

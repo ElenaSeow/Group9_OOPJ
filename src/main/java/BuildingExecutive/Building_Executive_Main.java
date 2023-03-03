@@ -799,6 +799,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
         psSID.setText("");
         psTime.setText("");
         psDate.setText("");
+        psStatus.setText("");
     }//GEN-LAST:event_pClearBtnActionPerformed
 
     private void PatrollingTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PatrollingTblMousePressed

@@ -472,7 +472,7 @@ public class Building_Executive_Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Checkpoint ID", "Security ID", "Time", "Date"
+                "Checkpoint ID", "Security ID", "Date", "Time"
             }
         ));
         PatrollingHistoryTbl.addMouseListener(new java.awt.event.MouseAdapter() {

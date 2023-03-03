@@ -1,5 +1,5 @@
 TS001:OP001:Cleaner:10:Toilet Block A
 TS002:OP002:Technician:35:Office Block B
-TS003:OP001:Security Guard:8:Nightshift
+TS003:OP001:Security Guard:8:Nightshifts
 TS004:OP002:Technician:10:Block A and B and C
 TS005:OP003:Technician:12:1pm to 3pm

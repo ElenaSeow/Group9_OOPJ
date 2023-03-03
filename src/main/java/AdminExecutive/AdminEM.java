@@ -37,6 +37,8 @@ public class AdminEM extends javax.swing.JFrame {
     public AdminEM(Session session) {
         initComponents();
         Security.tabulateData1(securities, SGTable);
+        Technician.tabulateData(technicians,TechTable);
+        Cleaner.tabulateData(cleaners, CleanTable);
 //        AddDataToTable();
         this.Session = session;
         String id = session.getId();
@@ -470,15 +472,17 @@ public class AdminEM extends javax.swing.JFrame {
 
         },
         new String [] {
-            "ID", "Name", "Email", "Contact No.", "Unit No."
+            "ID", "Name", "Role", "Contact No."
         }
-    )
-    {
-        public boolean isCellEditable(int row,int column){
-            return false;
+    ) {
+        boolean[] canEdit = new boolean [] {
+            false, false, false, false
+        };
+
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit [columnIndex];
         }
-    }
-    );
+    });
     jScrollPane2.setViewportView(TechTable);
 
     jButton4.setText("Create");
@@ -549,15 +553,17 @@ public class AdminEM extends javax.swing.JFrame {
 
         },
         new String [] {
-            "ID", "Name", "Email", "Contact No.", "Unit No."
+            "ID", "Name", "Role", "Contact No."
         }
-    )
-    {
-        public boolean isCellEditable(int row,int column){
-            return false;
+    ) {
+        boolean[] canEdit = new boolean [] {
+            false, false, true, false
+        };
+
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit [columnIndex];
         }
-    }
-    );
+    });
     jScrollPane3.setViewportView(CleanTable);
 
     jButton7.setText("Create");

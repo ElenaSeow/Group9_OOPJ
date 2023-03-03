@@ -363,7 +363,7 @@ public class AdminCM extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "User ID", "Title", "Date", "Description"
+                "ID", "Description", "Complaint Date", "Last Updated", "Status"
             }
         ));
         jScrollPane1.setViewportView(PendingTable);
@@ -452,7 +452,7 @@ public class AdminCM extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "User ID", "Title", "Date", "Description"
+                "ID", "Description", "Complaint Date", "Last Updated", "Status"
             }
         ));
         jScrollPane2.setViewportView(ComplaintTable);

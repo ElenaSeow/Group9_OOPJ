@@ -11,6 +11,7 @@ import cClasses.Payment;
 import cClasses.Receipt;
 import cClasses.Session;
 import cClasses.Vendor;
+import com.mycompany.group9_oopj.Main_Page;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -919,7 +920,10 @@ public class Vendor_Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMouseClicked
-        System.exit(0);
+        Main_Page MP = new Main_Page();
+        MP.show(); //display Main Page
+
+        dispose(); //close current frame after open new frame
     }//GEN-LAST:event_LogoutMouseClicked
 
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed

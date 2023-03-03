@@ -18,6 +18,7 @@ import cClasses.Receipt;
 import cClasses.Resident;
 import cClasses.Session;
 import cClasses.VisitorPass;
+import com.mycompany.group9_oopj.Main_Page;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -268,6 +269,11 @@ public class Resident_Main extends javax.swing.JFrame {
         LogOut.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         LogOut.setForeground(new java.awt.Color(255, 255, 255));
         LogOut.setText("    Logout");
+        LogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogOutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -1473,6 +1479,14 @@ public class Resident_Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please select a row.");
         }
     }//GEN-LAST:event_UpdateCMActionPerformed
+
+    private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
+        // TODO add your handling code here:
+        Main_Page MP = new Main_Page();
+        MP.show(); //display Main Page
+
+        dispose(); //close current frame after open new frame
+    }//GEN-LAST:event_LogOutMouseClicked
 
     /**
      * @param args the command line arguments

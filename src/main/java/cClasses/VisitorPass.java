@@ -219,6 +219,15 @@ public class VisitorPass {
                 
         }
      }
+    public static void tabulateReport(JTable table){
+        ArrayList<VisitorPass> visitorpass = new VisitorPass().Import();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+            for(VisitorPass u:visitorpass){
+                String[] allDataRow = {u.getVisitorId(),u.getName(),u.getContactNo(),u.getPlateNo(),u.getStatus()};
+                model.addRow(allDataRow);
+                
+        }
+    }
     
     public static void ViewVisitorPass(ArrayList<VisitorPass> visitorpass,JTable table,String id){
             DefaultTableModel model = (DefaultTableModel) table.getModel();

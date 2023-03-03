@@ -10,6 +10,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -195,4 +199,13 @@ public class Functions {
             String cnt = String.valueOf(count);
             return cnt;
         }
+        public static boolean inCurrentMonth(Date givenDate) {
+            ZoneId timeZone = ZoneOffset.ofHours(8); // Use whichever time zone makes sense for your use case
+            LocalDateTime givenLocalDateTime = LocalDateTime.ofInstant(givenDate.toInstant(), timeZone);
+
+            YearMonth currentMonth = YearMonth.now(timeZone);
+
+            return currentMonth.equals(YearMonth.from(givenLocalDateTime));
+}
+        
 }

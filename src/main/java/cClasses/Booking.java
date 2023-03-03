@@ -4,6 +4,7 @@
  */
 package cClasses;
 
+import static cClasses.Invoices.inCurrentMonth;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -235,6 +236,51 @@ public class Booking{
             
         }
     }
+     
+     public static void tabulateReport(JTable table){
+        ArrayList<Booking> bookings = new Booking().Import();
+        ArrayList<Facility> facilities = new Facility().Import();
+          DefaultTableModel model = (DefaultTableModel) table.getModel();
+          model.setRowCount(0);
+          for(Booking i: bookings){
+              SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+              Date dt = i.getDate();
+              String facName="";
+              String facid=i.getFacId();
+              if(inCurrentMonth(dt)){
+                  for(Facility f:facilities){
+                      if(f.getId().equals(facid)){
+                          facName=f.getFacility();
+                      }
+                  }
+                  String date = df.format(dt);
+                String[] allDataRow = {i.getBookId(),i.getName(),facName,i.getStatus(),date};
+                model.addRow(allDataRow);
+              }
+          }
+     }
+     
+     public static void tabulateReport1(JTable table){
+        ArrayList<Booking> bookings = new Booking().Import();
+        ArrayList<Facility> facilities = new Facility().Import();
+          DefaultTableModel model = (DefaultTableModel) table.getModel();
+          model.setRowCount(0);
+          for(Booking i: bookings){
+              SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+              Date dt = i.getDate();
+              String facName="";
+              String facid=i.getFacId();
+                  for(Facility f:facilities){
+                      if(f.getId().equals(facid)){
+                          facName=f.getFacility();
+                      }
+                  }
+                  String date = df.format(dt);
+                String[] allDataRow = {i.getBookId(),i.getName(),facName,i.getStatus(),date};
+                model.addRow(allDataRow);
+              
+          }
+     }
     
     public ArrayList<Booking> Update(ArrayList<Booking> bookings, String id){
             PrintWriter pr = null;

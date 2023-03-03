@@ -4,6 +4,7 @@
  */
 package cClasses;
 
+import static cClasses.Invoices.inCurrentMonth;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,6 +14,10 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -191,6 +196,61 @@ public class Complaint {
             
         }
     }
+   
+   public static void tabulateReport(JTable table){
+            ArrayList<Complaint> complaints = new Complaint().Import();
+          DefaultTableModel model = (DefaultTableModel) table.getModel();
+          model.setRowCount(0);
+          for(Complaint i: complaints){
+              String userID = i.getUserId();
+              String uname = "";
+              SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+              Date dt = i.getComplaintDate();
+              if(Functions.inCurrentMonth(dt)){
+                  String cdate = df.format(dt);
+                  String ldate = df.format(i.getUpdateDate());
+                  String file =Functions.getFile(userID);
+                  ArrayList<String> userdata = Functions.Read(file);
+                  for(String str: userdata){
+                      String[] l  = str.split(":");
+                      if(userID.equals(l[0])){
+                          uname = l[1];
+                      }
+                  }
+                String[] allDataRow = {i.getComplaintId(),uname,i.getDesc(),i.getStatus(),cdate,ldate};
+                model.addRow(allDataRow);
+              }
+          }
+     }
+   
+   
+   public static void tabulateReport1(JTable table){
+            ArrayList<Complaint> complaints = new Complaint().Import();
+          DefaultTableModel model = (DefaultTableModel) table.getModel();
+          model.setRowCount(0);
+          for(Complaint i: complaints){
+              String userID = i.getUserId();
+              String uname = "";
+              SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+              Date dt = i.getComplaintDate();
+                  String cdate = df.format(dt);
+                  String ldate = df.format(i.getUpdateDate());
+                  String file =Functions.getFile(userID);
+                  ArrayList<String> userdata = Functions.Read(file);
+                  for(String str: userdata){
+                      String[] l  = str.split(":");
+                      if(userID.equals(l[0])){
+                          uname = l[1];
+                      }
+                  }
+                String[] allDataRow = {i.getComplaintId(),uname,i.getDesc(),i.getStatus(),cdate,ldate};
+                model.addRow(allDataRow);
+              
+          }
+     }
+    
+   
+   
    
     public ArrayList<Complaint> Update(ArrayList<Complaint> complaints, String id){
             PrintWriter pr = null;

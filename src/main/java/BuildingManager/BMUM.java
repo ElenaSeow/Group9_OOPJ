@@ -614,17 +614,17 @@ public class BMUM extends javax.swing.JFrame {
 
     private void BuildUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuildUpdateBtnActionPerformed
         // TODO add your handling code here:
-//        if(Building_Table.getSelectionModel().isSelectionEmpty()==false){
-//        int column = 0;
-//        int row = Building_Table.getSelectedRow();
-//        String Id = Building_Table.getModel().getValueAt(row, column).toString();
-//        Build_Mod_Form uf = new Build_Mod_Form(logindetails);
-//        uf.spamdata(Id);
-//        uf.setVisible(true);
-//        dispose();
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Please select a row.");
-//        }
+        if(Building_Table.getSelectionModel().isSelectionEmpty()==false){
+        int column = 0;
+        int row = Building_Table.getSelectedRow();
+        String Id = Building_Table.getModel().getValueAt(row, column).toString();
+        BMUMUpdate_BE uf = new BMUMUpdate_BE(Session);
+        uf.spamdata(Id);
+        uf.setVisible(true);
+        dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
     }//GEN-LAST:event_BuildUpdateBtnActionPerformed
 
     private void BuildDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuildDeleteBtnActionPerformed

@@ -303,6 +303,11 @@ public class BMReport extends javax.swing.JFrame {
         jLabel7.setText("Reports");
 
         jButton3.setText("Outstanding");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Invoice");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -446,6 +451,13 @@ public class BMReport extends javax.swing.JFrame {
         bmri.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        BMROutstanding bmro = new BMROutstanding(Session);
+        bmro.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

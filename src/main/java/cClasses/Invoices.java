@@ -162,7 +162,9 @@ public class Invoices {
                 }
                 
         }
-     }public static void tabulateReport1(JTable table){
+     }
+     
+     public static void tabulateReport1(JTable table){
             ArrayList<Invoices> invoices = new Invoices().Import();
           DefaultTableModel model = (DefaultTableModel) table.getModel();
           model.setRowCount(0);
@@ -174,6 +176,7 @@ public class Invoices {
               String uno = "";
               SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
               Date dt = i.getDate();
+              if( !(i.getFee().equals("0"))){
                 String fee = i.getFee();
                 String date = df.format(dt);
                 String file =Functions.getFile(userID);
@@ -191,6 +194,41 @@ public class Invoices {
                 }
               String[] allDataRow = {i.getInvoiceId(),uno,uname,i.getFee(),date};
               model.addRow(allDataRow);
+            }
+          }
+     }
+     
+     public static void tabulateReportOut1(JTable table){
+            ArrayList<Invoices> invoices = new Invoices().Import();
+          DefaultTableModel model = (DefaultTableModel) table.getModel();
+          model.setRowCount(0);
+          ArrayList<Unit> units = Unit.Import();
+          for(Invoices i: invoices){
+              String userID = i.getUserId();
+              String unitID=i.getUnitId();
+              String uname = "";
+              String uno = "";
+              SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+              Date dt = i.getDate();
+              if(!(i.getFee().equals("0"))){
+                String fee = i.getFee();
+                String date = df.format(dt);
+                String file =Functions.getFile(userID);
+                ArrayList<String> userdata = Functions.Read(file);
+                for(String str: userdata){
+                    String[] l  = str.split(":");
+                    if(userID.equals(l[0])){
+                        uname = l[1];
+                    }
+                }
+                for(Unit u: units){
+                    if(u.getUnitId().equals(unitID)){
+                        uno=u.getUnitNo();
+                    }
+                }
+              String[] allDataRow = {i.getInvoiceId(),uno,uname,i.getFee(),date};
+              model.addRow(allDataRow);
+              }
           }
      }
      
@@ -206,7 +244,7 @@ public class Invoices {
               String uno = "";
               SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
               Date dt = i.getDate();
-              if(inCurrentMonth(dt)){
+              if(inCurrentMonth(dt)&& !(i.getFee().equals("0"))){
                   String fee = i.getFee();
                   String date = df.format(dt);
                   String file =Functions.getFile(userID);
@@ -223,6 +261,39 @@ public class Invoices {
                       }
                   }
                 String[] allDataRow = {i.getInvoiceId(),uno,uname,i.getFee(),date};
+                model.addRow(allDataRow);
+              }
+          }
+     }
+     public static void tabulateReportOut(JTable table){
+            ArrayList<Invoices> invoices = new Invoices().Import();
+          DefaultTableModel model = (DefaultTableModel) table.getModel();
+          model.setRowCount(0);
+          ArrayList<Unit> units = Unit.Import();
+          for(Invoices i: invoices){
+              String userID = i.getUserId();
+              String unitID=i.getUnitId();
+              String uname = "";
+              String uno = "";
+              SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+              Date dt = i.getDate();
+              if(inCurrentMonth(dt)&&!(i.getFee().equals("0"))){
+                  String out = i.getOutstanding();
+                  String date = df.format(dt);
+                  String file =Functions.getFile(userID);
+                  ArrayList<String> userdata = Functions.Read(file);
+                  for(String str: userdata){
+                      String[] l  = str.split(":");
+                      if(userID.equals(l[0])){
+                          uname = l[1];
+                      }
+                  }
+                  for(Unit u: units){
+                      if(u.getUnitId().equals(unitID)){
+                          uno=u.getUnitNo();
+                      }
+                  }
+                String[] allDataRow = {i.getInvoiceId(),uno,uname,i.getOutstanding(),date};
                 model.addRow(allDataRow);
               }
           }

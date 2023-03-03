@@ -222,6 +222,7 @@ public class VisitorPass {
     public static void tabulateReport(JTable table){
         ArrayList<VisitorPass> visitorpass = new VisitorPass().Import();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
             for(VisitorPass u:visitorpass){
                 String[] allDataRow = {u.getVisitorId(),u.getName(),u.getContactNo(),u.getPlateNo(),u.getStatus()};
                 model.addRow(allDataRow);

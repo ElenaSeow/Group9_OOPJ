@@ -174,6 +174,14 @@ public class Operation {
     }
     }
     
+    public static ArrayList<String> getOperations(ArrayList<Operation> operations){
+        ArrayList<String> opId = new ArrayList<>();
+        for(Operation i:operations){
+            opId.add(i.getId());
+        }
+        return opId;
+    }
+    
     
       
 }

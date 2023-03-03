@@ -182,6 +182,32 @@ public class Operation {
         return opId;
     }
     
-    
+     public static ArrayList<Operation>Delete(ArrayList<Operation> operations, String id){
+            ArrayList<Operation> newOperations= new ArrayList<>();
+        try {
+           for(Operation r:operations){
+               String Id = r.getId();
+               if(id.equals(Id)){
+               }else{
+                   newOperations.add(r);
+               }
+           }
+               PrintWriter pr = new PrintWriter("Budget.txt");
+               for (Operation o:operations){
+                    String Id=o.getId();
+                    String name=o.getName();
+                    String type=o.getType();
+                    String budget=o.getBudget();
+                    String startdate=o.getStartdate();
+                    String enddate=o.getEnddate();
+                    pr.println(Id+":"+name+":"+type+":"+budget+":"+startdate+":"+enddate);
+                }
+                pr.close();    
+               
+        } catch (FileNotFoundException ex) {
+           Logger.getLogger(Resident.class.getName()).log(Level.SEVERE, null, ex);         
+       }
+       return newOperations;
+     }
       
 }

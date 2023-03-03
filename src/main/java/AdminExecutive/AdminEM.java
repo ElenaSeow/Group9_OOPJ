@@ -393,7 +393,7 @@ public class AdminEM extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name", "Email", "Contact No.", "Unit No."
+                "ID", "Name", "Role", "Email", "Password"
             }
         )
         {
@@ -472,11 +472,11 @@ public class AdminEM extends javax.swing.JFrame {
 
         },
         new String [] {
-            "ID", "Name", "Role", "Contact No."
+            "ID", "Name", "Email", "Password"
         }
     ) {
         boolean[] canEdit = new boolean [] {
-            false, false, false, false
+            false, false, false, true
         };
 
         public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -553,7 +553,7 @@ public class AdminEM extends javax.swing.JFrame {
 
         },
         new String [] {
-            "ID", "Name", "Role", "Contact No."
+            "ID", "Name", "Email", "Password"
         }
     ) {
         boolean[] canEdit = new boolean [] {

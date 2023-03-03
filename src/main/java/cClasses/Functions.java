@@ -189,4 +189,10 @@ public class Functions {
             return file;
             
         }
+        public static String getCount(JTable table){
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            int count = model.getRowCount();
+            String cnt = String.valueOf(count);
+            return cnt;
+        }
 }

@@ -211,7 +211,6 @@ public class Resident_Main extends javax.swing.JFrame {
         Update6 = new javax.swing.JButton();
         jScrollPane12 = new javax.swing.JScrollPane();
         VisitorTable = new javax.swing.JTable();
-        Delete5 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         Update7 = new javax.swing.JButton();
         jPanel28 = new javax.swing.JPanel();
@@ -854,14 +853,6 @@ public class Resident_Main extends javax.swing.JFrame {
         ));
         jScrollPane12.setViewportView(VisitorTable);
 
-        Delete5.setText("DELETE");
-        Delete5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        Delete5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Delete5ActionPerformed(evt);
-            }
-        });
-
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -881,15 +872,13 @@ public class Resident_Main extends javax.swing.JFrame {
         jPanel27Layout.setHorizontalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel27Layout.createSequentialGroup()
-                .addGap(191, 191, 191)
+                .addGap(246, 246, 246)
                 .addComponent(Update7, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(Update6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Delete5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(147, 147, 147))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -907,7 +896,6 @@ public class Resident_Main extends javax.swing.JFrame {
                 .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Delete5)
                     .addComponent(Update6)
                     .addComponent(Update7))
                 .addGap(9, 9, 9))
@@ -1221,23 +1209,6 @@ public class Resident_Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_Update6ActionPerformed
 
-    private void Delete5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete5ActionPerformed
-        // TODO add your handling code here:
-        if(VisitorTable.getSelectionModel().isSelectionEmpty()==false){
-            int column = 0;
-            int row = VisitorTable.getSelectedRow();
-            String Id = VisitorTable.getModel().getValueAt(VisitorTable.convertRowIndexToModel(row), column).toString();
-            visitorpass = VisitorPass.Delete(visitorpass, Id);
-    //        Functions.Delete("Units.txt", Id);
-            Resident_Main aum = new Resident_Main(Session);
-            aum.setVisible(true);
-            dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Please select a row.");
-        }
-        
-    }//GEN-LAST:event_Delete5ActionPerformed
-
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
         // TODO add your handling code here:
         String Id = UserIDL2.getText();
@@ -1530,7 +1501,6 @@ public class Resident_Main extends javax.swing.JFrame {
     private javax.swing.JLabel Date;
     private com.toedter.calendar.JDateChooser DateChooser1;
     private javax.swing.JLabel DatePayment;
-    private javax.swing.JButton Delete5;
     private javax.swing.JLabel EmailL;
     private javax.swing.JTextField EmailMOD;
     private javax.swing.JComboBox<String> FacilityCB4;
